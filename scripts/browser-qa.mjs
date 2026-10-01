@@ -76,6 +76,12 @@ try {
             assert.equal(await page.locator(".send").isVisible(), true);
             const sendBounds = await page.locator(".send").boundingBox(), composerBounds = await page.locator(".compose").boundingBox();
             assert.ok(sendBounds.x >= composerBounds.x && sendBounds.x + sendBounds.width <= composerBounds.x + composerBounds.width, "Send stays inside composer at " + width);
+            await page.locator(".send").scrollIntoViewIfNeeded();
+            assert.equal(await page.locator(".send").evaluate(el => {
+                const bounds=el.getBoundingClientRect();
+                return document.elementFromPoint(bounds.x+bounds.width/2,bounds.y+bounds.height/2)===el;
+            }),true,"Send is unobstructed at "+width);
+            await page.screenshot({path:".cache/screenshots/composer-"+theme+"-"+width+".png"});
             await page.screenshot({path:".cache/screenshots/"+theme+"-"+width+".png",fullPage:true});
         }
         await page.setViewportSize({width:1440,height:1050});
