@@ -24,6 +24,40 @@ try {
     await page.goto(base);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
+    assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal");
+    await page.getByRole("button", { name: "Discord", exact: true }).click();
+    assert.match(await page.locator("#service-status").innerText(), /not connected/);
+    await page.getByRole("button", { name: "Local", exact: true }).click();
+    assert.equal(await page.locator(".local-service").getAttribute("aria-pressed"), "true");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    assert.equal(await page.locator(".identity-center img").evaluate(el => getComputedStyle(el).animationName), "none");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    for (const theme of ["day", "contrast", "dark"]) {
+        await page.locator("#preferences-open").click();
+        await page.locator("#workspace-theme").selectOption(theme);
+        await page.keyboard.press("Escape");
+        await page.reload();
+        assert.equal(await page.locator("html").getAttribute("data-theme"), theme, "Theme persists after reload");
+        const contrasts = await page.evaluate(() => {
+            function luminance(color) {
+                const channels = color.match(/[\d.]+/g).slice(0,3).map(Number).map(n => n/255).map(n => n <= .04045 ? n/12.92 : ((n+.055)/1.055)**2.4);
+                return channels[0]*.2126 + channels[1]*.7152 + channels[2]*.0722;
+            }
+            return [[".message p", ".chat-paper"], ["#contacts .contact:not(.selected) small", ".contact-scroll"], [".identity-center strong", ".identity-deck"], ["#service-status", ".identity-deck"], ["#message-input", "#message-input"], [".option small", ".preferences-body"], ["#workspace-theme", "#workspace-theme"]].map(([text, background]) => {
+                const a = luminance(getComputedStyle(document.querySelector(text)).color);
+                const b = luminance(getComputedStyle(document.querySelector(background)).backgroundColor);
+                return { text, ratio: (Math.max(a,b)+.05)/(Math.min(a,b)+.05) };
+            });
+        });
+        for (const check of contrasts) assert.ok(check.ratio >= (theme === "contrast" ? 7 : 4.5), theme + " text contrast " + check.text + ": " + check.ratio);
+        await page.screenshot({ path: ".cache/screenshots/theme-" + theme + ".png", fullPage: true });
+        for (const width of [390, 768]) {
+            await page.setViewportSize({width, height:844});
+            assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, theme + " overflow at " + width);
+            await page.screenshot({path:".cache/screenshots/"+theme+"-"+width+".png",fullPage:true});
+        }
+        await page.setViewportSize({width:1440,height:1050});
+    }
     assert.equal(await page.locator(".send").isDisabled(), true);
     await page.locator("#message-input").fill("Operator draft");
     await page.locator("#contacts .contact").filter({ hasText: "Avery" }).click();
@@ -50,8 +84,12 @@ try {
     await page.locator("#compact-messages").check();
     await page.locator("#reduced-motion").check();
     assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "none");
+    assert.equal(await page.locator(".identity-center img").evaluate(el => getComputedStyle(el).animationName), "none");
     await page.locator("#safe-mode").check();
     assert.equal(await page.locator("#compact-messages").isDisabled(), true);
+    await page.locator("#workspace-theme").selectOption("day");
+    assert.equal(await page.locator("html").getAttribute("data-theme"), "day", "Safe mode retains theme controls");
+    await page.locator("#workspace-theme").selectOption("dark");
     await page.locator("#safe-mode").uncheck();
     assert.equal(await page.locator("#compact-messages").isChecked(), true);
     await page.keyboard.press("Escape");
@@ -79,5 +117,5 @@ try {
         await page.screenshot({ path: ".cache/screenshots/" + width + ".png", fullPage: true });
     }
     assert.deepEqual(errors, []);
-    console.log("Browser QA passed: drafts, conversations, composition, literal text, contact search, presence, modal focus, safe mode, reduced motion and 390/768/1440 layouts.");
+    console.log("Browser QA passed: three persistent themes, text contrast, service status, animation preferences, drafts, conversations, composition, literal text, search, presence, modal focus, safe mode and 390/768/1440 layouts.");
 } finally { await browser.close(); server.close(); }

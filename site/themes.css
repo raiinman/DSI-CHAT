@@ -1,0 +1,98 @@
+/* Complete preview themes. Colors are independent of Discord feature CSS. */
+:root{
+  --text:#f5eee6;--muted:#c2b4a5;--accent:#ffad60;--line:#8c6b4d;
+  --panel:#211e1a;--panel-raised:#332a22;--paper:#181715;--field:#171614;
+  --chrome:linear-gradient(#ffd19b,#eea45d 46%,#db893e 49%,#f0b06c);
+  --chrome-text:#28190d;--chrome-muted:#422711;--chrome-line:#f3bb7d;
+  --bar:linear-gradient(#433326,#2e261f);--frame:linear-gradient(110deg,#6a3c20,#34261d);
+  --profile:#1e1c19;--selected:linear-gradient(#784821,#4a301d);--selected-text:#fff3e1;
+  --button:linear-gradient(#5c402a,#35271c);--button-text:#ffe1bf;--focus:#ffb65f;
+  --author:#ffae65;--self-author:#f5eee6;--avatar:linear-gradient(#725031,#382c20);
+  --avatar-text:#ffdaad;--shadow:0 16px 36px #0009;
+}
+html[data-theme=day]{
+  color-scheme:light;--text:#30271f;--muted:#625242;--accent:#8b3d08;--line:#9d7854;
+  --panel:#f5ebdc;--panel-raised:#e9d8c1;--paper:#fffdf8;--field:#fffdf8;
+  --bar:linear-gradient(#f5e6d0,#e7cfad);--frame:linear-gradient(110deg,#e9b579,#bd854a);
+  --profile:#eedcc3;--selected:linear-gradient(#f4cf9c,#eac08a);--selected-text:#30200f;
+  --button:linear-gradient(#fff4e2,#ead2af);--button-text:#4b3016;--focus:#863600;
+  --author:#85400d;--self-author:#42352a;--avatar:linear-gradient(#ffe2b8,#e8bd84);
+  --avatar-text:#5b3210;--shadow:0 12px 28px #59432833;
+}
+html[data-theme=contrast]{
+  color-scheme:dark;--text:#fff;--muted:#fff;--accent:#ffdf65;--line:#fff;
+  --panel:#000;--panel-raised:#000;--paper:#000;--field:#000;
+  --chrome:#000;--chrome-text:#fff;--chrome-muted:#fff;--chrome-line:#fff;
+  --bar:#000;--frame:#000;--profile:#000;--selected:#ffdf65;--selected-text:#000;
+  --button:#000;--button-text:#fff;--focus:#ffdf65;--author:#ffdf65;--self-author:#fff;
+  --avatar:#000;--avatar-text:#fff;--shadow:none;
+}
+body{color:var(--text)}
+html[data-theme=day] body{background:radial-gradient(ellipse at 35% 8%,#fff5e5,transparent 65%),linear-gradient(135deg,#eadbc7,#f6f1e9)}
+html[data-theme=contrast] body{background:#000}
+.desktop-bar{background:var(--bar);border-color:var(--line);color:var(--muted)}
+.desktop-bar nav a{color:var(--text)}.brand{color:var(--text)}.workspace-note{color:var(--accent)}.workspace-note>span:last-of-type{color:var(--muted)}
+.workspace-note button{background:var(--button);border-color:var(--line);color:var(--button-text)}
+.window{background:var(--frame);border-color:var(--chrome-line);box-shadow:inset 0 0 0 1px #ffdbac44,var(--shadow)}
+.titlebar,.preferences .titlebar{background:var(--chrome);color:var(--chrome-text);border-color:var(--line);text-shadow:none}
+.titlebar small{color:var(--chrome-muted)}.station-mark{color:var(--chrome-text)}.preferences .titlebar button{color:var(--chrome-text)}
+.buddy-tools,.tabs,.contact-header,.chat-toolbar,.compose,.window-status,.history{background:var(--bar);border-color:var(--line);color:var(--text)}
+.buddy-tools input,.compose textarea{background:var(--field);border-color:var(--line);color:var(--text)}
+.buddy-tools input::placeholder,.compose textarea::placeholder{color:var(--muted);opacity:1}
+.contact-scroll{background:var(--panel);border-color:var(--line);color:var(--text);box-shadow:inset 0 1px 5px #0002}
+.contact-scroll summary{color:var(--muted);border-color:var(--line)}.contact{color:var(--text)}.contact small{color:var(--muted)}
+.contact:hover{background:var(--panel-raised)}.contact.selected{background:var(--selected);border-color:var(--line);color:var(--selected-text);box-shadow:inset 0 1px #ffffff20}
+.contact.selected small{color:var(--selected-text)}.avatar,.large-avatar{background:var(--avatar);color:var(--avatar-text);border-color:var(--line)}
+.tab-wrap{background:var(--button);border-color:var(--line)}.tab-wrap.active{background:var(--selected);box-shadow:inset 0 2px var(--accent)}
+.tab,.tab-close{color:var(--button-text)}.tab-wrap.active .tab,.tab-wrap.active .tab-close{color:var(--selected-text)}
+.contact-header p,.contact-header>small{color:var(--muted)}.chat-toolbar{color:var(--muted)}.chat-toolbar button{color:var(--text)}
+.chat-toolbar button:hover{background:var(--panel-raised)}.chat-paper{background:var(--paper);border-color:var(--line);color:var(--text);scrollbar-color:var(--line) var(--paper)}
+.date-divider,.message time,.empty-conversation{color:var(--muted)}.message{border-color:var(--panel-raised)}.message-heading{color:var(--author)}.message.self .message-heading{color:var(--self-author)}
+.compose{color:var(--muted)}.compose-tools button{background:var(--button);border-color:var(--line);color:var(--button-text)}.send-row span{color:var(--muted)}
+.send{background:var(--chrome);color:var(--chrome-text);border-color:var(--line)}.window-status{color:var(--muted)}
+.preferences-body{background:var(--panel);color:var(--text);border-color:var(--line)}.preferences-body>p,.option small,.install p{color:var(--muted)}
+.option,.install{border-color:var(--line)}legend{color:var(--muted)}#reset{background:var(--button);color:var(--button-text);border-color:var(--line)}
+#status,.install a{color:var(--accent)}footer{color:var(--muted)}.history{color:var(--text)}
+.theme-choice{display:flex;flex-direction:column;gap:10px;padding:13px 0 18px;border-bottom:1px solid var(--line);font-weight:600}
+.theme-choice small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}
+.theme-choice select{width:100%;background:var(--field);border:1px solid var(--line);color:var(--text);border-radius:5px;padding:8px;font-size:14px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline-color:var(--focus)}
+/* Status strip and sculpted portrait panel replace the muddy lower gradient. */
+.identity-deck{background:var(--profile);border-color:var(--line);padding:7px 8px 6px;box-shadow:inset 0 -3px 0 #0003;border-radius:5px 5px 21px 21px}
+.presence-select{margin:-7px -8px 0;padding:3px 8px;background:var(--chrome);border-bottom:1px solid var(--line);border-radius:4px 4px 0 0}
+.presence-select select{color:var(--chrome-text);text-shadow:none;font-weight:600}.presence-select option{background:var(--panel);color:var(--text)}
+.service-orbs{display:flex;gap:10px;justify-content:center;padding:9px 0 2px}
+.service-button{display:flex;flex-direction:column;align-items:center;gap:4px;width:58px;min-height:54px;padding:4px 3px;border:1px solid transparent;background:transparent;border-radius:6px;color:var(--muted)}
+.service-button:hover{background:var(--panel-raised)}.service-button[aria-pressed=true]{border-color:var(--line);background:var(--panel-raised)}
+.service-orbs .service-badge{display:grid;place-items:center;width:28px;height:28px;font-size:14px;font-weight:800;color:#fff;box-shadow:inset 0 1px #ffffff55,0 1px 3px #0004;border:1px solid #ffffff66;background:#6b4fb5;border-radius:8px}
+.service-orbs .relay-service .service-badge{background:#116a75;border-radius:50%}.service-orbs .local-service .service-badge{background:#286746;border-radius:4px}
+.service-button small{font-size:10px;color:var(--text);line-height:1.2}
+#service-status{font-size:10px;color:var(--muted);text-align:center;margin:6px 0 12px;min-height:15px}
+.identity-center{position:relative;padding:10px 0 7px;border-top:1px solid var(--line);border-radius:36% 36% 0 0;background:var(--profile)}
+.identity-center img{position:relative;border:2px solid var(--line);background:#151513;box-shadow:0 0 0 3px var(--profile),0 3px 8px #0005;border-radius:8px;animation:portrait-signal 3s ease-in-out infinite}
+.identity-center strong{color:var(--text)}.identity-center small,.deck-footer{color:var(--muted)}.deck-footer button{color:var(--accent)}
+@keyframes portrait-signal{0%,100%{outline:1px solid transparent;outline-offset:3px}50%{outline:1px solid var(--accent);outline-offset:3px}}
+.transmission{height:24px;gap:4px}.transmission i{width:4px;height:14px;background:var(--accent);animation:signal .8s ease-in-out infinite alternate}
+.transmission i:nth-child(2n){height:22px;animation-delay:-.3s}.transmission i:nth-child(3n){height:10px;animation-delay:-.6s}
+html[data-theme=contrast] .window{box-shadow:none;border:2px solid #fff}
+html[data-theme=contrast] .titlebar,html[data-theme=contrast] .presence-select,html[data-theme=contrast] .send{box-shadow:none;background:#000;color:#fff}
+html[data-theme=contrast] .send{border:2px solid var(--accent);color:var(--accent)}
+html[data-theme=contrast] .service-orbs .service-badge{background:#000;border:2px solid #fff;color:#fff;box-shadow:none}
+html[data-theme=contrast] .service-button[aria-pressed=true]{border:2px solid var(--accent)}
+html[data-theme=contrast] .contact.selected{border:2px solid var(--accent);box-shadow:none}
+html[data-theme=contrast] .contact.selected .avatar{background:#000;border-color:#000;color:#fff}
+html[data-theme=contrast] .buddy-tools input,html[data-theme=contrast] .compose textarea{border:2px solid #fff;box-shadow:none}
+html[data-theme=contrast] .tab-wrap.active{box-shadow:none}html[data-theme=contrast] .contact-scroll,html[data-theme=contrast] .chat-paper{box-shadow:none}
+html[data-theme=contrast] button:disabled{opacity:1;border-style:dashed;color:#fff;background:#000}
+@media(prefers-reduced-motion:reduce){.identity-center img,.transmission i{animation:none!important}}
+@media(max-width:680px){
+  .identity-deck{display:grid;grid-template-columns:1fr auto;gap:0;padding:7px 8px 6px;border-radius:5px 5px 14px 14px}
+  .presence-select{grid-column:1/-1;justify-content:flex-start;padding-left:12px;margin:-7px -8px 0}
+  .service-orbs{display:flex;justify-content:flex-start;gap:3px;padding:7px 0 0;grid-column:1;grid-row:2}
+  .service-button{width:51px;min-height:52px}.service-orbs .service-badge{width:26px;height:26px}
+  #service-status{grid-column:1/-1;text-align:left;margin:3px 4px 4px;grid-row:3}
+  .identity-center{border:0;border-radius:0;padding:6px 2px 0 6px;grid-column:2;grid-row:2;gap:6px}
+  .identity-center img{width:34px;height:34px;border-width:1px}.identity-center strong{font-size:10px}.identity-center small{display:none}
+  .deck-footer{grid-column:1/-1;border-top:1px solid var(--line);margin-top:3px}.deck-footer>span{display:block}.deck-footer button{min-height:32px}
+  .theme-choice select{font-size:16px}
+}

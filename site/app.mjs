@@ -3,25 +3,46 @@ import { browserFeatures } from "./src/features.mjs";
 import { CONTACTS, createMessenger } from "./messenger.mjs";
 const byId = id => document.getElementById(id);
 const key = "dsiChat.site.preview.v1";
-const runtime = new FeatureRuntime(browserFeatures(document));
+// The preview has complete themes; Discord's Signal CSS belongs to the extension.
+const previewFeatures = FEATURES.filter(feature => feature.id !== "signal-theme");
+const runtime = new FeatureRuntime(browserFeatures(document).filter(feature => feature.id !== "signal-theme"));
 const model = createMessenger();
 let settings = normalizeSettings();
+let theme = "dark";
 let persistent = true;
-try { settings = normalizeSettings(JSON.parse(localStorage.getItem(key))); } catch { persistent = false; }
+try {
+    const stored = JSON.parse(localStorage.getItem(key));
+    settings = normalizeSettings(stored);
+    theme = ["dark", "day", "contrast"].includes(stored?.theme) ? stored.theme : settings.enabled["signal-theme"] ? "contrast" : "dark";
+    settings.enabled["signal-theme"] = false;
+} catch { persistent = false; }
 function appearance() {
     byId("safe-mode").checked = settings.safeMode; byId("features").disabled = settings.safeMode;
-    for (const feature of FEATURES) byId(feature.id).checked = settings.enabled[feature.id];
+    for (const feature of previewFeatures) byId(feature.id).checked = settings.enabled[feature.id];
     const result = runtime.reconcile(settings);
-    document.documentElement.dataset.signal = String(result.active.includes("signal-theme"));
+    document.documentElement.dataset.theme = theme;
+    byId("workspace-theme").value = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === "day" ? "#f1e7d8" : theme === "contrast" ? "#000000" : "#181613";
     byId("active-count").textContent = result.active.length + " features active";
     byId("status").textContent = settings.safeMode ? "Safe mode active. Choices retained." : "Appearance applied to this workspace.";
     if (result.errors.length) byId("status").textContent = "A feature could not start. Try safe mode.";
     if (!persistent) byId("status").textContent += " Changes apply for this visit.";
 }
-function save() { try { localStorage.setItem(key, JSON.stringify(settings)); persistent = true; } catch { persistent = false; } appearance(); }
+function save() { try { localStorage.setItem(key, JSON.stringify({ ...settings, theme })); persistent = true; } catch { persistent = false; } appearance(); }
 byId("safe-mode").addEventListener("change", event => { settings.safeMode = event.target.checked; save(); });
-for (const feature of FEATURES) byId(feature.id).addEventListener("change", event => { settings.enabled[feature.id] = event.target.checked; save(); });
-byId("reset").addEventListener("click", () => { settings = normalizeSettings(); save(); });
+for (const feature of previewFeatures) byId(feature.id).addEventListener("change", event => { settings.enabled[feature.id] = event.target.checked; save(); });
+byId("workspace-theme").addEventListener("change", event => { theme = event.target.value; save(); });
+byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "dark"; save(); });
+
+const serviceDescriptions = {
+    discord: "Discord: not connected.",
+    relay: "Relay: not connected.",
+    local: "Local: preview ready."
+};
+for (const button of document.querySelectorAll(".service-button")) button.addEventListener("click", () => {
+    for (const other of document.querySelectorAll(".service-button")) other.setAttribute("aria-pressed", String(other === button));
+    byId("service-status").textContent = serviceDescriptions[button.dataset.service];
+});
 
 let preferencesTrigger = byId("preferences-open");
 for (const id of ["preferences-open", "preferences-buddy", "preferences-chat"]) byId(id).addEventListener("click", event => {
