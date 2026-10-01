@@ -12,4 +12,6 @@ Added a responsive GitHub Pages preview with the generated broadcast mascot, rea
 
 No live browser or device acceptance test has occurred. Message padding and theme variables depend on Discord's current DOM and must be validated in the live client. Packaging and automated checks are not evidence of installed-client acceptance.
 
+The site now uses the user's classic Astra messenger direction: blue glass window chrome, buddy list, bottom profile avatar and tabbed conversations. Contact search, local composition, presence, history and preferences are implemented. Twelve local tests passed, including conversation isolation, tab closure and composer input handling; syntax checking, catalog and builds passed. The new layout is a local preview and is not yet the installed extension's UI. See DESIGN.md. Deployment verification for this redesign is pending.
+
 This is a new implementation effort with documented prior exposure to upstream source, not a legal clearance or formal clean-room certification.

@@ -9,3 +9,5 @@ The build concatenates the original plain-JavaScript modules into one content sc
 Mobile and desktop adapters are not implemented. A shared lifecycle does not make DOM features executable in Android.
 
 The GitHub Pages preview reuses the actual feature runtime and CSS against sample messages. Preview settings use a separate browser localStorage record. Pages hosts a ZIP built from the same original extension sources; no GitHub login is needed to download it. The deployment workflow builds and verifies before publishing.
+
+The messenger preview keeps contact data and per-conversation histories in a small original model. Messages stay in tab memory, and rendering uses textContent for message bodies. No network adapter is connected. The Trillian-inspired layout belongs to the preview; applying that shell to Discord remains separate platform work.
