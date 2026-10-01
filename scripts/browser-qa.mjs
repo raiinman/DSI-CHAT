@@ -82,6 +82,10 @@ try {
                 return document.elementFromPoint(bounds.x+bounds.width/2,bounds.y+bounds.height/2)===el;
             }),true,"Send is unobstructed at "+width);
             await page.screenshot({path:".cache/screenshots/composer-"+theme+"-"+width+".png"});
+            await page.locator("#message-input").fill("Ready to send.");
+            assert.equal(await page.locator(".send").isDisabled(),false);
+            await page.screenshot({path:".cache/screenshots/compose-ready-"+theme+"-"+width+".png"});
+            await page.locator("#message-input").fill("");
             await page.screenshot({path:".cache/screenshots/"+theme+"-"+width+".png",fullPage:true});
         }
         await page.setViewportSize({width:1440,height:1050});
