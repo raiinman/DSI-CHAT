@@ -1,6 +1,6 @@
 # Messenger usability review
 
-The full messenger uses charcoal surfaces and orange emphasis. The classic contact-and-conversation structure is retained. No blue starting theme remains.
+The default messenger uses charcoal surfaces and orange glass. Daytime and High contrast are complete alternate themes. The classic contact-and-conversation structure is retained. No blue starting theme remains.
 
 | Finding | Change | Verification |
 | --- | --- | --- |
@@ -13,7 +13,11 @@ The full messenger uses charcoal surfaces and orange emphasis. The classic conta
 | Mobile chat made returning to contacts awkward | Add a Contacts shortcut that scrolls and focuses search | Chromium interaction check |
 | Active tabs could be outside the visible tab strip | Scroll the strip horizontally to the selected tab | Source review |
 | Safe mode could be mistaken for a light-theme reset | Base dark messenger is independent of optional features | Screenshot and safe-mode check |
+| Muddy gradient obscured the profile deck | Solid portrait panel, curved inset edge and separate orange status strip | Desktop and phone screenshots |
+| D/R/L badges were tiny and looked identical | Larger, labeled badges with different shapes/colors and preview-status actions | Service-button checks and screenshots |
+| Animation became hard to notice | Larger signal meter and gentle portrait outline pulse | Default animation, saved Reduced motion and system motion checks |
+| High contrast only altered some accents; no daytime theme existed | Three full themes with persisted selection, available in safe mode | Theme reloads, screenshots, sampled text contrast and overflow checks |
 
-Browser QA runs on the GitHub Linux runner against a local static build. Screenshots cover 1440, 768 and 390 pixel widths plus preferences. It also checks literal text rendering, history isolation, presence controls, reduced motion, keyboard tab selection and closure. It does not access a live Discord account.
+Browser QA runs on the GitHub Linux runner against a local static build. Screenshots cover all three themes at 1440, 768 and 390 pixel widths plus preferences. It checks selected normal text/surface pairs at a minimum 4.5:1 for Dark/Daytime and 7:1 for High contrast, plus removal of decorative high-contrast gradients. These sampled checks are not a comprehensive accessibility certification. It also checks literal text rendering, history isolation, presence controls, reduced motion, keyboard tab selection and closure. It does not access a live Discord account.
 
 Remaining limits: contacts and presence are sample data; messages are in tab memory; no remote transport, unread notifications, file transfers or calls are implemented. Firefox, screen-reader sessions and real-device keyboard behavior have not been validated.
