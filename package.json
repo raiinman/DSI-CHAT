@@ -1,0 +1,14 @@
+{
+  "name": "dsi-chat-original",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "catalog": "node scripts/catalog.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

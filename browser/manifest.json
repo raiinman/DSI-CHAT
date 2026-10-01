@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "DSI CHAT",
+  "version": "0.1.0",
+  "description": "Original DSI display features for Discord web.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_title": "DSI CHAT",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://discord.com/channels/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "world": "ISOLATED"
+    }
+  ]
+}

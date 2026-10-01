@@ -1,0 +1,32 @@
+{
+  "implementation": "DSI original",
+  "features": [
+    {
+      "id": "signal-theme",
+      "label": "Signal theme",
+      "description": "Charcoal surfaces with orange highlights.",
+      "platforms": [
+        "chromium-web"
+      ],
+      "defaultEnabled": false
+    },
+    {
+      "id": "compact-messages",
+      "label": "Compact messages",
+      "description": "Reduce vertical message spacing.",
+      "platforms": [
+        "chromium-web"
+      ],
+      "defaultEnabled": false
+    },
+    {
+      "id": "reduced-motion",
+      "label": "Reduced motion",
+      "description": "Suppress animations and transitions.",
+      "platforms": [
+        "chromium-web"
+      ],
+      "defaultEnabled": false
+    }
+  ]
+}
