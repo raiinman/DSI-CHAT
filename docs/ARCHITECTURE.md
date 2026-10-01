@@ -7,3 +7,5 @@ The Chromium adapter uses a statically declared isolated-world content script on
 The build concatenates the original plain-JavaScript modules into one content script and copies the popup and manifest. There is no package dependency, remote code, telemetry or upstream updater.
 
 Mobile and desktop adapters are not implemented. A shared lifecycle does not make DOM features executable in Android.
+
+The GitHub Pages preview reuses the actual feature runtime and CSS against sample messages. Preview settings use a separate browser localStorage record. Pages hosts a ZIP built from the same original extension sources; no GitHub login is needed to download it. The deployment workflow builds and verifies before publishing.

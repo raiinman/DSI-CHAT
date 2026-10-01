@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="DSI CHAT — your signal, your settings. Try the original browser prototype."><meta name="theme-color" content="#111317"><title>DSI CHAT // Dead Signal Interactive</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="masthead"><a class="wordmark" href="./">DSI<span>//</span>CHAT</a><span class="station">DEAD SIGNAL INTERACTIVE</span><a class="source" href="https://github.com/raiinman/DSI-CHAT/tree/codex/dsi-original">Source ↗</a></header>
+<main class="shell">
+<section class="hero"><div><p class="eyebrow">01 / SIGNAL ONLINE</p><h1>Your station.<br>Your signal.</h1><p class="intro">An original DSI take on Discord customization.<br>Built to put the controls back in your hands.</p><div class="actions"><a class="primary" href="#console">Try the preview ↓</a><a class="secondary" href="downloads/dsi-chat-original-chromium.zip" download>Download extension</a></div><p class="version">BROWSER PROTOTYPE / v0.1.0</p></div><img class="mascot" src="assets/dsi-fox.png" alt="Stern nine-tailed fox broadcast operator with headset and microphone" width="1312" height="1200"></section>
+<section id="console" class="console" aria-label="Interactive feature preview">
+<aside class="controls"><p class="eyebrow">02 / CONTROL DESK</p><h2>Tune your setup.</h2><p class="hint">These controls change the sample chat here. Your Discord account stays untouched.</p>
+<label class="safe"><span>Safe mode<small>Pause features. Keep your choices.</small></span><input id="safe-mode" type="checkbox"></label>
+<fieldset id="features"><legend>Display features</legend>
+<label class="option"><span>Signal theme<small>Charcoal surfaces. Orange accents.</small></span><input id="signal-theme" type="checkbox"></label>
+<label class="option"><span>Compact messages<small>A tighter message layout.</small></span><input id="compact-messages" type="checkbox"></label>
+<label class="option"><span>Reduced motion<small>Stop animated interface effects.</small></span><input id="reduced-motion" type="checkbox"></label>
+</fieldset><button id="reset" class="reset" type="button">Reset preview</button><p id="status" role="status" aria-live="polite">Features start disabled.</p></aside>
+<div class="preview" role="main" aria-label="Sample chat"><div class="channel"><span># station-check</span><span class="sample">SAMPLE CHAT</span></div><div class="messages">
+<article id="chat-messages-demo-1" class="message"><div class="avatar">RM</div><div><h3>RAiiNMAN <time>00:01</time></h3><p>Mic check. Welcome to the station.</p></div></article>
+<article id="chat-messages-demo-2" class="message"><div class="avatar fox">DS</div><div><h3>DSI Operator <time>00:02</time></h3><p>Signal is clear. Flip a switch on the control desk.</p><div class="transmission" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></article>
+<article id="chat-messages-demo-3" class="message"><div class="avatar">RM</div><div><h3>RAiiNMAN <time>00:03</time></h3><p>One station. Our own controls.</p></div></article>
+<article id="chat-messages-demo-4" class="message"><div class="avatar fox">DS</div><div><h3>DSI Operator <time>00:04</time></h3><p>Safe mode pauses every feature without erasing your settings.</p></div></article>
+</div><div class="composer">Preview only · no messages are sent</div></div></section>
+<section class="install" id="install"><p class="eyebrow">03 / GET ON AIR</p><h2>Install the browser prototype.</h2><ol><li><strong>Download and extract.</strong> Use the extension download button above. Extract the ZIP into a folder.</li><li><strong>Load the extension.</strong> Open <code>chrome://extensions</code> or <code>edge://extensions</code>, turn on Developer mode, then choose Load unpacked and select the extracted folder.</li><li><strong>Open Discord web.</strong> Refresh an existing Discord tab. Open the DSI CHAT extension popup and choose your features.</li></ol><p class="hint">Desktop browsers only. Android and the installed Discord desktop app are still in development. The extension has passed automated build checks; live Discord acceptance testing remains pending.</p></section>
+</main><footer><span>DEAD SIGNAL INTERACTIVE / DSI CHAT</span><span>ORIGINAL BROWSER PROTOTYPE</span></footer><script type="module" src="app.mjs"></script>
+</body></html>
