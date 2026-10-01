@@ -9,7 +9,7 @@ const server = createServer(async (request, response) => {
     try {
         const file = resolve(root, "." + decodeURIComponent(new URL(request.url, "http://localhost").pathname), request.url === "/" ? "index.html" : "");
         if (!file.startsWith(root + sep)) { response.writeHead(403).end(); return; }
-        const types = { ".html": "text/html", ".mjs": "text/javascript", ".css": "text/css", ".png": "image/png" };
+        const types = { ".html": "text/html", ".mjs": "text/javascript", ".css": "text/css", ".png": "image/png", ".svg": "image/svg+xml" };
         response.setHeader("Content-Type", types[extname(file)] || "application/octet-stream");
         response.end(await readFile(file));
     } catch { response.writeHead(404).end(); }
