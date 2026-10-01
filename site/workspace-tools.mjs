@@ -71,7 +71,7 @@ export function initWorkspaceTools({model, updateSendState}) {
     });
     byId("profile-name").addEventListener("input",()=>byId("profile-name").setCustomValidity(""));
     const cardButton=document.createElement("button");cardButton.type="button";cardButton.id="contact-info";cardButton.textContent="Contact card";
-    document.querySelector(".chat-toolbar").insertBefore(cardButton,byId("preferences-chat"));
+    document.querySelector(".chat-toolbar").insertBefore(cardButton,document.querySelector(".chat-toolbar .preview-label"));
     cardButton.addEventListener("click",()=>{
         const contact=CONTACTS.find(c=>c.id===model.state.active);
         byId("card-portrait").dataset.portrait=contact.id;byId("contact-card-name").textContent=contact.name;
