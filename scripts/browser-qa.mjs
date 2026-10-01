@@ -38,6 +38,11 @@ try {
         await page.keyboard.press("Escape");
         await page.reload();
         assert.equal(await page.locator("html").getAttribute("data-theme"), theme, "Theme persists after reload");
+        assert.equal(await page.locator(".tabs").evaluate(el => getComputedStyle(el).backgroundImage), await page.locator(".chat-toolbar").evaluate(el => getComputedStyle(el).backgroundImage), "Tabs use the selected theme");
+        if (theme === "contrast") {
+            for (const selector of ["body", ".titlebar", ".tabs", ".identity-deck", ".chat-paper", ".compose"])
+                assert.equal(await page.locator(selector).first().evaluate(el => getComputedStyle(el).backgroundImage), "none", "High contrast has no decorative gradient: " + selector);
+        }
         const contrasts = await page.evaluate(() => {
             function luminance(color) {
                 const channels = color.match(/[\d.]+/g).slice(0,3).map(Number).map(n => n/255).map(n => n <= .04045 ? n/12.92 : ((n+.055)/1.055)**2.4);
@@ -51,6 +56,9 @@ try {
         });
         for (const check of contrasts) assert.ok(check.ratio >= (theme === "contrast" ? 7 : 4.5), theme + " text contrast " + check.text + ": " + check.ratio);
         await page.screenshot({ path: ".cache/screenshots/theme-" + theme + ".png", fullPage: true });
+        await page.locator("#preferences-open").click();
+        await page.screenshot({path:".cache/screenshots/preferences-"+theme+".png",fullPage:true});
+        await page.keyboard.press("Escape");
         for (const width of [390, 768]) {
             await page.setViewportSize({width, height:844});
             assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, theme + " overflow at " + width);

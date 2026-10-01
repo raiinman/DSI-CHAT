@@ -36,7 +36,7 @@ html[data-theme=contrast] body{background:#000}
 .window{background:var(--frame);border-color:var(--chrome-line);box-shadow:inset 0 0 0 1px #ffdbac44,var(--shadow)}
 .titlebar,.preferences .titlebar{background:var(--chrome);color:var(--chrome-text);border-color:var(--line);text-shadow:none}
 .titlebar small{color:var(--chrome-muted)}.station-mark{color:var(--chrome-text)}.preferences .titlebar button{color:var(--chrome-text)}
-.buddy-tools,.tabs,.contact-header,.chat-toolbar,.compose,.window-status,.history{background:var(--bar);border-color:var(--line);color:var(--text)}
+.buddy-tools,.chat-window .tabs,.contact-header,.chat-toolbar,.compose,.window-status,.history{background:var(--bar);border-color:var(--line);color:var(--text)}
 .buddy-tools input,.compose textarea{background:var(--field);border-color:var(--line);color:var(--text)}
 .buddy-tools input::placeholder,.compose textarea::placeholder{color:var(--muted);opacity:1}
 .contact-scroll{background:var(--panel);border-color:var(--line);color:var(--text);box-shadow:inset 0 1px 5px #0002}
