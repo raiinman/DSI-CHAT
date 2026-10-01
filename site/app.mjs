@@ -72,7 +72,7 @@ for (const button of document.querySelectorAll(".service-button")) button.addEve
 });
 
 let preferencesTrigger = byId("preferences-open");
-for (const id of ["preferences-open", "preferences-buddy", "preferences-chat"]) byId(id).addEventListener("click", event => {
+for (const id of ["preferences-open", "preferences-buddy"]) byId(id).addEventListener("click", event => {
     preferencesTrigger = event.currentTarget;
     byId("preferences").showModal();
     byId("preferences-close").focus();

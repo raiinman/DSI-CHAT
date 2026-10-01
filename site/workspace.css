@@ -32,3 +32,7 @@ html:not([data-theme=contrast]) .send{background:linear-gradient(#ffc36b,#f68a10
 @media(max-width:850px){.identity-center img{height:65px}}
 @media(max-width:680px){.identity-center img{height:90px}.windows>.window{min-height:0}.chat-paper{height:350px}}
 html:not([data-theme=contrast]) .send:disabled{background:var(--panel-raised);color:var(--muted);border-color:var(--line);box-shadow:none;filter:none}
+
+/* Original ImageGen amber material: HTML labels stay live and readable. */
+html:not([data-theme=contrast]) .titlebar{background:linear-gradient(to bottom,#0000 0%,#0002 35%,#0009 65%,#000b 100%),url('assets/amber-glass.png') center/100% 100%;text-shadow:0 1px 2px #000}
+html:not([data-theme=contrast]) .titlebar::after{height:16%;border-radius:10px 10px 0 0;background:linear-gradient(#fff5,#fff0);border-top:1px solid #fff8}

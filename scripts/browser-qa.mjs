@@ -24,7 +24,7 @@ try {
     await page.goto(base);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
-    for (const asset of ["station-background.png", "contact-portraits.png"]) {
+    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png"]) {
         const response = await page.request.get(base + "/assets/" + asset);
         assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
     }
@@ -56,7 +56,8 @@ try {
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.getByRole("button", {name:"Play signal animation",exact:true}).click();
     for (const theme of ["day", "contrast", "dark"]) {
-        await page.locator("#preferences-open").click();
+        assert.equal(await page.locator("#preferences-chat").count(), 0, "Conversation Appearance shortcut removed");
+    await page.locator("#preferences-open").click();
         await page.locator("#workspace-theme").selectOption(theme);
         await page.keyboard.press("Escape");
         await page.reload();
@@ -128,7 +129,7 @@ try {
     await page.locator("#contact-search").fill("");
     await page.locator("#presence").selectOption("away");
     assert.match(await page.locator("#self-orb").getAttribute("class"), /away/);
-    await page.locator("#preferences-chat").click();
+    await page.locator("#preferences-open").click();
     assert.equal(await page.locator("#preferences").evaluate(el => el.open), true);
     await page.screenshot({ path: ".cache/screenshots/preferences.png", fullPage: true });
     await page.locator("#compact-messages").check();
@@ -144,7 +145,7 @@ try {
     assert.equal(await page.locator("#compact-messages").isChecked(), true);
     await page.keyboard.press("Escape");
     assert.equal(await page.locator("#preferences").evaluate(el => el.open), false);
-    assert.equal(await page.locator("#preferences-chat").evaluate(el => el === document.activeElement), true);
+    assert.equal(await page.locator("#preferences-open").evaluate(el => el === document.activeElement), true);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).click();
     await page.keyboard.press("ArrowRight");
     assert.equal(await page.getByRole("tab", { name: "Night Shift", exact: true }).getAttribute("aria-selected"), "true");
