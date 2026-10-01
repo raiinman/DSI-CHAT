@@ -45,7 +45,7 @@ byId("workspace-theme").addEventListener("change", event => { theme = event.targ
 byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "dark"; signalPlaying = true; motionOverride = false; save(); });
 byId("signal-toggle").addEventListener("click", () => {
     signalPlaying = document.documentElement.dataset.signalPlaying !== "true";
-    if (signalPlaying) { settings.enabled["reduced-motion"] = false; motionOverride = true; }
+    if (signalPlaying) { settings.enabled["reduced-motion"] = false; motionOverride = motionPreference.matches; }
     else motionOverride = false;
     save();
 });
