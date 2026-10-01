@@ -73,6 +73,9 @@ try {
         for (const width of [390, 768]) {
             await page.setViewportSize({width, height:844});
             assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, theme + " overflow at " + width);
+            assert.equal(await page.locator(".send").isVisible(), true);
+            const sendBounds = await page.locator(".send").boundingBox(), composerBounds = await page.locator(".compose").boundingBox();
+            assert.ok(sendBounds.x >= composerBounds.x && sendBounds.x + sendBounds.width <= composerBounds.x + composerBounds.width, "Send stays inside composer at " + width);
             await page.screenshot({path:".cache/screenshots/"+theme+"-"+width+".png",fullPage:true});
         }
         await page.setViewportSize({width:1440,height:1050});
