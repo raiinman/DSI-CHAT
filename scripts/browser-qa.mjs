@@ -29,7 +29,11 @@ try {
         assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
     }
     assert.ok((await page.locator(".compose").boundingBox()).height < 130, "Desktop composer stays compact");
+    assert.equal(await page.locator(".titlebar").first().evaluate(el => getComputedStyle(el).position), "relative", "Gloss stays inside its title bar");
+    const portraitPositions = await page.locator(".contact .portrait").evaluateAll(elements => elements.map(el => getComputedStyle(el).backgroundPosition));
+    assert.equal(new Set(portraitPositions).size, 4, "Contacts use four distinct artwork tiles");
     await page.locator("#contacts .contact").filter({hasText:"Avery"}).click();
+    await page.evaluate(() => { document.activeElement.blur(); document.querySelector(".chat-paper").scrollTop = 0; });
     await page.screenshot({path:".cache/screenshots/concept-desktop.png",fullPage:true});
     await page.reload();
     assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal");
