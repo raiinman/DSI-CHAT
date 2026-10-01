@@ -31,3 +31,4 @@ html:not([data-theme=contrast]) .send{background:linear-gradient(#ffc36b,#f68a10
 @media(max-width:1100px){.identity-center img{height:90px}}
 @media(max-width:850px){.identity-center img{height:65px}}
 @media(max-width:680px){.identity-center img{height:90px}.windows>.window{min-height:0}.chat-paper{height:350px}}
+html:not([data-theme=contrast]) .send:disabled{background:var(--panel-raised);color:var(--muted);border-color:var(--line);box-shadow:none;filter:none}
