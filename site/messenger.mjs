@@ -12,7 +12,7 @@ export function createMessenger() {
         { author: "DSI Operator", text: "Open a contact, switch tabs, or send a local test message. Appearance controls are in Preferences.", time: "00:03", self: false }
     );
     conversations.get("crew").push({ author: "Night Shift", text: "This is the local crew room. No network is connected.", time: "00:01", self: false });
-    const state = { open: ["operator", "crew"], active: "operator" };
+    const state = { open: ["operator", "crew"], active: "operator", selfName: "RAiiNMAN" };
     const drafts = new Map(CONTACTS.map(contact => [contact.id, ""]));
     function setDraft(text) { drafts.set(state.active, String(text).slice(0, 2000)); }
     function getDraft() { return drafts.get(state.active); }
@@ -27,7 +27,11 @@ export function createMessenger() {
     function send(text, time) {
         const trimmed = String(text).trim();
         if (!trimmed || trimmed.length > 2000) return false;
-        conversations.get(state.active).push({ author: "RAiiNMAN", text: trimmed, time, self: true }); return true;
+        conversations.get(state.active).push({ author: state.selfName, text: trimmed, time, self: true }); return true;
     }
-    return { state, conversations, open, close, send, setDraft, getDraft };
+    function setIdentity(name) {
+        if (typeof name !== "string" || !name.trim() || name.trim().length > 32) return false;
+        state.selfName = name.trim(); return true;
+    }
+    return { state, conversations, open, close, send, setDraft, getDraft, setIdentity };
 }

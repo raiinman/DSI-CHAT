@@ -28,3 +28,11 @@ test("composer rejects empty and oversized messages and preserves literal text",
     assert.equal(chat.send("<img onerror=alert(1)>", "12:00"), true);
     assert.equal(chat.conversations.get("operator").at(-1).text, "<img onerror=alert(1)>");
 });
+
+test("profile changes affect new messages and preserve earlier author identity", () => {
+    const chat=createMessenger();chat.send("Before rename","12:00");
+    assert.equal(chat.setIdentity("   "),false);assert.equal(chat.setIdentity("x".repeat(33)),false);assert.equal(chat.setIdentity(null),false);
+    assert.equal(chat.setIdentity(" Night Operator "),true);chat.send("After rename","12:01");
+    assert.equal(chat.conversations.get("operator").at(-2).author,"RAiiNMAN");
+    assert.equal(chat.conversations.get("operator").at(-1).author,"Night Operator");
+});

@@ -1,6 +1,7 @@
 import { FEATURES, FeatureRuntime, normalizeSettings } from "./src/core.mjs";
 import { browserFeatures } from "./src/features.mjs";
 import { CONTACTS, createMessenger } from "./messenger.mjs";
+import { initWorkspaceTools } from "./workspace-tools.mjs";
 const byId = id => document.getElementById(id);
 const key = "dsiChat.site.preview.v1";
 // The preview has complete themes; Discord's Signal CSS belongs to the extension.
@@ -152,14 +153,13 @@ function render() {
 }
 byId("contact-search").addEventListener("input", contacts);
 byId("crew-contact").addEventListener("click", () => { switchConversation("crew"); });
-byId("history-toggle").addEventListener("click", () => { byId("history").hidden = !byId("history").hidden; byId("history-toggle").setAttribute("aria-expanded", String(!byId("history").hidden)); });
 byId("compose").addEventListener("submit", event => {
     event.preventDefault(); const input = byId("message-input");
     if (!model.send(input.value, new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))) return;
     model.setDraft(""); input.value = ""; render(); input.focus(); byId("send-status").textContent = "Added locally. Nothing sent to Discord.";
 });
 byId("message-input").addEventListener("keydown", event => { if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); byId("compose").requestSubmit(); } });
-byId("emoji").addEventListener("click", () => { const input = byId("message-input"); input.setRangeText(" ☺ ", input.selectionStart, input.selectionEnd, "end"); model.setDraft(input.value); updateSendState(); input.focus(); });
 byId("message-input").addEventListener("input", event => { model.setDraft(event.target.value); updateSendState(); });
 byId("contacts-jump").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({ behavior: "instant", block: "start" }); byId("contact-search").focus({ preventScroll: true }); });
+initWorkspaceTools({ model, updateSendState });
 appearance(); render();

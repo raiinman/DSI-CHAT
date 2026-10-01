@@ -82,6 +82,12 @@ try {
         await page.locator("#preferences-open").click();
         await page.screenshot({path:".cache/screenshots/preferences-"+theme+".png",fullPage:true});
         await page.keyboard.press("Escape");
+        for (const [opener, dialog, capture] of [["history-toggle","archive-dialog","archive"],["contact-info","contact-dialog","contact-card"],["profile-open","profile-dialog","profile"],["emoji","emoji-dialog","emoji-picker"]]) {
+            await page.locator("#"+opener).click();
+            assert.equal(await page.locator("#"+dialog).evaluate(el=>el.open),true);
+            await page.screenshot({path:".cache/screenshots/"+capture+"-"+theme+".png",fullPage:true});
+            await page.keyboard.press("Escape");
+        }
         for (const width of [390, 768]) {
             await page.setViewportSize({width, height:844});
             assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, theme + " overflow at " + width);
@@ -159,6 +165,48 @@ try {
             assert.equal(await page.locator("#contact-search").evaluate(el => el === document.activeElement), true);
         }
         await page.screenshot({ path: ".cache/screenshots/" + width + ".png", fullPage: true });
+    }
+    await page.setViewportSize({width:1440,height:844});
+    await page.reload();
+    const chatBounds=await page.locator(".chat-window").boundingBox();
+    assert.ok(chatBounds.y+chatBounds.height<=844,"Desktop window fits an ordinary-height display");
+    await page.screenshot({path:".cache/screenshots/desktop-844.png",fullPage:true});
+    await page.locator("#contact-info").click();
+    assert.equal(await page.locator("#contact-card-name").innerText(),"DSI Operator");
+    await page.locator("#card-compose").click();
+    await page.waitForFunction(()=>document.activeElement.id==="message-input");
+    await page.locator("#message-input").fill("Signal ");
+    await page.locator("#emoji").click();
+    await page.getByRole("button",{name:"Fox",exact:true}).click();
+    await page.waitForFunction(()=>document.activeElement.id==="message-input");
+    assert.equal(await page.locator("#message-input").inputValue(),"Signal 🦊");
+    await page.locator(".send").click();
+    await page.locator("#history-toggle").click();
+    await page.locator("#archive-search").fill("Signal 🦊");
+    assert.equal(await page.locator("#archive-results article").count(),1);
+    await page.locator("#archive-search").fill("no-such-archive-text");
+    assert.match(await page.locator("#archive-results").innerText(),/No messages match/);
+    const downloadPromise=page.waitForEvent("download");
+    await page.locator("#archive-export").click();
+    const download=await downloadPromise;
+    assert.equal(download.suggestedFilename(),"dsi-chat-operator.txt");
+    assert.match(await readFile(await download.path(),"utf8"),/Signal 🦊/);
+    await page.keyboard.press("Escape");
+    await page.locator("#profile-open").click();
+    await page.locator("#profile-name").fill("Night Operator");
+    await page.locator("#profile-note").fill("On the late frequency");
+    await page.getByRole("button",{name:"Save profile",exact:true}).click();
+    await page.reload();
+    assert.equal(await page.locator(".identity-center strong").innerText(),"Night Operator");
+    assert.equal(await page.locator("#profile-note-display").innerText(),"On the late frequency");
+    await page.locator("#message-input").fill("Profile test");await page.locator(".send").click();
+    assert.equal(await page.locator("#messages .message-author").last().innerText(),"Night Operator");
+    await page.locator("#profile-open").click();await page.locator("#profile-name").fill("RAiiNMAN");await page.getByRole("button",{name:"Save profile",exact:true}).click();
+    for (const width of [390,768]) {
+        await page.setViewportSize({width,height:844});
+        for(const [opener,dialog] of [["history-toggle","archive-dialog"],["profile-open","profile-dialog"],["emoji","emoji-dialog"]]){
+            await page.locator("#"+opener).click();const box=await page.locator("#"+dialog).boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width+1);await page.screenshot({path:".cache/screenshots/"+dialog+"-"+width+".png",fullPage:true});await page.keyboard.press("Escape");
+        }
     }
     assert.deepEqual(errors, []);
     console.log("Browser QA passed: three persistent themes, text contrast, service status, animation preferences, drafts, conversations, composition, literal text, search, presence, modal focus, safe mode and 390/768/1440 layouts.");
