@@ -26,6 +26,8 @@ npm run verify
 Individual targets: `npm run build:mobile`, `npm run build:desktop`, `npm run build:web`.
 Built files and checksums are collected in `release/`. See [installation](docs/INSTALLATION.md) and [current validation](docs/STATE.md).
 
+The first [verified build](https://github.com/raiinman/DSI-CHAT/actions/runs/36826169778) contains a downloadable `dsi-chat-builds` artifact with all three targets.
+
 ## What is ours
 
 DSI owns this fork's branding, integration, build orchestration, feature catalog, and original additions. Upstream authors retain credit for their code. Public APIs and storage keys retain their existing names for plugin and loader compatibility.
