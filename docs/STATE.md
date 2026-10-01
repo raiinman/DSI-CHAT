@@ -21,6 +21,8 @@ Local Windows compilation is restricted by the session's subprocess policy and S
 
 ## Remaining acceptance
 
+The imported Google translation API key was removed after GitHub secret-scanning alert 1. Google translation is disabled in this preserved fork; DeepL remains implemented. TypeScript validation passed. See SECURITY.md for the unresolved history and owner-revocation requirement.
+
 A JavaScript bundle is not an APK. A desktop bundle is not an installed client. Desktop plugins require individual ports to Android. A branded Android loader/manager and desktop installer are not included in this integration.
 
 Test the browser extension against the current live Discord client, then test the Android bundle through a compatible loader on Michael's device. Confirm settings, plugin toggles, theme/font support where the loader permits it, restart and safe-mode recovery. DSI Clean Links remains disabled by default until selected.

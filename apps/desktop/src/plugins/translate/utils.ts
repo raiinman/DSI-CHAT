@@ -97,29 +97,8 @@ export async function translate(kind: "received" | "sent", text: string): Promis
     }
 }
 
-async function googleTranslate(text: string, sourceLang: string, targetLang: string): Promise<TranslationValue> {
-    const url = "https://translate-pa.googleapis.com/v1/translate?" + new URLSearchParams({
-        "params.client": "gtx",
-        "dataTypes": "TRANSLATION",
-        "key": "AIzaSyDLEeFI5OtFBwYBIoK_jj5m32rZK5CkCXA", // some google API key
-        "query.sourceLanguage": sourceLang,
-        "query.targetLanguage": targetLang,
-        "query.text": text,
-    });
-
-    const res = await fetch(url);
-    if (!res.ok)
-        throw new Error(
-            `Failed to translate "${text}" (${sourceLang} -> ${targetLang})`
-            + `\n${res.status} ${res.statusText}`
-        );
-
-    const { sourceLanguage, translation }: GoogleData = await res.json();
-
-    return {
-        sourceLanguage: GoogleLanguages[sourceLanguage] ?? sourceLanguage,
-        text: translation
-    };
+async function googleTranslate(_text: string, _sourceLang: string, _targetLang: string): Promise<TranslationValue> {
+    throw new Error("Google translation is unavailable: the bundled third-party API key was removed. Select DeepL instead.");
 }
 
 function fallbackToGoogle(text: string, sourceLang: string, targetLang: string): Promise<TranslationValue> {
