@@ -57,18 +57,18 @@ html[data-theme=contrast] body{background:#000}
 .theme-choice small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}
 .theme-choice select{width:100%;background:var(--field);border:1px solid var(--line);color:var(--text);border-radius:5px;padding:8px;font-size:14px}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline-color:var(--focus)}
-/* Status strip and sculpted portrait panel replace the muddy lower gradient. */
+/* One continuous profile surface, with ornament confined to the portrait frame. */
 .identity-deck{background:var(--profile);border-color:var(--line);padding:7px 8px 6px;box-shadow:inset 0 -3px 0 #0003;border-radius:5px 5px 21px 21px}
 .presence-select{margin:-7px -8px 0;padding:3px 8px;background:var(--chrome);border-bottom:1px solid var(--line);border-radius:4px 4px 0 0}
 .presence-select select{color:var(--chrome-text);text-shadow:none;font-weight:600}.presence-select option{background:var(--panel);color:var(--text)}
-.service-orbs{display:flex;gap:10px;justify-content:center;padding:9px 0 2px}
+.service-orbs{display:flex;gap:10px;justify-content:center;padding:10px 0 2px}
 .service-button{display:flex;flex-direction:column;align-items:center;gap:4px;width:58px;min-height:54px;padding:4px 3px;border:1px solid transparent;background:transparent;border-radius:6px;color:var(--muted)}
 .service-button:hover{background:var(--panel-raised)}.service-button[aria-pressed=true]{border-color:var(--line);background:var(--panel-raised)}
 .service-orbs .service-badge{display:grid;place-items:center;width:28px;height:28px;font-size:14px;font-weight:800;color:#fff;box-shadow:inset 0 1px #ffffff55,0 1px 3px #0004;border:1px solid #ffffff66;background:#6b4fb5;border-radius:8px}
 .service-orbs .relay-service .service-badge{background:#116a75;border-radius:50%}.service-orbs .local-service .service-badge{background:#286746;border-radius:4px}
 .service-button small{font-size:10px;color:var(--text);line-height:1.2}
-#service-status{font-size:10px;color:var(--muted);text-align:center;margin:6px 0 12px;min-height:15px}
-.identity-center{position:relative;padding:10px 0 7px;border-top:1px solid var(--line);border-radius:36% 36% 0 0;background:var(--profile)}
+#service-status{font-size:10px;color:var(--muted);text-align:center;margin:5px 0 9px;min-height:15px}
+.identity-center{position:relative;padding:5px 0 7px;border:0;border-radius:0;background:transparent}
 .identity-center img{position:relative;border:2px solid var(--line);background:#151513;box-shadow:0 0 0 3px var(--profile),0 3px 8px #0005;border-radius:8px;animation:portrait-signal 3s ease-in-out infinite}
 .identity-center strong{color:var(--text)}.identity-center small,.deck-footer{color:var(--muted)}.deck-footer button{color:var(--accent)}
 @keyframes portrait-signal{0%,100%{outline:1px solid transparent;outline-offset:3px}50%{outline:1px solid var(--accent);outline-offset:3px}}
@@ -98,7 +98,6 @@ html:not([data-theme=contrast]) .avatar,
 html:not([data-theme=contrast]) .large-avatar{background:linear-gradient(#fff3dc33,#fff3dc08 45%,#00000015 46%),var(--avatar);box-shadow:inset 0 1px #fff4dc80,inset 0 -1px #0006,0 1px 2px #0003}
 html:not([data-theme=contrast]) .service-orbs .service-badge{background-image:linear-gradient(#ffffff55,#ffffff0c 45%,#00000020 46%,transparent);box-shadow:inset 0 1px #fff9,0 1px 3px #0006}
 html:not([data-theme=contrast]) .service-button[aria-pressed=true]{box-shadow:inset 0 1px #ffffff26,inset 0 -1px #0002}
-html:not([data-theme=contrast]) .identity-center{box-shadow:inset 0 1px #ffffff26}
 html:not([data-theme=contrast]) .identity-center img{border-color:#cda36e;box-shadow:inset 0 1px #fff5,0 0 0 2px var(--profile),0 -1px 0 3px #ffffff24,0 4px 9px #0006}
 html:not([data-theme=contrast]) .send{background:linear-gradient(110deg,#fff7df55,transparent 42%,#fff7df22 75%,transparent),var(--chrome);box-shadow:inset 0 1px #fff4d9cc,inset 0 -1px #9a4b1a80,0 1px 3px #0005}
 html:not([data-theme=contrast]) .compose-tools button,

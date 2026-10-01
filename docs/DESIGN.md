@@ -18,6 +18,8 @@ Profile/theme refinement: a distinct orange presence strip sits above a solid po
 
 Gloss refinement: original CSS clear-coat highlights add reflection to title bars, presence strips, tabs, avatars, service badges and buttons in Dark/Daytime. Thin lit edges add frame and portrait depth. Message surfaces stay matte and the lower profile deck retains its solid background. Decorative gloss is entirely excluded from High contrast, adds no animation and intercepts no pointer input.
 
+The user rejected the curved inset around the portrait. Remove that arch and its highlight entirely. The lower deck is now one continuous surface: centered service controls, a compact status line and a simple framed portrait with consistent spacing. The existing glass finish belongs to the frame and controls. This supersedes the earlier curved profile treatment.
+
 Working preview interactions: contact search, grouped contact sections, opening/closing conversations, keyboard tab navigation, separate conversation histories, local message composition, presence selector, preferences, safe mode and display features.
 
 Preview contacts and presence are sample data. Sending adds a message in memory only; nothing is sent to Discord or another service. Refresh clears conversation messages. The extension download still contains the original three display features and does not yet implement this messenger shell in Discord.
