@@ -7,6 +7,15 @@ const key = "dsiChat.site.preview.v1";
 const previewFeatures = FEATURES.filter(feature => feature.id !== "signal-theme");
 const runtime = new FeatureRuntime(browserFeatures(document).filter(feature => feature.id !== "signal-theme"));
 const model = createMessenger();
+// Fictional sample conversation for reviewing the original concept's composition.
+model.conversations.get("avery").push(
+    {author:"RAiiNMAN",text:"Hey — you around?",time:"19:14",self:true},
+    {author:"Avery",text:"Yeah, I'm here.\nJust wrapping up some assets. What's up?",time:"19:15",self:false},
+    {author:"RAiiNMAN",text:"Wanted to check on the broadcast build.\nEverything still looking good for tonight?",time:"19:16",self:true},
+    {author:"Avery",text:"Yep. All systems are green on my end.\nRunning a final pass now, then we should be set.",time:"19:17",self:false},
+    {author:"RAiiNMAN",text:"Perfect. Ping me if you need a hand.",time:"19:18",self:true},
+    {author:"Avery",text:"Will do. 👍",time:"19:19",self:false}
+);
 let settings = normalizeSettings();
 let theme = "dark";
 let signalPlaying = true;
@@ -90,7 +99,7 @@ function contacts() {
     const query = byId("contact-search").value.trim().toLowerCase(); const container = byId("contacts"); container.replaceChildren(); let count = 0;
     for (const contact of CONTACTS.filter(c => c.id !== "crew" && c.name.toLowerCase().includes(query))) {
         count++; const button = document.createElement("button"); button.type = "button"; button.className = "contact" + (contact.id === model.state.active ? " selected" : "");
-        const avatar = document.createElement("span"); avatar.className = "avatar"; avatar.textContent = contact.initials;
+        const avatar = document.createElement("span"); avatar.className = "avatar portrait"; avatar.dataset.portrait = contact.id; avatar.setAttribute("aria-hidden", "true");
         const info = document.createElement("span"), name = document.createElement("strong"), note = document.createElement("small");
         name.textContent = contact.name; note.textContent = contact.note; info.append(name, note);
         const orb = document.createElement("i"); orb.className = "orb " + contact.presence; orb.setAttribute("aria-label", contact.presence === "away" ? "Away" : "Available");
@@ -102,13 +111,13 @@ function contacts() {
 }
 function render() {
     contacts(); byId("message-input").value = model.getDraft(); updateSendState(); const contact = CONTACTS.find(c => c.id === model.state.active);
-    byId("window-title").textContent = contact.name + " — Conversation"; byId("conversation-name").textContent = contact.name; byId("conversation-avatar").textContent = contact.initials;
+    byId("window-title").textContent = "DSI CHAT"; byId("conversation-name").textContent = contact.name; byId("conversation-avatar").textContent = ""; byId("conversation-avatar").className = "large-avatar portrait"; byId("conversation-avatar").dataset.portrait = contact.id; byId("conversation-avatar").setAttribute("aria-hidden", "true");
     byId("conversation-status").textContent = (contact.presence === "away" ? "Away" : "Available") + " · " + contact.note;
     byId("tabs").replaceChildren();
     for (const id of model.state.open) {
         const person = CONTACTS.find(c => c.id === id), wrapper = document.createElement("div");
         wrapper.className = "tab-wrap" + (id === model.state.active ? " active" : "");
-        const tab = document.createElement("button"); tab.type = "button"; tab.className = "tab"; tab.textContent = person.name; tab.id = "tab-" + id;
+        const tab = document.createElement("button"); tab.type = "button"; tab.className = "tab"; const thumbnail = document.createElement("span"); thumbnail.className = "tab-portrait portrait"; thumbnail.dataset.portrait = id; thumbnail.setAttribute("aria-hidden", "true"); tab.append(thumbnail, document.createTextNode(person.name)); tab.id = "tab-" + id;
         tab.setAttribute("role", "tab"); tab.setAttribute("aria-selected", String(id === model.state.active)); tab.setAttribute("aria-controls", "conversation-panel"); tab.tabIndex = id === model.state.active ? 0 : -1;
         tab.addEventListener("click", () => { switchConversation(id, false); byId("tab-" + id).focus(); });
         tab.addEventListener("keydown", event => {
@@ -134,7 +143,7 @@ function render() {
     if (!entries.length) { const empty = document.createElement("p"); empty.className = "empty-conversation"; empty.textContent = "No messages yet. Write a local test message below."; byId("messages").append(empty); }
     for (const [index, entry] of entries.entries()) {
         const row = document.createElement("article"); row.id = "chat-messages-" + model.state.active + "-" + index; row.className = "message" + (entry.self ? " self" : "");
-        const heading = document.createElement("div"); heading.className = "message-heading"; heading.append(document.createTextNode(entry.author + " says:"));
+        const heading = document.createElement("div"); heading.className = "message-heading"; const author = document.createElement("strong"); author.className = "message-author"; author.textContent = entry.author; heading.append(author);
         const time = document.createElement("time"); time.textContent = entry.time; heading.append(time);
         const body = document.createElement("p"); body.textContent = entry.text; row.append(heading, body); byId("messages").append(row);
     }

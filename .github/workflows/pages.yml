@@ -3,6 +3,11 @@ on:
   push:
     branches: [codex/dsi-original]
   workflow_dispatch:
+    inputs:
+      review_only:
+        description: Build screenshots without publishing
+        type: boolean
+        default: false
 permissions:
   contents: read
   pages: write
@@ -39,9 +44,12 @@ jobs:
           path: .cache/screenshots
       - run: cd dist/chromium && zip -r ../site/downloads/dsi-chat-original-chromium.zip . && sha256sum -c SHA256SUMS
       - uses: actions/configure-pages@v5
+        if: inputs.review_only != true
       - uses: actions/upload-pages-artifact@v3
+        if: inputs.review_only != true
         with:
           path: dist/site
       - name: Deploy
+        if: inputs.review_only != true
         id: deployment
         uses: actions/deploy-pages@v4

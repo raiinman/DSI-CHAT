@@ -24,6 +24,14 @@ try {
     await page.goto(base);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
+    for (const asset of ["station-background.png", "contact-portraits.png"]) {
+        const response = await page.request.get(base + "/assets/" + asset);
+        assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
+    }
+    assert.ok((await page.locator(".compose").boundingBox()).height < 130, "Desktop composer stays compact");
+    await page.locator("#contacts .contact").filter({hasText:"Avery"}).click();
+    await page.screenshot({path:".cache/screenshots/concept-desktop.png",fullPage:true});
+    await page.reload();
     assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal");
     const initialSignalTransform = await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).transform);
     await page.waitForFunction(initial => getComputedStyle(document.querySelector(".transmission i")).transform !== initial, initialSignalTransform);
