@@ -1,6 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createMessenger } from "../site/messenger.mjs";
+test("drafts remain isolated and survive closing and reopening a conversation", () => {
+    const chat = createMessenger();
+    chat.setDraft("Unsent operator message");
+    chat.open("avery"); assert.equal(chat.getDraft(), "");
+    chat.setDraft("Unsent Avery message");
+    chat.close("avery"); chat.open("operator"); assert.equal(chat.getDraft(), "Unsent operator message");
+    chat.open("avery"); assert.equal(chat.getDraft(), "Unsent Avery message");
+    chat.setDraft(""); assert.equal(chat.getDraft(), "");
+});
 test("switching contacts retains history and avoids duplicate tabs", () => {
     const chat = createMessenger(); assert.equal(chat.open("missing"), false);
     chat.open("avery"); chat.send("Test signal", "12:00"); chat.open("crew"); chat.open("avery");

@@ -13,3 +13,5 @@ Reference documentation:
 The original fork remains licensed and preserved on rewrite. No attempt is made to remove its notices, relicense it or change ownership of its preexisting code.
 
 The generated nine-tailed fox broadcast mascot is included as artwork on the live preview. The extension icon has not yet been prepared. No upstream logo is used.
+
+Playwright 1.58.2 is installed only as GitHub CI browser-test tooling. It is not shipped in the extension or site. Runtime source and builds remain dependency-free.

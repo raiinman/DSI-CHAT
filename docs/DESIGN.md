@@ -2,7 +2,9 @@
 
 User reference: Trillian Astra 4.2. The previous Discord-like sample and large marketing layout are superseded by a compact messenger workspace.
 
-The historical Astra Cordonata reference informed glassy blue window frames, a grouped buddy list, small service indicators and a bottom-centered profile avatar. Chat uses separate window chrome, conversation tabs and a plain conversation log. DSI retains its broadcast fox, orange highlights and optional charcoal Signal theme.
+The historical Astra Cordonata reference informed the grouped buddy list, service indicators, bottom-centered profile avatar and separate conversation window. The user's revised direction uses orange and charcoal across the entire messenger by default: window chrome, contacts, tabs, conversation header, toolbar, messages, composer, profile deck and preferences. Blue styling is superseded. DSI retains its broadcast fox and compact classic messenger structure.
+
+Usability pass: larger controls and text, per-conversation drafts, disabled empty-message send, useful empty-conversation guidance, contact search through collapsed groups, native modal preferences with focus containment and return, Escape dismissal, and a one-column phone layout. High contrast changes emphasis without disabling the base dark theme. Safe mode retains the same dark shell.
 
 Visual references viewed:
 - https://en.softonic.com/articles/first-look-at-trillian-astra

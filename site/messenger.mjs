@@ -13,6 +13,9 @@ export function createMessenger() {
     );
     conversations.get("crew").push({ author: "Night Shift", text: "This is the local crew room. No network is connected.", time: "00:01", self: false });
     const state = { open: ["operator", "crew"], active: "operator" };
+    const drafts = new Map(CONTACTS.map(contact => [contact.id, ""]));
+    function setDraft(text) { drafts.set(state.active, String(text).slice(0, 2000)); }
+    function getDraft() { return drafts.get(state.active); }
     function open(id) { if (!conversations.has(id)) return false; if (!state.open.includes(id)) state.open.push(id); state.active = id; return true; }
     function close(id) {
         const index = state.open.indexOf(id);
@@ -26,5 +29,5 @@ export function createMessenger() {
         if (!trimmed || trimmed.length > 2000) return false;
         conversations.get(state.active).push({ author: "RAiiNMAN", text: trimmed, time, self: true }); return true;
     }
-    return { state, conversations, open, close, send };
+    return { state, conversations, open, close, send, setDraft, getDraft };
 }
