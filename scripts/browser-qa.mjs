@@ -25,13 +25,24 @@ try {
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
     assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal");
+    const initialSignalTransform = await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).transform);
+    await page.waitForFunction(initial => getComputedStyle(document.querySelector(".transmission i")).transform !== initial, initialSignalTransform);
+    await page.getByRole("button", {name:"Pause signal animation",exact:true}).click();
+    await page.reload();
+    assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "none", "Signal pause persists");
+    await page.getByRole("button", {name:"Play signal animation",exact:true}).click();
+    assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal");
     await page.getByRole("button", { name: "Discord", exact: true }).click();
     assert.match(await page.locator("#service-status").innerText(), /not connected/);
     await page.getByRole("button", { name: "Local", exact: true }).click();
     assert.equal(await page.locator(".local-service").getAttribute("aria-pressed"), "true");
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(await page.locator(".identity-center img").evaluate(el => getComputedStyle(el).animationName), "none");
+    await page.getByRole("button", {name:"Play signal animation",exact:true}).click();
+    assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "signal", "Explicit Play restores signal under system reduced motion");
+    await page.getByRole("button", {name:"Pause signal animation",exact:true}).click();
     await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.getByRole("button", {name:"Play signal animation",exact:true}).click();
     for (const theme of ["day", "contrast", "dark"]) {
         await page.locator("#preferences-open").click();
         await page.locator("#workspace-theme").selectOption(theme);

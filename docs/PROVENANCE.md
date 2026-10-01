@@ -17,3 +17,5 @@ The generated nine-tailed fox broadcast mascot is included as artwork on the liv
 Playwright 1.58.2 is installed only as GitHub CI browser-test tooling. It is not shipped in the extension or site. Runtime source and builds remain dependency-free.
 
 The October 1 orange-glass messenger revision used historical screenshots at https://paulstamatiou.com/trillian-astra-ceruleans-next-gen-im-client as visual reference. No page source, image, skin or icon was incorporated. DSI's CSS, broadcast mark and frame treatment were authored here. Visual inspiration is not a guarantee concerning commercial intellectual-property clearance.
+
+The October 1 UI rebuild uses an ImageGen concept saved at docs/design/orange-glass-concept.png. It was generated from DSI requirements without an upstream asset input. The concept is retained for design provenance and is not shipped in the site. HTML/CSS implements its general layout and finish; the actual existing DSI fox is retained, and generated contact portraits are not used.

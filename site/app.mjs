@@ -9,18 +9,28 @@ const runtime = new FeatureRuntime(browserFeatures(document).filter(feature => f
 const model = createMessenger();
 let settings = normalizeSettings();
 let theme = "dark";
+let signalPlaying = true;
+let motionOverride = false;
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
 let persistent = true;
 try {
     const stored = JSON.parse(localStorage.getItem(key));
     settings = normalizeSettings(stored);
     theme = ["dark", "day", "contrast"].includes(stored?.theme) ? stored.theme : settings.enabled["signal-theme"] ? "contrast" : "dark";
     settings.enabled["signal-theme"] = false;
+    signalPlaying = stored?.signalPlaying !== false;
+    motionOverride = stored?.motionOverride === true;
 } catch { persistent = false; }
 function appearance() {
     byId("safe-mode").checked = settings.safeMode; byId("features").disabled = settings.safeMode;
     for (const feature of previewFeatures) byId(feature.id).checked = settings.enabled[feature.id];
     const result = runtime.reconcile(settings);
     document.documentElement.dataset.theme = theme;
+    const signalActive = signalPlaying && !result.active.includes("reduced-motion") && (!motionPreference.matches || motionOverride);
+    document.documentElement.dataset.signalPlaying = String(signalActive);
+    byId("signal-toggle").textContent = signalActive ? "Pause" : "Play";
+    byId("signal-toggle").setAttribute("aria-label", (signalActive ? "Pause" : "Play") + " signal animation");
+    byId("signal-label").textContent = signalActive ? "Signal active" : "Signal paused";
     byId("workspace-theme").value = theme;
     document.querySelector('meta[name="theme-color"]').content = theme === "day" ? "#f1e7d8" : theme === "contrast" ? "#000000" : "#181613";
     byId("active-count").textContent = result.active.length + " features active";
@@ -28,11 +38,18 @@ function appearance() {
     if (result.errors.length) byId("status").textContent = "A feature could not start. Try safe mode.";
     if (!persistent) byId("status").textContent += " Changes apply for this visit.";
 }
-function save() { try { localStorage.setItem(key, JSON.stringify({ ...settings, theme })); persistent = true; } catch { persistent = false; } appearance(); }
+function save() { try { localStorage.setItem(key, JSON.stringify({ ...settings, theme, signalPlaying, motionOverride })); persistent = true; } catch { persistent = false; } appearance(); }
 byId("safe-mode").addEventListener("change", event => { settings.safeMode = event.target.checked; save(); });
 for (const feature of previewFeatures) byId(feature.id).addEventListener("change", event => { settings.enabled[feature.id] = event.target.checked; save(); });
 byId("workspace-theme").addEventListener("change", event => { theme = event.target.value; save(); });
-byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "dark"; save(); });
+byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "dark"; signalPlaying = true; motionOverride = false; save(); });
+byId("signal-toggle").addEventListener("click", () => {
+    signalPlaying = document.documentElement.dataset.signalPlaying !== "true";
+    if (signalPlaying) { settings.enabled["reduced-motion"] = false; motionOverride = true; }
+    else motionOverride = false;
+    save();
+});
+motionPreference.addEventListener("change", appearance);
 
 const serviceDescriptions = {
     discord: "Discord: not connected.",
