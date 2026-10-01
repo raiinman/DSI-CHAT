@@ -6,4 +6,4 @@ The current fork removes the embedded key and disables Google translation with a
 
 Removing a key from current source does not remove it from Git history or revoke it. The key owner must review restrictions, revoke or rotate it where appropriate. The alert remains open; it has not been dismissed as a false positive or marked revoked.
 
-Desktop TypeScript validation passed after removing the implementation. Full build verification is pending GitHub Actions.
+Desktop TypeScript validation and all nine local tests passed after removing the implementation. GitHub Actions [36829525232](https://github.com/raiinman/DSI-CHAT/actions/runs/36829525232) passed all three build targets, catalog checks, tests and artifact verification at revision 87c2d8a.
