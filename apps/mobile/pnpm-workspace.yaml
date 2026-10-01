@@ -1,0 +1,8 @@
+packages:
+    - .
+peerDependencyRules:
+    ignoreMissing:
+        - react
+onlyBuiltDependencies:
+    - esbuild
+    - '@swc/core'

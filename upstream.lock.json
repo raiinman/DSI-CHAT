@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "vendetta": {
+    "repository": "https://github.com/vendetta-mod/Vendetta",
+    "ref": "rewrite",
+    "commit": "e5d35028344363a8dacb67fca4d48266b79b2643",
+    "path": "legacy/vendetta",
+    "license": "BSD-3-Clause"
+  },
+  "revenge": {
+    "repository": "https://github.com/revenge-mod/revenge-bundle",
+    "ref": "main",
+    "commit": "1b1d297416594087769987908e5fc09af36b7e6e",
+    "path": "apps/mobile",
+    "license": "BSD-3-Clause"
+  },
+  "equicord": {
+    "repository": "https://github.com/Equicord/Equicord",
+    "ref": "main",
+    "commit": "ab9b98472acb281cc7ec4d2c7a612219993bb3cb",
+    "path": "apps/desktop",
+    "license": "GPL-3.0-or-later"
+  },
+  "vencord": {
+    "repository": "https://github.com/Vendicated/Vencord",
+    "reviewedCommit": "7f0c10cc29fd789f2f4828ae3dc947623e837920",
+    "integration": "Included through the pinned Equicord fork, not layered as a second runtime.",
+    "license": "GPL-3.0-or-later"
+  }
+}

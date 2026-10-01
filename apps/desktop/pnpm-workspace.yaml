@@ -1,0 +1,20 @@
+packages:
+    - packages/*
+peerDependencyRules:
+    ignoreMissing:
+        - eslint-plugin-import
+        - eslint
+allowedDeprecatedVersions:
+    source-map-resolve: "*"
+    resolve-url: "*"
+    source-map-url: "*"
+    urix: "*"
+    q: "*"
+strictPeerDependencies: false
+onlyBuiltDependencies:
+    - esbuild
+minimumReleaseAge: 7
+minimumReleaseAgeExclude:
+    - "@song-spotlight/api"
+    - "@vencord/*"
+    - "@equicord/*"

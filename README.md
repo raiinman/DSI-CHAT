@@ -1,50 +1,39 @@
-> [!IMPORTANT]  
-> As of 06/02/24, Vendetta has been discontinued.
+# DSI CHAT
 
-# Vendetta
-A mod for Discord's mobile apps.
+Dead Signal Interactive's Discord customization suite for **Android, desktop, and browsers**.
 
-## Installing
-Vendetta's codebase is platform-agnostic, but you need a platform-specific loader.
+DSI CHAT integrates Revenge's Android engine and Equicord's desktop/browser engine. Equicord already includes Vencord's framework and plugin collection. They share a product identity, not a JavaScript runtime.
 
-### Android
-* Root - [VendettaXposed](https://github.com/vendetta-mod/VendettaXposed/releases/latest)
-* Non-root - [VendettaManager](https://github.com/vendetta-mod/VendettaManager/releases/latest)
-    - Manager not working? No problem! Pre-built APKs are provided [here](https://discord.k6.tf/).
-    - The minimum Android version required is 9. It will not work any lower.
+| Target | Engine | Included functionality | Output |
+| --- | --- | --- | --- |
+| Android | Revenge / Bunny / Vendetta lineage | Plugin management, themes, fonts, experiments, recovery, legacy Vendetta compatibility, DSI Clean Links | JavaScript bundle for a compatible loader |
+| Desktop | Equicord / Vencord | Both upstream plugin collections, themes, QuickCSS, settings backup, diagnostics | Standalone injector bundles |
+| Browser | Equicord / Vencord | Plugins supported by the web build, themes, QuickCSS, backup | Chromium/Firefox extensions and userscript |
 
-### iOS
-* Jailbroken - [VendettaTweak](https://github.com/vendetta-mod/VendettaTweak)
-    - You can get prebuilt `.deb` files from GitHub Actions - we support rootful and rootless jailbreaks!
-* Jailed - You can get IPAs from [the thread](https://discord.com/channels/1015931589865246730/1087295482667208766) in our [Discord server](https://discord.gg/n9QQ4XhhJP) or from our [host](https://discord.k6.tf/ios/).
-    - These IPAs do *not* work with AltStore! You should use [Sideloadly](https://sideloadly.io).
+## Build
 
-## Contributing
-1. Install a Vendetta loader with loader config support (any mentioned in the [Installing](#installing) section).
+Use Node.js 24 or newer. Package manager version is pinned in package.json.
 
-2. Go to Settings > General and enable Developer Settings.
+```sh
+npm install
+npm run setup
+npm test
+npm run catalog
+npm run build
+npm run verify
+```
 
-3. Clone the repo:
-    ```
-    git clone https://github.com/vendetta-mod/Vendetta
-    ```
+Individual targets: `npm run build:mobile`, `npm run build:desktop`, `npm run build:web`.
+Built files and checksums are collected in `release/`. See [installation](docs/INSTALLATION.md) and [current validation](docs/STATE.md).
 
-4. Install dependencies:
-    ```
-    pnpm i
-    ```
-    <sup>`npm` or `yarn` should also work.</sup>
+## What is ours
 
-5. Build Vendetta's code:
-    ```
-    pnpm build
-    ```
-    <sup>`npm` or `yarn` should also work.</sup>
+DSI owns this fork's branding, integration, build orchestration, feature catalog, and original additions. Upstream authors retain credit for their code. Public APIs and storage keys retain their existing names for plugin and loader compatibility.
 
-6. In the newly created `dist` directory, run a HTTP server. I recommend [http-server](https://www.npmjs.com/package/http-server).
+Android plugins cannot directly execute desktop Webpack/DOM plugins. A feature port must be implemented and tested against the Android client. Desktop account switching support does not imply an Android account switcher.
 
-7. Go to Settings > Developer enabled earlier). Enable `Load from custom url` and input the IP address and port of the server (e.g.  e.g. `http://192.168.1.236:4040`) in the new input box labelled `VENDETTA URL`.
+Upstream binary updates are disabled in desktop/web builds. DSI does not operate a cloud backend, app-store listing, Android APK manager, or installer yet. Optional upstream cloud and plugin services retain their upstream names.
 
-8. Restart Discord. Upon reload, you should notice that your device will download Vendetta's bundled code from your server, rather than GitHub.
+The original fork is preserved in [legacy/vendetta](legacy/vendetta). Imported revisions are recorded in [upstream.lock.json](upstream.lock.json).
 
-9. Make your changes, rebuild, reload, go wild!
+See [architecture](docs/ARCHITECTURE.md), [feature catalog](catalog/features.json), and [credits and licenses](THIRD_PARTY_NOTICES.md).

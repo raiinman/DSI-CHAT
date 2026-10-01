@@ -1,5 +1,9 @@
 node_modules/
 dist/
-package-lock.json
-yarn.lock
-.DS_Store
+release/
+.pnpm-store/
+.cache/
+*.log
+apps/*/node_modules/
+apps/*/dist/
+apps/mobile/package-lock.json

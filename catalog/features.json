@@ -1,0 +1,3671 @@
+{
+  "schemaVersion": 1,
+  "desktopPlugins": [
+    {
+      "name": "AccountPanelServerProfile",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/accountPanelServerProfile/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AddAttachments",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/addAttachments/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AdvancedPermissions",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/advancedPermissions/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AltKrispSwitch",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/altKrispSwitch/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AlwaysAnimate",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/alwaysAnimate/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AlwaysExpandProfiles",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/alwaysExpandProfiles/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AlwaysExpandRoles",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/alwaysExpandRoles/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AlwaysTrust",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/alwaysTrust/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Animalese",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/animalese/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AnonymiseFileNames",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/anonymiseFileNames/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AtSomeone",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/atSomeone/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AutoDNDWhilePlaying",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/autoDndWhilePlaying.discordDesktop/index.ts",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AutoJumpToMessage",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/autoJumpToMessage/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "AutoZipper",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/autoZipper/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BannersEverywhere",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/bannersEverywhere/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterActivities",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterActivities/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterAudioPlayer",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterAudioPlayer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterBanReasons",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterBanReasons/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterBlockedUsers",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterBlockedUsers/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterCommands",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterCommands/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterFolders",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterFolders/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterForwards",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterForwards/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterGifAltText",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterGifAltText/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterGifPicker",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterGifPicker/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterImageEditor",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterImageEditor/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterInvites",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterInvites/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterPlusReacts",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/betterPlusReacts/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterRoleContext",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterRoleContext/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterRoleDot",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterRoleDot/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterSessions",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterSessions/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterSettings",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterSettings/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BetterUploadButton",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/betterUploadButton/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BiggerStreamPreview",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/biggerStreamPreview/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BlockKeywords",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/blockKeywords/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BlockKrisp",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/blockKrisp/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BlurNSFW",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/blurNsfw/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BypassPinPrompt",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/bypassPinPrompt/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "BypassStatus",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/bypassStatus/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CallTimer",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/callTimer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CancelFriendRequest",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/pendingFriendRequest/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ChannelBadges",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/channelBadges/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ChannelTabs",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/channelTabs/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CharacterCounter",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/characterCounter/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CleanChannelName",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/cleanChannelName/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CleanerChannelGroups",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/cleanerChannelGroups/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClearURLs",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/clearURLs/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClickableRoles",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/clickableRoles/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClientSideBlock",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/clientSideBlock/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClientTheme",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/clientTheme/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClipsEnhancements",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/clipsEnhancements.discordDesktop/index.tsx",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ClipUpload",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/clipUpload.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CollapsibleUI",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/collapsibleUi/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ColorSighted",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/colorSighted/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CommandPalette",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/commandPalette/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ConsoleJanitor",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/consoleJanitor/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ConsoleShortcuts",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/consoleShortcuts/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ContentWarning",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/contentWarning/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyEmojiMarkdown",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/copyEmojiMarkdown/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyFileContents",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/copyFileContents/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyProfileColors",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/copyProfileColors/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyStatusUrls",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/copyStatusUrls/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyStickerLinks",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/copyStickerLinks/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyUserMention",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/copyUserMention/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CopyUserURLs",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/copyUserURLs/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CrashHandler",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/crashHandler/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CursorBuddy",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/cursorBuddy/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomCommands",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/customCommands/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomFolderIcons",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/customFolderIcons/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomIdle",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/customIdle/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomRPC",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/customRPC/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomSounds",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/customSounds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomStatusTimeouts",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/customStatusTimeouts/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomTimestamps",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/customTimestamps/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "CustomUserColors",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/customUserColors/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Dearrow",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/dearrow/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Declutter",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/declutter/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DecodeBase64",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/baseDecoder/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Decor",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/decor/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DevCompanion",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/devCompanion.dev/index.tsx",
+      "buildTarget": "dev",
+      "desktop": false,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DisableCallIdle",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/disableCallIdle/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DisableCameras",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/disableCameras/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DisableDeepLinks",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noDeepLinks.web/index.ts",
+      "buildTarget": "web",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DiscordDevBanner",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/discordDevBanner/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DontRoundMyTimestamps",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/dontRoundMyTimestamps/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DownloadAllAttachments",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/downloadAllAttachments/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "DragFavoriteEmotes",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/dragFavoriteEmotes/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Dragify",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/dragify/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ElementHighlighter",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/elementHighlighter.dev/index.tsx",
+      "buildTarget": "dev",
+      "desktop": false,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "EquibopStreamFixes",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/equibopStreamFixes.equibop/index.tsx",
+      "buildTarget": "equibop",
+      "desktop": false,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "EquicordHelper",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/equicordHelper/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "EquicordToolbox",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/equicordToolbox/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Equissant",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/equissant/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ExitSounds",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/exitSounds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Experiments",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/experiments/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ExportMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/exportMessages/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ExpressionCloner",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/expressionCloner/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "F8Break",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/f8break/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FakeNitro",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fakeNitro/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FakeProfileThemes",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fakeProfileThemes/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FastDeleteChannels",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/fastDeleteChannels/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FavoriteEmojiFirst",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/favEmojiFirst/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FavouriteAnything",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/favouriteAnything/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FileUpload",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/fileUpload/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FindReply",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/findReply/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FixCodeblockGap",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fixCodeblockGap/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FixFileExtensions",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/fixFileExtensions/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FixImagesQuality",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fixImagesQuality/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FixSpotifyEmbeds",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fixSpotifyEmbeds.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FixYoutubeEmbeds",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fixYoutubeEmbeds.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FollowVoiceUser",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/followVoiceUser/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FontLoader",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/fontLoader/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ForceOwnerCrown",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/forceOwnerCrown/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FrequentQuickSwitcher",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/frequentQuickSwitcher/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FriendCodes",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/friendCodes/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FriendInvites",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/friendInvites/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FriendshipRanks",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/friendshipRanks/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FriendTags",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/friendTags/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FullSearchContext",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fullSearchContext/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FullUserInChatbox",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/fullUserInChatbox/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "FullVCPFP",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/fullVcPfp/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GameActivityToggle",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/gameActivityToggle/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Ghosted",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/ghosted/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GifCollections",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/gifCollections/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GifMaker",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/gifMaker/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GifPaste",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/gifPaste/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GitHubRepos",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/githubRepos/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GlobalBadges",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/globalBadges/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GoogleThat",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/googleThat/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GreetStickerPicker",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/greetStickerPicker/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "GuildPickerDumper",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/guildPickerDumper/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HideChatButtons",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/hideChatButtons/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HideMedia",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/hideAttachments/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HideMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/hideMessages/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HideServers",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/hideServers/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HomeTyping",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/homeTyping/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "HopOn",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/hopOn/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Husk",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/husk/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IconViewer",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/iconViewer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IdleAutoRestart",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/idleAutoRestart/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IgnoreActivities",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/ignoreActivities/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IgnoreCalls",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/ignoreCalls/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ILoveSpam",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/iLoveSpam/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ImageFilename",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/imageFilename/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ImageLink",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/imageLink/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ImageZoom",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/imageZoom/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ImplicitRelationships",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/implicitRelationships/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Ingtoninator",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/ingtoninator/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "InRole",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/inRole/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "InstantScreenshare",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/instantScreenshare/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "InvisibleChat",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/invisibleChat.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "InviteDefaults",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/inviteDefaults/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IrcColors",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/ircColors/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "IRememberYou",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/iRememberYou/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "JumpTo",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/jumpTo/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "KeepCurrentChannel",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/keepCurrentChannel/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "KeyboardNavigation",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/keyboardNavigation/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "KeyboardSounds",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/keyboardSounds/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "KeywordNotify",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/keywordNotify/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "LastActive",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/lastActive/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "LimitlessScreenshare",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/limitlessScreenshare/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "LoadingQuotes",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/loadingQuotes/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "LoginWithQR",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/loginWithQR/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MarkdownTables",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/markdownTables/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MediaPlaybackSpeed",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/mediaPlaybackSpeed/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MemberCount",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/memberCount/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MentionAvatars",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/mentionAvatars/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageBurst",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageBurst/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageClickActions",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/messageClickActions/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageColors",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageColors/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageFetchTimer",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageFetchTimer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageLatency",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/messageLatency/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageLinkEmbeds",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/messageLinkEmbeds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageLinkTooltip",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageLinkTooltip/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageLogger",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/messageLogger/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageLoggerEnhanced",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageLoggerEnhanced/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageNotifier",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageNotifier/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessagePeek",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messagePeek/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MessageTranslate",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/messageTranslate/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MicLoopbackTester",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/micLoopbackTester/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MiddleClickTweaks",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/middleClickTweaks/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MoreCommands",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/moreCommands/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MoreQuickReactions",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/moreQuickReactions/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MoreStickers",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/moreStickers/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MoreUserTags",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/moreUserTags/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Moyai",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/moyai/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MusicControls",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/musicControls/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MusicRichPresence",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/musicRichPresence/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "MutualGroupDMs",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/mutualGroupDMs/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NeverPausePreviews",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/neverPausePreviews/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NewGuildSettings",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/newGuildSettings/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NewPluginsManager",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/newPluginsManager/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoBlockedMessages",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noBlockedMessages/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoDevtoolsWarning",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noDevtoolsWarning/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoF1",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noF1/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoMaskedUrlPaste",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noMaskedUrlPaste/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoMiddleClickPaste",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noMiddleClickPaste/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoMosaic",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noMosaic/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoNitroUpsell",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/noNitroUpsell/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoOnboardingDelay",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noOnboardingDelay/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoPendingCount",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noPendingCount/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoProfileThemes",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noProfileThemes/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoPushToTalk",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/noPushToTalk/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoReplyMention",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noReplyMention/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NormalizeMessageLinks",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/normalizeMessageLinks/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoRoleHeaders",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/noRoleHeaders/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoRPC",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/noRPC.discordDesktop/index.ts",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoServerEmojis",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noServerEmojis/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoSystemBadge",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noSystemBadge.discordDesktop/index.ts",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NotificationTitle",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/notificationTitle.discordDesktop/index.tsx",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NotificationVolume",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/notificationVolume/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoTypingAnimation",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noTypingAnimation/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "NoUnblockToJump",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/noUnblockToJump/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "OnePingPerDM",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/onePingPerDM/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "OpenInApp",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/openInApp/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "OrbolayBridge",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/orbolayBridge/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "OverrideForumDefaults",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/overrideForumDefaults/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PartyMode",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/partyMode/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PauseInvitesForever",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/pauseInvitesForever/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PermissionFreeWill",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/permissionFreeWill/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PermissionsViewer",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/permissionsViewer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PetPet",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/petpet/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PictureInPicture",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/pictureInPicture/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PinDMs",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/pinDms/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PingNotifications",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/pingNotifications/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PinIcon",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/pinIcon/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PlainFolderIcon",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/plainFolderIcon/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PlatformIndicators",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/platformIndicators/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PlatformSpoofer",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/platformSpoofer/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PolishWording",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/polishWording/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "PreviewMessage",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/previewMessage/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ProfileSets",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/profileSets/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Questify",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/questify/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "QuickMention",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/quickMention/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "QuickReply",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/quickReply/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "QuickThemeSwitcher",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/quickThemeSwitcher.discordDesktop/index.tsx",
+      "buildTarget": "discordDesktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Quoter",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/quoter/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RandomVoice",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/randomVoice/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReactErrorDecoder",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/reactErrorDecoder/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReactionTimestamps",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/reactionTimestamps/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReadAllNotificationsButton",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/readAllNotificationsButton/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RecentDMSwitcher",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/recentDMSwitcher/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RelationshipNotifier",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/relationshipNotifier/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RemixRevived",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/remix/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RepeatMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/repeatMessages/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReplaceGoogleSearch",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/replaceGoogleSearch/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReplyPingControl",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/replyPingControl/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReplyTimestamp",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/replyTimestamp/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RevealAllSpoilers",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/revealAllSpoilers/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReverseImageSearch",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/reverseImageSearch/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ReviewDB",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/reviewDB/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RichMagnetLinks",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/richMagnetLinks/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RichPresence",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/richPresence/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RoleColorEverywhere",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/roleColorEverywhere/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "RPCEditor",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/rpcEditor/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SaveFavoriteGIFs",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/saveFavoriteGIFs/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ScheduledMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/scheduledMessages/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ScreenRecorder",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/screenRecorder.equibop/index.tsx",
+      "buildTarget": "equibop",
+      "desktop": false,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SearchFix",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/searchFix/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SecretRingToneEnabler",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/secretRingTone/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SedEnhanced",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/sedEnhanced/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SekaiStickers",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/sekaiStickers/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SendTimestamps",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/sendTimestamps/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ServerInfo",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/serverInfo/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ServerListIndicators",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/serverListIndicators/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ServerSearch",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/serverSearch/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShikiCodeblocks",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/shikiCodeblocks.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowAllMessageButtons",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showAllMessageButtons/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowBadgesInChat",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/showBadgesInChat/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowConnections",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showConnections/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowHiddenChannels",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showHiddenChannels/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowHiddenThings",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showHiddenThings/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowMessageEmbeds",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/showMessageEmbeds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowMeYourName",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showMeYourName/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowResourceChannels",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/showResourceChannels/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowRolesInChat",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/showRolesInChat/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowSongName",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/showSongName/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ShowTimeoutDuration",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/showTimeoutDuration/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SidebarChat",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/sidebarChat/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Signature",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/signature/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SilenceUsers",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/silenceUsers/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SilentMessageToggle",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/silentMessageToggle/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SilentTyping",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/silentTyping/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Snowfall",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/snowfall/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SongLink",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/songLink.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SongSpotlight",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/songSpotlight.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SortFriends",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/sortFriendRequests/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SplitLargeMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/splitLargeMessages/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SpotifyCrack",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/spotifyCrack/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SpotifyShareCommands",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/spotifyShareCommands/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StartupTimings",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/startupTimings/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StatusPresets",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/statusPresets/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StatusWhileActive",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/statusWhileActive.desktop/index.ts",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SteamStatusSync",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/steamStatusSync/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StickerBlocker",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/stickerBlocker/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StickerPaste",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/stickerPaste/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StopAutoUnread",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/stopAutoUnread/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Streaks",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/streaks/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StreamerModeOn",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/streamerModeOnStream/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "StreamingCodecDisabler",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/streamingCodecDisabler/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "SuperReactionTweaks",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/superReactionTweaks/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TalkInReverse",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/talkInReverse/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TenorGifSearch",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/tenorGifSearch/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TextReplace",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/textReplace/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ThemeAttributes",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/themeAttributes/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ThemeLibrary",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/themeLibrary/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TidalEmbeds",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/tidalEmbeds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Timezones",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/timezones/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Title",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/title/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ToastNotifications",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/toastNotifications/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ToggleVideoBind",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/toggleVideoBind/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ToneIndicators",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/toneIndicators/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Translate",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/translate/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Translate+",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/translatePlus/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TriviaAI",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/triviaAI/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TypingIndicator",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/typingIndicator/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "TypingTweaks",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/typingTweaks/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "Unindent",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/unindent/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UnitConverter",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/unitConverter/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UniversalMention",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/universalMention/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UnlimitedAccounts",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/unlimitedAccounts/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UnlockedAvatarZoom",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/unlockedAvatarZoom/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UnreadCountBadge",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/unreadBadgeCount/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UnsuppressEmbeds",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/unsuppressEmbeds/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UrlHighlighter",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/urlHighlighter/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UserMessagesPronouns",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/userMessagesPronouns/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UserPFP",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/userpfp/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UserpluginInstaller",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/userpluginInstaller.dev/index.tsx",
+      "buildTarget": "dev",
+      "desktop": false,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "UserVoiceShow",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/userVoiceShow/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "USRBG",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/usrbg/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ValidReply",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/validReply/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ValidUser",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/validUser/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VcNarrator",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/vcNarrator/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VCPanelSettings",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/vcPanelSettings/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ViewIcons",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/viewIcons/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ViewRaw",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/viewRaw/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceButtons",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceButtons/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceChannelLog",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceChannelLog/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceChatDoubleClick",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/vcDoubleClick/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceChatUtilities",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceChatUtils/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceDownload",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/voiceDownload/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceJoinMessages",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceJoinMessages/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceMessages",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/voiceMessages/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceMessagesInBackground",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceMessagesInBackground/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceMessageTranscriber",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceMessageTranscriber.desktop/index.tsx",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceRejoin",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceRejoin/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VoiceStats",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/voiceStats/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "VolumeBooster",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/volumeBooster/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WaitForSlot",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/waitForSlot/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebContextMenus",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/webContextMenus.web/index.ts",
+      "buildTarget": "web",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebKeybinds",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/webKeybinds.web/index.ts",
+      "buildTarget": "web",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebpackTarball",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/webpackTarball/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebPWA",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/webPWA.browser/index.tsx",
+      "buildTarget": "browser",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebRichPresence",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/arRPC.web/index.tsx",
+      "buildTarget": "web",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebScreenShare",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/webScreenShare.browser/index.tsx",
+      "buildTarget": "browser",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WebScreenShareFixes",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/webScreenShareFixes.web/index.ts",
+      "buildTarget": "web",
+      "desktop": false,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WhitelistedEmojis",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/whitelistedEmojis/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WhoReacted",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/whoReacted/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WhosWatching",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/whosWatching/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WigglyText",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/wigglyText/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "WriteUpperCase",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/writeUpperCase/index.ts",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "XSOverlay",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/xsOverlay/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "YoutubeAdblock",
+      "origin": "Vencord",
+      "source": "apps/desktop/src/plugins/youtubeAdblock.desktop/index.ts",
+      "buildTarget": "desktop",
+      "desktop": true,
+      "browser": false,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    },
+    {
+      "name": "ZipPreview",
+      "origin": "Equicord",
+      "source": "apps/desktop/src/equicordplugins/zipPreview/index.tsx",
+      "buildTarget": "both",
+      "desktop": true,
+      "browser": true,
+      "android": "requires-port",
+      "runtimeValidation": "not-tested"
+    }
+  ],
+  "mobileFeatures": [
+    {
+      "name": "Revenge plugin manager",
+      "status": "included",
+      "source": "apps/mobile/src/lib/addons/plugins"
+    },
+    {
+      "name": "Vendetta plugin compatibility",
+      "status": "included",
+      "source": "apps/mobile/src/core/vendetta"
+    },
+    {
+      "name": "Themes",
+      "status": "included",
+      "source": "apps/mobile/src/lib/addons/themes"
+    },
+    {
+      "name": "Fonts",
+      "status": "included",
+      "source": "apps/mobile/src/lib/addons/fonts"
+    },
+    {
+      "name": "Safe mode",
+      "status": "included",
+      "source": "apps/mobile/src/core/debug/safeMode.ts"
+    },
+    {
+      "name": "DSI Clean Links",
+      "status": "implemented-not-device-tested",
+      "source": "apps/mobile/src/core/plugins/dsiCleanLinks/index.ts"
+    },
+    {
+      "name": "Android account switcher",
+      "status": "requires-design-and-device-validation"
+    }
+  ]
+}
