@@ -170,6 +170,8 @@ try {
     await page.reload();
     const chatBounds=await page.locator(".chat-window").boundingBox();
     assert.ok(chatBounds.y+chatBounds.height<=844,"Desktop window fits an ordinary-height display");
+    const crewBounds=await page.locator("#crew-contact").boundingBox(),listBounds=await page.locator(".contact-scroll").boundingBox();
+    assert.ok(crewBounds.y+crewBounds.height<=listBounds.y+listBounds.height,"All four contacts fit an ordinary-height desktop");
     await page.screenshot({path:".cache/screenshots/desktop-844.png",fullPage:true});
     await page.locator("#contact-info").click();
     assert.equal(await page.locator("#contact-card-name").innerText(),"DSI Operator");

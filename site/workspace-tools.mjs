@@ -30,8 +30,8 @@ export function initWorkspaceTools({model, updateSendState}) {
         <div class="connection-list"><span>Discord <b>Not connected</b></span><span>Relay <b>Not connected</b></span><span>Local <b>Preview ready</b></span></div>
         <p id="profile-save-status" class="tool-note" role="status"></p><div class="tool-actions"><button type="submit">Save profile</button></div></form></dialog>
       <dialog id="emoji-dialog" class="tool-dialog emoji-dialog window" aria-labelledby="emoji-title">
-        <div class="titlebar"><h2 id="emoji-title">Add a reaction</h2><button data-dismiss aria-label="Close emoji picker">×</button></div>
-        <div class="tool-body"><p class="tool-note">Insert an emoji into your message.</p><div id="emoji-grid" class="emoji-grid"></div></div></dialog>`);
+        <div class="titlebar"><h2 id="emoji-title">Emoji picker</h2><button data-dismiss aria-label="Close emoji picker">×</button></div>
+        <div class="tool-body"><p id="emoji-note" class="tool-note" role="status">Insert an emoji into your message.</p><div id="emoji-grid" class="emoji-grid"></div></div></dialog>`);
     let trigger = null;
     const show = (id, opener) => { trigger = opener; byId(id).showModal(); };
     for (const dialog of document.querySelectorAll(".tool-dialog")) {
@@ -52,6 +52,7 @@ export function initWorkspaceTools({model, updateSendState}) {
     const noteDisplay=document.createElement("p");noteDisplay.id="profile-note-display";document.querySelector(".identity-deck").append(noteDisplay);
     function applyProfile() {
         document.querySelector(".identity-center strong").textContent=profile.name;
+        document.querySelector(".identity-center strong").title=profile.name;
         profileButton.title=profile.note;
         noteDisplay.textContent=profile.note;noteDisplay.title=profile.note;
     }
@@ -103,10 +104,10 @@ export function initWorkspaceTools({model, updateSendState}) {
     });
     const emojis=[["🙂","Smile"],["👍","Thumbs up"],["🔥","Fire"],["🦊","Fox"],["📡","Signal"],["🎮","Game"],["🛠️","Tools"],["☕","Coffee"],["🌙","Night"],["⚡","Power"],["✅","Check"],["🧡","Orange heart"],["🎧","Headphones"],["🚀","Launch"],["👀","Eyes"],["💬","Chat"]];
     let selection={start:0,end:0};
-    byId("emoji").addEventListener("click",()=>{const input=byId("message-input");selection={start:input.selectionStart,end:input.selectionEnd};show("emoji-dialog",byId("emoji"));});
+    byId("emoji").addEventListener("click",()=>{const input=byId("message-input");selection={start:input.selectionStart,end:input.selectionEnd};byId("emoji-note").textContent="Insert an emoji into your message.";show("emoji-dialog",byId("emoji"));});
     for(const [symbol,label] of emojis){
         const button=document.createElement("button");button.type="button";button.textContent=symbol;button.setAttribute("aria-label",label);button.title=label;
-        button.addEventListener("click",()=>{const input=byId("message-input");const next=input.value.slice(0,selection.start)+symbol+input.value.slice(selection.end);if(next.length>2000)return;input.setRangeText(symbol,selection.start,selection.end,"end");model.setDraft(input.value);updateSendState();trigger=input;byId("emoji-dialog").close();});
+        button.addEventListener("click",()=>{const input=byId("message-input");const next=input.value.slice(0,selection.start)+symbol+input.value.slice(selection.end);if(next.length>2000){byId("emoji-note").textContent="Your message is full. Remove some text before adding an emoji.";return;}input.setRangeText(symbol,selection.start,selection.end,"end");model.setDraft(input.value);updateSendState();trigger=input;byId("emoji-dialog").close();});
         byId("emoji-grid").append(button);
     }
 }
