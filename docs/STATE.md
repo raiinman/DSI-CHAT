@@ -8,7 +8,7 @@ Included: feature lifecycle, validated local settings, safe mode, Signal theme, 
 
 Not included: imported engines or plugins, Android loader/APK, desktop adapter/installer, account switching or feature parity.
 
-Added a responsive GitHub Pages preview with the generated broadcast mascot, real display-feature controls applied to sample messages, local preview settings, reset and safe mode, installation steps and a public ZIP download. Deployment verification is pending.
+Added a responsive GitHub Pages preview with the generated broadcast mascot, real display-feature controls applied to sample messages, local preview settings, reset and safe mode, installation steps and a public ZIP download. GitHub Pages deployment [36829210660](https://github.com/raiinman/DSI-CHAT/actions/runs/36829210660) passed. Public HTTPS requests returned 200 for both the page and ZIP; the page contained the expected DSI content and the ZIP had a valid archive signature. The browser connector remains unavailable, so interactive visual acceptance is pending.
 
 No live browser or device acceptance test has occurred. Message padding and theme variables depend on Discord's current DOM and must be validated in the live client. Packaging and automated checks are not evidence of installed-client acceptance.
 
