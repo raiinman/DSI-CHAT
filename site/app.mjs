@@ -40,6 +40,7 @@ function updateSendState() { document.querySelector(".send").disabled = !byId("m
 function switchConversation(id, focusComposer = true) {
     model.setDraft(byId("message-input").value);
     model.open(id);
+    byId("send-status").textContent = "Local preview. Nothing is sent to Discord.";
     render();
     if (focusComposer) {
         byId("message-input").focus({ preventScroll: true });
@@ -85,6 +86,11 @@ function render() {
         }
         byId("tabs").append(wrapper);
     }
+    const selectedTab = byId("tab-" + model.state.active);
+    const strip = byId("tabs");
+    const tabBounds = selectedTab.getBoundingClientRect(), stripBounds = strip.getBoundingClientRect();
+    if (tabBounds.left < stripBounds.left) strip.scrollLeft += tabBounds.left - stripBounds.left - 8;
+    else if (tabBounds.right > stripBounds.right) strip.scrollLeft += tabBounds.right - stripBounds.right + 8;
     byId("conversation-panel").setAttribute("aria-labelledby", "tab-" + model.state.active); byId("messages").replaceChildren();
     const entries = model.conversations.get(model.state.active);
     if (!entries.length) { const empty = document.createElement("p"); empty.className = "empty-conversation"; empty.textContent = "No messages yet. Write a local test message below."; byId("messages").append(empty); }
@@ -108,4 +114,5 @@ byId("compose").addEventListener("submit", event => {
 byId("message-input").addEventListener("keydown", event => { if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); byId("compose").requestSubmit(); } });
 byId("emoji").addEventListener("click", () => { const input = byId("message-input"); input.setRangeText(" ☺ ", input.selectionStart, input.selectionEnd, "end"); model.setDraft(input.value); updateSendState(); input.focus(); });
 byId("message-input").addEventListener("input", event => { model.setDraft(event.target.value); updateSendState(); });
+byId("contacts-jump").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({ behavior: "instant", block: "start" }); byId("contact-search").focus({ preventScroll: true }); });
 appearance(); render();

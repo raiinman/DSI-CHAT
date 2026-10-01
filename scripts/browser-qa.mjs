@@ -45,6 +45,7 @@ try {
     assert.match(await page.locator("#self-orb").getAttribute("class"), /away/);
     await page.locator("#preferences-chat").click();
     assert.equal(await page.locator("#preferences").evaluate(el => el.open), true);
+    await page.screenshot({ path: ".cache/screenshots/preferences.png", fullPage: true });
     await page.locator("#compact-messages").check();
     await page.locator("#reduced-motion").check();
     assert.equal(await page.locator(".transmission i").first().evaluate(el => getComputedStyle(el).animationName), "none");
@@ -56,6 +57,11 @@ try {
     assert.equal(await page.locator("#preferences").evaluate(el => el.open), false);
     assert.equal(await page.locator("#preferences-chat").evaluate(el => el === document.activeElement), true);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).click();
+    await page.keyboard.press("ArrowRight");
+    assert.equal(await page.getByRole("tab", { name: "Night Shift", exact: true }).getAttribute("aria-selected"), "true");
+    await page.getByRole("button", { name: "Close Night Shift", exact: true }).click();
+    assert.equal(await page.getByRole("tab", { name: "Night Shift", exact: true }).count(), 0);
+    await page.getByRole("tab", { name: "DSI Operator", exact: true }).click();
     await page.screenshot({ path: ".cache/screenshots/desktop.png", fullPage: true });
     for (const width of [390, 768]) {
         await page.setViewportSize({ width, height: 844 });
@@ -65,6 +71,10 @@ try {
         const box = await page.locator("#preferences").boundingBox();
         assert.ok(box.x >= 0 && box.x + box.width <= width + 1);
         await page.keyboard.press("Escape");
+        if (width === 390) {
+            await page.locator("#contacts-jump").click();
+            assert.equal(await page.locator("#contact-search").evaluate(el => el === document.activeElement), true);
+        }
         await page.screenshot({ path: ".cache/screenshots/" + width + ".png", fullPage: true });
     }
     assert.deepEqual(errors, []);
