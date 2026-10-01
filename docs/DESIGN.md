@@ -12,6 +12,8 @@ Visual references viewed:
 
 No Trillian source, skins, icons, logos or screenshots are distributed. The interface is authored independently for DSI.
 
+October 1 refinement: the user supplied https://paulstamatiou.com/trillian-astra-ceruleans-next-gen-im-client and rejected the flattened charcoal revision. Its historical screenshots were viewed as visual references only. Restore colored glossy frames, inset panels, a narrow contact window and a pronounced profile deck. DSI uses orange glass, warm dark interiors, an original CSS broadcast mark, its fox artwork and its own dimensions and details. No reference image is shipped. This is an original implementation influenced by a visual reference, not a legal clearance for commercialization.
+
 Working preview interactions: contact search, grouped contact sections, opening/closing conversations, keyboard tab navigation, separate conversation histories, local message composition, presence selector, preferences, safe mode and display features.
 
 Preview contacts and presence are sample data. Sending adds a message in memory only; nothing is sent to Discord or another service. Refresh clears conversation messages. The extension download still contains the original three display features and does not yet implement this messenger shell in Discord.

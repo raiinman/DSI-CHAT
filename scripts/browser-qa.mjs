@@ -23,6 +23,7 @@ try {
     const errors = []; page.on("pageerror", error => errors.push(error.message));
     await page.goto(base);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
+    await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
     assert.equal(await page.locator(".send").isDisabled(), true);
     await page.locator("#message-input").fill("Operator draft");
     await page.locator("#contacts .contact").filter({ hasText: "Avery" }).click();
