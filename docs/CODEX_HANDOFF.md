@@ -9,7 +9,7 @@ Prepared October 3, 2026. Continue the existing implementation; do not restart t
 - Repository default branch `rewrite` preserves the earlier third-party fork. It is NOT the implementation to continue. Do not merge its source/assets into this branch or remove its license notices.
 - Copperlight second enhancement reviewed runtime: `147a9b0`; published source: `d1fc3e8`. Final review-only run `37116008875`, Pages `37116155328` and extension CI `37116155402` passed. Public hashes match all 23 reviewed static files. Subsequent documentation commits may advance the branch without changing runtime files.
 - Live preview: https://raiinman.github.io/DSI-CHAT/
-- Existing local checkout: `C:\Users\mikea\Documents\Codex\2026-09-30\new-chat-3\DSI-CHAT-original`.
+- Current workspace checkout: `C:\Users\mikea\OneDrive\Documents\ChatGPT\DSI-CHAT`. The earlier checkout at `C:\Users\mikea\Documents\Codex\2026-09-30\new-chat-3\DSI-CHAT-original` is preserved; its ignored tool/reference caches are not automatically present in the new workspace.
 
 Check working-tree changes before fetching. Fetch the active branch and fast-forward only when safe; preserve unrelated user work. Refresh GitHub state rather than assuming these revisions are still latest.
 
@@ -25,7 +25,7 @@ Check working-tree changes before fetching. Fetch the active branch and fast-for
 
 ## User direction to preserve
 
-The user clarified and confirmed: build one original DSI Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta. Do not merge or vendor their engines/plugins. Implement DSI's own shared plugin contract and platform adapters. Planning/tool preparation is authorized; follow IMPLEMENTATION_PLAN.md for the first engine sprint. A standalone messaging server is outside this direction.
+The user clarified and confirmed: build one original DSI Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta. Do not merge or vendor their engines/plugins. Implement DSI's own shared plugin contract and platform adapters. Planning/tool preparation is authorized; follow IMPLEMENTATION_PLAN.md for the first engine sprint. The user also requested a separate DSI developer IDE; read IDE_WORKBENCH.md and retain its milestone after the plugin contract/browser fixtures. A standalone messaging server is outside this direction.
 
 Current approved art direction: **Copperlight Realism — handcrafted miniature realism**, adapted from the recovered Dead Signal Valley ART-STYLE.md. Its exact GitHub repository was not located; do not invent a repository attribution. The user approved docs/design/copperlight-concept.png and explicitly superseded the former orange-glass visual requirement.
 

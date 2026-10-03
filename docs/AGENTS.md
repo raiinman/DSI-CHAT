@@ -7,6 +7,7 @@ Keep project scope, architecture, design, roadmap and evidence accurate for subs
 - CODEX_HANDOFF.md: continuation entrypoint, branch, required reading and latest verified publication.
 - ARCHITECTURE.md: runtime, adapter, preview and storage contracts.
 - IMPLEMENTATION_PLAN.md: authorized original DSI engine/adapters, phased capability roadmap and six-hour sprint.
+- IDE_WORKBENCH.md: requested developer IDE, shared plugin/build contracts and acceptance; planned separately from the locked messenger.
 - TOOLCHAIN.md and ANDROID_TOOLS.lock.json: verified developer tools, portable setup and pinned official downloads.
 - REFERENCE_SOURCES.json and REFERENCE_INVENTORY.json: pinned behavior-reference metadata; no imported upstream implementation.
 - UI_ROADMAP.md: delivered UI slices and deferred backlog under the user's UI/UX lock.

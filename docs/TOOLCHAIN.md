@@ -17,6 +17,8 @@ Prepared October 3, 2026 for the original multi-platform mod plan in [IMPLEMENTA
 
 TypeScript, esbuild and Playwright are exact devDependencies in package.json/package-lock.json. Android tools are portable under ignored `.cache/toolchains/android-sdk`; their official URLs, versions, byte lengths and SHA-256 digests are pinned in [ANDROID_TOOLS.lock.json](ANDROID_TOOLS.lock.json). Initial downloads also matched the checksums published in Google's repository metadata. No system PATH or Java installation was changed.
 
+The verified setup above was performed in the earlier DSI-CHAT-original checkout. The current OneDrive workspace is a fresh checkout; ignored node_modules/.cache tools and audit snapshots were not copied. Run the setup/probes below in each new checkout before claiming its tools are ready.
+
 ## Reproduce and verify
 
 ```sh

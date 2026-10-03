@@ -99,6 +99,7 @@ When the user requests a durable behavior change, record it here or in the relev
 
 - Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
 - Build one original DSI mod that brings together the capabilities of Vencord, Equicord and Vendetta; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
+- Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 
 ## Child DOX Index

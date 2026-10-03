@@ -48,6 +48,7 @@ Deliverable: a usable original DSI plugin foundation with the three existing fea
 | Milestone | Concrete gate |
 | --- | --- |
 | Browser adapter and first original feature batch | Behavior specs and controlled fixtures pass; permissions and settings migration remain explicit |
+| DSI developer IDE/workbench | Edit/save an original plugin project, validate/type-check, build, run tests, preview/reload in a controlled host and package through working controls; see [IDE_WORKBENCH.md](IDE_WORKBENCH.md) |
 | Desktop adapter | Select and document original attachment method, startup/teardown and host capability access; test offline fixtures before installing into a user's Discord client |
 | Native Android adapter | Define native bootstrap/host discovery and recovery; build a test host, validate on emulator/device, then prove actual Discord attachment separately |
 | iOS adapter | Requires a macOS/Xcode environment and a separately validated native loader; Windows/browser tests cannot satisfy this gate |
@@ -58,4 +59,4 @@ Native mobile is a substantial adapter project. An Android WebView wrapper does 
 
 ## Tools and continuation
 
-See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and deferred native prerequisites. The immediate implementation target is the six-hour engine sprint above. [UI_ROADMAP.md](UI_ROADMAP.md) stays deferred under the UI/UX lock; preserve the existing source/licensing history and DOX hierarchy.
+See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and deferred native prerequisites. The immediate implementation target is the six-hour engine sprint above. The user also requested our own IDE tool: [IDE_WORKBENCH.md](IDE_WORKBENCH.md) defines a separate developer workspace that follows the plugin contract/browser fixtures and uses the same validators and build tools. [UI_ROADMAP.md](UI_ROADMAP.md) stays deferred under the messenger UI/UX lock; preserve the existing source/licensing history and DOX hierarchy.
