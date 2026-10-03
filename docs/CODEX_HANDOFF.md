@@ -7,7 +7,7 @@ Prepared October 3, 2026. Continue the existing implementation; do not restart t
 - Repository: https://github.com/raiinman/DSI-CHAT
 - Active implementation and publishing branch: `codex/dsi-original`.
 - Repository default branch `rewrite` preserves the earlier third-party fork. It is NOT the implementation to continue. Do not merge its source/assets into this branch or remove its license notices.
-- Contact organization reviewed runtime: `005c2b4`; published source: `2dd87fa`. Subsequent documentation commits may advance the branch without changing public files.
+- Copperlight reviewed runtime: `2dea286`; final review-only run `37114985868` passed. Publication evidence is recorded in STATE.md; subsequent documentation commits may advance the branch without changing runtime files.
 - Live preview: https://raiinman.github.io/DSI-CHAT/
 - Existing local checkout: `C:\Users\mikea\Documents\Codex\2026-09-30\new-chat-3\DSI-CHAT-original`.
 
@@ -62,7 +62,7 @@ Use a review branch and dispatch `.github/workflows/pages.yml` with `review_only
 
 After review, advance `codex/dsi-original` and publish via its Pages workflow within the already authorized project scope. Check deployment success and public file bytes, not just HTTP 200. Record actual results and any limits in `docs/STATE.md`; retain representative reviewed captures in `docs/design`.
 
-Latest verified publication: Pages run https://github.com/raiinman/DSI-CHAT/actions/runs/37112540971 and extension CI run 37112541018. Review-only run 37112413389 passed. Public hashes matched reviewed HTML/styles/modules/artwork. These were CI Chromium checks against the local preview, not testing a live Discord account or a physical phone.
+Previous orange-glass publication: Pages run https://github.com/raiinman/DSI-CHAT/actions/runs/37112540971 and extension CI run 37112541018. Review-only run 37112413389 passed. Public hashes matched reviewed HTML/styles/modules/artwork. These were CI Chromium checks against the local preview, not testing a live Discord account or a physical phone.
 
 ## Environment caveats
 

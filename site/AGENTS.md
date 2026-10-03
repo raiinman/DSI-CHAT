@@ -12,6 +12,7 @@ Own the approved Copperlight Realism messenger and its local controls.
 - Shipped artwork is delegated to assets/AGENTS.md.
 
 ## Local Contracts
+- The active conversation tab and its dismissal control must stay visible when the strip resizes, including desktop-to-phone changes.
 - Use the approved copperlight-concept.png: cream plaster, terracotta accents, sage navigation, turquoise controls, matte reading surfaces and subtle texture. Afternoon is the new-visitor default; retain saved Night and flat High contrast.
 - Keep existing contact identities and DSI nine-tailed mascot. The contact details sidebar follows the selected conversation; the station profile remains separate. Do not reintroduce amber glass or decorative portrait arches.
 - History and Contact card stay adjacent; Preferences stays outside that pair.
