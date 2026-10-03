@@ -7,7 +7,7 @@ Prepared October 3, 2026. Continue the existing implementation; do not restart t
 - Repository: https://github.com/raiinman/DSI-CHAT
 - Active implementation and publishing branch: `codex/dsi-original`.
 - Repository default branch `rewrite` preserves the earlier third-party fork. It is NOT the implementation to continue. Do not merge its source/assets into this branch or remove its license notices.
-- Copperlight reviewed runtime: `2dea286`; final review-only run `37114985868` passed. Publication evidence is recorded in STATE.md; subsequent documentation commits may advance the branch without changing runtime files.
+- Copperlight reviewed runtime: `2dea286`; published source: `e13f709`. Final review-only run `37114985868`, Pages `37115122884` and extension CI `37115122920` passed. Public hashes match all 22 reviewed site files. Subsequent documentation commits may advance the branch without changing runtime files.
 - Live preview: https://raiinman.github.io/DSI-CHAT/
 - Existing local checkout: `C:\Users\mikea\Documents\Codex\2026-09-30\new-chat-3\DSI-CHAT-original`.
 
@@ -62,7 +62,7 @@ Use a review branch and dispatch `.github/workflows/pages.yml` with `review_only
 
 After review, advance `codex/dsi-original` and publish via its Pages workflow within the already authorized project scope. Check deployment success and public file bytes, not just HTTP 200. Record actual results and any limits in `docs/STATE.md`; retain representative reviewed captures in `docs/design`.
 
-Previous orange-glass publication: Pages run https://github.com/raiinman/DSI-CHAT/actions/runs/37112540971 and extension CI run 37112541018. Review-only run 37112413389 passed. Public hashes matched reviewed HTML/styles/modules/artwork. These were CI Chromium checks against the local preview, not testing a live Discord account or a physical phone.
+Latest verified Copperlight publication: Pages run https://github.com/raiinman/DSI-CHAT/actions/runs/37115122884 and extension CI run 37115122920. Final review-only run 37114985868 passed. Downloaded and reviewed desktop/phone/tablet/theme/dialog screenshots; public hashes matched all 22 reviewed static files and the ZIP download signature was valid. These are CI Chromium checks against the local preview, not a live Discord account or physical phone.
 
 ## Environment caveats
 
