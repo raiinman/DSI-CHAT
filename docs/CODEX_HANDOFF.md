@@ -1,6 +1,6 @@
 # DSI CHAT — Codex continuation
 
-Prepared October 3, 2026. Continue the existing implementation; do not restart the implementation. The user explicitly approved a complete visual redesign to Copperlight Realism.
+Prepared October 3, 2026. Continue the existing implementation; do not restart the implementation. The Copperlight redesign and second enhancement pass are delivered. The user locked the current UI/UX on October 3, 2026.
 
 ## Source of truth
 
@@ -26,11 +26,11 @@ Check working-tree changes before fetching. Fetch the active branch and fast-for
 
 Current approved art direction: **Copperlight Realism — handcrafted miniature realism**, adapted from the recovered Dead Signal Valley ART-STYLE.md. Its exact GitHub repository was not located; do not invent a repository attribution. The user approved docs/design/copperlight-concept.png and explicitly superseded the former orange-glass visual requirement.
 
-Implement cream plaster surfaces, terracotta ceramic accents, sage navigation and turquoise controls with gentle material texture and warm readable afternoon light. Desktop uses a functional navigation rail, contact list, conversation and selected-contact/station sidebar. Use real HTML controls and an original miniature valley banner. Preserve existing contact identities and DSI mascot. Concept-only calls, file transfer, shared-media grid and OS window buttons are omitted until those actions exist.
+Preserve cream plaster surfaces, terracotta ceramic accents, sage navigation and turquoise controls with gentle material texture and warm readable afternoon light. Desktop uses a functional navigation rail, contact list, conversation and selected-contact/station sidebar. Use real HTML controls and an original miniature valley banner. Preserve existing contact identities and DSI mascot. Concept-only calls, file transfer, shared-media grid and OS window buttons are omitted until those actions exist.
 
 Afternoon (day) is the new-visitor/reset default. Night (dark) uses cool sage surfaces; High contrast remains flat black/white/yellow and omits scenic decoration. Retain saved theme choices and all persistence scopes, local behavior and motion choices. Sidebar mirrors the selected contact; responsive layouts keep chat/composer usable at 390/768 and all four contacts visible at 1440x844. History and Contact card remain adjacent. The user-approved second detail pass adds original vector icons, shallow bevels/drop shadows and more color on right-hand buttons. Only the sidebar retains its signal meter and Play/Pause; do not restore the header meter. Keep all decorative depth out of High contrast.
 
-The user requested ImageGen for continued visual refinement. Use it for original artwork when helpful and integrate implementable assets behind real HTML controls. UX Pilot export was a dead end; do not send the user back there. Do not flatten the UI into an image.
+UI/UX is currently locked, including its artwork and interactions. If the user explicitly reopens visual refinement, use ImageGen for useful original artwork and integrate implementable assets behind real HTML controls. UX Pilot export was a dead end; do not send the user back there. Do not flatten the UI into an image.
 
 ## What exists and what does not
 
@@ -44,7 +44,7 @@ No upstream engines/plugins were vendored into this branch. Prior upstream expos
 
 ## Continue next
 
-The immediate task is continued UI/UX refinement and completion of useful surfaces using the approved Copperlight look. Follow `docs/UI_ROADMAP.md`: contact organization is now delivered; next implement conversation search, reply quoting, copy, clear confirmation and retained reading position; later profile customization and workspace density/text-size settings. Implement a coherent slice, including its persistence and focus behavior where appropriate, rather than adding decorative controls with no action. Actual provider connection work is a separate scope.
+The current UI/UX is locked. Preserve the published second enhancement baseline (`147a9b0` reviewed runtime; `d1fc3e8` published source), including its layout, themes, icons, depth, colored right-hand controls, single sidebar signal and existing interactions. Do not automatically implement another UI slice. `docs/UI_ROADMAP.md` retains conversation controls, profile customization and workspace settings as deferred backlog requiring explicit user direction to reopen UI/UX work. The lock does not select a new implementation priority; await the user's next task. Actual provider connection work remains a separate scope.
 
 ## Files and verification
 

@@ -12,6 +12,7 @@ Own the approved Copperlight Realism messenger and its local controls.
 - Shipped artwork is delegated to assets/AGENTS.md.
 
 ## Local Contracts
+- The current second-pass Copperlight UI/UX is locked by user direction (October 3, 2026; reviewed runtime 147a9b0, published source d1fc3e8). Preserve the approved appearance and interactions; further UI/UX changes require explicit user direction.
 - The active conversation tab and its dismissal control must stay visible when the strip resizes, including desktop-to-phone changes.
 - Use the approved copperlight-concept.png: cream plaster, terracotta accents, sage navigation, turquoise controls, matte reading surfaces and subtle texture. Afternoon is the new-visitor default; retain saved Night and flat High contrast.
 - Keep existing contact identities and DSI nine-tailed mascot. The contact details sidebar follows the selected conversation; the station profile remains separate. Do not reintroduce amber glass or decorative portrait arches.
@@ -21,7 +22,7 @@ Own the approved Copperlight Realism messenger and its local controls.
 - Render user/message/group text through textContent. Preserve draft isolation, native modal focus return and useful empty states.
 
 ## Work Guidance
-Copperlight rail and sidebar shortcuts must perform real navigation/dialog actions and return focus to their opener. Follow ../docs/UI_ROADMAP.md; conversation search/reply/copy/clear confirmation/reading position are next. Implement usable behavior before expanding surfaces. Preserve all four default contacts and composer visibility at 1440x844, plus 390/768 layouts. Treat generated assets as decoration around working HTML controls.
+Copperlight rail and sidebar shortcuts must perform real navigation/dialog actions and return focus to their opener. The interface work in ../docs/UI_ROADMAP.md is deferred backlog while UI/UX is locked; do not implement another slice without explicit user direction. Implement usable behavior before expanding surfaces. Preserve all four default contacts and composer visibility at 1440x844, plus 390/768 layouts. Treat generated assets as decoration around working HTML controls.
 
 ## Verification
 Run npm test, catalog/build/site preparation and node scripts/browser-qa.mjs from the repository root. Follow ../docs/VISUAL_WORKFLOW.md for review-only screenshots before publication. Passing interaction tests do not establish visual acceptance.

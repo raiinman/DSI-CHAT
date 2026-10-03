@@ -1,6 +1,8 @@
 # Copperlight Realism
 
-Current approved direction, October 3: **handcrafted miniature realism**. The user approved [copperlight-concept.png](design/copperlight-concept.png), replacing the former orange-glass requirements. Preserve the working implementation and existing local controls while changing its presentation.
+UI/UX locked by the user on October 3, 2026, after the second enhancement pass. The baseline is reviewed runtime `147a9b0`, published source `d1fc3e8`, with the reviewed [desktop](design/copperlight-desktop.png), [phone](design/copperlight-phone.png) and [Night](design/copperlight-night.png) captures. Preserve the current presentation and interactions until the user explicitly reopens UI/UX work.
+
+Approved art direction: **handcrafted miniature realism**. The approved [copperlight-concept.png](design/copperlight-concept.png) supplied the direction, replacing the former orange-glass requirements.
 
 - Cream plaster reading surfaces, terracotta ceramic accents, sage navigation, turquoise enamel actions and selections.
 - Original decorative vector icons accompany visible labels. Buttons have shallow bevels and soft drop shadows; portrait rims, selected contacts, tabs and bubbles receive restrained depth. Right-hand Contact details is turquoise, Search conversation terracotta; Discord/Relay/Local use lavender/turquoise/sage. High contrast excludes this decorative depth.

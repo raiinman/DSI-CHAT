@@ -1,6 +1,6 @@
 # Messenger interface progression
 
-Implement the approved Copperlight Realism concept (October 3 redesign supersedes orange glass). Refine one usable surface at a time; review rendered desktop and mobile states before publishing.
+UI/UX is locked by user direction as of October 3, 2026, after the Copperlight second enhancement pass. Preserve reviewed runtime `147a9b0` / published source `d1fc3e8`. The remaining items below are deferred backlog, not authorization to continue UI/UX work. Reopen only on explicit user direction; future authorized UI changes still require rendered desktop/mobile review before publishing.
 
 Delivered Copperlight detail pass: original UI icons, shallow bevels/drop shadows, turquoise/terracotta sidebar actions and colored service buttons; single sidebar signal with Play/Pause.
 
@@ -8,7 +8,7 @@ Delivered Copperlight shell: sage navigation rail, cream/terracotta/turquoise af
 
 Delivered workspace: illustrated contacts/tabs, per-conversation drafts, local messaging, three complete themes, optional signal animation, native preferences, searchable active-conversation archive and local text export, contact cards, saved local name/station note, cursor-aware emoji picker, viewport-sized desktop windows.
 
-Next interface work, in order:
+Delivered organization and deferred interface backlog:
 
 1. Delivered October 3: saved contact favorites, editable local groups, contextual contact actions, searchable names/notes/groups, result counts and actionable empty states.
 2. Conversation controls: local search in the log, reply quoting, copy message, clear confirmation and retained reading position when switching conversations.

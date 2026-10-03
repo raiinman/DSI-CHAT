@@ -11,7 +11,7 @@ The browser prototype is not an Android APK, desktop injector or full plugin-sui
 
 ## Project continuation
 
-Continue on codex/dsi-original; preserve existing work and implement the approved Copperlight Realism messenger. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. Follow docs/UI_ROADMAP.md; the Copperlight redesign is delivered; the next coherent slice is conversation controls. The UI roadmap supports the original Discord customization project; connection/platform work remains separate scope.
+Continue on codex/dsi-original and preserve existing work. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. The user locked the current Copperlight UI/UX on October 3, 2026, after the second enhancement pass (reviewed runtime 147a9b0, published source d1fc3e8). Preserve its layout, artwork, themes, controls and interactions. Further UI/UX changes require explicit user direction to reopen that scope. docs/UI_ROADMAP.md is deferred backlog, not authorization for another slice. Connection/platform work remains separate scope.
 
 ## Documentation framework provenance
 
@@ -97,7 +97,7 @@ Default section order:
 
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md.
 
-- Continue the documented UI roadmap and approved design; do not substitute a platform pivot without explicit user direction.
+- Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 
 ## Child DOX Index
