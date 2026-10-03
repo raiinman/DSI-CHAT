@@ -31,3 +31,5 @@ Workspace expansion: History opens a searchable archive with an explicit local t
 Contact organization adds a Favorites filter, per-row labeled actions, favorite/group editing and a local group manager with create/rename/remove. Search also matches status notes and group names, with result counts and a clear-search/filter action. Empty favorites and search results provide distinct guidance, with a small decorative receiver illustration. New native modals use theme tokens and explicit focus return. Removing a custom group preserves its contacts, favorites, conversations and drafts. Appearance reset does not reset contact organization.
 
 Copperlight screenshot review corrected the selected-tab position on viewport resize: the strip keeps the current conversation in view as its available width changes.
+
+Second Copperlight pass adds decorative aria-hidden icons without replacing action labels, shallow button depth and distinct right-hand action/service colors. The header signal is removed; saved/system motion and explicit Play/Pause continue on the single sidebar meter. Focus, draft, dialog and persistence contracts remain unchanged.

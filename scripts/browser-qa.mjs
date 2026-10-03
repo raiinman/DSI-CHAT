@@ -22,6 +22,9 @@ try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
     const errors = []; page.on("pageerror", error => errors.push(error.message));
     await page.goto(base);
+    assert.equal(await page.locator(".contact-header .transmission").count(),0,"Conversation header has no animated meter");
+    assert.equal(await page.locator(".transmission").count(),1,"Only the sidebar signal remains");
+    assert.equal(await page.locator(".station-sidebar #signal-toggle").count(),1,"Sidebar retains motion controls");
     assert.equal(await page.locator("html").getAttribute("data-theme"), "day", "New visitors start in Copperlight Afternoon");
     for (const [opener, dialog] of [["nav-settings","preferences"],["sidebar-card","contact-dialog"],["sidebar-history","archive-dialog"]]) {
         await page.locator("#"+opener).click();
@@ -35,7 +38,7 @@ try {
     assert.equal(await page.locator("#message-input").evaluate(el=>el===document.activeElement),true);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
-    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png", "quiet-receiver.png", "copperlight-valley.png"]) {
+    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png", "quiet-receiver.png", "copperlight-valley.png", "ui-icons.svg"]) {
         const response = await page.request.get(base + "/assets/" + asset);
         assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
     }
@@ -295,6 +298,9 @@ try {
     await review.goto(base);
     await review.locator('.contact[data-contact="avery"]').click();
     await review.evaluate(() => {document.activeElement.blur();document.querySelector(".chat-paper").scrollTop=0;});
+    const meter=await review.locator(".profile-signal").boundingBox();
+    assert.ok(meter.y+meter.height<=844,"Remaining sidebar meter fits ordinary desktop height");
+    assert.equal(await review.locator("#contacts-jump").isVisible(),false,"Contacts toolbar shortcut is mobile-only");
     await review.screenshot({path:".cache/screenshots/copperlight-desktop.png",fullPage:true});
     await review.locator("#preferences-open").click();
     await review.locator("#workspace-theme").selectOption("dark");

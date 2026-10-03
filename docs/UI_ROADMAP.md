@@ -2,6 +2,8 @@
 
 Implement the approved Copperlight Realism concept (October 3 redesign supersedes orange glass). Refine one usable surface at a time; review rendered desktop and mobile states before publishing.
 
+Delivered Copperlight detail pass: original UI icons, shallow bevels/drop shadows, turquoise/terracotta sidebar actions and colored service buttons; single sidebar signal with Play/Pause.
+
 Delivered Copperlight shell: sage navigation rail, cream/terracotta/turquoise afternoon surfaces, sage Night, flat High contrast, original miniature valley banner, readable message bubbles and responsive selected-contact/station sidebar. Existing saved theme choices persist; new visitors and appearance reset use Afternoon.
 
 Delivered workspace: illustrated contacts/tabs, per-conversation drafts, local messaging, three complete themes, optional signal animation, native preferences, searchable active-conversation archive and local text export, contact cards, saved local name/station note, cursor-aware emoji picker, viewport-sized desktop windows.

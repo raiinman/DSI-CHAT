@@ -161,5 +161,16 @@ for (const [id, target, dialog] of [["nav-settings","preferences-open","preferen
 });
 byId("nav-contacts").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({block:"nearest"}); byId("contact-search").focus({preventScroll:true}); });
 byId("nav-chat").addEventListener("click", () => { byId("message-input").scrollIntoView({block:"nearest"}); byId("message-input").focus({preventScroll:true}); });
+// Original vector details decorate existing controls without changing their names/actions.
+function controlIcon(name) {
+    const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+    svg.setAttribute("viewBox","0 0 24 24");svg.setAttribute("class","ui-icon");svg.setAttribute("aria-hidden","true");
+    const use=document.createElementNS("http://www.w3.org/2000/svg","use");use.setAttribute("href","assets/ui-icons.svg#"+name);svg.append(use);return svg;
+}
+for (const [id,icon] of [["nav-chat","chat"],["nav-contacts","contacts"],["nav-settings","settings"]]) byId(id).querySelector("span").replaceChildren(controlIcon(icon));
+for (const [id,icon] of [["sidebar-card","card"],["sidebar-history","search"],["history-toggle","history"],["contact-info","card"],["groups-open","folder"],["profile-open","edit"],["preferences-open","settings"],["archive-export","download"],["card-compose","chat"]]) byId(id).prepend(controlIcon(icon));
+byId("favorites-only").textContent="Favorites";byId("favorites-only").prepend(controlIcon("star"));
+document.querySelector(".buddy-tools label").prepend(controlIcon("search"));
+byId("emoji").replaceChildren(controlIcon("smile"));document.querySelector(".send").prepend(controlIcon("send"));
 appearance(); render();
 new ResizeObserver(revealActiveTab).observe(byId("tabs"));

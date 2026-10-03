@@ -16,7 +16,7 @@ Own the approved Copperlight Realism messenger and its local controls.
 - Use the approved copperlight-concept.png: cream plaster, terracotta accents, sage navigation, turquoise controls, matte reading surfaces and subtle texture. Afternoon is the new-visitor default; retain saved Night and flat High contrast.
 - Keep existing contact identities and DSI nine-tailed mascot. The contact details sidebar follows the selected conversation; the station profile remains separate. Do not reintroduce amber glass or decorative portrait arches.
 - History and Contact card stay adjacent; Preferences stays outside that pair.
-- Keep labeled Discord/Relay/Local controls honest about preview status. Signal meters are decorative and obey saved/system motion choices with explicit Play/Pause.
+- Keep labeled Discord/Relay/Local controls honest about preview status. The only signal meter is in the station sidebar with its Play/Pause control; remove meters from the conversation header. It is decorative and obeys saved/system motion choices. Use original vector icons, restrained bevels/shadows and distinct colored right-hand actions; keep High contrast flat.
 - Messages/drafts remain in tab memory; appearance, profile and contact organization have separate validated localStorage records. Do not silently change persistence/reset scopes.
 - Render user/message/group text through textContent. Preserve draft isolation, native modal focus return and useful empty states.
 
@@ -28,5 +28,3 @@ Run npm test, catalog/build/site preparation and node scripts/browser-qa.mjs fro
 
 ## Child DOX Index
 - [assets/AGENTS.md](assets/AGENTS.md): original shipped artwork and service icons.
-
-The active conversation tab must stay visible when the tab strip resizes, including desktop-to-phone changes.

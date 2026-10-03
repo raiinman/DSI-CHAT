@@ -3,6 +3,8 @@
 Current approved direction, October 3: **handcrafted miniature realism**. The user approved [copperlight-concept.png](design/copperlight-concept.png), replacing the former orange-glass requirements. Preserve the working implementation and existing local controls while changing its presentation.
 
 - Cream plaster reading surfaces, terracotta ceramic accents, sage navigation, turquoise enamel actions and selections.
+- Original decorative vector icons accompany visible labels. Buttons have shallow bevels and soft drop shadows; portrait rims, selected contacts, tabs and bubbles receive restrained depth. Right-hand Contact details is turquoise, Search conversation terracotta; Discord/Relay/Local use lavender/turquoise/sage. High contrast excludes this decorative depth.
+- Keep only the station-side signal meter, with adjacent saved Play/Pause; no conversation-header animation.
 - Fine, restrained surface grain; fitted borders, gentle shadows and warm afternoon light. Keep text crisp and message surfaces matte.
 - Functional navigation rail, contact list, central conversation and right selected-contact/station sidebar. Sidebar identity changes with the active contact.
 - Round contact portraits, distinct contact/station profiles, bounded incoming/outgoing message bubbles and a compact composer.

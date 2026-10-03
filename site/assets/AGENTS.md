@@ -4,7 +4,7 @@
 Own original artwork used by the working messenger.
 
 ## Ownership
-Original copperlight-valley.png panoramic diorama banner, fox mascot, historical station background, four-contact portrait sheet, amber title-bar material, quiet receiver empty-state prop and original service SVGs.
+Original copperlight-valley.png panoramic diorama banner, fox mascot, historical station background, four-contact portrait sheet, amber title-bar material, quiet receiver empty-state prop and original service SVGs plus ui-icons.svg (decorative UI symbol sprite).
 
 ## Local Contracts
 - Preserve the tactical chibi nine-tailed mascot and fictional contact identities.
