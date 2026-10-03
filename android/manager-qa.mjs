@@ -109,7 +109,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
  launch();await pause(600);capture('manager-default');
  await click('Start guided setup');
  capture('manager-permission-or-error');
- const permission=await advance(items=>items.find(item=>item.package==='com.android.settings'&&(item['resource-id'].endsWith('/switch_widget')||item['resource-id'].endsWith('/switch')||/Switch/.test(item.class)||(item.checkable==='true'&&item.clickable==='true'&&items.some(label=>label.package==='com.android.settings'&&label.text==='Install unknown apps')))), 'normal unknown-app source permission screen');
+ const permission=await advance(items=>{const settingsLabels=items.filter(item=>item.package==='com.android.settings').map(item=>item.text);if(!settingsLabels.includes('Install unknown apps')||!settingsLabels.some(text=>text==='DSI Manager QA'||text==='DSI Manager'))return;return items.find(item=>item.package==='com.android.settings'&&item.enabled==='true'&&(item['resource-id'].endsWith('/switch_widget')||item['resource-id'].endsWith('/switch')||/Switch/.test(item.class)||(item.checkable==='true'&&item.clickable==='true')));}, 'normal unknown-app source permission screen');
  capture('manager-source-permission');if(permission.checked!=='true')await tap(permission);
  await wait(items=>items.find(item=>item.package==='com.android.settings'&&item.checkable==='true'&&item.checked==='true'),'explicit unknown-source permission enabled');
  run('shell','input','keyevent','KEYCODE_BACK');await pause(600);capture('manager-permission-return');
