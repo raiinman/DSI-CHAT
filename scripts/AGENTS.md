@@ -14,7 +14,7 @@ catalog.mjs, build.mjs, site.mjs and browser-qa.mjs. Generated outputs belong in
 - Browser QA uses Playwright 1.58.2 in .cache/browser-qa, tests the local static build and writes .cache/screenshots; no live account access is implied.
 
 ## Work Guidance
-Keep assertions tied to user-visible contracts, preserve coverage for themes/motion/focus/drafts/safe text/layout/export, and add meaningful checks for new behavior. Screenshot inspection follows docs/VISUAL_WORKFLOW.md.
+Keep assertions tied to user-visible contracts, preserve coverage for themes/motion/focus/drafts/safe text/layout/export, Copperlight default theme, navigation/sidebar actions and actual-opener focus return, and add meaningful checks for new behavior. Screenshot inspection follows docs/VISUAL_WORKFLOW.md.
 
 ## Verification
 Run npm test, npm run catalog, npm run build, node scripts/site.mjs and git diff --check. For browser changes run node scripts/browser-qa.mjs; confirm catalog generation leaves no unexpected diff and workflow packaging verifies checksums.

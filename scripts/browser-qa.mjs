@@ -22,9 +22,20 @@ try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
     const errors = []; page.on("pageerror", error => errors.push(error.message));
     await page.goto(base);
+    assert.equal(await page.locator("html").getAttribute("data-theme"), "day", "New visitors start in Copperlight Afternoon");
+    for (const [opener, dialog] of [["nav-settings","preferences"],["sidebar-card","contact-dialog"],["sidebar-history","archive-dialog"]]) {
+        await page.locator("#"+opener).click();
+        assert.equal(await page.locator("#"+dialog).evaluate(el=>el.open),true);
+        await page.keyboard.press("Escape");
+        assert.equal(await page.locator("#"+opener).evaluate(el=>el===document.activeElement),true,"New shortcut returns focus");
+    }
+    await page.locator("#nav-contacts").click();
+    assert.equal(await page.locator("#contact-search").evaluate(el=>el===document.activeElement),true);
+    await page.locator("#nav-chat").click();
+    assert.equal(await page.locator("#message-input").evaluate(el=>el===document.activeElement),true);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
-    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png", "quiet-receiver.png"]) {
+    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png", "quiet-receiver.png", "copperlight-valley.png"]) {
         const response = await page.request.get(base + "/assets/" + asset);
         assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
     }
@@ -129,6 +140,7 @@ try {
     assert.equal(await page.locator("#message-input").inputValue(), "Operator draft");
     await page.getByRole("tab", { name: "Avery", exact: true }).click();
     assert.equal(await page.locator("#message-input").inputValue(), "Avery draft");
+    assert.equal(await page.locator("#sidebar-name").innerText(), "Avery", "Sidebar follows active contact");
     await page.locator("#message-input").press("Enter");
     assert.match(await page.locator("#messages").innerText(), /Avery draft/);
     assert.equal(await page.locator("#message-input").inputValue(), "");
@@ -278,6 +290,22 @@ try {
             await page.locator("#"+opener).click();const box=await page.locator("#"+dialog).boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width+1);await page.screenshot({path:".cache/screenshots/"+dialog+"-"+width+".png",fullPage:true});await page.keyboard.press("Escape");
         }
     }
+    const review = await browser.newPage({viewport:{width:1440,height:844}});
+    review.on("pageerror", error => errors.push(error.message));
+    await review.goto(base);
+    await review.locator('.contact[data-contact="avery"]').click();
+    await review.evaluate(() => {document.activeElement.blur();document.querySelector(".chat-paper").scrollTop=0;});
+    await review.screenshot({path:".cache/screenshots/copperlight-desktop.png",fullPage:true});
+    await review.locator("#preferences-open").click();
+    await review.locator("#workspace-theme").selectOption("dark");
+    await review.keyboard.press("Escape");
+    await review.screenshot({path:".cache/screenshots/copperlight-night.png",fullPage:true});
+    await review.locator("#preferences-open").click();
+    await review.locator("#workspace-theme").selectOption("day");
+    await review.keyboard.press("Escape");
+    await review.setViewportSize({width:390,height:844});
+    await review.screenshot({path:".cache/screenshots/copperlight-phone.png",fullPage:true});
+    await review.close();
     assert.deepEqual(errors, []);
     console.log("Browser QA passed: three persistent themes, text contrast, service status, animation preferences, drafts, conversations, composition, literal text, search, presence, modal focus, safe mode and 390/768/1440 layouts.");
 } finally { await browser.close(); server.close(); }

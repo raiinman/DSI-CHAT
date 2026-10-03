@@ -4,10 +4,10 @@
 Retain the approved visual specification and evidence of rendered implementation review.
 
 ## Ownership
-orange-glass-concept.png is the approved concept. contact-organization-desktop.png is the latest representative desktop; contact-actions-phone.png and contact-groups-daytime.png cover the delivered organization slice. Older captures remain historical evidence.
+copperlight-concept.png is the approved current reference. copperlight-desktop.png, copperlight-phone.png and copperlight-night.png document the current implementation. Orange-glass concepts and older captures remain historical evidence.
 
 ## Local Contracts
-The generated concept is a reference, not shipped UI. Later explicit corrections in CODEX_HANDOFF.md supersede conflicting concept details: existing chibi fox, straight portrait frame, no Appearance beside Contact card, no hard white title-bar streak.
+The generated concept is a reference, not shipped UI. The user explicitly replaced orange glass with Copperlight Realism. Keep real controls, existing identities and honest local-preview behavior; omit concept-only calls/media/window controls until functional.
 
 ## Work Guidance
 Retain representative reviewed captures for meaningful UI changes and update handoff references. Keep generated backgrounds/portraits/materials intended for shipping in site/assets/. Do not mistake a screenshot for functional implementation.

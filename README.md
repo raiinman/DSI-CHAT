@@ -2,7 +2,7 @@
 
 Dead Signal Interactive's original Discord customization implementation.
 
-Try the [live preview](https://raiinman.github.io/DSI-CHAT/) or download the extension ZIP directly from that page. The preview changes sample messages only.
+Try the [live preview](https://raiinman.github.io/DSI-CHAT/) or download the extension ZIP directly from that page. The Copperlight Realism preview has cream, terracotta, sage and turquoise surfaces, an original miniature valley banner and working local messenger controls. It changes sample messages only.
 
 This branch starts a new source tree. It contains no vendored Revenge, Vencord, Equicord or Vendetta engine or plugins. The earlier fork remains on the repository's `rewrite` branch with its existing licenses.
 

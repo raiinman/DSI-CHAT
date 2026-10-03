@@ -1,6 +1,6 @@
 # DSI CHAT — Codex continuation
 
-Prepared October 3, 2026. Continue the existing implementation; do not restart or redesign it from scratch.
+Prepared October 3, 2026. Continue the existing implementation; do not restart the implementation. The user explicitly approved a complete visual redesign to Copperlight Realism.
 
 ## Source of truth
 
@@ -24,11 +24,11 @@ Check working-tree changes before fetching. Fetch the active branch and fast-for
 
 ## User direction to preserve
 
-DSI CHAT is an original broadcast-station messenger inspired by the compact two-window feel of Trillian Astra 4.2. It must not become a Discord-shaped interface or a literal Trillian clone. Preserve orange/amber glass chrome, dark charcoal interiors, a complete Daytime theme and flat High contrast. The mascot is the existing tactical chibi nine-tailed fox, not an excessively cute replacement or the humanoid fox from an early concept.
+Current approved art direction: **Copperlight Realism — handcrafted miniature realism**, adapted from the recovered Dead Signal Valley ART-STYLE.md. Its exact GitHub repository was not located; do not invent a repository attribution. The user approved docs/design/copperlight-concept.png and explicitly superseded the former orange-glass visual requirement.
 
-Approved concept: `docs/design/orange-glass-concept.png`. Latest reviewed implementation: `docs/design/contact-organization-desktop.png` (soft-glass chrome retained). Compare both; the implementation capture reflects later explicit user corrections. Keep a straight rectangular profile portrait: no half-circle or arch. Keep legible, labeled Discord/Relay/Local controls. Keep optional animated signal meters with Play/Pause and reduced-motion behavior.
+Implement cream plaster surfaces, terracotta ceramic accents, sage navigation and turquoise controls with gentle material texture and warm readable afternoon light. Desktop uses a functional navigation rail, contact list, conversation and selected-contact/station sidebar. Use real HTML controls and an original miniature valley banner. Preserve existing contact identities and DSI mascot. Concept-only calls, file transfer, shared-media grid and OS window buttons are omitted until those actions exist.
 
-Recent explicit corrections: Appearance beside Contact card is removed; Preferences remains accessible elsewhere. History and Contact card stay adjacent. The white line in title bars was rejected. The fix disables the extra `::after` gloss layer and crops below the generated texture's bright streak; do not reintroduce stacked white highlights. Refine with rendered screenshots, not assertions that passing tests prove beauty.
+Afternoon (day) is the new-visitor/reset default. Night (dark) uses cool sage surfaces; High contrast remains flat black/white/yellow and omits scenic decoration. Retain saved theme choices and all persistence scopes, local behavior and motion choices. Sidebar mirrors the selected contact; responsive layouts keep chat/composer usable at 390/768 and all four contacts visible at 1440x844. History and Contact card remain adjacent.
 
 The user requested ImageGen for continued visual refinement. Use it for original artwork when helpful and integrate implementable assets behind real HTML controls. UX Pilot export was a dead end; do not send the user back there. Do not flatten the UI into an image.
 
@@ -44,7 +44,7 @@ No upstream engines/plugins were vendored into this branch. Prior upstream expos
 
 ## Continue next
 
-The immediate task is continued UI/UX refinement and completion of useful surfaces while preserving the approved look. Follow `docs/UI_ROADMAP.md`: contact organization is now delivered; next implement conversation search, reply quoting, copy, clear confirmation and retained reading position; later profile customization and workspace density/text-size settings. Implement a coherent slice, including its persistence and focus behavior where appropriate, rather than adding decorative controls with no action. Actual provider connection work is a separate scope.
+The immediate task is continued UI/UX refinement and completion of useful surfaces using the approved Copperlight look. Follow `docs/UI_ROADMAP.md`: contact organization is now delivered; next implement conversation search, reply quoting, copy, clear confirmation and retained reading position; later profile customization and workspace density/text-size settings. Implement a coherent slice, including its persistence and focus behavior where appropriate, rather than adding decorative controls with no action. Actual provider connection work is a separate scope.
 
 ## Files and verification
 
@@ -52,8 +52,8 @@ The immediate task is continued UI/UX refinement and completion of useful surfac
 - `site/messenger.mjs`: contact/conversation model.
 - `site/workspace-tools.mjs`: history, contact, profile and emoji dialogs.
 - `site/contact-book.mjs`, `site/contact-tools.mjs`: validated saved favorites/local groups, search/filter list and organization dialogs.
-- `site/style.css`, `themes.css`, `workspace.css`, `panels.css`: layered styles; inspect cascade before adding overrides.
-- `site/assets/`: original fox, background, portrait sheet, amber texture and service SVGs.
+- `site/style.css`, `themes.css`, `workspace.css`, `panels.css`, `copperlight.css`: layered styles; inspect cascade before adding overrides.
+- `site/assets/`: original copperlight valley banner, fox, portrait sheet, historical textures and service SVGs.
 - `scripts/browser-qa.mjs`: interactions, theme/motion/contrast, export, focus and layout checks; produces screenshots.
 
 Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Contact-organization baseline: 16 tests passing. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.

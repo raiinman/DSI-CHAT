@@ -1,6 +1,6 @@
 # Messenger usability review
 
-The default messenger uses charcoal surfaces and orange glass. Daytime and High contrast are complete alternate themes. The classic contact-and-conversation structure is retained. No blue starting theme remains.
+The current messenger uses Copperlight Realism: cream Afternoon by default, sage Night and flat High contrast. Existing saved theme choices are retained. The October 3 approved redesign supersedes earlier visual requirements in the historical findings below. Navigation and contact-sidebar shortcuts operate existing dialogs, preserve focus return and reflect the active contact. Reading surfaces use bounded message bubbles; the composer remains visible on ordinary desktop displays.
 
 | Finding | Change | Verification |
 | --- | --- | --- |

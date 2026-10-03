@@ -11,7 +11,7 @@ The browser prototype is not an Android APK, desktop injector or full plugin-sui
 
 ## Project continuation
 
-Continue on codex/dsi-original; preserve existing work and the approved orange-glass broadcast messenger. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. Follow docs/UI_ROADMAP.md; the next coherent slice is conversation controls. The UI roadmap supports the original Discord customization project; connection/platform work remains separate scope.
+Continue on codex/dsi-original; preserve existing work and implement the approved Copperlight Realism messenger. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. Follow docs/UI_ROADMAP.md; the current slice is the user-approved Copperlight redesign; conversation controls follow. The UI roadmap supports the original Discord customization project; connection/platform work remains separate scope.
 
 ## Documentation framework provenance
 

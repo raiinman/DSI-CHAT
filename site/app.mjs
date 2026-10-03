@@ -19,7 +19,7 @@ model.conversations.get("avery").push(
     {author:"Avery",text:"Will do. 👍",time:"19:19",self:false}
 );
 let settings = normalizeSettings();
-let theme = "dark";
+let theme = "day";
 let signalPlaying = true;
 let motionOverride = false;
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,7 +27,7 @@ let persistent = true;
 try {
     const stored = JSON.parse(localStorage.getItem(key));
     settings = normalizeSettings(stored);
-    theme = ["dark", "day", "contrast"].includes(stored?.theme) ? stored.theme : settings.enabled["signal-theme"] ? "contrast" : "dark";
+    theme = ["dark", "day", "contrast"].includes(stored?.theme) ? stored.theme : settings.enabled["signal-theme"] ? "contrast" : "day";
     settings.enabled["signal-theme"] = false;
     signalPlaying = stored?.signalPlaying !== false;
     motionOverride = stored?.motionOverride === true;
@@ -53,7 +53,7 @@ function save() { try { localStorage.setItem(key, JSON.stringify({ ...settings, 
 byId("safe-mode").addEventListener("change", event => { settings.safeMode = event.target.checked; save(); });
 for (const feature of previewFeatures) byId(feature.id).addEventListener("change", event => { settings.enabled[feature.id] = event.target.checked; save(); });
 byId("workspace-theme").addEventListener("change", event => { theme = event.target.value; save(); });
-byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "dark"; signalPlaying = true; motionOverride = false; save(); });
+byId("reset").addEventListener("click", () => { settings = normalizeSettings(); theme = "day"; signalPlaying = true; motionOverride = false; save(); });
 byId("signal-toggle").addEventListener("click", () => {
     signalPlaying = document.documentElement.dataset.signalPlaying !== "true";
     if (signalPlaying) { settings.enabled["reduced-motion"] = false; motionOverride = motionPreference.matches; }
@@ -102,6 +102,7 @@ function contacts() { contactTools?.render(); }
 function render() {
     contacts(); byId("message-input").value = model.getDraft(); updateSendState(); const contact = CONTACTS.find(c => c.id === model.state.active);
     byId("window-title").textContent = "DSI CHAT"; byId("conversation-name").textContent = contact.name; byId("conversation-avatar").textContent = ""; byId("conversation-avatar").className = "large-avatar portrait"; byId("conversation-avatar").dataset.portrait = contact.id; byId("conversation-avatar").setAttribute("aria-hidden", "true");
+    byId("sidebar-name").textContent = contact.name; byId("sidebar-note").textContent = contact.note; byId("sidebar-avatar").dataset.portrait = contact.id;
     byId("conversation-status").textContent = (contact.presence === "away" ? "Away" : "Available") + " · " + contact.note;
     byId("tabs").replaceChildren();
     for (const id of model.state.open) {
@@ -151,4 +152,10 @@ byId("message-input").addEventListener("input", event => { model.setDraft(event.
 byId("contacts-jump").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({ behavior: "instant", block: "start" }); byId("contact-search").focus({ preventScroll: true }); });
 initWorkspaceTools({ model, updateSendState });
 contactTools = initContactTools({ model, switchConversation });
+for (const [id, target, dialog] of [["nav-settings","preferences-open","preferences"],["sidebar-card","contact-info","contact-dialog"],["sidebar-history","history-toggle","archive-dialog"]]) byId(id).addEventListener("click", () => {
+    byId(target).click();
+    byId(dialog).addEventListener("close", () => byId(id).focus({preventScroll:true}), {once:true});
+});
+byId("nav-contacts").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({block:"nearest"}); byId("contact-search").focus({preventScroll:true}); });
+byId("nav-chat").addEventListener("click", () => { byId("message-input").scrollIntoView({block:"nearest"}); byId("message-input").focus({preventScroll:true}); });
 appearance(); render();

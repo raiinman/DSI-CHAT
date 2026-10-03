@@ -4,12 +4,12 @@
 Own original artwork used by the working messenger.
 
 ## Ownership
-Fox mascot, station background, four-contact portrait sheet, amber title-bar material, quiet receiver empty-state prop and original service SVGs.
+Original copperlight-valley.png panoramic diorama banner, fox mascot, historical station background, four-contact portrait sheet, amber title-bar material, quiet receiver empty-state prop and original service SVGs.
 
 ## Local Contracts
 - Preserve the tactical chibi nine-tailed mascot and fictional contact identities.
 - Portrait sheet uses four equal-width tiles; coordinate crop/positions with site CSS.
-- Glass material is decorative behind real text; crop below the rejected bright streak. High contrast excludes decorative glass/empty-state artwork.
+- Copperlight valley banner is decorative behind no text or controls; High contrast excludes it and empty-state artwork. Amber material remains historical and is not used by the current theme.
 - Do not import upstream skins, logos or artwork. Record generated prompts, references and provenance in docs/PROVENANCE.md.
 
 ## Work Guidance
