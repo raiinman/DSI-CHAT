@@ -100,12 +100,17 @@ export class WorkspaceService {
       const child=spawn(this.nodePath,['--test','--test-isolation=none',...paths],{cwd:this.root,windowsHide:true,env:environment,stdio:['ignore','pipe','pipe']});
       this.running=child; let output='',cancelled=false;
       const append=data=>{output=(output+data.toString()).slice(-100000);}; child.stdout.on('data',append);child.stderr.on('data',append);
-      const timeout=setTimeout(()=>{cancelled=true;child.kill();},30000);
-      child.on('error',error=>{clearTimeout(timeout);this.running=null;reject(error);});
-      child.on('close',code=>{clearTimeout(timeout);this.running=null;resolve({ok:code===0,code,cancelled:cancelled||child.dsiCancelled===true,output});});
+      const timeout=setTimeout(()=>{cancelled=true;this.terminate(child);},30000);
+      const finish=()=>{clearTimeout(timeout);clearTimeout(child.dsiKillDeadline);if(this.running===child)this.running=null;};
+      child.on('error',error=>{finish();reject(error);});
+      child.on('close',code=>{finish();resolve({ok:code===0,code,cancelled:cancelled||child.dsiCancelled===true,output});});
     });
   }
-  cancel() {if(this.running){this.running.dsiCancelled=true;this.running.kill();return {cancelled:true};}return {cancelled:false};}
+  terminate(child) {
+    child.kill();
+    if(process.platform!=='win32'&&!child.dsiKillDeadline)child.dsiKillDeadline=setTimeout(()=>{if(child.exitCode===null&&child.signalCode===null)child.kill('SIGKILL');},500);
+  }
+  cancel() {if(this.running){this.running.dsiCancelled=true;this.terminate(this.running);return {cancelled:true};}return {cancelled:false};}
   async package() {
     const build=await this.build(); if(!build.ok)return build;
     const source=await fs.readFile(await this.resolve('.dsi-build/plugin.mjs'),'utf8');

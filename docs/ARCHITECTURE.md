@@ -14,7 +14,9 @@ Pinned esbuild bundles current isolated content/popup entries and a DSIPlugins I
 
 Windows uses Electron 44.5.1 with sandboxed/context-isolated local windows and guarded IPC. An explicitly opened official Discord web window has no Node/preload and receives reviewed display modules in an isolated world. Offline fixture and packaged executable smoke establish the adapter; installed-Discord injection and live account support remain unverified.
 
-The workbench confines filesystem/compiler/bundler operations to a selected project (plus pinned TypeScript standard libraries), validates symlinks and revision hashes, and exports checksummed development packages. Node tests run as the user after an explicit action; controlled preview uses a separate sandboxed no-network host. It is not a sandbox for arbitrary tests.
+The workbench confines filesystem/compiler/bundler operations to a selected project (plus pinned TypeScript standard libraries), validates symlinks/revision hashes, rejects multiply-linked files and Windows alternate streams, and exports checksummed development packages. These checks are not an OS boundary against concurrent local filesystem mutation. Node tests run as the user after an explicit action.
+
+Controlled previews use an opaque in-memory document, restrictive CSP, no Node/preload privileges and a dedicated ephemeral session denying file/network requests, permissions and downloads. A scoped WebRTC policy plus host-owned rejecting proxy blocks the tested STUN/UDP and TURN/TCP paths. Preview destruction settles pending startup so Stop recovers the editor after synchronous hangs. These guards are defense in depth, not an arbitrary-code OS sandbox; see SECURITY_REVIEW.md.
 
 Android uses a separate native Java API 1 engine and three reviewed native-view handlers. The development lab has no network permission. A local non-root patcher preserves a selected monolithic APK, adds an original Application bootstrap and separate DEX, and writes a development-signed output/integrity report. Browser CSS does not run on Android. Actual Discord attachment/private runtime discovery remains unverified.
 
