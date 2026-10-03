@@ -43,7 +43,7 @@ function appearance() {
     byId("signal-toggle").setAttribute("aria-label", (signalActive ? "Pause" : "Play") + " signal animation");
     byId("signal-label").textContent = signalActive ? "Signal active" : "Signal paused";
     byId("workspace-theme").value = theme;
-    document.querySelector('meta[name="theme-color"]').content = theme === "day" ? "#f1e7d8" : theme === "contrast" ? "#000000" : "#181613";
+    document.querySelector('meta[name="theme-color"]').content = theme === "day" ? "#eee4d4" : theme === "contrast" ? "#000000" : "#293a34";
     byId("active-count").textContent = result.active.length + " features active";
     byId("status").textContent = settings.safeMode ? "Safe mode active. Choices retained." : "Appearance applied to this workspace.";
     if (result.errors.length) byId("status").textContent = "A feature could not start. Try safe mode.";
@@ -99,6 +99,13 @@ function switchConversation(id, focusComposer = true) {
 byId("presence").addEventListener("change", event => { byId("self-orb").className = "orb " + event.target.value; });
 let contactTools;
 function contacts() { contactTools?.render(); }
+function revealActiveTab() {
+    const selectedTab = byId("tab-" + model.state.active);
+    const strip = byId("tabs");
+    const tabBounds = selectedTab.getBoundingClientRect(), stripBounds = strip.getBoundingClientRect();
+    if (tabBounds.left < stripBounds.left) strip.scrollLeft += tabBounds.left - stripBounds.left - 8;
+    else if (tabBounds.right > stripBounds.right) strip.scrollLeft += tabBounds.right - stripBounds.right + 8;
+}
 function render() {
     contacts(); byId("message-input").value = model.getDraft(); updateSendState(); const contact = CONTACTS.find(c => c.id === model.state.active);
     byId("window-title").textContent = "DSI CHAT"; byId("conversation-name").textContent = contact.name; byId("conversation-avatar").textContent = ""; byId("conversation-avatar").className = "large-avatar portrait"; byId("conversation-avatar").dataset.portrait = contact.id; byId("conversation-avatar").setAttribute("aria-hidden", "true");
@@ -124,11 +131,7 @@ function render() {
         }
         byId("tabs").append(wrapper);
     }
-    const selectedTab = byId("tab-" + model.state.active);
-    const strip = byId("tabs");
-    const tabBounds = selectedTab.getBoundingClientRect(), stripBounds = strip.getBoundingClientRect();
-    if (tabBounds.left < stripBounds.left) strip.scrollLeft += tabBounds.left - stripBounds.left - 8;
-    else if (tabBounds.right > stripBounds.right) strip.scrollLeft += tabBounds.right - stripBounds.right + 8;
+    revealActiveTab();
     byId("conversation-panel").setAttribute("aria-labelledby", "tab-" + model.state.active); byId("messages").replaceChildren();
     const entries = model.conversations.get(model.state.active);
     if (!entries.length) { const empty = document.createElement("p"); empty.className = "empty-conversation"; empty.textContent = "No messages yet. Write a local test message below."; byId("messages").append(empty); }
@@ -159,3 +162,4 @@ for (const [id, target, dialog] of [["nav-settings","preferences-open","preferen
 byId("nav-contacts").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({block:"nearest"}); byId("contact-search").focus({preventScroll:true}); });
 byId("nav-chat").addEventListener("click", () => { byId("message-input").scrollIntoView({block:"nearest"}); byId("message-input").focus({preventScroll:true}); });
 appearance(); render();
+new ResizeObserver(revealActiveTab).observe(byId("tabs"));

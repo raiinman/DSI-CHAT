@@ -27,3 +27,5 @@ Run npm test, catalog/build/site preparation and node scripts/browser-qa.mjs fro
 
 ## Child DOX Index
 - [assets/AGENTS.md](assets/AGENTS.md): original shipped artwork and service icons.
+
+The active conversation tab must stay visible when the tab strip resizes, including desktop-to-phone changes.
