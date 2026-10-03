@@ -1,6 +1,7 @@
 import { FEATURES, FeatureRuntime, normalizeSettings } from "./src/core.mjs";
 import { browserFeatures } from "./src/features.mjs";
 import { CONTACTS, createMessenger } from "./messenger.mjs";
+import { initContactTools } from "./contact-tools.mjs";
 import { initWorkspaceTools } from "./workspace-tools.mjs";
 const byId = id => document.getElementById(id);
 const key = "dsiChat.site.preview.v1";
@@ -96,20 +97,8 @@ function switchConversation(id, focusComposer = true) {
     }
 }
 byId("presence").addEventListener("change", event => { byId("self-orb").className = "orb " + event.target.value; });
-function contacts() {
-    const query = byId("contact-search").value.trim().toLowerCase(); const container = byId("contacts"); container.replaceChildren(); let count = 0;
-    for (const contact of CONTACTS.filter(c => c.id !== "crew" && c.name.toLowerCase().includes(query))) {
-        count++; const button = document.createElement("button"); button.type = "button"; button.className = "contact" + (contact.id === model.state.active ? " selected" : "");
-        const avatar = document.createElement("span"); avatar.className = "avatar portrait"; avatar.dataset.portrait = contact.id; avatar.setAttribute("aria-hidden", "true");
-        const info = document.createElement("span"), name = document.createElement("strong"), note = document.createElement("small");
-        name.textContent = contact.name; note.textContent = contact.note; info.append(name, note);
-        const orb = document.createElement("i"); orb.className = "orb " + contact.presence; orb.setAttribute("aria-label", contact.presence === "away" ? "Away" : "Available");
-        button.append(avatar, info, orb); button.addEventListener("click", () => { switchConversation(contact.id); }); container.append(button);
-    }
-    byId("crew-contact").hidden = !"night shift".includes(query);
-    if (query) for (const group of document.querySelectorAll(".contact-scroll details")) group.open = true; byId("crew-contact").classList.toggle("selected", model.state.active === "crew");
-    byId("empty-search").hidden = count > 0 || !byId("crew-contact").hidden;
-}
+let contactTools;
+function contacts() { contactTools?.render(); }
 function render() {
     contacts(); byId("message-input").value = model.getDraft(); updateSendState(); const contact = CONTACTS.find(c => c.id === model.state.active);
     byId("window-title").textContent = "DSI CHAT"; byId("conversation-name").textContent = contact.name; byId("conversation-avatar").textContent = ""; byId("conversation-avatar").className = "large-avatar portrait"; byId("conversation-avatar").dataset.portrait = contact.id; byId("conversation-avatar").setAttribute("aria-hidden", "true");
@@ -151,8 +140,7 @@ function render() {
     byId("history-count").textContent = entries.length + " messages in " + contact.name + ".";
     const paper = document.querySelector(".chat-paper"); paper.scrollTop = paper.scrollHeight;
 }
-byId("contact-search").addEventListener("input", contacts);
-byId("crew-contact").addEventListener("click", () => { switchConversation("crew"); });
+
 byId("compose").addEventListener("submit", event => {
     event.preventDefault(); const input = byId("message-input");
     if (!model.send(input.value, new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))) return;
@@ -162,4 +150,5 @@ byId("message-input").addEventListener("keydown", event => { if (event.key === "
 byId("message-input").addEventListener("input", event => { model.setDraft(event.target.value); updateSendState(); });
 byId("contacts-jump").addEventListener("click", () => { document.querySelector(".buddy-window").scrollIntoView({ behavior: "instant", block: "start" }); byId("contact-search").focus({ preventScroll: true }); });
 initWorkspaceTools({ model, updateSendState });
+contactTools = initContactTools({ model, switchConversation });
 appearance(); render();

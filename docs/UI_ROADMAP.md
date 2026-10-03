@@ -6,7 +6,7 @@ Delivered workspace: illustrated contacts/tabs, per-conversation drafts, local m
 
 Next interface work, in order:
 
-1. Contact organization: favorites, editable local groups, clear empty/search states and contextual contact actions.
+1. Delivered October 3: saved contact favorites, editable local groups, contextual contact actions, searchable names/notes/groups, result counts and actionable empty states.
 2. Conversation controls: local search in the log, reply quoting, copy message, clear confirmation and retained reading position when switching conversations.
 3. Profile customization: original avatar selection, richer custom presence and consistent profile previews.
 4. Workspace settings: notification preferences, density and text size, explicit reset scopes and shortcut help.

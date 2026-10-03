@@ -44,18 +44,19 @@ No upstream engines/plugins were vendored into this branch. Prior upstream expos
 
 ## Continue next
 
-The immediate task is continued UI/UX refinement and completion of useful surfaces while preserving the approved look. Follow `docs/UI_ROADMAP.md`: contact favorites/editable local groups and clear search/empty states first; then conversation search, reply quoting, copy, clear confirmation and retained reading position; later profile customization and workspace density/text-size settings. Implement a coherent slice, including its persistence and focus behavior where appropriate, rather than adding decorative controls with no action. Actual provider connection work is a separate scope.
+The immediate task is continued UI/UX refinement and completion of useful surfaces while preserving the approved look. Follow `docs/UI_ROADMAP.md`: contact organization is now delivered; next implement conversation search, reply quoting, copy, clear confirmation and retained reading position; later profile customization and workspace density/text-size settings. Implement a coherent slice, including its persistence and focus behavior where appropriate, rather than adding decorative controls with no action. Actual provider connection work is a separate scope.
 
 ## Files and verification
 
 - `site/index.html`, `app.mjs`: shell and main rendering/appearance behavior.
 - `site/messenger.mjs`: contact/conversation model.
 - `site/workspace-tools.mjs`: history, contact, profile and emoji dialogs.
+- `site/contact-book.mjs`, `site/contact-tools.mjs`: validated saved favorites/local groups, search/filter list and organization dialogs.
 - `site/style.css`, `themes.css`, `workspace.css`, `panels.css`: layered styles; inspect cascade before adding overrides.
 - `site/assets/`: original fox, background, portrait sheet, amber texture and service SVGs.
 - `scripts/browser-qa.mjs`: interactions, theme/motion/contrast, export, focus and layout checks; produces screenshots.
 
-Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Baseline: 14 tests passing. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
+Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Contact-organization baseline: 16 tests passing. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
 
 Use a review branch and dispatch `.github/workflows/pages.yml` with `review_only: true` against it. This builds/tests/screenshots without publishing. Download `dsi-messenger-screenshots`, inspect desktop (especially 1440x844), Dark/Daytime/High contrast and 390/768 views, plus changed dialogs/states. Correct defects before advancing the publishing branch. Preserve composer visibility, all four sample contacts on the ordinary desktop viewport, draft isolation, safe text rendering, native modal focus return and reduced-motion choices.
 

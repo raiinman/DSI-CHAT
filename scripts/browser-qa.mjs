@@ -24,7 +24,7 @@ try {
     await page.goto(base);
     await page.getByRole("tab", { name: "DSI Operator", exact: true }).waitFor();
     await page.screenshot({ path: ".cache/screenshots/desktop-default.png", fullPage: true });
-    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png"]) {
+    for (const asset of ["station-background.png", "contact-portraits.png", "amber-glass.png", "quiet-receiver.png"]) {
         const response = await page.request.get(base + "/assets/" + asset);
         assert.equal(response.status(), 200, "Concept artwork loads: " + asset);
     }
@@ -80,6 +80,17 @@ try {
         });
         for (const check of contrasts) assert.ok(check.ratio >= (theme === "contrast" ? 7 : 4.5), theme + " text contrast " + check.text + ": " + check.ratio);
         await page.screenshot({ path: ".cache/screenshots/theme-" + theme + ".png", fullPage: true });
+        await page.locator("#actions-avery").click();
+        await page.screenshot({path:".cache/screenshots/contact-actions-"+theme+".png",fullPage:true});
+        await page.keyboard.press("Escape");
+        assert.equal(await page.locator("#actions-avery").evaluate(el=>el===document.activeElement),true);
+        await page.locator("#groups-open").click();
+        await page.screenshot({path:".cache/screenshots/contact-groups-"+theme+".png",fullPage:true});
+        await page.keyboard.press("Escape");
+        await page.locator("#favorites-only").click();
+        assert.equal(await page.locator("#empty-search").isVisible(),true);
+        await page.screenshot({path:".cache/screenshots/no-favorites-"+theme+".png",fullPage:true});
+        await page.locator("#clear-contact-filters").click();
         await page.locator("#preferences-open").click();
         await page.screenshot({path:".cache/screenshots/preferences-"+theme+".png",fullPage:true});
         await page.keyboard.press("Escape");
@@ -174,6 +185,62 @@ try {
     const crewBounds=await page.locator("#crew-contact").boundingBox(),listBounds=await page.locator(".contact-scroll").boundingBox();
     assert.ok(crewBounds.y+crewBounds.height<=listBounds.y+listBounds.height,"All four contacts fit an ordinary-height desktop");
     await page.screenshot({path:".cache/screenshots/desktop-844.png",fullPage:true});
+    await page.locator("#message-input").fill("Draft survives organization");
+    await page.locator("#groups-open").click();
+    await page.locator("#new-group-name").fill("Broadcast crew");
+    await page.getByRole("button",{name:"Add group",exact:true}).click();
+    await page.keyboard.press("Escape");
+    assert.equal(await page.locator("#groups-open").evaluate(el=>el===document.activeElement),true);
+    await page.locator("#actions-avery").click();
+    await page.locator("#contact-favorite").check();
+    await page.locator("#contact-group").selectOption({label:"Broadcast crew"});
+    await page.getByRole("button",{name:"Save contact",exact:true}).click();
+    await page.waitForFunction(()=>document.activeElement.id==="actions-avery");
+    assert.equal(await page.locator("#message-input").inputValue(),"Draft survives organization");
+    await page.locator("#favorites-only").click();
+    assert.equal(await page.locator("#contacts .contact").count(),1);
+    assert.match(await page.locator("#contacts").innerText(),/Avery/);
+    await page.locator("#actions-avery").click();
+    await page.locator("#organize-compose").click();
+    await page.waitForFunction(()=>document.activeElement.id==="message-input");
+    await page.getByRole("tab",{name:"DSI Operator",exact:true}).click();
+    assert.equal(await page.locator("#message-input").inputValue(),"Draft survives organization");
+    await page.reload();
+    await page.locator("#favorites-only").click();
+    assert.equal(await page.locator("#contacts .contact").count(),1,"Favorite survives reload");
+    assert.match(await page.locator("#contacts summary").innerText(),/Broadcast crew/i);
+    await page.locator("#contact-search").fill("unknown frequency");
+    assert.equal(await page.locator("#empty-search").isVisible(),true);
+    await page.screenshot({path:".cache/screenshots/contact-no-results.png",fullPage:true});
+    await page.locator("#clear-contact-filters").click();
+    assert.equal(await page.locator("#contacts .contact").count(),4);
+    assert.equal(await page.locator("#contact-search").evaluate(el=>el===document.activeElement),true);
+    for(const width of [390,768]){
+        await page.setViewportSize({width,height:844});
+        for(const [opener,dialog] of [["groups-open","groups-dialog"],["actions-avery","organize-contact"]]){
+            await page.locator("#"+opener).click();const box=await page.locator("#"+dialog).boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width+1);assert.ok(box.y>=0&&box.y+box.height<=845);
+            await page.screenshot({path:".cache/screenshots/"+dialog+"-"+width+".png",fullPage:true});await page.keyboard.press("Escape");
+        }
+    }
+    await page.setViewportSize({width:1440,height:844});
+    await page.locator("#groups-open").click();
+    const custom=page.locator(".group-editor-row").filter({has:page.getByRole('textbox',{name:'Name for Broadcast crew',exact:true})});
+    await custom.locator("input").fill("<b>Late shift</b>");await custom.getByRole("button",{name:"Rename",exact:true}).click();
+    await page.keyboard.press("Escape");
+    assert.equal(await page.locator("#contacts summary b").count(),0,"Group labels render literal text");
+    await page.locator("#contact-search").fill("late shift");assert.equal(await page.locator("#contacts .contact").count(),1);
+    await page.locator("#contact-search").fill("");
+    await page.locator("#groups-open").click();await page.getByRole("button",{name:"Remove <b>Late shift</b>",exact:true}).click();await page.keyboard.press("Escape");
+    await page.reload();
+    assert.equal(await page.locator("#contacts .contact").count(),4,"Removing group preserves contacts");
+    await page.locator("#favorites-only").click();assert.equal(await page.locator("#contacts .contact").count(),1,"Removing group preserves favorite");
+    await page.locator("#actions-avery").click();await page.locator("#contact-favorite").uncheck();await page.getByRole("button",{name:"Save contact",exact:true}).click();
+    await page.waitForFunction(()=>document.activeElement.id==="contact-search");
+    await page.locator("#clear-contact-filters").click();
+    await page.locator("#contacts details").first().locator("summary").click();
+    await page.locator("#contact-search").fill("control desk");assert.equal(await page.locator("#contacts .contact").count(),1);assert.equal(await page.locator("#contacts details").evaluate(el=>el.open),true);
+    await page.locator("#contact-search").fill("");
+    await page.reload();
     await page.locator("#contact-info").click();
     assert.equal(await page.locator("#contact-card-name").innerText(),"DSI Operator");
     await page.locator("#card-compose").click();
