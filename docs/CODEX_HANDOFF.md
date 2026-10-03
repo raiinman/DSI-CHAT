@@ -67,7 +67,7 @@ The current UI/UX is locked. Preserve the published second enhancement baseline 
 
 Developer setup: `npm ci --ignore-scripts`, `npm run tools:setup`, `npm run tools:doctor`; add `-- --android` for the prepared portable Windows tools. Tooling instructions/pins and deferred native prerequisites are in `docs/TOOLCHAIN.md`.
 
-Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Current root baseline:40 tests passing; workbench/native suites are separate. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
+Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Current root baseline:43 tests passing; workbench/native suites are separate. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
 
 Use a review branch and dispatch `.github/workflows/pages.yml` with `review_only: true` against it. This builds/tests/screenshots without publishing. Download `dsi-messenger-screenshots`, inspect desktop (especially 1440x844), Dark/Daytime/High contrast and 390/768 views, plus changed dialogs/states. Correct defects before advancing the publishing branch. Preserve composer visibility, all four sample contacts on the ordinary desktop viewport, draft isolation, safe text rendering, native modal focus return and reduced-motion choices.
 
