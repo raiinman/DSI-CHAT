@@ -14,7 +14,7 @@ Own the separate local plugin editor, selected-workspace operations and controll
 - Use the shared manifest validator and PluginRuntime. A capability declaration does not sandbox arbitrary JavaScript.
 - Build outputs live in .dsi-build and are separate from source. Tests execute local selected-project code only after a deliberate action, in a cancellable separate process.
 - Export .dsiplugin development JSON packages with manifest, compiled source and SHA-256, not automatically installed/published plugins.
-- Preview is an isolated renderer without Node/preload privileges and never connects to a live account. Stop destroys its resources/window.
+- Preview is an isolated renderer without Node/preload privileges and never connects to a live account. Stop allows at most 1000ms for graceful cleanup, then destroys the captured host window even if plugin code hangs; report forced teardown.
 - The Copperlight messenger is untouched; this is a separate developer tool.
 
 ## Work Guidance

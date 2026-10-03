@@ -2,6 +2,14 @@ export const PLUGIN_API_VERSION = 1;
 const ID = /^[a-z0-9][a-z0-9._-]{0,79}$/;
 const FORBIDDEN = new Set(["__proto__", "constructor", "prototype"]);
 const object = value => value !== null && typeof value === "object" && !Array.isArray(value);
+async function cleanupWithin(cleanup, milliseconds) {
+    let timeout;
+    try {
+        return await Promise.race([Promise.resolve().then(cleanup), new Promise((_, reject) => {
+            timeout = setTimeout(() => reject(new Error("Plugin cleanup timed out")), milliseconds);
+        })]);
+    } finally { clearTimeout(timeout); }
+}
 function identifier(value) {
     if (typeof value !== "string" || !ID.test(value) || FORBIDDEN.has(value)) throw new Error("Invalid plugin identifier");
     return value;
@@ -59,7 +67,10 @@ export class ResourceScope {
     #cleanups = [];
     #known = new Set();
     #closed = false;
-    constructor(signal = new AbortController().signal) { this.signal = signal; }
+    constructor(signal = new AbortController().signal, cleanupTimeout = 5000) {
+        if (!Number.isFinite(cleanupTimeout) || cleanupTimeout < 1 || cleanupTimeout > 60000) throw new Error("Invalid cleanup timeout");
+        this.signal = signal; this.cleanupTimeout = cleanupTimeout;
+    }
     #assertOpen() { if (this.#closed || this.signal.aborted) throw new Error("Plugin scope is closed"); }
     own(cleanup) {
         this.#assertOpen();
@@ -93,9 +104,10 @@ export class ResourceScope {
         this.#closed = true;
         const errors = [];
         for (const cleanup of this.#cleanups.reverse()) {
-            try { await cleanup(); } catch (error) { errors.push(error); }
+            try { await cleanupWithin(cleanup, this.cleanupTimeout); } catch (error) { errors.push(error); }
         }
         this.#cleanups.length = 0;
+        this.#known.clear();
         return errors;
     }
 }
@@ -109,12 +121,14 @@ export class PluginRuntime {
     #diagnostics = [];
     #blocked = [];
     #disposed = false;
-    constructor({ platform, capabilities = [], plugins = [], services = {}, startTimeout = 5000 }) {
+    constructor({ platform, capabilities = [], plugins = [], services = {}, startTimeout = 5000, cleanupTimeout = 5000 }) {
         this.platform = identifier(platform);
         this.capabilities = new Set(identifiers(capabilities, "host capabilities"));
         this.services = Object.freeze({ ...services });
         if (!Number.isFinite(startTimeout) || startTimeout < 1 || startTimeout > 60000) throw new Error("Invalid start timeout");
         this.startTimeout = startTimeout;
+        if (!Number.isFinite(cleanupTimeout) || cleanupTimeout < 1 || cleanupTimeout > 60000) throw new Error("Invalid cleanup timeout");
+        this.cleanupTimeout = cleanupTimeout;
         for (const plugin of plugins) {
             const manifest = validateManifest(plugin.manifest);
             if (this.#plugins.has(manifest.id)) throw new Error(`Duplicate plugin: ${manifest.id}`);
@@ -207,7 +221,7 @@ export class PluginRuntime {
             const plugin = this.#plugins.get(id);
             const missing = plugin.manifest.dependencies.find(dependency => !this.#active.has(dependency));
             if (missing) { this.#blocked.push({ id, reason: `Dependency failed: ${missing}` }); continue; }
-            const controller = new AbortController(), scope = new ResourceScope(controller.signal);
+            const controller = new AbortController(), scope = new ResourceScope(controller.signal, this.cleanupTimeout);
             this.#starting = controller;
             let timeout, aborted;
             let accepted = false;
@@ -236,7 +250,7 @@ export class PluginRuntime {
                 if (this.#starting === controller) this.#starting = undefined;
                 if (!accepted) start.then(async cleanup => {
                     // A late async start can still return cleanup after cancellation/timeout.
-                    if (typeof cleanup === "function") { try { await cleanup(); } catch (error) { this.#failure(id, "late-stop", error); } }
+                    if (typeof cleanup === "function") { try { await cleanupWithin(cleanup, this.cleanupTimeout); } catch (error) { this.#failure(id, "late-stop", error); } }
                 }, () => {});
             }
         }

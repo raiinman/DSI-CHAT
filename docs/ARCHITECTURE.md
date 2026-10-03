@@ -1,6 +1,6 @@
 # Architecture
 
-The new API 1 PluginRuntime in src/plugins owns manifest validation, registry, dependency ordering, conflicts, host capability gates, settings, asynchronous start cancellation/timeouts and reversed resource cleanup. Settings changes restart affected dependents; partial starts roll back. Diagnostics are bounded. Reviewed original modules run locally; declared capabilities are not an arbitrary-code sandbox.
+The new API 1 PluginRuntime in src/plugins owns manifest validation, registry, dependency ordering, conflicts, host capability gates, settings, asynchronous start cancellation/timeouts, per-cleanup deadlines and reversed resource cleanup. Settings changes restart affected dependents; partial starts roll back. Diagnostics are bounded. Reviewed original modules run locally; declared capabilities are not an arbitrary-code sandbox.
 
 The legacy three-feature FeatureRuntime remains unchanged for the locked Copperlight preview. Its persistence and presentation are independent of plugin settings.
 

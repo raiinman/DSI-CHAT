@@ -27,6 +27,8 @@ Own DSI's original native Android adapter development APK and reproducible SDK b
 
 Use the shared DSI API version 1 manifest fields and explicit Android capability reports. Native host handlers do not execute JavaScript plugins or promise browser CSS compatibility. Do not change the locked messenger UI.
 
+Native settings content scrolls on short screens/large fonts. The Native Lab uses dark system-bar icons on its light surfaces. Emulator QA locates standard dialog actions by Android resource IDs, preserving uppercase/localized button rendering.
+
 ## Verification
 
 Run `android/test.ps1`, `build.ps1`, `build-bootstrap.ps1` and `patch-test.ps1` with the process-only execution policy documented in README. When an emulator is available, run `android/emulator-qa.mjs`, inspect screenshots and record actual results. APK verification includes apksigner and manifest inspection. Real Discord attachment and physical-device support require separate evidence.

@@ -142,6 +142,19 @@ test("resource scopes stop listeners/styles and reject late mutations", async ()
     assert.equal(calls, 1); assert.equal(nodes.length, 0);
     assert.throws(() => scope.style(document, "a", ""), /closed/);
 });
+
+test("hung cleanup reports a deadline and cannot block other cleanup or safe-mode recovery", async () => {
+    let cleaned = 0;
+    const runtime = host([plugin("a", ({scope}) => {
+        scope.own(() => cleaned++); scope.own(() => new Promise(() => {}));
+    }), plugin("b", () => () => cleaned++)], {cleanupTimeout:10});
+    await runtime.reconcile(enabled("a", "b"));
+    const stopped = await runtime.reconcile({safeMode:true});
+    assert.deepEqual(stopped.active,[]); assert.equal(cleaned,2);
+    assert.match(stopped.errors[0].message,/cleanup timed out/);
+    assert.deepEqual((await runtime.reconcile(enabled("b"))).active,["b"]);
+    await runtime.dispose(); assert.equal(cleaned,3);
+});
 test("settings migrate legacy choices, repair values and discard unknown plugin data", () => {
     const manifests = [validateManifest(plugin("a", undefined, { settings: { size: { type: "number", default: 1, min: 1, max: 3 }, mode: { type: "enum", values: ["day", "night"], default: "day" } } }).manifest)];
     const result = migratePluginSettings({ [LEGACY_SETTINGS_KEY]: { safeMode: true, enabled: { a: true } } }, manifests);

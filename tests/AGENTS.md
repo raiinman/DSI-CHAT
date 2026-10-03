@@ -18,7 +18,7 @@ Tests use Node's built-in test/assert APIs. Prefer behavioral contracts over imp
 Add meaningful tests for new behavior and regressions; small reversible visual changes do not need redundant unit tests. Keep unit tests distinct from screenshot acceptance.
 
 ## Verification
-npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 34 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
+npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 35 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
 
 ## Child DOX Index
 None.

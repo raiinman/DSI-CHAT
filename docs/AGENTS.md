@@ -8,6 +8,7 @@ Keep project scope, architecture, design, roadmap and evidence accurate for subs
 - ARCHITECTURE.md: runtime, adapter, preview and storage contracts.
 - IMPLEMENTATION_PLAN.md: authorized original DSI engine/adapters, phased capability roadmap and delivered development milestones.
 - IDE_WORKBENCH.md: requested developer IDE, shared plugin/build contracts and acceptance; implemented separately from the locked messenger.
+- PLUGIN_BEHAVIORS.md: implemented original behavior specifications and controlled acceptance boundaries.
 - TOOLCHAIN.md and ANDROID_TOOLS.lock.json: verified developer tools, portable setup and pinned official downloads.
 - REFERENCE_SOURCES.json and REFERENCE_INVENTORY.json: pinned behavior-reference metadata; no imported upstream implementation.
 - UI_ROADMAP.md: delivered UI slices and deferred backlog under the user's UI/UX lock.

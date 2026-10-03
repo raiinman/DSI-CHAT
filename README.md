@@ -33,7 +33,7 @@ npm run qa:messenger
 npm run test:workbench
 ```
 
-For Windows, install the pinned Electron runtime with `npm ci --prefix desktop --ignore-scripts`, then `node desktop/node_modules/electron/install.js`. See [desktop/README.md](desktop/README.md), [workbench/README.md](workbench/README.md) and [toolchain](docs/TOOLCHAIN.md). Native Android uses its documented JDK/SDK scripts.
+For Windows, install the pinned Electron runtime with `npm ci --prefix desktop --ignore-scripts`, then `node desktop/node_modules/electron/install.js`. See [desktop/README.md](desktop/README.md), [workbench guide](docs/IDE_WORKBENCH.md) and [toolchain](docs/TOOLCHAIN.md). Native Android uses its documented JDK/SDK scripts.
 
 This is a tested development release, not complete parity with hundreds of reference plugins. Native Discord services, actual Android client attachment, production signing, automatic distribution/updates and upstream package compatibility remain unfinished. Discord provides messaging; the separate Copperlight page uses fictional in-memory conversations.
 

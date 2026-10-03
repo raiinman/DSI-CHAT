@@ -36,7 +36,7 @@ Smoke captures dashboard, fixture, workbench and plugin preview under `.cache/de
 
 Documentation fetched through Context7: [Electron security](https://www.electronjs.org/docs/latest/tutorial/security), [context isolation](https://www.electronjs.org/docs/latest/tutorial/context-isolation), [BrowserWindow](https://www.electronjs.org/docs/latest/api/browser-window), [TypeScript compiler API](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API). Diagnostics use a confined CompilerHost; external imports and junction escapes are unavailable to type checking.
 
-Tests execute selected workspace code as the current user after an explicit development action; they are not an arbitrary-code security sandbox. Plugin previews have no Node or preload privilege, block network by CSP and are distinct from account-bearing windows.
+Tests execute selected workspace code as the current user after an explicit development action; they are not an arbitrary-code security sandbox. Plugin previews have no Node or preload privilege, block network by CSP and are distinct from account-bearing windows. Stop permits 1000ms for graceful cleanup, then forcibly destroys the captured preview host; hanging cleanup cannot keep it open.
 
 ## Recorded acceptance
 

@@ -14,7 +14,7 @@ index.mjs: shared bundle exports for controlled hosts and Windows.
 ## Local Contracts
 - API version 1; plugins are reviewed local DSI code. Capability declarations do not sandbox arbitrary JavaScript.
 - Features start disabled. Unsupported platform/capability/dependency/conflict states are explicit; safe mode preserves settings.
-- Own resources and clean them in reverse order. Serialize reconciliations and cancel stale asynchronous starts.
+- Own resources and clean them in reverse order. Serialize reconciliations, cancel stale asynchronous starts and bound asynchronous cleanup (default 5s per cleanup). This cannot interrupt synchronous JavaScript; controlled hosts must also bound preview destruction.
 - No remote code evaluation, upstream implementation imports or private Discord runtime hooks in the browser adapter.
 - Preserve the legacy three-feature API used by the locked preview; browser plugin settings use a separate v2 key.
 

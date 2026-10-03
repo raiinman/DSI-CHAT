@@ -31,6 +31,9 @@ public final class MainActivity extends Activity {
     private void ownEffect(PluginEngine.ResourceScope scope,Runnable apply,Runnable restore) { scope.own(()->restore.run()); apply.run(); }
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
+        getWindow().setStatusBarColor(Color.rgb(244,245,241));
+        getWindow().setNavigationBarColor(Color.rgb(244,245,241));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         storage=getSharedPreferences("dsi.native.settings.v1",MODE_PRIVATE);
         boolean recovering=false;
         try {

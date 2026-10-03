@@ -6,7 +6,7 @@ User direction, October 3, 2026: one original Discord mod bringing together capa
 
 One DSI plugin contract and settings model, with platform adapters for browser, desktop and native mobile. Share platform-independent behavior; let adapters implement host operations and explicitly report unsupported capabilities. Browser DOM code is not a native mobile implementation.
 
-The current starting point is three reversible browser display features, a synchronous FeatureRuntime, validated settings, safe mode, sixteen tests and a reviewed local messenger preview. There is no desktop injector, Android loader, iOS loader or general plugin ecosystem yet. Discord supplies messaging; a new standalone messaging server is outside this plan.
+Before this sprint, the starting point was three reversible browser display features, a synchronous FeatureRuntime, validated settings, safe mode, sixteen tests and a reviewed local messenger preview. The original desktop/native loader milestones below were then unimplemented. Discord supplies messaging; a new standalone messaging server is outside this plan.
 
 Grow the existing runtime rather than replace the repository. Add a versioned plugin manifest (ID, version, DSI API range, platform/capability requirements, dependencies, conflicts and settings schema), a registry, deterministic dependency ordering, scoped host services and owned cleanup. A plugin can run only when its platform and host capabilities are available. Plugin declarations and scoped services do not sandbox arbitrary JavaScript; start with reviewed built-in DSI modules, without remote evaluation or claims of upstream binary compatibility.
 
@@ -59,7 +59,7 @@ Native mobile is a substantial adapter project. An Android WebView wrapper does 
 
 ## Tools and continuation
 
-See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and deferred native prerequisites. The immediate implementation target is the six-hour engine sprint above. The user also requested our own IDE tool: [IDE_WORKBENCH.md](IDE_WORKBENCH.md) defines a separate developer workspace that follows the plugin contract/browser fixtures and uses the same validators and build tools. [UI_ROADMAP.md](UI_ROADMAP.md) stays deferred under the messenger UI/UX lock; preserve the existing source/licensing history and DOX hierarchy.
+See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and platform setup. The engine sprint above is delivered; remaining live-client and feature-expansion gates are listed below. The user also requested our own IDE tool: [IDE_WORKBENCH.md](IDE_WORKBENCH.md) defines a separate developer workspace that follows the plugin contract/browser fixtures and uses the same validators and build tools. [UI_ROADMAP.md](UI_ROADMAP.md) stays deferred under the messenger UI/UX lock; preserve the existing source/licensing history and DOX hierarchy.
 
 ## Current capability gates
 

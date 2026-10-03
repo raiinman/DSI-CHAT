@@ -70,7 +70,9 @@ public final class Bootstrap implements Application.ActivityLifecycleCallbacks {
         safe.setOnCheckedChangeListener((button,checked)->{safeMode=checked;reconcile();status.setText(engine.states().toString());});
         String[]ids={"native-readable-text","native-compact-layout","native-reduced-motion"};String[]names={"Readable native text (+15%)","Compact native line spacing","Reduce native window motion"};
         for(int i=0;i<ids.length;i++){final String id=ids[i];CheckBox option=new CheckBox(activity);option.setText(names[i]);option.setChecked(enabled.contains(id));option.setOnCheckedChangeListener((button,checked)->{if(checked)enabled.add(id);else enabled.remove(id);reconcile();status.setText(engine.states().toString());});box.addView(option);}
-        box.addView(status);new AlertDialog.Builder(activity).setTitle("DSI CHAT • Native plugins").setView(box).setPositiveButton("Done",null).show();
+        box.addView(status);
+        ScrollView scroll=new ScrollView(activity);scroll.setTag("dsi-bootstrap");scroll.addView(box);
+        new AlertDialog.Builder(activity).setTitle("DSI CHAT • Native plugins").setView(scroll).setPositiveButton("Done",null).show();
     }
     @Override public void onActivityCreated(Activity activity,Bundle state){activities.add(activity);}
     @Override public void onActivityResumed(Activity activity){

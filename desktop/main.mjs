@@ -71,7 +71,14 @@ handle('ide:open',async()=>{const selected=await dialog.showOpenDialog(editor,{p
 handle('ide:create',async()=>{const selected=await dialog.showOpenDialog(editor,{title:'Select an empty folder for an original plugin',properties:['openDirectory','createDirectory']});if(selected.canceled)return null;await createTemplate(selected.filePaths[0]);return workbench.open(selected.filePaths[0]);},'ide');
 for(const [channel,method] of [['files','list'],['read','read'],['save','save'],['diagnose','diagnostics'],['build','build'],['test','test'],['cancel','cancel']])handle('ide:'+channel,(...args)=>workbench[method](...args),'ide');
 handle('ide:preview',openPreview,'ide');
-handle('ide:stop',async()=>{if(preview&&!preview.isDestroyed()){try{await preview.webContents.executeJavaScript('globalThis.__dsiRuntime?.dispose()');}finally{preview.destroy();}}return {ok:true};},'ide');
+handle('ide:stop',async()=>{
+ const target=preview;if(!target||target.isDestroyed())return {ok:true,forced:false};
+ let timer,forced=false,teardownError;
+ try{await Promise.race([target.webContents.executeJavaScript('globalThis.__dsiRuntime?.dispose()'),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Preview cleanup exceeded 1000ms; host destroyed.')),1000);})]);}
+ catch(error){forced=true;teardownError=error.message;}
+ finally{clearTimeout(timer);if(!target.isDestroyed())target.destroy();}
+ return {ok:true,forced,...(teardownError?{teardownError}:{})};
+},'ide');
 handle('ide:package',async()=>{const result=await workbench.package();if(!result.ok)return result;const selected=await dialog.showSaveDialog(editor,{defaultPath:result.filename,filters:[{name:'DSI development plugin',extensions:['dsiplugin']}]});if(selected.canceled)return {cancelled:true};await fs.writeFile(selected.filePath,result.text);return {ok:true,path:selected.filePath,sha256:result.sha256};},'ide');
 app.whenReady().then(async()=>{
  try{settings=validSettings(JSON.parse(await fs.readFile(path.join(app.getPath('userData'),'dsi-settings.json'),'utf8')));}catch{}
@@ -119,8 +126,17 @@ async function runSmoke(){
  await capture(editor,path.join(folder,'workbench.png'));
  await capture(preview,path.join(folder,'preview.png'));
  await editor.webContents.executeJavaScript('document.querySelector("#stop").click()');await new Promise(resolve=>setTimeout(resolve,150));if(!preview.isDestroyed())throw Error('Editor stop control failed');
+ await editor.webContents.executeJavaScript('document.querySelector("#output").textContent="Starting forced-teardown test…";document.querySelector("#preview").click()');
+ await waitFor(editor,'document.querySelector("#output").textContent.includes("dsi-workbench-sample")&&document.querySelector("#output").textContent.includes("active")','Second preview control failed');
+ const hangingPreview=preview;
+ await hangingPreview.webContents.executeJavaScript('globalThis.__dsiRuntime.dispose=()=>new Promise(()=>{});true');
+ const stopStarted=Date.now();
+ await editor.webContents.executeJavaScript('document.querySelector("#stop").click()');
+ await waitFor(editor,'document.querySelector("#output").textContent.includes("forced")&&document.querySelector("#output").textContent.includes("1000ms")','Bounded preview teardown failed');
+ const forcedStopMs=Date.now()-stopStarted;
+ if(!hangingPreview.isDestroyed()||forcedStopMs>1600)throw Error('Hanging preview was not destroyed within the stop deadline');
  const artifact=await workbench.package();if(!artifact.ok)throw Error('Package failed');await fs.writeFile(path.join(folder,artifact.filename),artifact.text);
- await fs.writeFile(path.join(folder,'result.json'),JSON.stringify({ok:true,styles,previewIsolation,diagnosis,tests,artifact:{sha256:artifact.sha256},electron:process.versions.electron},null,2));app.exit(0);
+ await fs.writeFile(path.join(folder,'result.json'),JSON.stringify({ok:true,styles,previewIsolation,forcedStopMs,diagnosis,tests,artifact:{sha256:artifact.sha256},electron:process.versions.electron},null,2));app.exit(0);
 }
 async function waitFor(window,expression,message){for(let n=0;n<200;n++){if(await window.webContents.executeJavaScript(expression))return;await new Promise(resolve=>setTimeout(resolve,50));}throw Error(message+': '+await window.webContents.executeJavaScript('document.querySelector("#output").textContent'));}
 async function capture(window,filename){for(let attempt=0;attempt<3;attempt++){try{await window.webContents.capturePage(undefined,{stayHidden:true});await new Promise(resolve=>setTimeout(resolve,150));const image=await window.webContents.capturePage(undefined,{stayHidden:true});if(image.isEmpty())throw Error('Empty screenshot');await fs.writeFile(filename,image.toPNG());return;}catch(error){if(attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,150));}}}
