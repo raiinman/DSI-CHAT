@@ -103,7 +103,7 @@ export class WorkspaceService {
       const timeout=setTimeout(()=>{cancelled=true;this.terminate(child);},30000);
       const finish=()=>{clearTimeout(timeout);clearTimeout(child.dsiKillDeadline);if(this.running===child)this.running=null;};
       child.on('error',error=>{finish();reject(error);});
-      child.on('close',code=>{finish();resolve({ok:code===0,code,cancelled:cancelled||child.dsiCancelled===true,output});});
+      child.on('close',code=>{finish();const wasCancelled=cancelled||child.dsiCancelled===true;resolve({ok:code===0&&!wasCancelled,code,cancelled:wasCancelled,output});});
     });
   }
   terminate(child) {
