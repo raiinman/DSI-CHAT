@@ -35,6 +35,7 @@ jobs:
           if (!$taskOpenSsl) { $taskOpenSsl = 'C:/Program Files/Git/usr/bin/openssl.exe' }
           & $taskOpenSsl req -x509 -newkey rsa:2048 -nodes -days 2 -keyout .cache/manager-https-qa/server.key -out .cache/manager-https-qa/server.crt -subj '/CN=localhost' -addext 'subjectAltName=DNS:localhost'
           if ($LASTEXITCODE -ne 0) { throw 'Controlled TLS fixture generation failed' }
+          ./android/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
           ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
           Copy-Item dist/android/dsi-manager-demo-debug.apk dist/android/manager-production-demo.apk
           ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -QaCertificate .cache/manager-https-qa/server.crt
