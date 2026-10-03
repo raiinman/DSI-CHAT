@@ -23,6 +23,8 @@ Outputs: `dist/android/dsi-manager-debug.apk`, matching `dsi-manager-demo-debug.
 
 The builder internally uses original Java sources/bootstrap and the existing local patch workflow. It does not import an upstream loader. The sample embeds exact SHA-256, size, package, version, minimum SDK and signer metadata. Its package is `interactive.deadsignal.dsi.managerdemo`; Manager is `interactive.deadsignal.dsi.manager`.
 
+Preserve the sample signer at `.cache/android-build/debug.keystore` as well. Regenerating it makes later sample payloads incompatible with an already installed sample; the Manager correctly refuses that replacement.
+
 ## Updater contract
 
 Production endpoint: `https://raw.githubusercontent.com/raiinman/DSI-CHAT/codex/dsi-original/updates/manager.json`. Feed schema1 provides package, versionCode/versionName, minSdk, bytes, sha256, certificateSha256 and a DSI GitHub release APK URL. Check/download are bounded and off the UI thread. Downloads are private, size/hash verified and checked against package/version/SDK plus the currently installed Manager's signer. Rollbacks, unsupported URLs, different certificates and test-only update APKs are refused. System approval remains explicit; no uninstall or silent update occurs.

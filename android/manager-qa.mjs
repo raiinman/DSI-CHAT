@@ -109,8 +109,9 @@ export async function runManagerQA(args=process.argv.slice(2)){
  launch();await pause(600);capture('manager-default');
  await click('Start guided setup');
  capture('manager-permission-or-error');
- const permission=await advance(items=>items.find(item=>item.package==='com.android.settings'&&(item['resource-id'].endsWith('/switch_widget')||item['resource-id'].endsWith('/switch')||/Switch/.test(item.class))), 'normal unknown-app source permission screen');
+ const permission=await advance(items=>items.find(item=>item.package==='com.android.settings'&&(item['resource-id'].endsWith('/switch_widget')||item['resource-id'].endsWith('/switch')||/Switch/.test(item.class)||(item.checkable==='true'&&item.clickable==='true'&&items.some(label=>label.package==='com.android.settings'&&label.text==='Install unknown apps')))), 'normal unknown-app source permission screen');
  capture('manager-source-permission');if(permission.checked!=='true')await tap(permission);
+ await wait(items=>items.find(item=>item.package==='com.android.settings'&&item.checkable==='true'&&item.checked==='true'),'explicit unknown-source permission enabled');
  run('shell','input','keyevent','KEYCODE_BACK');await pause(600);capture('manager-permission-return');
  const cancel=await advance(items=>items.find(item=>installer(item)&&(/^cancel$/i.test(item.text)||item['resource-id']==='android:id/button2')), 'real PackageInstaller confirmation');
  capture('manager-install-confirmation');await tap(cancel);
