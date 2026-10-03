@@ -2,8 +2,11 @@
 export const DISCORD_ORIGIN='https://discord.com';
 export function officialURL(value){try{const url=new URL(value);return url.origin===DISCORD_ORIGIN&&!url.username&&!url.password;}catch{return false;}}
 export function externalHTTPS(value){try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password?url.href:null;}catch{return null;}}
+// Preserve the runtime's Chromium/OS identity; don't impersonate Discord's native client.
+export function chromiumUserAgent(value){return value.replace(/\s(?:Electron|dsi-chat-desktop)\/[^\s]+/g,'');}
 export function configureDiscordHost({window,session,dialog,Menu,shell,onReady=()=>{},onState=()=>{}}){
  const contents=window.webContents;
+ contents.setUserAgent(chromiumUserAgent(contents.getUserAgent()));
  let closed=false,prompting=false,externalPending=false,mediaGrants=new Set(),documentGeneration=0,navigationFailed=false;
  const capabilities={displayPlugins:'Reviewed original plugins on channels pages',microphoneCamera:'Native approval per request; OS/device availability applies',screenSharing:'Unavailable: capture approval cannot be safely bound to a chosen source on this host',externalLinks:'HTTPS only, confirmed in the system browser',unsupported:['Screen and system-audio capture','Desktop notifications','Native Discord integration','Private runtime plugins','Global shortcuts/game overlay','Guaranteed full Discord feature parity']};
  let state={phase:'loading',page:'app',capabilities,liveAccountVerified:false};

@@ -20,13 +20,13 @@ A fixture passing, a rendered screenshot, a selector matching or a signed-in ses
 
 | Case | Browser | Windows | Android |
 | --- | --- | --- | --- |
-| Existing account session/login/logout/reload | Existing signed-in session observed read-only; DSI attachment not verified | Controlled official-origin host/load/recovery tests; live session pending | Real client pending |
-| Server/channel/DM/group navigation and history | Owned server/channel navigation baseline passed without DSI; other cases pending | Live acceptance pending | Real client pending |
-| Send/edit/delete/reply/reactions | Owned test-channel native baseline passed without DSI; DSI-enabled acceptance pending | Pending identified owned test channel | Real client pending |
+| Existing account session/login/logout/reload | Existing signed-in session observed read-only; DSI attachment not verified | User's installed v0.4.0-dev.1 session observed in supplied screenshots; logout/reload live acceptance pending | Real client pending |
+| Server/channel/DM/group navigation and history | Owned server/channel navigation baseline passed without DSI; other cases pending | User screenshots show owned channel and DM call navigation; remaining cases pending | Real client pending |
+| Send/edit/delete/reply/reactions | Owned test-channel native baseline passed without DSI; DSI-enabled acceptance pending | User screenshot confirms owned test-channel message delivery; edit/delete/reply/reaction and enabled-plugin comparisons pending | Real client pending |
 | Attachments/embeds/downloads/search | Live acceptance pending | Live acceptance pending | Real client pending |
 | Threads/forums/roles/channel permissions | Live acceptance pending | Live acceptance pending | Real client pending |
 | Notifications/unreads/account settings | Live acceptance pending | Desktop notifications unavailable; other cases pending | Real client pending |
-| Microphone/camera/device changes/voice/video | Live acceptance pending | Controlled fake-device approval/denial tests; real call pending | Real client pending |
+| Microphone/camera/device changes/voice/video | Live acceptance pending | User reports live voice connected with good audio; camera blocked by Discord unsupported-browser modal; device changes/video pending | Real client pending |
 | Screen sharing/system audio | Live acceptance pending | Blocked: capture permission cannot safely enforce chosen-source approval in current host | Real client pending |
 | Keyboard/accessibility/responsive layout | Controlled extension/preview checks; live acceptance pending | Controlled host/workbench checks; live acceptance pending | Controlled native sample only |
 | Twelve plugins/settings/safe mode/reload | Real isolated extension on intercepted fixtures; live effects pending | Controlled source/packaged fixture; live effects pending | Separate three native sample handlers; browser plugins unavailable |

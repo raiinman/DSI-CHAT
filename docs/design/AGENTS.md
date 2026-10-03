@@ -12,6 +12,7 @@ android-native-settings.png records the original patched configuration-split fix
 
 workbench-redteam.png shows the rendered controlled adversarial preview after file/network restrictions; its sentinel and network assertions are recorded in SECURITY_REVIEW.md/STATE.md.
 windows-live-host.png records the packaged dashboard's host state and reload/retry controls. discord-host-fixture.png records intercepted official-origin integration QA; neither contains a live account or proves full feature parity. Private live acceptance captures stay outside the repository.
+windows-fake-camera.png shows the synthetic Chromium camera decoded by an owned local WebRTC peer in controlled host QA. It is not a real camera or Discord video-call screenshot.
 
 manager-default.png, manager-installed.png, manager-update.png, manager-update-restored.png and manager-large-font.png record the separate original phone-only Manager and native updater. They are controlled Android sample/QA evidence, not Discord screens.
 manager-update-failure-restored.png records the fixed HTTP503/restart regression: a failed check remains visible after relaunch.

@@ -9,7 +9,7 @@ The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains
 | Target | Working deliverable | Validation boundary |
 | --- | --- | --- |
 | Browser | Manifest V3 extension, twelve original plugins, search, saved settings and safe mode | Real isolated extension/storage against intercepted local fixture markup; live Discord selector acceptance pending |
-| Windows | Portable Electron host, offline plugin fixture, deliberately opened Discord web host | Packaged executable/controls tested; unsigned; no installed-Discord injection or live account acceptance |
+| Windows | Portable Electron host, offline plugin fixture, deliberately opened Discord web host | Packaged controls tested; user confirmed live messaging/voice audio in v0.4.0-dev.1; camera blocked by browser-support check, screen capture blocked; unsigned, no installed-Discord injection |
 | Developer IDE | Original plugin editor, conflict-safe saves, diagnostics, builds/maps, cancellable tests, isolated preview/stop and checksummed export | Controlled local projects; plain text editor, no debugger/Git UI |
 | Android | Native Java lab APK, three native handlers, non-root bootstrap, installed-APK exporter and monolithic/configuration-split patchers | Original fixture build/sign/patch tests; actual Discord attachment pending |
 | Android Manager | One normal APK, guided original sample setup, recovery/retry/open and built-in verified updater | Native Android install approval; development signing; actual Discord setup remains unavailable |
