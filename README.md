@@ -4,14 +4,14 @@ Dead Signal Interactive's original Discord customization toolkit. Continue on `c
 
 The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains locked. This release builds the original mod engine and developer tools behind that direction. Vencord, Equicord, Vendetta and Revenge provide capability references; their engines/plugins are not merged or vendored.
 
-The Windows launcher and IDE now follow the same Copperlight palette. Updated Windows plugin attachment works under a strict page style policy, accepts semantic-main markup and retains reversible Safe mode. Camera compatibility is pending live retesting. The launcher can open Discord in your normal browser for screen sharing; the embedded host keeps capture blocked until a chosen-source gate can be enforced safely.
+The [Windows v0.4.0-dev.2 download](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.4.0-dev.2) gives the launcher and IDE the same Copperlight palette. Updated Windows plugin attachment works under a strict page style policy, accepts semantic-main markup and retains reversible Safe mode. Camera compatibility is pending live retesting. The launcher can open Discord in your normal browser for screen sharing; the embedded host keeps capture blocked until a chosen-source gate can be enforced safely.
 
 ## Delivered development tools
 
 | Target | Working deliverable | Validation boundary |
 | --- | --- | --- |
 | Browser | Manifest V3 extension, twelve original plugins, search, saved settings and safe mode | Real isolated extension/storage against intercepted local fixture markup; live Discord selector acceptance pending |
-| Windows | Portable Electron host, offline plugin fixture, deliberately opened Discord web host | Packaged controls tested; user confirmed live messaging/voice audio in v0.4.0-dev.1; camera blocked by browser-support check, screen capture blocked; unsigned, no installed-Discord injection |
+| Windows | Copperlight portable host/IDE, twelve display plugins, explicit Discord web host and default-browser handoff | Strict-policy packaged effects tested; user confirmed messaging/voice in v0.4.0-dev.1; updated camera pending live retest, embedded capture blocked; unsigned |
 | Developer IDE | Original plugin editor, conflict-safe saves, diagnostics, builds/maps, cancellable tests, isolated preview/stop and checksummed export | Controlled local projects; plain text editor, no debugger/Git UI |
 | Android | Native Java lab APK, three native handlers, non-root bootstrap, installed-APK exporter and monolithic/configuration-split patchers | Original fixture build/sign/patch tests; actual Discord attachment pending |
 | Android Manager | One normal APK, guided original sample setup, recovery/retry/open and built-in verified updater | Native Android install approval; development signing; actual Discord setup remains unavailable |
