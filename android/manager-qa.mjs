@@ -96,7 +96,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
  const tap=async node=>{const bounds=node.bounds?.match(/\[(\d+),(\d+)\]\[(\d+),(\d+)\]/);if(!bounds)throw Error('Control has no valid bounds');run('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));await pause(500);};
  const wait=async(predicate,label)=>{for(let attempt=0;attempt<25;attempt++){const current=nodes(dump());const value=predicate(current);if(value)return value;await pause(350);}throw Error('Timed out waiting for '+label);};
  const advance=async(predicate,label)=>{for(let attempt=0;attempt<25;attempt++){const current=nodes(dump()),target=predicate(current);if(target)return target;const next=current.find(item=>item.package===MANAGER_PACKAGE&&(item['content-desc']==='Continue setup'||item.text==='Continue setup'));if(next)await tap(next);else await pause(350);}throw Error('Timed out advancing to '+label);};
- const click=async(description)=>{for(let attempt=0;attempt<12;attempt++){const match=nodes(dump()).find(item=>(item['content-desc']===description||item.text===description)&&item.enabled!=='false');if(match){await tap(match);return;}if(attempt>=2)run('shell','input','swipe','500','1600','500','600','300');await pause(350);}throw Error('Missing usable action '+description);};
+ const click=async(description)=>{for(let attempt=0;attempt<12;attempt++){const current=nodes(dump()),match=current.find(item=>(item['content-desc']===description||item.text===description)&&item.enabled!=='false');if(match){await tap(match);return;}if(attempt>=2){const scroll=current.find(item=>item.scrollable==='true')||current[0],bounds=scroll?.bounds?.match(/\[(\d+),(\d+)\]\[(\d+),(\d+)\]/);if(!bounds)throw Error('Current UI has no scroll viewport');const x=String(Math.round((+bounds[1]+ +bounds[3])/2)),top=+bounds[2],height=+bounds[4]-top;run('shell','input','swipe',x,String(Math.round(top+height*.8)),x,String(Math.round(top+height*.2)),'300');}await pause(350);}throw Error('Missing usable action '+description);};
  const capture=name=>{writeFileSync(path.join(output,name+'.png'),execFileSync(adb,['-s',serial,'exec-out','screencap','-p'],{timeout:120000}));writeFileSync(path.join(output,name+'.xml'),dump());};
  const installer=item=>/^(?:com\.google\.android\.packageinstaller|com\.android\.packageinstaller|com\.google\.android\.permissioncontroller|com\.android\.permissioncontroller)$/.test(item.package||'');
  const installed=()=>run('shell','pm','list','packages',DEMO_PACKAGE).split(/\r?\n/).includes('package:'+DEMO_PACKAGE);
@@ -108,6 +108,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
  const launch=()=>run('shell','am','start','-W','-n',MANAGER_PACKAGE+'/.MainActivity');
  launch();await pause(600);capture('manager-default');
  await click('Start guided setup');
+ capture('manager-permission-or-error');
  const permission=await advance(items=>items.find(item=>item.package==='com.android.settings'&&(item['resource-id'].endsWith('/switch_widget')||item['resource-id'].endsWith('/switch')||/Switch/.test(item.class))), 'normal unknown-app source permission screen');
  capture('manager-source-permission');if(permission.checked!=='true')await tap(permission);
  run('shell','input','keyevent','KEYCODE_BACK');await pause(600);capture('manager-permission-return');
@@ -151,6 +152,15 @@ export async function runManagerQA(args=process.argv.slice(2)){
  writeFileSync(path.join(output,'manager-runtime.log'),logs);
  const result={...verified,emulator:serial,controlledFixtureOnly:true,actualPackageInstaller:true,permissionSettingsReturn:true,declineRecovery:true,installed:true,openFixture:true,relaunchReconciled:true,largeFontCapture:true,updater:updaterResults,discordAttached:false};
  writeFileSync(path.join(output,'manager-qa-report.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+ }catch(error){
+  if(emulatorVerified){
+   try{writeFileSync(path.join(output,'manager-failure.png'),execFileSync(adb,['-s',serial,'exec-out','screencap','-p'],{timeout:15000}));}catch{}
+   try{run('shell','uiautomator','dump','/sdcard/dsi-manager-qa-failure.xml');writeFileSync(path.join(output,'manager-failure.xml'),run('shell','cat','/sdcard/dsi-manager-qa-failure.xml'));}catch{}
+   try{writeFileSync(path.join(output,'manager-failure.log'),run('logcat','-d','-s','AndroidRuntime:E','DSI_MANAGER:I','DSI_MANAGER_UPDATE:I'));}catch{}
+   try{writeFileSync(path.join(output,'manager-failure-activity.txt'),run('shell','dumpsys','activity','activities'));}catch{}
+  }
+  writeFileSync(path.join(output,'manager-qa-failure.json'),JSON.stringify({error:error.message,controlledFixtureOnly:true,emulatorVerified,discordAttached:false},null,2)+'\n');
+  throw error;
  }finally{
   if(emulatorVerified){try{run('shell','settings','put','system','font_scale','1.0');}catch{}if(server)try{run('reverse','--remove','tcp:8443');}catch{}}
   if(server?.listening)await new Promise(resolve=>server.close(resolve));

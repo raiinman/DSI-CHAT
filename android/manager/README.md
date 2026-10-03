@@ -27,7 +27,7 @@ The builder internally uses original Java sources/bootstrap and the existing loc
 
 Production endpoint: `https://raw.githubusercontent.com/raiinman/DSI-CHAT/codex/dsi-original/updates/manager.json`. Feed schema1 provides package, versionCode/versionName, minSdk, bytes, sha256, certificateSha256 and a DSI GitHub release APK URL. Check/download are bounded and off the UI thread. Downloads are private, size/hash verified and checked against package/version/SDK plus the currently installed Manager's signer. Rollbacks, unsupported URLs, different certificates and test-only update APKs are refused. System approval remains explicit; no uninstall or silent update occurs.
 
-Owned installer sessions/results are persisted and reconciled on restart. Pending Android approval is launched only from the foreground Activity. Cancellation abandons only the recorded session and cleans only owned staging. Installer and updater have separate journals. INTERRUPTED operations produce retryable state, not false completion.
+Owned installer sessions/results are persisted and reconciled on restart. Pending Android approval is launched only from the foreground Activity. Cancellation abandons only the recorded session and cleans only owned staging. Installer and updater have separate journals. Interrupted operations do not imply completion. If the process stops after a session is created but before it is committed, use **Cancel setup** or **Cancel update**, then retry; this narrow precommit interval does not automatically resume.
 
 ## Controlled acceptance
 
