@@ -36,6 +36,15 @@ node desktop/redteam.mjs
 
 Android uses manager.yml's SDK-built fixtures and full manager-qa.mjs --red-team invocation. Do not substitute a live device or Discord APK. Original and platform CI retain browser/Electron regression evidence; Manager CI retains native screenshots/journals.
 
+## Executed acceptance
+
+- [Original/browser and Linux workbench CI37140088982](https://github.com/raiinman/DSI-CHAT/actions/runs/37140088982), source8d55cad:40 engine tests passed;20 workbench tests passed with the Windows-only stream case explicitly skipped. File-symlink and busy-test cancellation checks executed; the real extension attack fixture passed with zero unexpected requests.
+- [Complete platform CI37140088988](https://github.com/raiinman/DSI-CHAT/actions/runs/37140088988) passed at8d55cad, including source/packaged Windows smoke and monolithic/split Android fixture emulator flows.21 workbench checks:20 passed; file-symlink creation explicitly skipped on the local Windows host because EPERM. Real NTFS hard links/junctions/streams executed. Actual Electron adversarial regression blocked outside sentinel access and HTTP/STUN UDP/TURN TCP, rejected untrusted IPC and recovered after synchronous startup.
+- [Manager CI37139689797](https://github.com/raiinman/DSI-CHAT/actions/runs/37139689797), source125891f with unchanged Android runtime3a64c8b: all12 hostile update cases refused before Android approval, private staging empty and no owned install session remaining. Compiled result receivers were nonexported; correct-action forged successes with owned and invalid IDs left journals unchanged. No transport-denial log string was emitted, so the report makes no log-message claim. HTTP503/restart and cancel/retry passed; a valid same-signer version3 fixture update required native approval and preserved journals/settings.
+- Root inspected passed Manager default, approval, cancellation, failure-after-restart, restored-update and large-font captures plus final packaged Windows diagnostics/preview and adversarial captures. Retained examples are in docs/design.
+
+Release/source/public transport closeout is in STATE.md. Local Manager version2 release identity differs from the rebuilt QA bytes and is checked separately.
+
 ## Boundaries
 
 Declared plugin capabilities are not a general arbitrary-code sandbox. Explicitly run Node tests execute with the developer's permissions. Filesystem checks do not provide an OS security boundary against a concurrent local attacker changing files between checks. Electron preview restrictions are defense in depth against the tested paths, not a universal OS network sandbox or a guarantee against Chromium vulnerabilities.

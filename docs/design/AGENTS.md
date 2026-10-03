@@ -13,6 +13,7 @@ android-native-settings.png records the original patched configuration-split fix
 workbench-redteam.png shows the rendered controlled adversarial preview after file/network restrictions; its sentinel and network assertions are recorded in SECURITY_REVIEW.md/STATE.md.
 
 manager-default.png, manager-installed.png, manager-update.png, manager-update-restored.png and manager-large-font.png record the separate original phone-only Manager and native updater. They are controlled Android sample/QA evidence, not Discord screens.
+manager-update-failure-restored.png records the fixed HTTP503/restart regression: a failed check remains visible after relaunch.
 
 ## Local Contracts
 The generated concept is a reference, not shipped UI. The user explicitly replaced orange glass with Copperlight Realism. Keep real controls, existing identities and honest local-preview behavior; omit concept-only calls/media/window controls until functional.

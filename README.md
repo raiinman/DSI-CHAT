@@ -14,7 +14,7 @@ The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains
 | Android | Native Java lab APK, three native handlers, non-root bootstrap, installed-APK exporter and monolithic/configuration-split patchers | Original fixture build/sign/patch tests; actual Discord attachment pending |
 | Android Manager | One normal APK, guided original sample setup, recovery/retry/open and built-in verified updater | Native Android install approval; development signing; actual Discord setup remains unavailable |
 
-[Release downloads](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.2.0-dev.1) provide development artifacts. Unzip the entire Windows portable directory and run DSI-CHAT.exe. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
+[Current Manager and Windows downloads](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.3.0-dev.2) include the controlled red-team corrections. Unzip the entire Windows portable directory and run DSI-CHAT.exe. [Earlier browser/native development artifacts](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.2.0-dev.1) remain available. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
 
 Plugins start disabled. Safe mode retains choices and removes owned effects. The browser/Windows batch includes Signal theme, compact messages, reduced motion, keyboard focus, readable code, larger text, clear links, media fitting, hidden typing indicator, wider scrollbars, full timestamp tooltips and link destinations. Native Android has separate reviewed native-view handlers; it cannot execute browser CSS plugins.
 
@@ -38,8 +38,8 @@ For Windows, install the pinned Electron runtime with `npm ci --prefix desktop -
 
 The [Manager guide](android/manager/README.md) covers phone-only setup and the opt-in updater. Customers need no PC, ADB or file picker. The included payload is the original DSI native sample; it does not install or modify Discord.
 
-[Download DSI Manager preview](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.3.0-dev.1): install the Manager APK, open it and choose **Start guided setup**. Approve the Android screens. Updates are checked from inside the Manager.
+[Download DSI Manager preview](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.3.0-dev.2): install the Manager APK, open it and choose **Start guided setup**. Approve the Android screens. Updates are checked from inside the Manager.
 
 This is a development toolkit, not complete parity with hundreds of reference plugins. Native Discord services, actual Android client attachment, production signing and upstream package compatibility remain unfinished. Discord provides messaging; the separate Copperlight page uses fictional in-memory conversations.
 
-See [architecture](docs/ARCHITECTURE.md), [implementation plan](docs/IMPLEMENTATION_PLAN.md), [validation](docs/STATE.md) and [provenance](docs/PROVENANCE.md). [DOX](AGENTS.md) governs documentation; its [MIT notice](docs/DOX_LICENSE.txt) does not relicense DSI source. No open-source license grant has been selected for original DSI source; [NOTICE.md](NOTICE.md) records ownership limits. Preserve all shipped third-party notices.
+See [architecture](docs/ARCHITECTURE.md), [implementation plan](docs/IMPLEMENTATION_PLAN.md), [validation](docs/STATE.md), [controlled security review](docs/SECURITY_REVIEW.md) and [provenance](docs/PROVENANCE.md). [DOX](AGENTS.md) governs documentation; its [MIT notice](docs/DOX_LICENSE.txt) does not relicense DSI source. No open-source license grant has been selected for original DSI source; [NOTICE.md](NOTICE.md) records ownership limits. Preserve all shipped third-party notices.
