@@ -104,6 +104,7 @@ When the user requests a durable behavior change, record it here or in the relev
 - Build an original phone-only DSI Manager with one guided setup flow and a built-in updater. Normal user setup must not require ADB, a PC, manual APK selection or SDK tooling. Preserve explicit Android install approval and settings through updates; verify DSI release integrity and signing identity. Until real Discord attachment is established, label the included controlled sample and unsupported Discord setup accurately.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 - Run a controlled red-team pass after completed development, fix reproducible findings and retain behavioral regressions and an honest scope/results record. Use owned fixtures; this does not authorize attacks on third-party services or accounts.
+- Prioritize working real-client integration with root and one partner, preserving Discord's native functionality and the locked Copperlight design. Follow docs/LIVE_INTEGRATION_PLAN.md. The user authorized their existing live account for testing and prohibited messaging scammers; start read-only, use identified owned destinations for delivery tests and keep private content out of public evidence. An open-source license selection remains pending.
 
 ## Child DOX Index
 

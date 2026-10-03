@@ -71,6 +71,11 @@ try {
     await popup.waitForFunction(()=>document.getElementById('runtime-report').textContent.includes('dsi-plugin-status'));
     const report=JSON.parse(await popup.locator('#runtime-report').innerText());
     assert.equal(report.active.length,12); assert.deepEqual(report.diagnostics,[]);
+    assert.equal(report.compatibility.host,'discord-web-channels');
+    assert.equal(report.compatibility.evidence,'dom-presence-only');
+    assert.equal(report.compatibility.liveFeatureParity,'unverified');
+    assert.equal(report.compatibility.plugins.find(plugin=>plugin.id==='larger-text').target,'matched');
+    assert.ok(report.compatibility.plugins.every(plugin=>plugin.effect==='unverified'));
     await popup.locator('#runtime-report').scrollIntoViewIfNeeded();
     await popup.screenshot({path:`${out}/popup-runtime.png`,fullPage:true});
     await fixture.screenshot({path:`${out}/fixture-enabled.png`,fullPage:true});

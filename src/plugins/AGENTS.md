@@ -11,6 +11,7 @@ builtins.mjs: original browser/Windows display and DOM plugins.
 popup-entry.mjs: searchable twelve-plugin settings controls, validated text-size input and explicit active-tab runtime inspection. Inspection requests only DSI metadata from the existing isolated content script; no added tabs/host permission, message contents or network requests.
 browser-adapter.mjs and browser-entry.mjs: isolated Chromium storage/page lifecycle integration.
 index.mjs: shared bundle exports for controlled hosts and Windows.
+compatibility.mjs: fixed-key DOM existence probes on exact official HTTPS channel routes; no account/message text, identifiers or private URLs. Presence reports always leave plugin effects and live parity unverified.
 
 ## Local Contracts
 - API version 1; plugins are reviewed local DSI code. Capability declarations do not sandbox arbitrary JavaScript.

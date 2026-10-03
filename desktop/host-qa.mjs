@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawn} from 'node:child_process';
+const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.dirname(here);
+const output=path.join(repo,'.cache','discord-host-qa-'+Date.now());await fs.mkdir(output,{recursive:true});
+const child=spawn(path.join(here,'node_modules/electron/dist/electron.exe'),[path.join(here,'host-qa-electron.mjs')],{windowsHide:true,stdio:'inherit',env:{...process.env,DSI_HOST_QA_OUTPUT:output}});
+const timer=setTimeout(()=>child.kill(),60000);
+child.on('error',error=>{clearTimeout(timer);console.error(error.message);process.exitCode=1;});
+child.on('close',async code=>{clearTimeout(timer);console.log('Controlled host evidence:',output);if(code!==0)process.exitCode=1;else console.log(await fs.readFile(path.join(output,'result.json'),'utf8'));});

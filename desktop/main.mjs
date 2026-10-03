@@ -1,4 +1,5 @@
-import {app,BrowserWindow,ipcMain,dialog,session} from 'electron';
+import {app,BrowserWindow,ipcMain,dialog,session,Menu,shell} from 'electron';
+import {configureDiscordHost} from './discord-host.mjs';
 import fs from 'node:fs/promises';
 import {mkdirSync} from 'node:fs';
 import path from 'node:path';
@@ -14,6 +15,7 @@ const root=path.dirname(here);
 if(process.argv.includes('--smoke')){app.disableHardwareAcceleration();const profile=path.join(process.env.DSI_SMOKE_OUTPUT,'user-data');mkdirSync(profile,{recursive:true});app.setPath('userData',profile);}
 const workbench=new WorkspaceService({electron:true});
 let dashboard,editor,fixture,discord,preview;
+let discordHost;
 let ideBusy=false;
 let settings=normalizePluginSettings({},BUILTIN_MANIFESTS);
 let featureQueue=Promise.resolve();
@@ -49,11 +51,9 @@ async function openWorkbench(){if(editor&&!editor.isDestroyed()){editor.focus();
 async function openDiscord(){
  if(discord&&!discord.isDestroyed()){discord.focus();return;}
  const isolated=session.fromPartition('persist:dsi-discord');
- isolated.setPermissionRequestHandler((_webContents,_permission,callback)=>callback(false));
- isolated.setPermissionCheckHandler(()=>false);
- discord=lock(new BrowserWindow({width:1300,height:850,title:'DSI • Discord web',webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,session:isolated}}),{remote:true});
- discord.webContents.on('did-finish-load',()=>attach(discord,true).catch(error=>{adapterStatus=error.message;}));
- await discord.loadURL('https://discord.com/app');
+ discord=new BrowserWindow({width:1300,height:850,title:'DSI • Discord web',webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,session:isolated}});
+ discordHost=configureDiscordHost({window:discord,session:isolated,dialog,Menu,shell,onReady:target=>attach(target,true)});
+ await discordHost.load();
 }
 async function openPreview(){
  const build=await workbench.build();if(!build.ok)return build;
@@ -79,10 +79,11 @@ async function openPreview(){
  return {ok:result.active.includes(build.manifest.id)&&result.errors.length===0,result};
  }catch(error){if(target&&!target.isDestroyed())target.destroy();if(denyProxy.listening)denyProxy.close();throw error;}
 }
-handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterStatus,version:app.getVersion(),platform:process.platform}));
+handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterStatus,discordHost:discordHost?.snapshot()??{phase:'not-opened'},version:app.getVersion(),platform:process.platform}));
 handle('dsi:features',value=>{const requested=validSettings(value);const operation=featureQueue.then(async()=>{settings=requested;await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});featureQueue=operation.catch(()=>{});return operation;});
 handle('dsi:fixture',async()=>{await openFixture();return {ok:true};});
 handle('dsi:discord',async()=>{await openDiscord();return {ok:true};});
+handle('dsi:discord-reload',async()=>{if(!discord||discord.isDestroyed())await openDiscord();else await discordHost.reload();return {ok:true};});
 handle('dsi:workbench',async()=>{await openWorkbench();return {ok:true};});
 handle('ide:open',async()=>{const selected=await dialog.showOpenDialog(editor,{properties:['openDirectory']});return selected.canceled?null:workbench.open(selected.filePaths[0]);},'ide');
 handle('ide:create',async()=>{const selected=await dialog.showOpenDialog(editor,{title:'Select an empty folder for an original plugin',properties:['openDirectory','createDirectory']});if(selected.canceled)return null;await createTemplate(selected.filePaths[0]);return workbench.open(selected.filePaths[0]);},'ide');

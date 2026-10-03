@@ -5,7 +5,7 @@ import {spawn} from 'node:child_process';
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=path.join(repo,'.cache','desktop-redteam-'+Date.now());await fs.mkdir(output,{recursive:true});
 let source=await fs.readFile(path.join(repo,'desktop/main.mjs'),'utf8');
-for(const specifier of ['../workbench/service.mjs','../src/plugins/builtins.mjs','../src/plugins/settings.mjs'])source=source.replace(JSON.stringify(specifier),JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href)).replace("'"+specifier+"'",JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href));
+for(const specifier of ['./discord-host.mjs','../workbench/service.mjs','../src/plugins/builtins.mjs','../src/plugins/settings.mjs'])source=source.replace(JSON.stringify(specifier),JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href)).replace("'"+specifier+"'",JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href));
 source=source.replace('const here=path.dirname(fileURLToPath(import.meta.url));','const here='+JSON.stringify(path.join(repo,'desktop'))+';');
 source=source.replace("ipcMain.handle(channel,async(event,...args)=>","registerRedteamHandler(channel,async(event,...args)=>");
 source=source.replace('if(process.argv.includes(\'--smoke\'))await runSmoke();','if(process.argv.includes(\'--smoke\'))await runRedteam();');

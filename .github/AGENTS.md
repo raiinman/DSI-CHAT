@@ -16,6 +16,7 @@ Manager CI also runs --red-team: hostile metadata/transport/archive boundaries, 
 - Preserve the publication gate: tests, catalog consistency, build, browser QA, artifact and checksum verification.
 - Keep dsi-messenger-screenshots available for review. A successful run is not a substitute for inspecting its screenshots.
 - Windows evidence uploads only PNG captures and result.json from smoke/red-team folders, explicitly including the hidden .cache path. Do not upload Electron profiles or selected project contents. Platform CI runs the controlled Electron adversarial regression before portable packaging.
+- Windows also runs desktop/host-qa.mjs with intercepted official-origin markup and fake devices. Retain only host PNG/results; test native-choice/HTTPS/origin/frame/reload boundaries and deny both standard and legacy screen capture. No live account or device acceptance is implied.
 - Review-only Pages runs also upload dsi-reviewed-site after extension ZIP packaging, for public-byte comparison. ZIP container timestamps may differ; compare packaged file checksums instead of assuming archive bytes are deterministic.
 - Do not expose credentials in commands/logs or broaden permissions without a specific need.
 

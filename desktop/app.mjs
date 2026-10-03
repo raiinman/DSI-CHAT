@@ -15,3 +15,6 @@ for(const {input}of numeric)input.addEventListener('change',saveSettings);
 document.querySelector('#fixture').onclick=()=>action(()=>api.openFixture());
 document.querySelector('#workbench').onclick=()=>action(()=>api.openWorkbench());
 document.querySelector('#discord').onclick=()=>action(()=>api.openDiscord());
+document.querySelector('#discord-reload').onclick=()=>action(()=>api.reloadDiscord());
+function hostStatus(state){const host=state.discordHost;document.querySelector('#discord-state').textContent='Host: '+host.phase+(host.page?' · '+host.page:'')+(host.permission?' · '+host.permission:'')+(host.errorCode?' · network error '+host.errorCode:'');}
+hostStatus(initial);setInterval(()=>api.status().then(hostStatus).catch(()=>{}),1000);

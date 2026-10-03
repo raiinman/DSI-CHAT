@@ -79,6 +79,8 @@ See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and 
 
 ## Current capability gates
 
+The user's next direction is root plus one partner making real Discord functionality work and preserving native behavior. [LIVE_INTEGRATION_PLAN.md](LIVE_INTEGRATION_PLAN.md) now owns ordered browser/Windows acceptance, the live-account boundary and the per-platform parity ledger. Native Android attachment remains a required gate; controlled fixture completion does not fulfill it.
+
 Browser/Windows support styles, visible DOM and event cleanup. Android supports native views, local storage and diagnostics with three native handlers; discord.runtime is unavailable. IDE development packages are integrity-tagged and unreviewed, with no automatic live install. Next priority is original controlled Android host-runtime attachment and recovery, followed by actual attachment acceptance with an explicitly supplied supported APK/device and prioritized original mobile/composition/navigation capabilities. Preserve the locked Copperlight shell.
 
 ## Phone-only Manager and updater

@@ -10,6 +10,7 @@ Verify stable behavior of the original runtime and local messenger models.
 - contact-book.test.mjs: persisted data repair, group edits/removal and favorites.
 - plugins.test.mjs and plugin-adapter.test.mjs: manifests, lifecycle/resources/races, dependency/conflict/capability gates and versioned storage migration.
 - red-team.test.mjs: hostile persisted records/manifests, late resource attachment under safe-mode floods and immutable public reports.
+- compatibility.test.mjs: exact-origin/route rejection before DOM access, metadata-only presence reports and unavailable probes without exception disclosure.
 - Rendered interactions belong to scripts/browser-qa.mjs.
 
 ## Local Contracts
@@ -19,7 +20,7 @@ Tests use Node's built-in test/assert APIs. Prefer behavioral contracts over imp
 Add meaningful tests for new behavior and regressions; small reversible visual changes do not need redundant unit tests. Keep unit tests distinct from screenshot acceptance.
 
 ## Verification
-npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 40 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
+npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 43 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
 
 ## Child DOX Index
 None.

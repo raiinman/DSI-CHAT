@@ -49,6 +49,10 @@ Published [v0.3.0-dev.2](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.3.
 
 ## Boundaries
 
+The next Windows integration candidate exposed a separate Electron44 capture boundary: granting empty-media prepermission for getDisplayMedia also allowed legacy chromeMediaSource getUserMedia to capture an owned window without the chooser. A chosen-source happy-path capture passed, but did not establish enforcement. The final candidate denies both APIs and explicitly reports screen sharing/system audio unavailable. No live desktop or third-party source was captured.
+
+desktop/host-qa.mjs exercises actual fake-device camera/microphone Allow/Deny, actual same-origin subframe and lookalike rejection, stale device/external approval revocation after reload, external HTTPS/protocol gates, real load failure/retry and renderer isolation. Native decisions and shell launch are controlled injected test responses. Final local result .cache/discord-host-qa-1791061985433/result.json passed with NotAllowedError for both screen APIs. Existing Electron preview/red-team and packaged smoke regressions passed separately. No physical-device call or live DSI-enabled account parity is implied.
+
 Declared plugin capabilities are not a general arbitrary-code sandbox. Explicitly run Node tests execute with the developer's permissions. Filesystem checks do not provide an OS security boundary against a concurrent local attacker changing files between checks. Electron preview restrictions are defense in depth against the tested paths, not a universal OS network sandbox or a guarantee against Chromium vulnerabilities.
 
 Manager releases use stable private local development keys; CI acceptance rebuilds the same source with separate QA signing/TLS fixtures. Exact public release bytes receive separate identity/hash checks. Production store signing, live Discord selectors/native attachment, Android versions beyond the tested API35, physical phones and independent penetration testing remain unverified. A process interruption between session creation and commit can still require Cancel then retry.

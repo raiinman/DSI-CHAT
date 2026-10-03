@@ -14,7 +14,11 @@ npm start --prefix desktop
 
 The offline fixture runs shared built-in display plugins without an account. The separate workbench provides original plugin editing, save-conflict detection, syntax/type/manifest diagnostics, esbuild output/source maps, cancellable tests, isolated preview, stop/reload and a checksummed `.dsiplugin` development package.
 
-Opening official Discord web requires a deliberate button click. Its renderer has Node disabled, context isolation and sandbox enabled, no privileged preload, denied permission requests and blocked additional windows. Reviewed built-in styles run in a separate isolated world only on `https://discord.com/channels/` pages. Native Discord injection, voice/video permissions, external link handling and live-account acceptance are not delivered. Display selectors remain subject to Discord DOM changes.
+Opening official Discord web requires a deliberate button click. Its renderer has Node disabled, context isolation and sandbox enabled, no privileged preload and no additional remote windows. Exact official-origin/main-window camera and microphone requests require native approval; reload clears device grants and revokes outstanding approvals. Device/OS availability still applies. Other permissions, including desktop notifications, remain denied. Reviewed original display plugins run in a separate isolated world on channels pages. Display selectors remain subject to Discord DOM changes.
+
+External HTTPS links without URL credentials open in the system browser only after native confirmation; other protocols and cross-origin host navigation are denied. The separate desktop dashboard reports loading, app/login page, channels page, failure and closed states, with Reload/retry. These states do not inspect account content or prove successful login. The persistent official-web partition preserves its own website session; DSI does not read credentials.
+
+Screen sharing and system-audio capture remain blocked. On pinned Electron44, accepting the empty-media prepermission needed by getDisplayMedia also permits legacy chromeMediaSource direct capture without the host's source chooser. This bypass was reproduced against an owned QA window; both routes are now denied. Neither a dependency upgrade nor a source menu alone proves a safe boundary. Native Discord integration, private runtime plugins and full feature parity remain separate gates. Controlled fake-device acceptance does not establish real Discord calls.
 
 ## Validate and package
 
@@ -22,6 +26,7 @@ Opening official Discord web requires a deliberate button click. Its renderer ha
 node --test workbench/*.test.mjs
 node workbench/redteam-probes.mjs
 node desktop/redteam.mjs
+node desktop/host-qa.mjs
 node desktop/smoke.mjs
 node desktop/package.mjs
 node desktop/smoke.mjs --packaged

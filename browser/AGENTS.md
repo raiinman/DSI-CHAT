@@ -12,6 +12,7 @@ manifest.json, popup.html and popup.css; JavaScript behavior belongs to ../src/A
 - Loading/saving failures must not suggest settings were applied successfully.
 - Browser package does not implement the messenger shell, Android or a desktop installer.
 - The text-size input saves schema-validated local plugin values. Inspect reads DSI runtime metadata from the active channel tab through extension messaging; keep permissions unchanged. A tab query parameter is the documented controlled-popup test route.
+- Inspect includes fixed-key DOM presence metadata with unverified effects/parity; never present a matched selector as proof of live Discord compatibility.
 
 ## Work Guidance
 Keep popup controls accessible, labeled and keyboard usable; coordinate IDs with src/plugins/popup-entry.mjs. Preserve permission and provenance checks when editing the manifest.
