@@ -12,7 +12,7 @@ await fs.mkdir(output,{recursive:true});
 await fs.cp(runtime,output,{recursive:true});
 await fs.rename(path.join(output,'electron.exe'),path.join(output,'DSI-CHAT.exe'));
 const app=path.join(output,'resources/app');await fs.mkdir(app,{recursive:true});
-const copy=async(relative)=>fs.cp(path.join(root,relative),path.join(app,relative),{recursive:true,filter:filename=>!filename.endsWith('AGENTS.md')&&!filename.includes(path.sep+'node_modules'+path.sep)&&!filename.endsWith('.test.mjs')&&!filename.endsWith('smoke.mjs')&&!filename.endsWith('package.mjs')});
+const copy=async(relative)=>fs.cp(path.join(root,relative),path.join(app,relative),{recursive:true,filter:filename=>!filename.endsWith('AGENTS.md')&&!filename.includes(path.sep+'node_modules'+path.sep)&&!filename.endsWith('.test.mjs')&&!['smoke.mjs','package.mjs','redteam.mjs','redteam-probes.mjs'].includes(path.basename(filename))});
 for(const relative of ['desktop','workbench','src/plugins','src/features.mjs','src/core.mjs','dist/shared','NOTICE.md'])await copy(relative);
 await fs.writeFile(path.join(app,'package.json'),JSON.stringify({name:'dsi-chat-desktop',version:'0.2.0',main:'desktop/main.mjs',type:'module',private:true},null,2));
 for(const dependency of ['esbuild','typescript','@esbuild/win32-x64'])await fs.cp(path.join(root,'node_modules',dependency),path.join(app,'node_modules',dependency),{recursive:true});

@@ -20,6 +20,8 @@ Opening official Discord web requires a deliberate button click. Its renderer ha
 
 ```sh
 node --test workbench/*.test.mjs
+node workbench/redteam-probes.mjs
+node desktop/redteam.mjs
 node desktop/smoke.mjs
 node desktop/package.mjs
 node desktop/smoke.mjs --packaged
@@ -36,7 +38,8 @@ Smoke captures dashboard, fixture, workbench and plugin preview under `.cache/de
 
 Documentation fetched through Context7: [Electron security](https://www.electronjs.org/docs/latest/tutorial/security), [context isolation](https://www.electronjs.org/docs/latest/tutorial/context-isolation), [BrowserWindow](https://www.electronjs.org/docs/latest/api/browser-window), [TypeScript compiler API](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API). Diagnostics use a confined CompilerHost; external imports and junction escapes are unavailable to type checking.
 
-Tests execute selected workspace code as the current user after an explicit development action; they are not an arbitrary-code security sandbox. Plugin previews have no Node or preload privilege, block network by CSP and are distinct from account-bearing windows. Stop permits 1000ms for graceful cleanup, then forcibly destroys the captured preview host; hanging cleanup cannot keep it open.
+Tests execute selected workspace code as the current user after an explicit development action; they are not an arbitrary-code security sandbox. Editor/compiler/build operations reject workspace escapes, multiply-linked files and Windows named streams. These path checks are not an OS sandbox against concurrent local filesystem mutation. Plugin previews use opaque in-memory documents with trusted inline CSS, no Node/preload privilege, blocked frames/workers, and denied file/network requests in a dedicated session. Stop permits 1000ms for graceful cleanup, then forcibly destroys the captured preview host; destruction also settles hanging startup and releases the editor action guard.
+Preview WebRTC disables non-proxied UDP; remaining transport uses a host-owned rejecting loopback proxy that closes with the captured window or failed initialization. The policy is confined to preview sessions. Controlled HTTP, STUN UDP and TURN TCP fixtures verify those routes remain blocked; this is not certification against all Chromium defects or an OS network sandbox.
 
 ## Recorded acceptance
 

@@ -14,11 +14,13 @@ export class WorkspaceService {
   async resolve(relative, {create=false}={}) {
     if (!this.root) throw Error('Open a workspace first');
     if (typeof relative!=='string' || !relative || path.isAbsolute(relative)) throw Error('Use a workspace-relative file path');
+    if(process.platform==='win32'&&relative.includes(':'))throw Error('Windows alternate streams and drive-relative paths are not supported');
     const candidate=path.resolve(this.root,relative);
     if (!inside(this.root,candidate)) throw Error('Path escapes selected workspace');
     let actual;
     try { actual=await fs.realpath(candidate); } catch(error) { if (error.code!=='ENOENT' || !create) throw error; actual=path.join(await fs.realpath(path.dirname(candidate)),path.basename(candidate)); }
     if (!inside(this.root,actual)) throw Error('Symlink escapes selected workspace');
+    try{const metadata=await fs.stat(actual);if(metadata.isFile()&&metadata.nlink>1)throw Error('Refusing multiply-linked workspace file');}catch(error){if(error.code!=='ENOENT'||!create)throw error;}
     return actual;
   }
   async list() {
@@ -55,7 +57,7 @@ export class WorkspaceService {
       const options={target:ts.default.ScriptTarget.ES2022,module:ts.default.ModuleKind.ESNext,moduleResolution:ts.default.ModuleResolutionKind.Bundler,noEmit:true,strict:true,skipLibCheck:true,types:[],allowImportingTsExtensions:true};
       const host=ts.default.createCompilerHost(options);
       const libraryRoot=realpathSync(path.dirname(ts.default.getDefaultLibFilePath(options)));
-      const permitted=filename=>{try{const actual=realpathSync(filename);return inside(this.root,actual)||inside(libraryRoot,actual);}catch{return false;}};
+      const permitted=filename=>{try{const actual=realpathSync(filename);if(inside(libraryRoot,actual))return true;const metadata=statSync(actual);return inside(this.root,actual)&&(!metadata.isFile()||metadata.nlink<=1);}catch{return false;}};
       host.readFile=filename=>permitted(filename)?readFileSync(filename,'utf8'):undefined;
       host.fileExists=filename=>permitted(filename)&&existsSync(filename)&&statSync(filename).isFile();
       host.directoryExists=filename=>permitted(filename)&&statSync(filename).isDirectory();
@@ -86,7 +88,7 @@ export class WorkspaceService {
     const output=path.join(this.root,'.dsi-build');
     try { const real=await fs.realpath(output); if(!inside(this.root,real))throw Error('Build output symlink escapes workspace'); } catch(error){if(error.code!=='ENOENT')throw error;}
     await fs.mkdir(output,{recursive:true});
-    for(const file of result.outputFiles) { const dest=path.join(output,path.basename(file.path)); try {if((await fs.lstat(dest)).isSymbolicLink())throw Error('Refusing symlink build output');}catch(error){if(error.code!=='ENOENT')throw error;} await fs.writeFile(dest,file.contents); }
+    for(const file of result.outputFiles) { const dest=path.join(output,path.basename(file.path)); try {const metadata=await fs.lstat(dest);if(metadata.isSymbolicLink())throw Error('Refusing symlink build output');if(metadata.isFile()&&metadata.nlink>1)throw Error('Refusing multiply-linked build output');}catch(error){if(error.code!=='ENOENT')throw error;} await fs.writeFile(dest,file.contents); }
     return {ok:true,manifest:diagnostics.manifest,output:'.dsi-build/plugin.mjs',bytes:result.outputFiles.reduce((n,f)=>n+f.contents.length,0)};
   }
   async test() {

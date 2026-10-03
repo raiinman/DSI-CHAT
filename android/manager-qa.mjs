@@ -65,6 +65,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
  const redTeam=args.includes('--red-team');
  let updateFeed,server,feedMode='valid',badSignerFeed,badSignerBytes;
  const requests={feed:0,asset:0};
+ const receiverProbes=[];
  if(updateApk||updateReport||tlsCert||tlsKey){
   if(!updateApk||!updateReport||!tlsCert||!tlsKey)throw Error('Update QA needs explicit APK/report/TLS certificate/key');
   updateFeed=preflightUpdate({apk:updateApk,reportFile:updateReport,aapt2});
@@ -113,6 +114,16 @@ export async function runManagerQA(args=process.argv.slice(2)){
  const click=async(description)=>{for(let attempt=0;attempt<12;attempt++){const current=nodes(dump()),match=current.find(item=>(item['content-desc']===description||item.text===description)&&item.enabled!=='false');if(match){await tap(match);return;}if(attempt>=2)scrollPage(current);await pause(350);}throw Error('Missing usable action '+description);};
  const capture=name=>{writeFileSync(path.join(output,name+'.png'),execFileSync(adb,['-s',serial,'exec-out','screencap','-p'],{timeout:120000}));writeFileSync(path.join(output,name+'.xml'),dump());};
  const installer=item=>/^(?:com\.google\.android\.packageinstaller|com\.android\.packageinstaller|com\.google\.android\.permissioncontroller|com\.android\.permissioncontroller)$/.test(item.package||'');
+ const probeReceiver=(receiver,journalFile,sessionId,kind)=>{
+  const before=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/'+journalFile);let response='';
+  try{response=run('shell','am','broadcast','-n',MANAGER_PACKAGE+'/.'+receiver,'-a',MANAGER_PACKAGE+(receiver==='InstallReceiver'?'.INSTALL_RESULT':'.UPDATE_RESULT'),'--ei','android.content.pm.extra.STATUS','0','--ei','android.content.pm.extra.SESSION_ID',String(sessionId));}catch(error){response=String(error.stdout||'')+String(error.stderr||'')+error.message;}
+  const after=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/'+journalFile);
+  const transportLogs=run('logcat','-d','-s','ActivityManager:W');
+  writeFileSync(path.join(output,'manager-red-team-'+receiver+'-'+kind+'-broadcast.txt'),response+'\n'+transportLogs);
+  if(before!==after)throw Error('External forged '+kind+' result changed '+receiver+' owned-session journal');
+  receiverProbes.push({receiver,sessionId,kind,journalUnchanged:true,transportDenialLogged:/Permission Denial|not exported/i.test(transportLogs)});
+ };
+ const ownedSession=journalFile=>{const journal=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/'+journalFile),id=Number(journal.match(/<int name="sessionId" value="(\d+)"/)?.[1]);if(!Number.isSafeInteger(id)||id<0)throw Error('Approval has no recorded owned session ID');return id;};
  const installed=()=>run('shell','pm','list','packages',DEMO_PACKAGE).split(/\r?\n/).includes('package:'+DEMO_PACKAGE);
  if(run('shell','pm','list','packages',MANAGER_PACKAGE).split(/\r?\n/).includes('package:'+MANAGER_PACKAGE))run('uninstall',MANAGER_PACKAGE);
  run('install',managerApk);run('shell','pm','clear',MANAGER_PACKAGE);
@@ -128,7 +139,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
  await wait(items=>items.find(item=>item.package==='com.android.settings'&&item.checkable==='true'&&item.checked==='true'),'explicit unknown-source permission enabled');
  run('shell','input','keyevent','KEYCODE_BACK');await pause(600);capture('manager-permission-return');
  const cancel=await advance(items=>items.find(item=>installer(item)&&(/^cancel$/i.test(item.text)||item['resource-id']==='android:id/button2')), 'real PackageInstaller confirmation');
- capture('manager-install-confirmation');await tap(cancel);
+ capture('manager-install-confirmation');if(redTeam)probeReceiver('InstallReceiver','dsi.manager.install.v1.xml',ownedSession('dsi.manager.install.v1.xml'),'owned');await tap(cancel);
  await wait(items=>items.find(item=>item['content-desc']==='Retry setup'||item.text==='Retry setup'),'declined installation retry');
  if(installed())throw Error('Declined installer unexpectedly installed fixture');capture('manager-declined');
  await click('Retry setup');
@@ -162,15 +173,15 @@ export async function runManagerQA(args=process.argv.slice(2)){
    rejectedCases.push({mode,assetFetches:requests.asset-assetsBefore,privateStagingCleared:true,noInstallerSession:true});
    const dismiss=nodes(screen).find(item=>item.package===MANAGER_PACKAGE&&item.text==='OK');if(dismiss)await tap(dismiss);
   }
-  let privateReceiversBlocked=false;
+  let spoofedResultsIgnored=false,nonExportedReceiversManifestVerified=false;
   if(redTeam){
-   const before=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');
-   for(const receiver of ['InstallReceiver','UpdateReceiver']){
-    let response='';try{response=run('shell','am','broadcast','-n',MANAGER_PACKAGE+'/.'+receiver,'--ei','android.content.pm.extra.STATUS','0','--ei','android.content.pm.extra.SESSION_ID','123456');}catch(error){response=String(error.stdout||'')+String(error.stderr||'')+error.message;}
-    writeFileSync(path.join(output,'manager-red-team-'+receiver+'-broadcast.txt'),response);
-    if(!/Permission Denial|not exported|SecurityException/i.test(response))throw Error('External spoofed result was not blocked for '+receiver);
-   }
-   const after=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');if(before!==after)throw Error('Spoofed result changed private update journal');privateReceiversBlocked=true;
+   const receiverManifest=execFileSync(aapt2,['dump','xmltree',managerApk,'--file','AndroidManifest.xml'],{encoding:'utf8'});
+   for(const receiver of ['InstallReceiver','UpdateReceiver']){const block=receiverManifest.split('E: receiver').slice(1).find(part=>part.includes('.'+receiver+'"'));if(!block||!/android:exported[^\r\n]*(?:=false|=0x0(?:\s|$))/.test(block))throw Error('Controlled result receiver is not explicitly nonexported: '+receiver);}
+   nonExportedReceiversManifestVerified=true;
+   const journals=['dsi.manager.update.v1.xml','dsi.manager.install.v1.xml'];
+   const before=journals.map(file=>run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/'+file));
+   for(const [receiver,file]of [['InstallReceiver','dsi.manager.install.v1.xml'],['UpdateReceiver','dsi.manager.update.v1.xml']])probeReceiver(receiver,file,123456,'nonowned');
+   const after=journals.map(file=>run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/'+file));if(before.some((journal,index)=>journal!==after[index]))throw Error('Spoofed result changed a private owned-session journal');spoofedResultsIgnored=true;
   }
   let cancellationRetry=false;
   let failureRetainedOnRelaunch=false;
@@ -191,13 +202,13 @@ export async function runManagerQA(args=process.argv.slice(2)){
   }
   feedMode='valid';if(!cancellationRetry){await click('Check for updates');await wait(items=>items.find(item=>item.text.includes('is available')),'verified update availability');}capture('manager-update-available');
   await click('Update DSI Manager');
-  const approve=await wait(items=>items.find(item=>installer(item)&&(/^(?:update|install)$/i.test(item.text)||item['resource-id']==='android:id/button1')),'real Manager update approval');capture('manager-update-confirmation');await tap(approve);
+  const approve=await wait(items=>items.find(item=>installer(item)&&(/^(?:update|install)$/i.test(item.text)||item['resource-id']==='android:id/button1')),'real Manager update approval');capture('manager-update-confirmation');if(redTeam)probeReceiver('UpdateReceiver','dsi.manager.update.v1.xml',ownedSession('dsi.manager.update.v1.xml'),'owned');await tap(approve);
   let updated=false;for(let attempt=0;attempt<40;attempt++){const info=run('shell','dumpsys','package',MANAGER_PACKAGE);if(info.includes('versionCode='+updateFeed.versionCode+' ')){updated=true;break;}await pause(350);}
   if(!updated)throw Error('Normal Android installer did not install same-signer update');
   launch();await wait(items=>items.find(item=>item.text.includes('Sample app ready')),'settings retained after update');capture('manager-update-installed');
   let journalRetained=false;for(let attempt=0;attempt<10;attempt++){const current=nodes(dump());if(current.some(item=>item.package===MANAGER_PACKAGE&&item.text==='You are up to date')){journalRetained=true;break;}scrollPage(current);await pause(350);}
   if(!journalRetained)throw Error('Manager update journal was not recovered after replacement');capture('manager-update-restored');
-  updaterResults={https:true,downgradeRejected:true,certificateMetadataRejected:true,archiveSignerRejected:Boolean(badSignerFeed),hashRejected:true,nativeApproval:true,versionCode:updateFeed.versionCode,settingsRetained:true,journalRetained:true,redTeam:redTeam?{rejectedCases,cancellationRetry,failureRetainedOnRelaunch,privateReceiversBlocked}:undefined};
+  updaterResults={https:true,downgradeRejected:true,certificateMetadataRejected:true,archiveSignerRejected:Boolean(badSignerFeed),hashRejected:true,nativeApproval:true,versionCode:updateFeed.versionCode,settingsRetained:true,journalRetained:true,redTeam:redTeam?{rejectedCases,cancellationRetry,failureRetainedOnRelaunch,spoofedResultsIgnored,nonExportedReceiversManifestVerified,receiverProbes}:undefined};
  }
  const logs=run('logcat','-d','-s','AndroidRuntime:E','DSI_MANAGER:I');if(logs.includes('FATAL EXCEPTION'))throw Error('Manager/native fixture runtime crash');
  writeFileSync(path.join(output,'manager-runtime.log'),logs);

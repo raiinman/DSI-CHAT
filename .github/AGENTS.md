@@ -15,12 +15,14 @@ Manager CI also runs --red-team: hostile metadata/transport/archive boundaries, 
 - Dispatch pages.yml with review_only=true on a review branch before advancing runtime UI changes to the publishing branch.
 - Preserve the publication gate: tests, catalog consistency, build, browser QA, artifact and checksum verification.
 - Keep dsi-messenger-screenshots available for review. A successful run is not a substitute for inspecting its screenshots.
-- Windows evidence uploads only PNG captures and result.json from smoke folders, explicitly including the hidden .cache path. Do not upload Electron profiles or selected project contents.
+- Windows evidence uploads only PNG captures and result.json from smoke/red-team folders, explicitly including the hidden .cache path. Do not upload Electron profiles or selected project contents. Platform CI runs the controlled Electron adversarial regression before portable packaging.
 - Review-only Pages runs also upload dsi-reviewed-site after extension ZIP packaging, for public-byte comparison. ZIP container timestamps may differ; compare packaged file checksums instead of assuming archive bytes are deterministic.
 - Do not expose credentials in commands/logs or broaden permissions without a specific need.
 
 ## Work Guidance
 Use Node 24 and current pinned Playwright 1.58.2 tooling as configured. Inspect review artifacts, correct defects, advance the implementation branch, then verify deployment and public bytes. Documentation-only commits may skip CI when runtime/published files are unchanged.
+
+original.yml also executes workbench tests on Linux so file-symlink regressions run where Windows may deny symlink creation. Windows-specific alternate-stream checks belong to platforms.yml; unsupported-host skips must remain visible.
 
 ## Verification
 Install locked devDependencies before builds. original.yml also runs real isolated extension/storage fixture QA and uploads dsi-plugin-screenshots. Existing original.yml checks unit tests, generated catalog, bundle syntax and SHA256SUMS. pages.yml adds Chromium interaction/screenshots and gated Pages publication. Record actual run status and limitations in docs/STATE.md.

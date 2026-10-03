@@ -7,6 +7,7 @@ Own DSI's original Electron desktop host and portable Windows packaging.
 - package.json/package-lock.json pin Electron; main.mjs and preload.cjs own validated local IPC.
 - renderer files own a separate local desktop control surface, not the locked Copperlight messenger.
 - package.mjs stages portable Windows output under release/ without copying AGENTS.md.
+- redteam.mjs runs an instrumented copy of current host handlers against original local attack fixtures; it records actual Electron IPC, preview isolation and busy-start teardown evidence. Development test runners do not ship in portable output.
 
 ## Local Contracts
 - Remote Discord content has sandbox/context isolation enabled, Node disabled and no privileged preload. Never expose workbench filesystem IPC to it.
@@ -20,6 +21,7 @@ Preserve Electron and Chromium notices in portable artifacts. Record exact depen
 
 ## Verification
 Run node --test workbench/*.test.mjs and node desktop/smoke.mjs; inspect generated local-window screenshots. Run node desktop/package.mjs for Windows packaging.
+Run node desktop/redteam.mjs for adversarial preview/IPC acceptance. It must reject dashboard IDE calls, rogue windows and subframe handler calls, keep outside file frames unreadable and loopback HTTP/STUN UDP/TURN TCP requests at zero under the production preview policy, and settle busy preview startup after Stop so another preview can run.
 
 ## Child DOX Index
 None. This guide also owns the desktop test/packaging scripts.

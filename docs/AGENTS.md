@@ -19,6 +19,7 @@ Manager records distinguish normal phone-only sample installation and verified D
 - DESIGN.md and USABILITY.md: approved presentation and usable behavior.
 - VISUAL_WORKFLOW.md: prepublication screenshot review and acceptance.
 - STATE.md: dated validation/publication evidence; latest entries supersede history.
+- SECURITY_REVIEW.md: controlled adversarial scope, reproducible findings, fixes, regression commands and remaining boundaries.
 - PROVENANCE.md: source/artwork/tooling attribution and ownership limits.
 - DOX_LICENSE.txt: preserved Agent Zero MIT notice for the documentation framework.
 - Reference/review captures belong to design/AGENTS.md.

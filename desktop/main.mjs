@@ -2,6 +2,8 @@ import {app,BrowserWindow,ipcMain,dialog,session} from 'electron';
 import fs from 'node:fs/promises';
 import {mkdirSync} from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
+import net from 'node:net';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {WorkspaceService,createTemplate} from '../workbench/service.mjs';
 import {BUILTIN_MANIFESTS} from '../src/plugins/builtins.mjs';
@@ -58,10 +60,24 @@ async function openPreview(){
  if(preview&&!preview.isDestroyed())preview.destroy();
  const plugin=await fs.readFile(await workbench.resolve('.dsi-build/plugin.mjs'),'utf8');
  const bundle=await sharedBundle();
- preview=lock(new BrowserWindow({...localOptions,width:950,height:680,webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true}}));
- await preview.loadFile(path.join(root,'workbench/fixture.html'));
- const result=await preview.webContents.executeJavaScript(bundle+`\n(async()=>{const module=await import(URL.createObjectURL(new Blob([${JSON.stringify(plugin)}],{type:'text/javascript'})));const definition=module.default; const expected=${JSON.stringify(build.manifest)}; if(JSON.stringify(DSIPlugins.validateManifest(definition.manifest))!==JSON.stringify(expected))throw Error('plugin.ts manifest differs from manifest.json'); globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:['styles'],plugins:[definition]}); const result=await globalThis.__dsiRuntime.reconcile({version:2,safeMode:false,enabled:{[definition.manifest.id]:true},plugins:{}});document.querySelector('#preview-status').textContent=JSON.stringify(result,null,2);return result;})()`);
+ const isolated=session.fromPartition('dsi-preview-'+crypto.randomUUID());
+ const denyProxy=net.createServer(socket=>socket.destroy());await new Promise((resolve,reject)=>{denyProxy.once('error',reject);denyProxy.listen(0,'127.0.0.1',resolve);});
+ try{await isolated.setProxy({mode:'fixed_servers',proxyRules:'http://127.0.0.1:'+denyProxy.address().port,proxyBypassRules:'<-loopback>'});}catch(error){denyProxy.close();throw error;}
+ isolated.setPermissionRequestHandler((_contents,_permission,callback)=>callback(false));isolated.setPermissionCheckHandler(()=>false);
+ isolated.webRequest.onBeforeRequest((details,callback)=>callback({cancel:!/^data:|^blob:/.test(details.url)}));
+ isolated.on('will-download',event=>event.preventDefault());
+ let target;try{
+ const css=await fs.readFile(path.join(root,'workbench/style.css'),'utf8');
+ const document=(await fs.readFile(path.join(root,'workbench/fixture.html'),'utf8')).replace(/<meta http-equiv="Content-Security-Policy" content="[^"]*">/,'<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src blob:; style-src \'unsafe-inline\'; frame-src \'none\'; worker-src \'none\'; connect-src \'none\'; object-src \'none\'; base-uri \'none\'; form-action \'none\'">').replace('<link rel="stylesheet" href="style.css">','<style>'+css.replace(/<\/style/gi,'<\\/style')+'</style>');
+ target=lock(new BrowserWindow({...localOptions,width:950,height:680,webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,session:isolated}}));preview=target;
+ target.webContents.setWebRTCIPHandlingPolicy('disable_non_proxied_udp');target.once('closed',()=>denyProxy.close());
+ await target.loadURL('data:text/html;charset=utf-8,'+encodeURIComponent(document));
+ const contents=target.webContents;let destroyed;
+ const destruction=new Promise((_,reject)=>{destroyed=()=>reject(Error('Preview stopped before plugin startup completed'));contents.once('destroyed',destroyed);});
+ let result;
+ try{result=await Promise.race([destruction,contents.executeJavaScript(bundle+`\n(async()=>{const module=await import(URL.createObjectURL(new Blob([${JSON.stringify(plugin)}],{type:'text/javascript'})));const definition=module.default; const expected=${JSON.stringify(build.manifest)}; if(JSON.stringify(DSIPlugins.validateManifest(definition.manifest))!==JSON.stringify(expected))throw Error('plugin.ts manifest differs from manifest.json'); globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:['styles'],plugins:[definition]}); const result=await globalThis.__dsiRuntime.reconcile({version:2,safeMode:false,enabled:{[definition.manifest.id]:true},plugins:{}});document.querySelector('#preview-status').textContent=JSON.stringify(result,null,2);return result;})()`)]);}finally{contents.removeListener('destroyed',destroyed);}
  return {ok:result.active.includes(build.manifest.id)&&result.errors.length===0,result};
+ }catch(error){if(target&&!target.isDestroyed())target.destroy();if(denyProxy.listening)denyProxy.close();throw error;}
 }
 handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterStatus,version:app.getVersion(),platform:process.platform}));
 handle('dsi:features',value=>{const requested=validSettings(value);const operation=featureQueue.then(async()=>{settings=requested;await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});featureQueue=operation.catch(()=>{});return operation;});

@@ -103,6 +103,7 @@ When the user requests a durable behavior change, record it here or in the relev
 - Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
 - Build an original phone-only DSI Manager with one guided setup flow and a built-in updater. Normal user setup must not require ADB, a PC, manual APK selection or SDK tooling. Preserve explicit Android install approval and settings through updates; verify DSI release integrity and signing identity. Until real Discord attachment is established, label the included controlled sample and unsupported Discord setup accurately.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
+- Run a controlled red-team pass after completed development, fix reproducible findings and retain behavioral regressions and an honest scope/results record. Use owned fixtures; this does not authorize attacks on third-party services or accounts.
 
 ## Child DOX Index
 

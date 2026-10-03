@@ -1,7 +1,7 @@
 name: DSI platform verification
 on:
   push:
-    branches: [codex/dsi-original, codex/dsi-platform-review]
+    branches: [codex/dsi-original, codex/dsi-platform-review, codex/dsi-redteam-review]
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,6 +20,7 @@ jobs:
       - run: node desktop/node_modules/electron/install.js
       - run: node --test workbench/*.test.mjs
       - run: node desktop/smoke.mjs
+      - run: node desktop/redteam.mjs
       - run: node desktop/package.mjs
       - run: node desktop/smoke.mjs --packaged
       - uses: actions/upload-artifact@v4
@@ -30,6 +31,8 @@ jobs:
           path: |
             .cache/desktop-smoke-*/*.png
             .cache/desktop-smoke-*/result.json
+            .cache/desktop-redteam-*/*.png
+            .cache/desktop-redteam-*/result.json
       - uses: actions/upload-artifact@v4
         with:
           name: dsi-windows-portable

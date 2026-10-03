@@ -1,7 +1,7 @@
 name: DSI original
 on:
   push:
-    branches: [codex/dsi-original, codex/dsi-platform-review]
+    branches: [codex/dsi-original, codex/dsi-platform-review, codex/dsi-redteam-review]
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,16 +15,26 @@ jobs:
           node-version: 24
       - run: npm ci --ignore-scripts
       - run: npm test
+      - run: node --test workbench/*.test.mjs
       - run: npm run catalog
       - run: git diff --exit-code catalog/features.json
       - run: npm run build
       - run: node node_modules/playwright/cli.js install --with-deps chromium
       - run: node scripts/plugin-qa.mjs
+      - run: node scripts/red-team-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: dsi-plugin-screenshots
           path: .cache/plugin-screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dsi-browser-red-team
+          include-hidden-files: true
+          path: |
+            .cache/red-team/browser/report.json
+            .cache/red-team/browser/fixture.png
       - run: cd dist/chromium && sha256sum -c SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
