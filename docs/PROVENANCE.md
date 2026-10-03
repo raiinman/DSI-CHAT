@@ -4,7 +4,7 @@ The DOX documentation framework is adapted from https://github.com/raiinman/dox 
 
 User direction: create DSI's own implementation rather than a branded upstream fork. October 3 clarification: bring together capabilities and ideas from Vencord, Equicord and Vendetta through original DSI engine/plugin/adapter code. The repositories are behavior references, not vendored dependencies.
 
-This source tree was authored in this session from DSI behavior requirements and standard JavaScript / Chromium extension APIs. No source or plugin from the previous fork is copied into this tree. There are no runtime npm dependencies. Exact development dependencies now provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2; package-lock.json records their transitive tooling packages.
+This source tree was authored in this session from DSI behavior requirements and standard JavaScript / Chromium extension APIs. No source or plugin from the previous fork is copied into this tree. The extension and site have no external npm runtime dependencies. The separate Windows package ships Electron and the workbench compiler/bundler described below. Exact development dependencies now provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2; package-lock.json records their transitive tooling packages.
 
 The assistant previously inspected upstream source and licenses while building the fork. This is consequently NOT a claim of a formally separated clean-room engineering process. Fresh source files and a separate branch are not by themselves proof of legal independence.
 
@@ -16,7 +16,7 @@ The original fork remains licensed and preserved on rewrite. No attempt is made 
 
 The generated nine-tailed fox broadcast mascot is included as artwork on the live preview. The extension icon has not yet been prepared. No upstream logo is used.
 
-Playwright 1.58.2 is development/browser-test tooling, installed locally and in GitHub CI. It is not shipped in the extension or site. Runtime source and builds remain dependency-free.
+Playwright 1.58.2 is development/browser-test tooling, installed locally and in GitHub CI. It is not shipped in the extension or site. Browser runtime bundles remain dependency-free.
 
 The October 1 orange-glass messenger revision used historical screenshots at https://paulstamatiou.com/trillian-astra-ceruleans-next-gen-im-client as visual reference. No page source, image, skin or icon was incorporated. DSI's CSS, broadcast mark and frame treatment were authored here. Visual inspiration is not a guarantee concerning commercial intellectual-property clearance.
 
@@ -33,3 +33,11 @@ October 3 Copperlight redesign: user explicitly approved docs/design/copperlight
 Copperlight second detail pass adds site/assets/ui-icons.svg: twelve original geometric vector symbols authored directly for labeled navigation, contact/archive/profile and composer controls. No icon library, upstream asset or raster generation is involved. Existing original valley artwork remains unchanged. CSS authors shallow bevels/shadows and service/button colors; no runtime dependency is added.
 
 October 3 original-mod planning/tool preparation: ignored .cache/upstreams snapshots were fetched from the three user-named public repos. Their source was previously inspected; no formal clean-room claim is made. REFERENCE_SOURCES.json pins the exact commits, and REFERENCE_INVENTORY.json records only module directory identifiers/references plus authored mobile capability categories, without copied implementations/descriptions/assets. No upstream build was run or engine installed. Official Android command-line/platform tools are portable development tools only; original notices remain in extracted packages. URLs/digests are pinned in ANDROID_TOOLS.lock.json and their installation does not relicense DSI source. TOOLCHAIN.md records installed versions, verification and deferred native build prerequisites.
+
+## Original platform development release, October 3
+
+The API 1 engine, twelve browser/Windows plugins, desktop integration, workbench, native Java engine and non-root APK insertion/bootstrap are DSI-authored code. No Vencord/Equicord/Vendetta modules or Discord APKs are imported or redistributed. Fixtures contain sample markup/native views and fictional data.
+
+Windows ships Electron 44.5.1 (MIT and Chromium third-party components), TypeScript 5.9.3 (Apache-2.0) and esbuild 0.28.2 (MIT). desktop/package-lock.json pins Electron tooling; root package-lock.json pins compilers. Portable packages preserve Electron LICENSE/LICENSES.chromium.html and compiler notices in resources/app/node_modules. No editor component was added.
+
+Android uses official Google SDK platform35/build-tools35.0.1 and an existing JDK for development, not bundled SDK/JDK redistributions. Apktool3.0.3 is pinned with SHA-256 in android/tooling.lock.json, downloaded as development tooling and excluded from release toolkits. Its Apache-2.0 and dependency license links are recorded in android/README.md. Original patch insertion remains separate from Apktool. Debug signing is development-only. reactivecircus/android-emulator-runner@v2 is CI tooling (Apache-2.0), not shipped. See its official repository for CI configuration; no source is vendored.

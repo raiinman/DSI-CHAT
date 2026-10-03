@@ -4,7 +4,7 @@
 Own workflows for original extension verification and reviewed Pages publication.
 
 ## Ownership
-workflows/original.yml verifies/packages the Chromium extension. workflows/pages.yml builds, tests, screenshots and optionally publishes the preview.
+workflows/platforms.yml builds/tests the Windows host/workbench and native Android APK/patcher on Windows, then tests the controlled patched fixture on an Ubuntu KVM emulator. It never installs a user APK or contacts an account. workflows/original.yml verifies/packages the Chromium extension. workflows/pages.yml builds, tests, screenshots and optionally publishes the preview.
 
 ## Local Contracts
 - Push publication targets codex/dsi-original, never the preserved rewrite fork.
@@ -17,7 +17,7 @@ workflows/original.yml verifies/packages the Chromium extension. workflows/pages
 Use Node 24 and current pinned Playwright 1.58.2 tooling as configured. Inspect review artifacts, correct defects, advance the implementation branch, then verify deployment and public bytes. Documentation-only commits may skip CI when runtime/published files are unchanged.
 
 ## Verification
-Existing original.yml checks unit tests, generated catalog, bundle syntax and SHA256SUMS. pages.yml adds Chromium interaction/screenshots and gated Pages publication. Record actual run status and limitations in docs/STATE.md.
+Install locked devDependencies before builds. original.yml also runs real isolated extension/storage fixture QA and uploads dsi-plugin-screenshots. Existing original.yml checks unit tests, generated catalog, bundle syntax and SHA256SUMS. pages.yml adds Chromium interaction/screenshots and gated Pages publication. Record actual run status and limitations in docs/STATE.md.
 
 ## Child DOX Index
 None. The workflows folder remains owned here.

@@ -6,9 +6,12 @@
 <main>
 <label class="safe"><input id="safe-mode" type="checkbox" disabled> Safe mode</label>
 <p class="hint">Pause every feature without losing your choices.</p>
-<fieldset id="features" disabled><legend>Display features</legend></fieldset>
+<label class="description" for="plugin-filter">Find an original plugin</label>
+<input id="plugin-filter" type="search" placeholder="Search plugins" autocomplete="off">
+<p id="filter-result" class="description" role="status">12 original plugins</p>
+<fieldset id="features" disabled><legend>Original plugins</legend></fieldset>
 <p id="status" role="status" aria-live="polite">Loading settings…</p>
 </main>
-<footer>Browser preview · 0.1.0</footer>
+<footer>Discord web display plugins · 0.2.0</footer>
 <script src="popup.js"></script>
 </body></html>

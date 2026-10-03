@@ -41,9 +41,9 @@ Working local preview: fictional contacts, saved favorites/local groups, context
 
 Messages/drafts are in tab memory and reset on reload. Appearance, local profile and contact organization are saved separately in localStorage. Favorites and group names/membership survive reload; search/filter choices reset. Group collapse is session-only. Profile renaming affects future message authors; older authors remain unchanged. Message/user text renders through textContent.
 
-No connected messaging transport, authentication, account switching, voice/video, file transfers, Android APK or desktop installer exists. Service buttons report preview states; meters are decorative. Do not imply successful connections or live delivery. The downloadable Chromium extension independently implements three original Discord web display features; it does not replace Discord's UI with this shell.
+No connected messaging transport, authentication, account switching, voice/video, file transfers or signed desktop installer exists. Native development APKs and a Windows portable host/workbench now exist; they are distinct from the messenger preview. Service buttons report preview states; meters are decorative. Do not imply successful connections or live delivery. The downloadable Chromium extension independently implements twelve original browser/Windows display plugins; it does not replace Discord's UI with this shell.
 
-No upstream engines/plugins were vendored into this branch. Prior upstream exposure is documented; do not claim formal clean-room certification, legal clearance or license-free ownership of third-party work. No runtime npm dependencies. Pinned devDependencies now provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2; browser CI retains its existing cached Playwright setup. Android command-line/platform tools are prepared portably; native build/emulator prerequisites are deferred.
+No upstream engines/plugins were vendored into this branch. Prior upstream exposure is documented; do not claim formal clean-room certification, legal clearance or license-free ownership of third-party work. No external npm runtime dependencies in the site/extension; Windows includes Electron and workbench compilers with their notices. Pinned devDependencies now provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2; browser CI uses root-installed pinned Playwright. Android command-line/platform tools are prepared portably; native lab/bootstrap builds and a Linux emulator verification workflow are implemented.
 
 ## Continue next
 
@@ -61,7 +61,7 @@ The current UI/UX is locked. Preserve the published second enhancement baseline 
 
 Developer setup: `npm ci --ignore-scripts`, `npm run tools:setup`, `npm run tools:doctor`; add `-- --android` for the prepared portable Windows tools. Tooling instructions/pins and deferred native prerequisites are in `docs/TOOLCHAIN.md`.
 
-Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Contact-organization baseline: 16 tests passing. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
+Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Current root baseline: 34 tests passing; workbench/native suites are separate. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
 
 Use a review branch and dispatch `.github/workflows/pages.yml` with `review_only: true` against it. This builds/tests/screenshots without publishing. Download `dsi-messenger-screenshots`, inspect desktop (especially 1440x844), Dark/Daytime/High contrast and 390/768 views, plus changed dialogs/states. Correct defects before advancing the publishing branch. Preserve composer visibility, all four sample contacts on the ordinary desktop viewport, draft isolation, safe text rendering, native modal focus return and reduced-motion choices.
 
@@ -74,3 +74,9 @@ Latest verified Copperlight second enhancement publication: Pages run https://gi
 Windows PowerShell, Node 24, git and gh were available. Local Chromium launch worked for the October 3 contact-organization slice, using ignored Playwright 1.58.2 tooling in .cache/browser-qa. QA also passed on GitHub Actions Linux. Re-probe capabilities in a new environment. If inherited proxy variables point to a dead loopback proxy, clear them for the relevant network command. Node HTTPS fetch worked; PowerShell/native curl had TLS issues. Do not print authentication tokens or store them in handoff files. Use the available git credential mechanism; credentials must remain out of logs.
 
 Give concise progress updates and carry the slice through visual review and publication. Ask only for genuinely missing decisions; Michael should not have to repeat the established design.
+
+## Original multi-platform development release
+
+The API1 engine and v2 settings live in src/plugins/; twelve built-ins have reversible resource ownership, capability/dependency/conflict gates and controlled real-extension QA. Legacy three-feature modules still power the locked preview. desktop/ owns the portable Electron host; workbench/ owns working plugin edit/diagnose/build/test/preview/export. android/ owns native lab/three handlers and non-root local APK bootstrap/patcher. Read their indexed AGENTS/README files before changes.
+
+The user selected ordinary non-root phones. No Discord APK or account was used. Preserve explicit local input/output boundaries and development-signing limits. Root browser tests pass34, workbench tests10 and native lifecycle assertions17; APK patch acceptance and packaged Windows smoke pass. Emulator and publication run evidence will be recorded in STATE.md after actual results. Do not turn fixture success into a full-client or hundreds-of-plugins claim.

@@ -1,42 +1,40 @@
 # DSI CHAT
 
-Dead Signal Interactive's original Discord customization implementation.
+Dead Signal Interactive's original Discord customization toolkit. Continue on `codex/dsi-original`; the preserved earlier fork stays on `rewrite`.
 
-Try the [live preview](https://raiinman.github.io/DSI-CHAT/) or download the extension ZIP directly from that page. The Copperlight Realism preview has cream, terracotta, sage and turquoise surfaces, an original miniature valley banner and working local messenger controls. It changes sample messages only.
+The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains locked. This release builds the original mod engine and developer tools behind that direction. Vencord, Equicord and Vendetta provide capability references; their engines/plugins are not merged or vendored.
 
-This branch starts a new source tree. It contains no vendored Revenge, Vencord, Equicord or Vendetta engine or plugins. The earlier fork remains on the repository's `rewrite` branch with its existing licenses.
+## Delivered development tools
 
-## Original DSI roadmap
+| Target | Working deliverable | Validation boundary |
+| --- | --- | --- |
+| Browser | Manifest V3 extension, twelve original plugins, search, saved settings and safe mode | Real isolated extension/storage against intercepted local fixture markup; live Discord selector acceptance pending |
+| Windows | Portable Electron host, offline plugin fixture, deliberately opened Discord web host | Packaged executable/controls tested; unsigned; no installed-Discord injection or live account acceptance |
+| Developer IDE | Original plugin editor, conflict-safe saves, diagnostics, builds/maps, cancellable tests, isolated preview/stop and checksummed export | Controlled local projects; plain text editor, no debugger/Git UI |
+| Android | Native Java lab APK, three native handlers, non-root bootstrap and local APK patcher | Original fixture build/sign/patch tests; actual Discord attachment pending |
 
-The goal is one original Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta, with DSI-authored plugins and browser/desktop/native-mobile adapters. Their engines are not merged into this implementation. The Copperlight UI/UX is locked; the next engineering target is the original plugin foundation. See the [implementation plan](docs/IMPLEMENTATION_PLAN.md), [reference inventory](docs/REFERENCE_INVENTORY.json) and [prepared tools](docs/TOOLCHAIN.md). Full plugin parity and native adapters are future milestones.
+[Release downloads](https://github.com/raiinman/DSI-CHAT/releases) provide development artifacts. Unzip the entire Windows portable directory and run DSI-CHAT.exe. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
 
-## First working slice
+Plugins start disabled. Safe mode retains choices and removes owned effects. The browser/Windows batch includes Signal theme, compact messages, reduced motion, keyboard focus, readable code, larger text, clear links, media fitting, hidden typing indicator, wider scrollbars, full timestamp tooltips and link destinations. Native Android has separate reviewed native-view handlers; it cannot execute browser CSS plugins.
 
-A Chromium Manifest V3 extension with an original feature lifecycle, local settings, safe mode, and three reversible display features:
-- Signal theme: charcoal backgrounds and orange highlights.
-- Compact messages: reduced vertical message padding.
-- Reduced motion: suppress CSS animations and transitions.
+## Build and verify
 
-Features start disabled. Safe mode disables all features while retaining saved choices. Settings update open Discord tabs through extension storage.
-
-## Build and test
-
-Use Node.js 24 or newer. The current runtime/build needs no npm packages. Pinned development tools for future engine work can be prepared with `npm ci --ignore-scripts`, `npm run tools:setup` and `npm run tools:doctor`; see the toolchain document.
+Node 24+, pinned development packages and an installed Chromium:
 
 ```sh
+npm ci --ignore-scripts
+npm run tools:setup
 npm test
 npm run catalog
 npm run build
+npm run qa:plugins
+node scripts/site.mjs
+npm run qa:messenger
+npm run test:workbench
 ```
 
-Load `dist/chromium` through your browser's extension developer mode, then open Discord web and the DSI CHAT toolbar popup. Development has not installed this extension into Michael's browser.
+For Windows, install the pinned Electron runtime with `npm ci --prefix desktop --ignore-scripts`, then `node desktop/node_modules/electron/install.js`. See [desktop/README.md](desktop/README.md), [workbench/README.md](workbench/README.md) and [toolchain](docs/TOOLCHAIN.md). Native Android uses its documented JDK/SDK scripts.
 
-## Scope
+This is a tested development release, not complete parity with hundreds of reference plugins. Native Discord services, actual Android client attachment, production signing, automatic distribution/updates and upstream package compatibility remain unfinished. Discord provides messaging; the separate Copperlight page uses fictional in-memory conversations.
 
-This is the first original browser prototype, not a replacement for hundreds of upstream plugins. Android, a desktop client adapter, account switching, plugin distribution and an installer remain future work.
-
-See [architecture](docs/ARCHITECTURE.md), [provenance](docs/PROVENANCE.md) and [validation](docs/STATE.md).
-
-Project guidance uses the [DOX hierarchy](AGENTS.md), with indexed local AGENTS.md files. Read the root and every applicable child before edits; update owning instructions when contracts change. DOX is documentation-only, attributed to Agent Zero under its [MIT license](docs/DOX_LICENSE.txt).
-
-No third-party engine license is included because this tree does not import those engines. No open-source license grant has been chosen for the new DSI source; see [NOTICE](NOTICE.md). Independence of this source tree does not constitute a legal opinion about copyright, patents, trademarks or platform terms.
+See [architecture](docs/ARCHITECTURE.md), [implementation plan](docs/IMPLEMENTATION_PLAN.md), [validation](docs/STATE.md) and [provenance](docs/PROVENANCE.md). [DOX](AGENTS.md) governs documentation; its [MIT notice](docs/DOX_LICENSE.txt) does not relicense DSI source. No open-source license grant has been selected for original DSI source; [NOTICE.md](NOTICE.md) records ownership limits. Preserve all shipped third-party notices.

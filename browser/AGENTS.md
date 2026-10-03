@@ -13,7 +13,7 @@ manifest.json, popup.html and popup.css; JavaScript behavior belongs to ../src/A
 - Browser package does not implement the messenger shell, Android or a desktop installer.
 
 ## Work Guidance
-Keep popup controls accessible, labeled and keyboard usable; coordinate IDs with src/popup.mjs. Preserve permission and provenance checks when editing the manifest.
+Keep popup controls accessible, labeled and keyboard usable; coordinate IDs with src/plugins/popup-entry.mjs. Preserve permission and provenance checks when editing the manifest.
 
 ## Verification
 npm test checks manifest scope and adapter behavior. npm run build copies these files and syntax-checks bundled JavaScript; verify dist/chromium/SHA256SUMS through the existing workflow.

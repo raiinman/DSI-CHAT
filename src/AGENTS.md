@@ -7,7 +7,8 @@ Own the original feature lifecycle, settings and extension JavaScript.
 - core.mjs: feature declarations, settings normalization and reversible runtime.
 - features.mjs: original display CSS and owned style cleanup.
 - content.mjs: storage reconciliation, revision races and page lifecycle.
-- popup.mjs: extension settings loading, saving and failure feedback.
+- popup.mjs: legacy three-feature popup source retained for compatibility.
+- plugins/: API 1 registry/lifecycle, v2 settings and current browser entries.
 
 ## Local Contracts
 - Keep settings validated, features disabled by default, and safe mode reversible without losing choices.
@@ -23,4 +24,4 @@ Update feature declarations, CSS, popup controls and generated catalog together 
 Run npm test, npm run catalog and npm run build. Build syntax-compiles bundled content/popup scripts. Site behavior changes also require the existing browser QA and visual review workflow.
 
 ## Child DOX Index
-None. All files here remain owned by this document.
+- [plugins/AGENTS.md](plugins/AGENTS.md): shared original plugin contract, built-ins and browser integration. Parent owns the legacy preview-compatible three-feature modules.

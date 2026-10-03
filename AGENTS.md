@@ -7,7 +7,7 @@ Record source provenance and all dependencies. Never remove notices from third-p
 Prior exposure to upstream sources is documented; do not claim a formally isolated clean-room process or legal clearance.
 Keep development local until instructed to install or interact with a live account.
 Run tests, catalog generation and build after runtime changes. Record actual results.
-The browser prototype is not an Android APK, desktop injector or full plugin-suite replacement.
+The extension, Windows host/workbench and native Android development APK/patcher are distinct deliverables. Controlled fixtures do not prove live Discord attachment or full reference-plugin parity.
 
 ## Project continuation
 
@@ -99,6 +99,7 @@ When the user requests a durable behavior change, record it here or in the relev
 
 - Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
 - Build one original DSI mod that brings together the capabilities of Vencord, Equicord and Vendetta; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
+- Target ordinary non-root Android phones with an original local APK bootstrap/patcher; preserve selected input and write a separate development-signed output. Do not download/distribute Discord APKs or automatically install into a user device.
 - Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 
@@ -106,6 +107,9 @@ When the user requests a durable behavior change, record it here or in the relev
 
 Root owns README.md, NOTICE.md, package.json, .gitignore, project-wide direction, branch selection and cross-area contracts. Ignored .cache/, dist/ and release/ are temporary/generated outputs; .git/ is repository metadata. Do not create DOX trees inside these directories.
 
+- [desktop/AGENTS.md](desktop/AGENTS.md): Windows Electron host, isolated fixtures and portable packaging.
+- [workbench/AGENTS.md](workbench/AGENTS.md): original plugin project editor, diagnostics/build/test/preview/export services.
+- [android/AGENTS.md](android/AGENTS.md): native development APK, non-root bootstrap/patcher and emulator verification.
 - [src/AGENTS.md](src/AGENTS.md): shared feature runtime and Chromium JavaScript adapters.
 - [browser/AGENTS.md](browser/AGENTS.md): extension manifest and popup presentation.
 - [site/AGENTS.md](site/AGENTS.md): messenger preview behavior, themes and UI assets.

@@ -1,0 +1,28 @@
+# Original plugin engine
+
+## Purpose
+Own DSI-authored plugin contracts, lifecycle, settings and browser integration. Keep the locked messenger presentation unchanged.
+
+## Ownership
+runtime.mjs: manifest validation, dependency/conflict planning, owned resources and serialized lifecycle.
+settings.mjs: versioned plugin records and migration from the original three-feature settings.
+builtins.mjs: original browser/Windows display and DOM plugins.
+popup-entry.mjs: searchable twelve-plugin settings controls.
+browser-adapter.mjs and browser-entry.mjs: isolated Chromium storage/page lifecycle integration.
+index.mjs: shared bundle exports for controlled hosts and Windows.
+
+## Local Contracts
+- API version 1; plugins are reviewed local DSI code. Capability declarations do not sandbox arbitrary JavaScript.
+- Features start disabled. Unsupported platform/capability/dependency/conflict states are explicit; safe mode preserves settings.
+- Own resources and clean them in reverse order. Serialize reconciliations and cancel stale asynchronous starts.
+- No remote code evaluation, upstream implementation imports or private Discord runtime hooks in the browser adapter.
+- Preserve the legacy three-feature API used by the locked preview; browser plugin settings use a separate v2 key.
+
+## Work Guidance
+Validate a plugin before registration. Keep diagnostics structured and bounded; do not log user/message content. Built-ins operate visible DOM/style behavior only and must restore owned mutations on stop.
+
+## Verification
+Root npm test covers registry, lifecycle, races, resources, settings and adapter behavior. npm run build bundles isolated browser entries and the shared module; browser plugin QA uses controlled local fixtures, not a live account.
+
+## Child DOX Index
+None.

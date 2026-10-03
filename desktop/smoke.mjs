@@ -1,0 +1,12 @@
+import {spawn} from 'node:child_process';
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const output=path.join(root,'.cache/desktop-smoke-'+Date.now());
+const packaged=process.argv.includes('--packaged');
+const executable=packaged?path.join(root,'release/dsi-chat-windows-portable/DSI-CHAT.exe'):path.join(root,'desktop/node_modules/electron/dist/electron.exe');
+const args=packaged?['--smoke']:[path.join(root,'desktop'),'--smoke'];
+const child=spawn(executable,args,{windowsHide:true,env:{...process.env,DSI_SMOKE_OUTPUT:output},stdio:'inherit'});
+const timeout=setTimeout(()=>child.kill(),120000);
+child.on('exit',async code=>{clearTimeout(timeout);if(code!==0){process.exitCode=1;return;}const result=JSON.parse(await fs.readFile(path.join(output,'result.json'),'utf8'));console.log(JSON.stringify({...result,output},null,2));});

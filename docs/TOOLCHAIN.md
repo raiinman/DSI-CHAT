@@ -36,7 +36,7 @@ npm run tools:doctor -- --android
 
 Setup installs Chromium and optionally extracts the pinned official Android tools. It preserves an existing SDK directory and refuses an unexpected revision. The doctor checks pinned packages, transforms a tiny TypeScript fixture, launches Chromium against in-memory HTML and probes tool versions. It writes `.cache/toolchain-report.json`. These are tool availability checks, not full project type checking or platform integration tests.
 
-The existing `scripts/browser-qa.mjs` still uses `.cache/browser-qa/node_modules/playwright` in local/CI runs. Its current workflow remains intact; root-installed Playwright is available for new core/adapter fixtures. Existing checks remain `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs` and `git diff --check`.
+Both scripts/browser-qa.mjs and plugin-qa.mjs now use the root-pinned Playwright dependency. CI runs npm ci --ignore-scripts before builds and installs Chromium from that package. Existing checks remain `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs` and `git diff --check`.
 
 ## Reference material
 
@@ -49,8 +49,8 @@ node scripts/reference-inventory.mjs --check
 
 This reads Git directory names, not source implementations. The generated inventory is a deduplicated starting point; feature acceptance specifications must be authored by DSI. Prior upstream source inspection is recorded in PROVENANCE.md; no formal clean-room claim is made.
 
-## Deferred until the adapter milestone
+## Platform development tools
 
-Native Android SDK platform/build-tools, a matching Gradle wrapper/JDK selection, emulator image and a native test host are not yet installed or defined. Review SDK package licenses during that setup. The installed command-line package now provides `android.exe`; `sdkmanager.bat` redirects to Android CLI. Desktop host/packager selection follows the adapter contract. iOS compilation requires a macOS/Xcode host. No APK, installer, external plugin installation, connected account or device validation is claimed.
+Native Android platform35/build-tools35.0.1, emulator/image and JDK builds are prepared; android/README.md provides commands and pinned Apktool provenance. Builds use javac/aapt2/d8/zipalign/apksigner without Gradle. This Windows host cannot boot an accelerated emulator while firmware virtualization is disabled; platforms.yml supplies an Ubuntu KVM fixture gate. Desktop uses Electron44.5.1 with explicit install.js after npm ci --prefix desktop --ignore-scripts; desktop/package.mjs stages a portable executable with notices and hashes. No signed Windows installer, live account, physical device or iOS compilation is claimed.
 
 Documentation used: [TypeScript JavaScript checking](https://www.typescriptlang.org/tsconfig/checkJs.html), [esbuild API](https://esbuild.github.io/api/), [Playwright browser installation](https://playwright.dev/docs/browsers), [Android command-line tools](https://developer.android.com/tools), [Android platform-tools](https://developer.android.com/tools/releases/platform-tools) and [Android CLI](https://developer.android.com/tools/agents/android-cli). Context7 supplied the TypeScript/Playwright/SDK documentation before tool setup; package/CLI probes establish the actual installed versions.

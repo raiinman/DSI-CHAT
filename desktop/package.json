@@ -1,0 +1,9 @@
+{
+  "name": "dsi-chat-desktop",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "main": "main.mjs",
+  "scripts": {"start":"electron .", "package":"node package.mjs", "test":"node --test ../workbench/*.test.mjs", "smoke":"node smoke.mjs"},
+  "devDependencies": {"electron":"44.5.1"}
+}

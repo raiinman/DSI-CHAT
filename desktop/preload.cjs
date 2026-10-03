@@ -1,0 +1,20 @@
+const {contextBridge,ipcRenderer}=require('electron');
+contextBridge.exposeInMainWorld('dsiDesktop',Object.freeze({
+ status:()=>ipcRenderer.invoke('dsi:status'),
+ setFeatures:settings=>ipcRenderer.invoke('dsi:features',settings),
+ openFixture:()=>ipcRenderer.invoke('dsi:fixture'),
+ openDiscord:()=>ipcRenderer.invoke('dsi:discord'),
+ openWorkbench:()=>ipcRenderer.invoke('dsi:workbench'),
+ openWorkspace:()=>ipcRenderer.invoke('ide:open'),
+ createWorkspace:()=>ipcRenderer.invoke('ide:create'),
+ files:()=>ipcRenderer.invoke('ide:files'),
+ read:path=>ipcRenderer.invoke('ide:read',path),
+ save:record=>ipcRenderer.invoke('ide:save',record),
+ diagnose:()=>ipcRenderer.invoke('ide:diagnose'),
+ build:()=>ipcRenderer.invoke('ide:build'),
+ test:()=>ipcRenderer.invoke('ide:test'),
+ cancel:()=>ipcRenderer.invoke('ide:cancel'),
+ preview:()=>ipcRenderer.invoke('ide:preview'),
+ stopPreview:()=>ipcRenderer.invoke('ide:stop'),
+ package:()=>ipcRenderer.invoke('ide:package')
+}));

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "DSI CHAT",
-  "version": "0.1.0",
-  "description": "Original DSI display features for Discord web.",
+  "version": "0.2.0",
+  "description": "Original DSI plugin engine and twelve reversible Discord web features.",
   "permissions": [
     "storage"
   ],

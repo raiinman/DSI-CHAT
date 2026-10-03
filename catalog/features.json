@@ -1,32 +1,236 @@
 {
   "implementation": "DSI original",
+  "apiVersion": 1,
   "features": [
     {
       "id": "signal-theme",
-      "label": "Signal theme",
-      "description": "Charcoal surfaces with orange highlights.",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Signal theme",
+      "description": "Charcoal Discord surfaces with orange highlights.",
       "platforms": [
-        "chromium-web"
+        "browser",
+        "windows"
       ],
-      "defaultEnabled": false
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
     },
     {
       "id": "compact-messages",
-      "label": "Compact messages",
-      "description": "Reduce vertical message spacing.",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Compact messages",
+      "description": "Reduce vertical spacing between visible messages.",
       "platforms": [
-        "chromium-web"
+        "browser",
+        "windows"
       ],
-      "defaultEnabled": false
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
     },
     {
       "id": "reduced-motion",
-      "label": "Reduced motion",
-      "description": "Suppress animations and transitions.",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Reduced motion",
+      "description": "Suppress animations, transitions and smooth scrolling.",
       "platforms": [
-        "chromium-web"
+        "browser",
+        "windows"
       ],
-      "defaultEnabled": false
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "keyboard-focus",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Keyboard focus",
+      "description": "Make keyboard focus rings easier to see.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "readable-code",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Readable code",
+      "description": "Wrap long code lines and use clear, spacious code text.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "larger-text",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Larger message text",
+      "description": "Increase visible message text size without changing stored messages.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "clear-links",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Clear links",
+      "description": "Underline visible message links and give them a clearer focus target.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "media-fit",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Fit large media",
+      "description": "Keep visible images and videos within their conversation width.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "calm-typing",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Hide typing indicator",
+      "description": "Hide the visible typing indicator locally.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "wide-scrollbars",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Wider scrollbars",
+      "description": "Make scrollable regions easier to grab with a pointer.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "styles"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "full-timestamps",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Full timestamps",
+      "description": "Show full local date/time in the tooltip of visible timestamp elements.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "dom",
+        "events"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
+    },
+    {
+      "id": "link-destinations",
+      "version": "0.2.0",
+      "apiVersion": 1,
+      "name": "Link destinations",
+      "description": "Show the actual destination URL in visible link tooltips.",
+      "platforms": [
+        "browser",
+        "windows"
+      ],
+      "capabilities": [
+        "dom",
+        "events"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "settings": {},
+      "defaultEnabled": false,
+      "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
     }
   ]
 }

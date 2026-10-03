@@ -1,0 +1,5 @@
+[
+  {"id":"native-readable-text","version":"0.1.0","apiVersion":1,"name":"Readable native text","description":"Enlarge text in DSI's native development fixture.","platforms":["android"],"capabilities":["native.views"],"dependencies":[],"conflicts":[],"settings":{}},
+  {"id":"native-compact-layout","version":"0.1.0","apiVersion":1,"name":"Compact native layout","description":"Reduce spacing in DSI's native development fixture.","platforms":["android"],"capabilities":["native.views"],"dependencies":[],"conflicts":[],"settings":{}},
+  {"id":"native-reduced-motion","version":"0.1.0","apiVersion":1,"name":"Reduced native motion","description":"Stop the decorative native development fixture pulse.","platforms":["android"],"capabilities":["native.views"],"dependencies":[],"conflicts":[],"settings":{}}
+]

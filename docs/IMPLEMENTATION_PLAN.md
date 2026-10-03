@@ -28,9 +28,9 @@ Initial families, in order:
 
 Evaluate features requiring private host internals separately. A name such as `showHiddenChannels` is not authorization or proof of access to server-restricted content. Unsupported capabilities remain disabled with an accurate reason.
 
-## First six-hour engineering sprint
+## Delivered development sprint
 
-This is an estimate for the next engineering sprint, not a claim that six hours elapsed or that all platforms will be finished.
+The user authorized two subagents and a five-hour delivery target for Browser, Windows, ordinary non-root Android and the requested IDE. The foundation below is implemented; the table retains the original sequence, not elapsed-time evidence.
 
 | Time | Deliverable | Acceptance |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ This is an estimate for the next engineering sprint, not a claim that six hours 
 | 4:30–5:15 | Controlled browser fixtures and versioned settings migration | Enable/disable/reload/teardown tested; invalid data repaired; no live account required |
 | 5:15–6:00 | Existing checks, build/provenance review and documented deliverable | Tests/catalog/build/checksums pass; inspect screenshots if any rendered surface changes; publish only the reviewed artifact |
 
-Deliverable: a usable original DSI plugin foundation with the three existing features running through it, not hundreds of recreated plugins, an Android APK or an ultimate finished client. If asynchronous start is introduced, serialize reconciliation and test stale-start cancellation and disposal rather than hiding races behind a promise.
+Delivered: original API1 foundation, twelve browser/Windows plugins, portable Windows host and IDE, native Android lab and non-root local bootstrap/patcher. Controlled fixture validation does not establish complete parity or actual Android Discord attachment. If asynchronous start is introduced, serialize reconciliation and test stale-start cancellation and disposal rather than hiding races behind a promise.
 
 ## Following milestones
 
@@ -60,3 +60,7 @@ Native mobile is a substantial adapter project. An Android WebView wrapper does 
 ## Tools and continuation
 
 See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and deferred native prerequisites. The immediate implementation target is the six-hour engine sprint above. The user also requested our own IDE tool: [IDE_WORKBENCH.md](IDE_WORKBENCH.md) defines a separate developer workspace that follows the plugin contract/browser fixtures and uses the same validators and build tools. [UI_ROADMAP.md](UI_ROADMAP.md) stays deferred under the messenger UI/UX lock; preserve the existing source/licensing history and DOX hierarchy.
+
+## Current capability gates
+
+Browser/Windows support styles, visible DOM and event cleanup. Android supports native views, local storage and diagnostics with three native handlers; discord.runtime is unavailable. IDE development packages are integrity-tagged and unreviewed, with no automatic live install. Next priority is real Android attachment acceptance with an explicitly supplied supported APK/device, followed by private-host capability discovery and prioritized original composition/navigation plugins. Preserve the locked Copperlight shell.

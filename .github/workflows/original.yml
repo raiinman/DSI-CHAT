@@ -1,7 +1,7 @@
 name: DSI original
 on:
   push:
-    branches: [codex/dsi-original]
+    branches: [codex/dsi-original, codex/dsi-platform-review]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,10 +13,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run catalog
       - run: git diff --exit-code catalog/features.json
       - run: npm run build
+      - run: node node_modules/playwright/cli.js install --with-deps chromium
+      - run: node scripts/plugin-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dsi-plugin-screenshots
+          path: .cache/plugin-screenshots
       - run: cd dist/chromium && sha256sum -c SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:

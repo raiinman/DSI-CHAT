@@ -1,6 +1,6 @@
 # DSI developer workbench
 
-User direction, October 3, 2026: build an IDE tool for us alongside the original DSI CHAT mod. This is a planned developer tool, not an implemented editor. It is a separate workspace and does not reopen the locked Copperlight messenger UI/UX.
+User direction, October 3, 2026: build an IDE tool for us alongside the original DSI CHAT mod. The first usable editor is implemented in desktop/ and workbench/. It is a separate workspace and does not reopen the locked Copperlight messenger UI/UX.
 
 ## First usable slice
 
@@ -26,3 +26,7 @@ Limit filesystem operations to the selected workspace, validate resolved paths i
 ## Acceptance
 
 A reviewer must be able to create/open a sample project, edit and save a file, see a deliberate compile/manifest error linked to its location, correct it, build, run tests, preview, stop/reload and export a package through working controls. Verify unsaved edits, external-change conflicts, workspace path restrictions, failed/cancelled builds and fixture teardown. Inspect rendered workbench screenshots before publication; keep the existing messenger presentation unchanged.
+
+## Delivered acceptance
+
+Ten workbench behavioral tests cover workspace/symlink boundaries, save conflicts, diagnostics (including external module rejection), builds/packages, test failure/cancellation and preview cleanup. Actual source/portable Electron smoke created a project, edited/saved, displayed a deliberate type error, corrected/built/tested, previewed/stopped and exported through the UI. Root inspected rendered desktop/editor/fixture captures. The editor uses native text areas and tabs; no third-party editor library, debugger or Git integration is claimed. Builds/diagnostics are bounded local operations; long-running test processes are cancellable.

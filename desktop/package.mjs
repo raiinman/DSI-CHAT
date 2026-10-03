@@ -1,0 +1,21 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import crypto from 'node:crypto';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const output=path.join(root,'release/dsi-chat-windows-portable');
+const runtime=path.join(root,'desktop/node_modules/electron/dist');
+await fs.access(path.join(runtime,'electron.exe'));
+if(path.relative(root,output)!==path.join('release','dsi-chat-windows-portable'))throw Error('Unexpected package output path');
+try{const actual=await fs.realpath(output);if(actual!==output)throw Error('Refusing linked package output');await fs.rm(output,{recursive:true,force:true});}catch(error){if(error.code!=='ENOENT')throw error;}
+await fs.mkdir(output,{recursive:true});
+await fs.cp(runtime,output,{recursive:true});
+await fs.rename(path.join(output,'electron.exe'),path.join(output,'DSI-CHAT.exe'));
+const app=path.join(output,'resources/app');await fs.mkdir(app,{recursive:true});
+const copy=async(relative)=>fs.cp(path.join(root,relative),path.join(app,relative),{recursive:true,filter:filename=>!filename.endsWith('AGENTS.md')&&!filename.includes(path.sep+'node_modules'+path.sep)&&!filename.endsWith('.test.mjs')&&!filename.endsWith('smoke.mjs')&&!filename.endsWith('package.mjs')});
+for(const relative of ['desktop','workbench','src/plugins','src/features.mjs','src/core.mjs','dist/shared','NOTICE.md'])await copy(relative);
+await fs.writeFile(path.join(app,'package.json'),JSON.stringify({name:'dsi-chat-desktop',version:'0.2.0',main:'desktop/main.mjs',type:'module',private:true},null,2));
+for(const dependency of ['esbuild','typescript','@esbuild/win32-x64'])await fs.cp(path.join(root,'node_modules',dependency),path.join(app,'node_modules',dependency),{recursive:true});
+await fs.writeFile(path.join(output,'README.txt'),'DSI CHAT Windows portable development host\r\n\r\nRun DSI-CHAT.exe. Offline fixture and workbench require no account. Discord web opens only when selected. No native Discord patching, signed installer, automatic updates, upstream plugins or live-client acceptance is claimed.\r\n\r\nElectron notices: LICENSE and LICENSES.chromium.html. Compiler notices remain in resources/app/node_modules. Original DSI ownership: resources/app/NOTICE.md.\r\n');
+const checksums=[];const walk=async(dir)=>{for(const entry of await fs.readdir(dir,{withFileTypes:true})){const filename=path.join(dir,entry.name);if(entry.isDirectory())await walk(filename);else if(entry.name!=='SHA256SUMS.txt'){checksums.push(crypto.createHash('sha256').update(await fs.readFile(filename)).digest('hex')+'  '+path.relative(output,filename).replaceAll('\\','/'));}}};await walk(output);
+await fs.writeFile(path.join(output,'SHA256SUMS.txt'),checksums.join('\n')+'\n');console.log('Windows portable host staged:',output,'files:',checksums.length);

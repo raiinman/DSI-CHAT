@@ -1,12 +1,18 @@
 # Architecture
 
-A platform-independent FeatureRuntime owns enabled feature cleanup and failure reporting. Features declare an id, label and start function returning a cleanup function. Reconciliation is synchronous and supports reversible browser display changes.
+The new API 1 PluginRuntime in src/plugins owns manifest validation, registry, dependency ordering, conflicts, host capability gates, settings, asynchronous start cancellation/timeouts and reversed resource cleanup. Settings changes restart affected dependents; partial starts roll back. Diagnostics are bounded. Reviewed original modules run locally; declared capabilities are not an arbitrary-code sandbox.
+
+The legacy three-feature FeatureRuntime remains unchanged for the locked Copperlight preview. Its persistence and presentation are independent of plugin settings.
 
 The Chromium adapter uses a statically declared isolated-world content script on https://discord.com/channels/* only. It installs style elements; it does not hook Discord's private JavaScript runtime. The extension popup writes a single namespaced local settings record. The content adapter listens for changes and reconciles enabled features. Safe mode runs no features.
 
-The build concatenates the original plain-JavaScript modules into one content script and copies the popup and manifest. There is no package dependency, remote code, telemetry or upstream updater.
+Pinned esbuild bundles current isolated content/popup entries and a DSIPlugins IIFE for controlled hosts. The extension ships no external npm runtime dependency, remote code, telemetry or upstream updater. Twelve built-ins are disabled by default. The v2 chrome.storage.local record migrates the three legacy choices; safe mode preserves them. DOM tooltip plugins restore owned titles, observe URL/date changes and release detached nodes.
 
-Mobile and desktop adapters are not implemented. A shared lifecycle does not make DOM features executable in Android.
+Windows uses Electron 44.5.1 with sandboxed/context-isolated local windows and guarded IPC. An explicitly opened official Discord web window has no Node/preload and receives reviewed display modules in an isolated world. Offline fixture and packaged executable smoke establish the adapter; installed-Discord injection and live account support remain unverified.
+
+The workbench confines filesystem/compiler/bundler operations to a selected project (plus pinned TypeScript standard libraries), validates symlinks and revision hashes, and exports checksummed development packages. Node tests run as the user after an explicit action; controlled preview uses a separate sandboxed no-network host. It is not a sandbox for arbitrary tests.
+
+Android uses a separate native Java API 1 engine and three reviewed native-view handlers. The development lab has no network permission. A local non-root patcher preserves a selected monolithic APK, adds an original Application bootstrap and separate DEX, and writes a development-signed output/integrity report. Browser CSS does not run on Android. Actual Discord attachment/private runtime discovery remains unverified.
 
 The GitHub Pages preview reuses the actual feature runtime and CSS against sample messages. Preview settings use a separate browser localStorage record. Pages hosts a ZIP built from the same original extension sources; no GitHub login is needed to download it. The deployment workflow builds and verifies before publishing.
 
@@ -26,4 +32,4 @@ The single decorative signal meter and existing saved Play/Pause now live in the
 
 ## Authorized growth direction
 
-The user confirmed original DSI code combining capabilities and ideas from Vencord, Equicord and Vendetta. Those engines/plugins remain behavior references, not runtime dependencies. IMPLEMENTATION_PLAN.md specifies the next versioned plugin contract, registry/lifecycle, dependency/conflict checks, scoped cleanup and platform-capability adapters. Browser/desktop/native-mobile implementations share portable logic while implementing host operations separately. These are planned extensions to the existing runtime, not implemented adapters. Copperlight presentation and existing persistence scopes stay locked. Development packages and portable tools are recorded in TOOLCHAIN.md; they do not change the shipped runtime.
+The user confirmed original DSI code combining capabilities and ideas from Vencord, Equicord and Vendetta. Those engines/plugins remain behavior references, not runtime dependencies. IMPLEMENTATION_PLAN.md specifies the next versioned plugin contract, registry/lifecycle, dependency/conflict checks, scoped cleanup and platform-capability adapters. Browser/desktop/native-mobile implementations share portable logic while implementing host operations separately. The original registry, browser/Windows fixtures, IDE and native development bootstrap are implemented; further native host discovery and reference capability expansion remain planned. Copperlight presentation and existing persistence scopes stay locked. Development packages and portable tools are recorded in TOOLCHAIN.md; they do not change the shipped runtime.

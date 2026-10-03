@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { readFile, mkdir } from "node:fs/promises";
 import { resolve, extname, sep } from "node:path";
-import { chromium } from "../.cache/browser-qa/node_modules/playwright/index.mjs";
+import { chromium } from "playwright";
 
 const root = resolve("dist/site");
 const server = createServer(async (request, response) => {
