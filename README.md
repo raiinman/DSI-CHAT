@@ -33,4 +33,6 @@ This is the first original browser prototype, not a replacement for hundreds of 
 
 See [architecture](docs/ARCHITECTURE.md), [provenance](docs/PROVENANCE.md) and [validation](docs/STATE.md).
 
+Project guidance uses the [DOX hierarchy](AGENTS.md), with indexed local AGENTS.md files. Read the root and every applicable child before edits; update owning instructions when contracts change. DOX is documentation-only, attributed to Agent Zero under its [MIT license](docs/DOX_LICENSE.txt).
+
 No third-party engine license is included because this tree does not import those engines. No open-source license grant has been chosen for the new DSI source; see [NOTICE](NOTICE.md). Independence of this source tree does not constitute a legal opinion about copyright, patents, trademarks or platform terms.

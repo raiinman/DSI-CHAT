@@ -15,7 +15,7 @@ Check working-tree changes before fetching. Fetch the active branch and fast-for
 
 ## Read before editing
 
-1. `AGENTS.md` and any applicable nested instructions.
+1. Root `AGENTS.md`, then follow its DOX Child Index and read every applicable parent/child instruction along each edited path. After meaningful changes, update the closest owning instructions and affected indexes. DOX is installed; attribution and its MIT license are recorded in `docs/PROVENANCE.md` and `docs/DOX_LICENSE.txt`.
 2. `README.md`.
 3. `docs/ARCHITECTURE.md`.
 4. `docs/STATE.md` (historical entries remain; latest entries supersede earlier ones).

@@ -1,0 +1,22 @@
+# Chromium package presentation
+
+## Purpose
+Own the extension manifest and popup HTML/CSS.
+
+## Ownership
+manifest.json, popup.html and popup.css; JavaScript behavior belongs to ../src/AGENTS.md.
+
+## Local Contracts
+- Manifest V3, storage permission and isolated content script matching https://discord.com/channels/*.
+- Keep permission scope explicit and feature choices disabled by default.
+- Loading/saving failures must not suggest settings were applied successfully.
+- Browser package does not implement the messenger shell, Android or a desktop installer.
+
+## Work Guidance
+Keep popup controls accessible, labeled and keyboard usable; coordinate IDs with src/popup.mjs. Preserve permission and provenance checks when editing the manifest.
+
+## Verification
+npm test checks manifest scope and adapter behavior. npm run build copies these files and syntax-checks bundled JavaScript; verify dist/chromium/SHA256SUMS through the existing workflow.
+
+## Child DOX Index
+None.

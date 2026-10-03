@@ -1,8 +1,9 @@
 import { mkdir, cp, copyFile, writeFile } from "node:fs/promises";
+import { basename } from "node:path";
 const root = new URL("../", import.meta.url);
 const out = new URL("dist/site/", root);
 await mkdir(new URL("downloads/", out), { recursive: true });
-await cp(new URL("site/", root), out, { recursive: true });
+await cp(new URL("site/", root), out, { recursive: true, filter: source => basename(source) !== "AGENTS.md" });
 await mkdir(new URL("src/", out), { recursive: true });
 for (const file of ["core.mjs", "features.mjs"]) await copyFile(new URL("src/" + file, root), new URL("src/" + file, out));
 await writeFile(new URL(".nojekyll", out), "");

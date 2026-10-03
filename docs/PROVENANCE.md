@@ -1,5 +1,7 @@
 # Provenance and ownership limits
 
+The DOX documentation framework is adapted from https://github.com/raiinman/dox at revision 765ae4ac02cc884eefcd41a3d0f71941721adb89, copyright (c) 2026 Agent Zero, MIT. Its rules are integrated into root AGENTS.md; original project-specific child instructions form an indexed hierarchy. The full upstream notice is retained in DOX_LICENSE.txt. This is a documentation dependency only, adds no runtime package, and does not relicense the original DSI code or artwork. Development AGENTS.md files are excluded from Pages packaging.
+
 User direction: create DSI's own implementation rather than a branded upstream fork.
 
 This source tree was authored in this session from DSI behavior requirements and standard JavaScript / Chromium extension APIs. No source or plugin from the previous fork is copied into this tree. There are zero package dependencies.
