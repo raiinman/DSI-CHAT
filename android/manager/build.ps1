@@ -1,4 +1,4 @@
-param([string]$Sdk=$env:ANDROID_HOME,[string]$JavaHome=$env:JAVA_HOME,[int]$VersionCode=1,[string]$VersionName='0.3.0-dev.1',[string]$OutputName='dsi-manager-debug.apk',[string]$QaCertificate,[string]$SigningKey)
+param([string]$Sdk=$env:ANDROID_HOME,[string]$JavaHome=$env:JAVA_HOME,[int]$VersionCode=2,[string]$VersionName='0.3.0-dev.2',[string]$OutputName='dsi-manager-debug.apk',[string]$QaCertificate,[string]$SigningKey)
 $ErrorActionPreference='Stop'
 $repo=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 . (Join-Path $PSScriptRoot '../tools.ps1')

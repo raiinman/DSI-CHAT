@@ -8,6 +8,8 @@ workflows/platforms.yml builds/tests the Windows host/workbench and native Andro
 
 workflows/manager.yml builds normal/QA Manager and original update fixtures, then exercises real PackageInstaller approval plus controlled localhost HTTPS updates on an API35 KVM emulator. The dummy localhost TLS credentials are test artifacts; private APK signing keys are excluded. User downloads must use the stable local release signing identity, with their exact bytes separately verified.
 
+Manager CI also runs --red-team: hostile metadata/transport/archive boundaries, external callback rejection, failed-check restart preservation and cancel/retry. Controlled update fixture versionCode must exceed the compiled Manager version; never reuse QA APKs as user releases.
+
 ## Local Contracts
 - Push publication targets codex/dsi-original, never the preserved rewrite fork.
 - Dispatch pages.yml with review_only=true on a review branch before advancing runtime UI changes to the publishing branch.

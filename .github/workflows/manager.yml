@@ -1,7 +1,7 @@
 name: DSI Manager verification
 on:
   push:
-    branches: [codex/dsi-original, codex/dsi-manager-review]
+    branches: [codex/dsi-original, codex/dsi-manager-review, codex/dsi-redteam-review]
     paths: ['android/**', '.github/workflows/manager.yml']
   workflow_dispatch:
 permissions:
@@ -40,10 +40,10 @@ jobs:
           Copy-Item dist/android/dsi-manager-demo-debug.apk dist/android/manager-production-demo.apk
           ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -QaCertificate .cache/manager-https-qa/server.crt
           Copy-Item dist/android/dsi-manager-demo-debug.apk dist/android/manager-qa-demo.apk
-          ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -VersionCode 2 -VersionName '0.3.0-qa.2' -OutputName 'dsi-manager-update-fixture.apk'
+          ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -VersionCode 3 -VersionName '0.3.0-qa.3' -OutputName 'dsi-manager-update-fixture.apk'
           & "$env:JAVA_HOME/bin/keytool.exe" -genkeypair -keystore .cache/manager-https-qa/other-signer.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 2 -dname 'CN=DSI QA Other Signer'
           if ($LASTEXITCODE -ne 0) { throw 'Controlled signer fixture generation failed' }
-          ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -VersionCode 2 -VersionName '0.3.0-qa.2' -OutputName 'dsi-manager-other-signer-fixture.apk' -SigningKey .cache/manager-https-qa/other-signer.keystore
+          ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME -VersionCode 3 -VersionName '0.3.0-qa.3' -OutputName 'dsi-manager-other-signer-fixture.apk' -SigningKey .cache/manager-https-qa/other-signer.keystore
           Copy-Item .cache/manager-https-qa/server.crt dist/android/manager-qa-server.crt
           Copy-Item .cache/manager-https-qa/server.key dist/android/manager-qa-server.key
       - uses: actions/upload-artifact@v4
@@ -78,7 +78,7 @@ jobs:
           target: google_apis
           disable-animations: true
           script: |
-            node android/manager-qa.mjs --manager-apk dist/android/dsi-manager-qa-debug.apk --fixture-apk dist/android/manager-qa-demo.apk --report dist/android/manager-qa-build-report.json --update-apk dist/android/dsi-manager-update-fixture.apk --update-report dist/android/dsi-manager-update-fixture-report.json --bad-signer-apk dist/android/dsi-manager-other-signer-fixture.apk --bad-signer-report dist/android/dsi-manager-other-signer-fixture-report.json --tls-cert dist/android/manager-qa-server.crt --tls-key dist/android/manager-qa-server.key --output .cache/android-manager-evidence
+            node android/manager-qa.mjs --manager-apk dist/android/dsi-manager-qa-debug.apk --fixture-apk dist/android/manager-qa-demo.apk --report dist/android/manager-qa-build-report.json --update-apk dist/android/dsi-manager-update-fixture.apk --update-report dist/android/dsi-manager-update-fixture-report.json --bad-signer-apk dist/android/dsi-manager-other-signer-fixture.apk --bad-signer-report dist/android/dsi-manager-other-signer-fixture-report.json --tls-cert dist/android/manager-qa-server.crt --tls-key dist/android/manager-qa-server.key --output .cache/android-manager-evidence --red-team
       - uses: actions/upload-artifact@v4
         if: always()
         with:

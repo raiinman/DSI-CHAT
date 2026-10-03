@@ -62,21 +62,34 @@ export async function runManagerQA(args=process.argv.slice(2)){
  if(!aapt2)throw Error('Mandatory APK preflight needs --aapt2 or ANDROID_HOME');
  const verified=preflight({managerApk,fixtureApk,reportFile,aapt2});
  const updateApk=option('--update-apk'),updateReport=option('--update-report'),tlsCert=option('--tls-cert'),tlsKey=option('--tls-key');
+ const redTeam=args.includes('--red-team');
  let updateFeed,server,feedMode='valid',badSignerFeed,badSignerBytes;
+ const requests={feed:0,asset:0};
  if(updateApk||updateReport||tlsCert||tlsKey){
   if(!updateApk||!updateReport||!tlsCert||!tlsKey)throw Error('Update QA needs explicit APK/report/TLS certificate/key');
   updateFeed=preflightUpdate({apk:updateApk,reportFile:updateReport,aapt2});
   const managerProvenance=JSON.parse(readFileSync(reportFile,'utf8'));if(managerProvenance.qaBuild!==true)throw Error('Local HTTPS update tests require explicit compile-time QA Manager build');
   const installedSigner=managerProvenance.manager.certificateSha256;
+  if(updateFeed.versionCode<=managerProvenance.manager.versionCode)throw Error('Positive update fixture must be newer than the controlled Manager');
   if(updateFeed.certificateSha256!==installedSigner)throw Error('Positive update fixture must have the Manager signer');
   const badSignerApk=option('--bad-signer-apk'),badSignerReport=option('--bad-signer-report');
   if(badSignerApk||badSignerReport){if(!badSignerApk||!badSignerReport)throw Error('Pass both bad-signer controlled fixture paths');badSignerFeed=preflightUpdate({apk:badSignerApk,reportFile:badSignerReport,aapt2});if(badSignerFeed.certificateSha256===installedSigner)throw Error('Bad-signer fixture unexpectedly shares installed signer');badSignerBytes=readFileSync(badSignerApk);}
   const updateBytes=readFileSync(updateApk);
   server=https.createServer({cert:readFileSync(tlsCert),key:readFileSync(tlsKey)},(request,response)=>{
    if(request.url==='/manager.json'){
-    const feed=feedMode==='archive-signer'?{...badSignerFeed,certificateSha256:installedSigner}:{...updateFeed};if(feedMode==='downgrade')feed.versionCode=0;if(feedMode==='certificate')feed.certificateSha256='0'.repeat(64);if(feedMode==='hash')feed.sha256='0'.repeat(64);
-    response.writeHead(200,{'Content-Type':'application/json'});response.end(JSON.stringify(feed));
-   }else if(request.url==='/assets/update.apk'){response.writeHead(200,{'Content-Type':'application/vnd.android.package-archive'});response.end(feedMode==='archive-signer'?badSignerBytes:updateBytes);}
+    requests.feed++;
+    if(feedMode==='http-failure'){response.writeHead(503);response.end('Controlled unavailable fixture');return;}
+    if(feedMode==='malformed'){response.writeHead(200,{'Content-Type':'application/json'});response.end('{');return;}
+    if(feedMode==='oversize'){response.writeHead(200,{'Content-Type':'application/json'});response.end(JSON.stringify({padding:'x'.repeat(70000)}));return;}
+    const feed=feedMode==='archive-signer'?{...badSignerFeed,certificateSha256:installedSigner}:{...updateFeed};if(feedMode==='downgrade')feed.versionCode=managerProvenance.manager.versionCode-1;if(feedMode==='certificate')feed.certificateSha256='0'.repeat(64);if(feedMode==='hash')feed.sha256='0'.repeat(64);
+    if(feedMode==='wrong-package')feed.package='interactive.deadsignal.dsi.untrusted';
+    if(feedMode==='archive-version')feed.versionCode=updateFeed.versionCode+1;
+    if(feedMode==='size-overrun')feed.bytes=updateBytes.length-1;
+    if(feedMode==='hostile-url')feed.url='https://example.invalid/untrusted.apk';
+    if(feedMode==='min-sdk')feed.minSdk=10000;
+    if(feedMode==='current'){Object.assign(feed,{...managerProvenance.manager,schemaVersion:1,package:MANAGER_PACKAGE,url:'https://localhost:8443/assets/current.apk'});}
+    response.writeHead(200,{'Content-Type':'application/json'});if(feedMode==='cancel-retry')setTimeout(()=>response.end(JSON.stringify(feed)),12000);else response.end(JSON.stringify(feed));
+   }else if(request.url==='/assets/update.apk'){requests.asset++;response.writeHead(200,{'Content-Type':'application/vnd.android.package-archive'});response.end(feedMode==='archive-signer'?badSignerBytes:updateBytes);}
    else{response.writeHead(404);response.end();}
   });
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(8443,'127.0.0.1',resolve);});
@@ -133,16 +146,50 @@ export async function runManagerQA(args=process.argv.slice(2)){
  let updaterResults;
  if(server){
   run('shell','am','force-stop',MANAGER_PACKAGE);launch();
-  for(const mode of ['downgrade','certificate','hash',...(badSignerFeed?['archive-signer']:[])]){
+  const adversarialCases=redTeam?['malformed','oversize','wrong-package','archive-version','size-overrun','http-failure','hostile-url','min-sdk']:[];
+  const rejectedCases=[];
+  for(const mode of ['downgrade','certificate','hash',...(badSignerFeed?['archive-signer']:[]),...adversarialCases]){
+   const assetsBefore=requests.asset;
    feedMode=mode;await click('Check for updates');
-   if(mode==='hash'||mode==='archive-signer'){await wait(items=>items.find(item=>item.text.includes('is available')),'available negative update');await click('Update DSI Manager');}
+   if(['hash','archive-signer','archive-version','size-overrun'].includes(mode)){await wait(items=>items.find(item=>item.text.includes('is available')),'available negative update');await click('Update DSI Manager');}
    await wait(items=>items.find(item=>item.text==='Update check needs attention'||item.text==='Setup needs attention'),mode+' rejected');capture('manager-update-rejected-'+mode);
    const screen=dump();if(nodes(screen).some(installer))throw Error('Rejected '+mode+' update reached Android installer');
-   const expected={downgrade:/would downgrade/,certificate:/signing certificate is unsupported/,hash:/SHA-256 integrity check failed/,'archive-signer':/APK package\/version\/SDK\/signing certificate verification failed/}[mode];
+   const expected={downgrade:/would downgrade/,certificate:/signing certificate is unsupported/,hash:/SHA-256 integrity check failed/,'archive-signer':/APK package\/version\/SDK\/signing certificate verification failed/,malformed:/JSON|End of input|Unterminated|Expected|character/i,oversize:/feed exceeds its size limit/,'wrong-package':/package\/version is invalid/,'archive-version':/APK package\/version\/SDK\/signing certificate verification failed/,'size-overrun':/download exceeded declared size/,'http-failure':/HTTP 503/,'hostile-url':/URL or signing certificate is unsupported/,'min-sdk':/platform, URL or signing certificate is unsupported/}[mode];
    if(!nodes(screen).some(item=>expected.test(item.text)))throw Error(mode+' rejection did not identify its intended verification gate');
+   if(!['hash','archive-signer','archive-version','size-overrun'].includes(mode)&&requests.asset!==assetsBefore)throw Error(mode+' metadata rejection fetched an APK');
+   const staging=run('shell','run-as',MANAGER_PACKAGE,'ls','files/verified-update');if(staging.trim())throw Error(mode+' rejection left staged APK bytes');
+   const journal=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');if(!journal.includes('name="sessionId" value="-1"')&&/name="sessionId" value="\d+"/.test(journal))throw Error(mode+' rejection retained installer session');
+   rejectedCases.push({mode,assetFetches:requests.asset-assetsBefore,privateStagingCleared:true,noInstallerSession:true});
    const dismiss=nodes(screen).find(item=>item.package===MANAGER_PACKAGE&&item.text==='OK');if(dismiss)await tap(dismiss);
   }
-  feedMode='valid';await click('Check for updates');await wait(items=>items.find(item=>item.text.includes('is available')),'verified update availability');capture('manager-update-available');
+  let privateReceiversBlocked=false;
+  if(redTeam){
+   const before=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');
+   for(const receiver of ['InstallReceiver','UpdateReceiver']){
+    let response='';try{response=run('shell','am','broadcast','-n',MANAGER_PACKAGE+'/.'+receiver,'--ei','android.content.pm.extra.STATUS','0','--ei','android.content.pm.extra.SESSION_ID','123456');}catch(error){response=String(error.stdout||'')+String(error.stderr||'')+error.message;}
+    writeFileSync(path.join(output,'manager-red-team-'+receiver+'-broadcast.txt'),response);
+    if(!/Permission Denial|not exported|SecurityException/i.test(response))throw Error('External spoofed result was not blocked for '+receiver);
+   }
+   const after=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');if(before!==after)throw Error('Spoofed result changed private update journal');privateReceiversBlocked=true;
+  }
+  let cancellationRetry=false;
+  let failureRetainedOnRelaunch=false;
+  if(redTeam){
+   feedMode='current';await click('Check for updates');await wait(items=>items.find(item=>item.text==='You are up to date'),'successful current-version check');
+   feedMode='http-failure';await click('Check for updates');await wait(items=>items.find(item=>/HTTP 503/.test(item.text)),'failed check after cached current feed');
+   const dismiss=nodes(dump()).find(item=>item.package===MANAGER_PACKAGE&&item.text==='OK');if(dismiss)await tap(dismiss);
+   run('shell','am','force-stop',MANAGER_PACKAGE);launch();
+   const failedJournal=run('shell','run-as',MANAGER_PACKAGE,'cat','shared_prefs/dsi.manager.update.v1.xml');if(!failedJournal.includes('<string name="phase">ERROR</string>'))throw Error('Relaunch replaced a failed HTTPS check with cached false completion');
+   for(let attempt=0;attempt<12;attempt++){const screen=nodes(dump());if(screen.some(item=>item.text==='You are up to date'))throw Error('Relaunch falsely reported up to date after HTTP503');if(screen.some(item=>item.text==='Update check needs attention')){failureRetainedOnRelaunch=true;break;}scrollPage(screen);await pause(350);}
+   if(!failureRetainedOnRelaunch)throw Error('Relaunched Manager did not expose the retained update failure');capture('manager-red-team-http-failure-relaunched');
+   feedMode='cancel-retry';await click('Check for updates');await click('Cancel update');
+   await wait(items=>items.find(item=>item.text==='Update paused'),'immediate cancelled update state');capture('manager-red-team-cancelled');
+   feedMode='valid';await click('Check for updates');await wait(items=>items.find(item=>item.text.includes('is available')),'retry after cancelling pending HTTPS check');
+   await pause(750);const retryScreen=nodes(dump());if(retryScreen.some(item=>item.text==='Setup needs attention'))throw Error('Stale cancelled callback interrupted the next update check');
+   cancellationRetry=true;capture('manager-red-team-retry');
+
+  }
+  feedMode='valid';if(!cancellationRetry){await click('Check for updates');await wait(items=>items.find(item=>item.text.includes('is available')),'verified update availability');}capture('manager-update-available');
   await click('Update DSI Manager');
   const approve=await wait(items=>items.find(item=>installer(item)&&(/^(?:update|install)$/i.test(item.text)||item['resource-id']==='android:id/button1')),'real Manager update approval');capture('manager-update-confirmation');await tap(approve);
   let updated=false;for(let attempt=0;attempt<40;attempt++){const info=run('shell','dumpsys','package',MANAGER_PACKAGE);if(info.includes('versionCode='+updateFeed.versionCode+' ')){updated=true;break;}await pause(350);}
@@ -150,7 +197,7 @@ export async function runManagerQA(args=process.argv.slice(2)){
   launch();await wait(items=>items.find(item=>item.text.includes('Sample app ready')),'settings retained after update');capture('manager-update-installed');
   let journalRetained=false;for(let attempt=0;attempt<10;attempt++){const current=nodes(dump());if(current.some(item=>item.package===MANAGER_PACKAGE&&item.text==='You are up to date')){journalRetained=true;break;}scrollPage(current);await pause(350);}
   if(!journalRetained)throw Error('Manager update journal was not recovered after replacement');capture('manager-update-restored');
-  updaterResults={https:true,downgradeRejected:true,certificateMetadataRejected:true,archiveSignerRejected:Boolean(badSignerFeed),hashRejected:true,nativeApproval:true,versionCode:updateFeed.versionCode,settingsRetained:true,journalRetained:true};
+  updaterResults={https:true,downgradeRejected:true,certificateMetadataRejected:true,archiveSignerRejected:Boolean(badSignerFeed),hashRejected:true,nativeApproval:true,versionCode:updateFeed.versionCode,settingsRetained:true,journalRetained:true,redTeam:redTeam?{rejectedCases,cancellationRetry,failureRetainedOnRelaunch,privateReceiversBlocked}:undefined};
  }
  const logs=run('logcat','-d','-s','AndroidRuntime:E','DSI_MANAGER:I');if(logs.includes('FATAL EXCEPTION'))throw Error('Manager/native fixture runtime crash');
  writeFileSync(path.join(output,'manager-runtime.log'),logs);

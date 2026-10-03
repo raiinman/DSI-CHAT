@@ -23,6 +23,7 @@ The built-in opt-in updater contacts only the fixed DSI GitHub feed and verifies
 - Persist and recover owned installer sessions; cancellation abandons only the Manager's recorded session and removes only its private staged payload.
 - The UI clearly distinguishes a controlled native demo from actual Discord attachment. Preserve locked messenger UI.
 - Normal user setup requires one Manager APK and guided native approvals, with no PC/ADB/manual APK steps. Offline sample setup and online opt-in DSI updates are distinct.
+- Failed/cancelled update checks retain their state across restart. Only an owned installation session or prior installation phase may reconcile to installed; a cached current-version feed is not evidence that a failed newer check succeeded.
 - Reject rollback, unsupported URLs, corrupt bytes and mismatched package/SDK/signer before update installation. Preserve stable release signing identity; never distribute private signing keys.
 - Only compile-time QA builds may use the fixed localhost HTTPS feed and domain-scoped dummy CA. Never ship QA APKs/assets as user releases; production has no runtime feed override.
 

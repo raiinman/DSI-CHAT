@@ -39,6 +39,8 @@ Native settings content scrolls on short screens/large fonts. The Native Lab use
 
 Run `android/test.ps1`, `build.ps1`, `build-bootstrap.ps1`, `patch-test.ps1`, `build-split-fixture.ps1`, `set-test.ps1` and `export-test.ps1` with the process-only execution policy documented in README. Run `node --test android/qa-preflight.test.mjs` with ANDROID_HOME set; it verifies foreign/non-test-only fixtures cannot reach ADB. Build a patched set with `patch-set.ps1`. Emulator QA accepts `--apk` or `--apk-set`; inspect both monolithic/split captures and record actual results. APK verification includes apksigner and manifest inspection. Export acceptance uses a local ADB mock and does not contact a device. Real Discord attachment and physical-device support require separate evidence.
 
+Manager HTTPS adversarial acceptance appends `--red-team` to the controlled `manager-qa.mjs` command. It checks malformed/oversize feeds, wrong package/archive version/declared size, HTTP failure, hostile URL and unsupported SDK; rejected updates must leave no staged bytes or installer session, and metadata failures must fetch no APK. It also checks cached-failure restart persistence and cancellation/retry before the normal approved update. Use only the compile-time QA Manager, reviewed same-package update fixtures and scoped localhost test certificate; report actual emulator results separately from local preflight.
+
 ## Child DOX Index
 
 - [manager/AGENTS.md](manager/AGENTS.md): guided native installer, trusted DSI update flow and controlled sample boundary.
