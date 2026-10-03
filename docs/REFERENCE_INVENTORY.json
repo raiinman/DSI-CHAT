@@ -33,18 +33,36 @@
         "diagnostics",
         "native-host-capability-discovery"
       ]
+    },
+    {
+      "id": "revenge",
+      "url": "https://github.com/revenge-mod/revenge-bundle",
+      "revision": "1b1d297416594087769987908e5fc09af36b7e6e",
+      "pluginRoots": [],
+      "runtimeCapabilityReferences": [
+        "mobile-plugin-lifecycle",
+        "mobile-themes-fonts",
+        "host-experiment-controls",
+        "javascript-bundle-loader-boundary",
+        "non-root-manager-install-flow",
+        "native-host-capability-discovery"
+      ],
+      "license": "BSD-3-Clause",
+      "relatedLoaderReference": "https://github.com/revenge-mod/revenge-manager",
+      "inspectionScope": "Repository metadata, README, documentation index and license only; loader implementation not audited."
     }
   ],
   "summary": {
     "referenceDirectories": {
       "vencord": 166,
       "equicord": 363,
-      "vendetta": 0
+      "vendetta": 0,
+      "revenge": 0
     },
     "uniqueDirectoryIdentifiers": 366,
     "sharedVencordEquicordIdentifiers": 163
   },
-  "mobileScope": "Vendetta is a mobile runtime reference, not a bundled catalog of all external Vendetta plugins. Its native loader and current Discord compatibility require separate investigation.",
+  "mobileScope": "Vendetta and Revenge are mobile runtime references, not catalogs of all external plugins. Revenge's JavaScript bundle and separately linked non-root Manager loader have distinct boundaries. Native loader/runtime attachment and current Discord compatibility require separate investigation.",
   "entries": [
     {
       "referenceId": "accountPanelServerProfile",

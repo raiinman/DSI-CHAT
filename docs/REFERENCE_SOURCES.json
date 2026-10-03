@@ -3,19 +3,50 @@
     "id": "vencord",
     "url": "https://github.com/Vendicated/Vencord",
     "revision": "b52ed365cf2ea64a5019b419291a2d9d4d76852d",
-    "pluginRoots": ["src/plugins"]
+    "pluginRoots": [
+      "src/plugins"
+    ]
   },
   {
     "id": "equicord",
     "url": "https://github.com/Equicord/Equicord",
     "revision": "ab9b98472acb281cc7ec4d2c7a612219993bb3cb",
-    "pluginRoots": ["src/plugins", "src/equicordplugins"]
+    "pluginRoots": [
+      "src/plugins",
+      "src/equicordplugins"
+    ]
   },
   {
     "id": "vendetta",
     "url": "https://github.com/vendetta-mod/Vendetta",
     "revision": "e5d35028344363a8dacb67fca4d48266b79b2643",
     "pluginRoots": [],
-    "runtimeCapabilityReferences": ["plugin-lifecycle", "plugin-settings", "theme-management", "safe-mode", "mobile-loader-boundary", "quick-install-flow", "diagnostics", "native-host-capability-discovery"]
+    "runtimeCapabilityReferences": [
+      "plugin-lifecycle",
+      "plugin-settings",
+      "theme-management",
+      "safe-mode",
+      "mobile-loader-boundary",
+      "quick-install-flow",
+      "diagnostics",
+      "native-host-capability-discovery"
+    ]
+  },
+  {
+    "id": "revenge",
+    "url": "https://github.com/revenge-mod/revenge-bundle",
+    "revision": "1b1d297416594087769987908e5fc09af36b7e6e",
+    "pluginRoots": [],
+    "runtimeCapabilityReferences": [
+      "mobile-plugin-lifecycle",
+      "mobile-themes-fonts",
+      "host-experiment-controls",
+      "javascript-bundle-loader-boundary",
+      "non-root-manager-install-flow",
+      "native-host-capability-discovery"
+    ],
+    "license": "BSD-3-Clause",
+    "relatedLoaderReference": "https://github.com/revenge-mod/revenge-manager",
+    "inspectionScope": "Repository metadata, README, documentation index and license only; loader implementation not audited."
   }
 ]

@@ -40,7 +40,7 @@ Both scripts/browser-qa.mjs and plugin-qa.mjs now use the root-pinned Playwright
 
 ## Reference material
 
-The ignored `.cache/upstreams/{vencord,equicord,vendetta}` checkouts are audit references only. No build imports them. Their pinned SHAs and URLs are recorded in [REFERENCE_SOURCES.json](REFERENCE_SOURCES.json). To reproduce the audit, clone each listed public repo to that location, fetch/check out its exact recorded revision, then run:
+The ignored `.cache/upstreams/{vencord,equicord,vendetta,revenge}` Git repositories are audit references only. Bare repositories are sufficient for the directory inventory; no build imports them. Their pinned SHAs and URLs are recorded in [REFERENCE_SOURCES.json](REFERENCE_SOURCES.json). To reproduce the audit, clone each listed public repo to that location and set HEAD to its exact recorded revision, then run:
 
 ```sh
 npm run references:inventory

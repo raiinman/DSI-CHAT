@@ -1,7 +1,7 @@
 # DSI CHAT original implementation
 
 Read README.md, docs/ARCHITECTURE.md, docs/STATE.md and docs/PROVENANCE.md before edits.
-This branch implements DSI's own original Discord mod, bringing together capabilities and ideas from Vencord, Equicord and Vendetta through original DSI code. Use them as behavior references, not imported engines. Do not vendor upstream source, assets, plugins or build systems from those projects or the preserved fork.
+This branch implements DSI's own original Discord mod, bringing together capabilities and ideas from Vencord, Equicord, Vendetta and Revenge through original DSI code. Use them as behavior references, not imported engines. Do not vendor upstream source, assets, plugins or build systems from those projects or the preserved fork.
 Implement from behavior requirements and documented browser/platform APIs.
 Record source provenance and all dependencies. Never remove notices from third-party code.
 Prior exposure to upstream sources is documented; do not claim a formally isolated clean-room process or legal clearance.
@@ -98,7 +98,7 @@ Default section order:
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md.
 
 - Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
-- Build one original DSI mod that brings together the capabilities of Vencord, Equicord and Vendetta; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
+- Build one original DSI mod that brings together the capabilities of Vencord, Equicord, Vendetta and Revenge; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
 - Target ordinary non-root Android phones with an original local APK bootstrap/patcher; preserve selected input and write a separate development-signed output. Support explicitly selected installed-package export and validated configuration split sets. Do not download/distribute Discord APKs or automatically install into a user device.
 - Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.

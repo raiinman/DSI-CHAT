@@ -1,6 +1,6 @@
 # Original DSI CHAT implementation plan
 
-User direction, October 3, 2026: one original Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta. Author DSI's engine, plugins and adapters; do not merge or vendor their implementations. Continue `codex/dsi-original` and preserve existing work. Copperlight UI/UX remains locked at reviewed runtime `147a9b0`, published source `d1fc3e8`.
+User direction, October 3, 2026: one original Discord mod bringing together capabilities and ideas from Vencord, Equicord, Vendetta and Revenge. Author DSI's engine, plugins and adapters; do not merge or vendor their implementations. Continue `codex/dsi-original` and preserve existing work. Copperlight UI/UX remains locked at reviewed runtime `147a9b0`, published source `d1fc3e8`.
 
 ## Product and architecture
 
@@ -17,6 +17,22 @@ The platform boundary covers storage, lifecycle, event subscriptions, style/view
 Pinned snapshots are in [REFERENCE_SOURCES.json](REFERENCE_SOURCES.json), and the initial directory-name inventory is [REFERENCE_INVENTORY.json](REFERENCE_INVENTORY.json). It contains 166 Vencord reference directories, 363 Equicord reference directories and 366 unique identifiers, including 163 shared identifiers. These are source directory names, not verified feature behavior or delivered DSI plugins. Internal `_api`/`_core` directories are excluded. Vendetta contributes mobile runtime/loader requirements; its external plugin ecosystem is not included in this directory inventory. Its repository reports that the project is discontinued.
 
 For each reference capability, write an original behavior specification: user outcome, platform, required host access, settings, failure/cleanup behavior and acceptance fixtures. Deduplicate by behavior, not only name: several identifiers may represent overlapping outcomes. Record supported, partial, planned or infeasible per platform; do not promise full parity from a file count.
+
+### Revenge addition
+
+The user added [revenge-mod/revenge-bundle](https://github.com/revenge-mod/revenge-bundle), pinned at `1b1d297416594087769987908e5fc09af36b7e6e`. Its README describes a continuation of Bunny, with plugins, themes/fonts and experiments. It distributes a JavaScript bundle; its non-root loader is a separate [Revenge Manager](https://github.com/revenge-mod/revenge-manager) project. Manager implementation and compatibility are not yet audited. Revenge contributes mobile capability requirements, not more directories to the desktop plugin count.
+
+Next Android slice: specify and implement DSI's own version-gated native-to-JavaScript host attachment and startup/teardown contract, first against an owned controlled JavaScript-host fixture. Prove safe-mode recovery and unavailable-host reporting before testing an explicitly supplied Discord APK. Current Java TextView fixture effects do not establish React Native host access or mobile plugin compatibility.
+
+| Added capability family | Original DSI acceptance gate |
+| --- | --- |
+| Bundle/loader separation | Report loader startup separately from attached host runtime; reject unsupported host versions without claiming plugin execution |
+| Mobile plugin lifecycle | Start/stop one original plugin in the attached controlled host; failures and cleanup remain contained; safe mode restores startup |
+| Themes and fonts | Reversible native/host appearance operations with validated settings; browser CSS is not the mobile implementation |
+| Experiments | Specify only available local host controls after discovery; unavailable capabilities remain disabled |
+| Non-root manager workflow | Audit installation/recovery requirements separately; preserve input, signing and explicit-device boundaries; no automatic upstream loader installation |
+
+The released browser engine, Windows IDE and native bootstrap remain useful foundations. No upstream bundle is executed or imported into DSI, and no Revenge plugin package compatibility is promised.
 
 Initial families, in order:
 
@@ -63,4 +79,4 @@ See [TOOLCHAIN.md](TOOLCHAIN.md) for installed tools, reproducible commands and 
 
 ## Current capability gates
 
-Browser/Windows support styles, visible DOM and event cleanup. Android supports native views, local storage and diagnostics with three native handlers; discord.runtime is unavailable. IDE development packages are integrity-tagged and unreviewed, with no automatic live install. Next priority is real Android attachment acceptance with an explicitly supplied supported APK/device, followed by private-host capability discovery and prioritized original composition/navigation plugins. Preserve the locked Copperlight shell.
+Browser/Windows support styles, visible DOM and event cleanup. Android supports native views, local storage and diagnostics with three native handlers; discord.runtime is unavailable. IDE development packages are integrity-tagged and unreviewed, with no automatic live install. Next priority is original controlled Android host-runtime attachment and recovery, followed by actual attachment acceptance with an explicitly supplied supported APK/device and prioritized original mobile/composition/navigation capabilities. Preserve the locked Copperlight shell.

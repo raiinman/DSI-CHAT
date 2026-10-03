@@ -36,6 +36,8 @@ October 3 original-mod planning/tool preparation: ignored .cache/upstreams snaps
 
 ## Original platform development release, October 3
 
+The user subsequently added Revenge as a fourth capability reference. Inspected repository metadata, README, documentation index and license at [revenge-bundle revision 1b1d297416594087769987908e5fc09af36b7e6e](https://github.com/revenge-mod/revenge-bundle/tree/1b1d297416594087769987908e5fc09af36b7e6e). The project declares BSD-3-Clause, with Team Vendetta (2023), pylixonly (2024) and Team Revenge (2024) notices. Its README links a separate Revenge Manager for non-root loading; Manager implementation was not audited or installed. Ignored bare Git snapshots provide metadata/directory inventory only. No Revenge source, bundle, loader, asset or build dependency was incorporated into DSI; this does not change the released artifacts or imply live-client compatibility.
+
 The API 1 engine, twelve browser/Windows plugins, desktop integration, workbench, native Java engine and non-root APK insertion/bootstrap are DSI-authored code. No Vencord/Equicord/Vendetta modules or Discord APKs are imported or redistributed. Fixtures contain sample markup/native views and fictional data.
 
 Windows ships Electron 44.5.1 (MIT and Chromium third-party components), TypeScript 5.9.3 (Apache-2.0) and esbuild 0.28.2 (MIT). desktop/package-lock.json pins Electron tooling; root package-lock.json pins compilers. Portable packages preserve Electron LICENSE/LICENSES.chromium.html and compiler notices in resources/app/node_modules. No editor component was added.

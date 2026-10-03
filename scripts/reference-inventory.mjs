@@ -27,7 +27,7 @@ const inventory = {
     scope: "Reference module directory identifiers only. No upstream implementation, plugin descriptions or assets are copied. Entries are not implemented DSI plugins, approved requirements or guaranteed platform compatibility.",
     snapshots: sources,
     summary: { referenceDirectories: counts, uniqueDirectoryIdentifiers: entries.length, sharedVencordEquicordIdentifiers: entries.filter(item => item.references.some(ref => ref.source === "vencord") && item.references.some(ref => ref.source === "equicord")).length },
-    mobileScope: "Vendetta is a mobile runtime reference, not a bundled catalog of all external Vendetta plugins. Its native loader and current Discord compatibility require separate investigation.",
+    mobileScope: "Vendetta and Revenge are mobile runtime references, not catalogs of all external plugins. Revenge's JavaScript bundle and separately linked non-root Manager loader have distinct boundaries. Native loader/runtime attachment and current Discord compatibility require separate investigation.",
     entries
 };
 const output = JSON.stringify(inventory, null, 2) + "\n";

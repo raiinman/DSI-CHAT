@@ -10,6 +10,7 @@ catalog.mjs generates implemented plugin descriptors; build.mjs uses pinned esbu
 - Node.js 24 or newer; shipped runtime remains dependency-free. Root exact devDependencies/package-lock.json provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2 for development only.
 - Portable Android downloads must match docs/ANDROID_TOOLS.lock.json. Preserve existing SDK files; do not alter system PATH, install into a live client or contact a device during setup/probes.
 - Reference checkouts stay ignored and never enter runtime/build imports. Inventory identifiers are untriaged references, not implemented plugins.
+- Mobile references Vendetta/Revenge contribute capability categories, not a directory count of external plugins. Keep bundle and loader references distinct; bare Git snapshots suffice for inventory verification.
 - build.mjs bundles original modules, syntax-checks both outputs and writes SHA256SUMS for packaged files.
 - catalog.mjs derives catalog/features.json from src/plugins/builtins.mjs; do not hand-maintain a second feature list.
 - site.mjs prepares dist/site; AGENTS.md instructions are development documents and must not be copied into the published site.

@@ -2,7 +2,7 @@
 
 Dead Signal Interactive's original Discord customization toolkit. Continue on `codex/dsi-original`; the preserved earlier fork stays on `rewrite`.
 
-The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains locked. This release builds the original mod engine and developer tools behind that direction. Vencord, Equicord and Vendetta provide capability references; their engines/plugins are not merged or vendored.
+The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains locked. This release builds the original mod engine and developer tools behind that direction. Vencord, Equicord, Vendetta and Revenge provide capability references; their engines/plugins are not merged or vendored.
 
 ## Delivered development tools
 
