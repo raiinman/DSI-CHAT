@@ -4,7 +4,7 @@ import {PERMISSIONS,validatePermissionsPolicy,localChannelAllowed,previewURLAllo
 import {androidManifest,managerUpdateConfig} from '../security/android-build.mjs';
 
 test('unknown or unsafe permission decisions fail closed',()=>{
- for(const mutate of [p=>p.local.permissions.push('media'),p=>p.defaultDecision='allow',p=>p.extraRule=true,p=>p.discord.mainFrameOnly=false,p=>p.discord.deviceApproval='automatic',p=>p.discord.nativeScreenCapture='allow',p=>p.preview.permissions.push('media'),p=>p.browser.permissions.push('tabs'),p=>p.android.sameSignerRequired=false,p=>p.android.receiverExported=true,p=>p.android.managerRedirectHosts.push('evil.invalid'),p=>p.picker.sourceMetadata='expose-title',p=>p.picker.requireUserGesture=false]){
+ for(const mutate of [p=>p.local.permissions.push('media'),p=>p.defaultDecision='allow',p=>p.extraRule=true,p=>p.discord.mainFrameOnly=false,p=>p.discord.deviceApproval='automatic',p=>p.discord.nativeScreenCapture='allow',p=>p.preview.permissions.push('media'),p=>p.browser.permissions.push('tabs'),p=>p.android.sameSignerRequired=false,p=>p.android.managerAssetPrefix='https://github.com/trusted',p=>p.android.receiverExported=true,p=>p.android.managerRedirectHosts.push('evil.invalid'),p=>p.picker.sourceMetadata='expose-title',p=>p.picker.requireUserGesture=false]){
   const policy=structuredClone(PERMISSIONS);mutate(policy);assert.throws(()=>validatePermissionsPolicy(policy));
  }
  const tighter=structuredClone(PERMISSIONS);tighter.discord.deviceMediaTypes=[];tighter.browser.permissions=[];tighter.android.managerPermissions=[];tighter.picker.maxSources=1;
