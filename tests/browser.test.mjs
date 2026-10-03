@@ -1,3 +1,4 @@
+import {browserManifest} from '../security/policy.mjs';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
@@ -25,7 +26,8 @@ test("browser features own and remove their styles", () => {
     assert.equal(definitions.length, FEATURES.length);
 });
 test("extension requests local storage and runs only on Discord channel pages", async () => {
-    const manifest = JSON.parse(await readFile(new URL("../browser/manifest.json", import.meta.url)));
+    const template = JSON.parse(await readFile(new URL("../browser/manifest.json", import.meta.url)));
+    const manifest=browserManifest(template);
     assert.deepEqual(manifest.permissions, ["storage"]);
     assert.deepEqual(manifest.content_scripts[0].matches, ["https://discord.com/channels/*"]);
     assert.equal(manifest.content_scripts[0].world, "ISOLATED");

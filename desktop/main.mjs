@@ -1,4 +1,6 @@
-import {app,BrowserWindow,ipcMain,dialog,session,Menu,shell} from 'electron';
+import {createScreenPicker} from './screen-picker.mjs';
+import {PERMISSIONS,officialURL,channelsURL,localChannelAllowed,previewURLAllowed} from '../security/policy.mjs';
+import {app,BrowserWindow,ipcMain,dialog,session,Menu,shell,desktopCapturer} from 'electron';
 import {configureDiscordHost} from './discord-host.mjs';
 import fs from 'node:fs/promises';
 import {mkdirSync} from 'node:fs';
@@ -25,16 +27,16 @@ const attachmentQueues=new WeakMap();
 const localOptions={width:1200,height:820,backgroundColor:'#ede1ce',show:!process.argv.includes('--smoke'),webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,preload:path.join(here,'preload.cjs')}};
 function lock(window,{remote=false}={}) {
  window.webContents.setWindowOpenHandler(()=>({action:'deny'}));
- window.webContents.on('will-navigate',(event,url)=>{ if(remote){if(new URL(url).origin!=='https://discord.com')event.preventDefault();}else event.preventDefault(); });
+ window.webContents.on('will-navigate',(event,url)=>{ if(remote){if(!officialURL(url))event.preventDefault();}else event.preventDefault(); });
  window.webContents.on('will-attach-webview',event=>event.preventDefault());
  return window;
 }
-function trusted(event,scope='local') {
+function trusted(event,scope='local',channel) {
  const sender=event.senderFrame;
  const permitted=scope==='ide'?[editor]:[dashboard,editor];
- return sender && permitted.some(window=>window&&!window.isDestroyed()&&event.sender===window.webContents&&sender===window.webContents.mainFrame)&&sender.url.startsWith(pathToFileURL(root+path.sep).href);
+ return sender && permitted.some(window=>window&&!window.isDestroyed()&&event.sender===window.webContents&&sender===window.webContents.mainFrame&&localChannelAllowed(window===editor?'workbench':'dashboard',channel))&&sender.url.startsWith(pathToFileURL(root+path.sep).href);
 }
-function handle(channel,fn,scope='local'){ipcMain.handle(channel,async(event,...args)=>{if(!trusted(event,scope))throw Error('Untrusted IPC sender');const guarded=scope==='ide'&&!['ide:cancel','ide:stop'].includes(channel);if(guarded&&ideBusy)throw Error('Another workbench action is running. Wait or cancel the test process.');if(guarded)ideBusy=true;try{return await fn(...args);}finally{if(guarded)ideBusy=false;}});}
+function handle(channel,fn,scope='local'){ipcMain.handle(channel,async(event,...args)=>{if(!trusted(event,scope,channel))throw Error('Untrusted IPC sender');const guarded=scope==='ide'&&!['ide:cancel','ide:stop'].includes(channel);if(guarded&&ideBusy)throw Error('Another workbench action is running. Wait or cancel the test process.');if(guarded)ideBusy=true;try{return await fn(...args);}finally{if(guarded)ideBusy=false;}});}
 const validSettings=value=>{
  if(!value||typeof value!=='object'||typeof value.safeMode!=='boolean')throw Error('Invalid settings');
  return normalizePluginSettings(value,BUILTIN_MANIFESTS);
@@ -50,12 +52,12 @@ function attach(window,remote=false){
 async function applyAttachment(window,remote=false){
  if(!window||window.isDestroyed())return;
  const url=window.webContents.getURL();
- if(remote&&!url.startsWith('https://discord.com/channels/')){adapterStatus='Discord display adapter waits for a channels page. No account has been verified.';return;}
+ if(remote&&!channelsURL(url)){adapterStatus='Discord display adapter waits for a channels page. No account has been verified.';return;}
  const bundle=await sharedBundle();
  const contents=window.webContents;
  for(const key of attachedStyles.get(window)??[])await contents.removeInsertedCSS(key);
  attachedStyles.set(window,[]);
- const result=await contents.executeJavaScriptInIsolatedWorld(1001,[{code:bundle+`\n(async()=>{await globalThis.__dsiRuntime?.dispose();const styles=[];globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:['styles','dom','events'],plugins:DSIPlugins.createBuiltinPlugins(document,{installStyle:(id,css)=>{styles.push({id,css});}})});const runtime=await globalThis.__dsiRuntime.reconcile(${JSON.stringify(settings)});return {active:runtime.active,errors:runtime.errors.map(({id,phase})=>({id,phase})),styles,compatibility:DSIPlugins.inspectDiscordCompatibility({document,url:location.href})};})()`}]);
+ const result=await contents.executeJavaScriptInIsolatedWorld(1001,[{code:bundle+`\n(async()=>{await globalThis.__dsiRuntime?.dispose();const styles=[];globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:${JSON.stringify(PERMISSIONS.browser.pluginCapabilities)},plugins:DSIPlugins.createBuiltinPlugins(document,{installStyle:(id,css)=>{styles.push({id,css});}})});const runtime=await globalThis.__dsiRuntime.reconcile(${JSON.stringify(settings)});return {active:runtime.active,errors:runtime.errors.map(({id,phase})=>({id,phase})),styles,compatibility:DSIPlugins.inspectDiscordCompatibility({document,url:location.href})};})()`}]);
  const keys=attachedStyles.get(window);
  try{for(const style of result.styles){if(contents.getURL()!==url)throw Error('Page changed; reload to attach plugins');keys.push(await contents.insertCSS(style.css,{cssOrigin:'author'}));}}
  catch(error){for(const key of keys)await contents.removeInsertedCSS(key);attachedStyles.set(window,[]);adapterStatus='Plugin styles could not attach; reload or use safe mode.';throw error;}
@@ -68,7 +70,8 @@ async function openDiscord(){
  if(discord&&!discord.isDestroyed()){discord.focus();return;}
  const isolated=session.fromPartition('persist:dsi-discord');
  discord=new BrowserWindow({width:1300,height:850,title:'DSI • Discord web',webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,session:isolated}});
- discordHost=configureDiscordHost({window:discord,session:isolated,dialog,Menu,shell,onReady:target=>attach(target,true)});
+ const picker=createScreenPicker({parent:discord,ipcMain,BrowserWindow,desktopCapturer,directory:here});
+ discordHost=configureDiscordHost({window:discord,session:isolated,dialog,Menu,shell,picker,onReady:target=>attach(target,true)});
  await discordHost.load();
 }
 async function openPreview(){
@@ -79,8 +82,8 @@ async function openPreview(){
  const isolated=session.fromPartition('dsi-preview-'+crypto.randomUUID());
  const denyProxy=net.createServer(socket=>socket.destroy());await new Promise((resolve,reject)=>{denyProxy.once('error',reject);denyProxy.listen(0,'127.0.0.1',resolve);});
  try{await isolated.setProxy({mode:'fixed_servers',proxyRules:'http://127.0.0.1:'+denyProxy.address().port,proxyBypassRules:'<-loopback>'});}catch(error){denyProxy.close();throw error;}
- isolated.setPermissionRequestHandler((_contents,_permission,callback)=>callback(false));isolated.setPermissionCheckHandler(()=>false);
- isolated.webRequest.onBeforeRequest((details,callback)=>callback({cancel:!/^data:|^blob:/.test(details.url)}));
+ isolated.setPermissionRequestHandler((_contents,_permission,callback)=>callback(PERMISSIONS.preview.permissions.includes(_permission)));isolated.setPermissionCheckHandler((_contents,permission)=>PERMISSIONS.preview.permissions.includes(permission));
+ isolated.webRequest.onBeforeRequest((details,callback)=>callback({cancel:!previewURLAllowed(details.url)}));
  isolated.on('will-download',event=>event.preventDefault());
  let target;try{
  const css=await fs.readFile(path.join(root,'workbench/style.css'),'utf8');
@@ -99,7 +102,7 @@ handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterSta
 handle('dsi:features',value=>{const requested=validSettings(value);const operation=featureQueue.then(async()=>{settings=requested;await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});featureQueue=operation.catch(()=>{});return operation;});
 handle('dsi:fixture',async()=>{await openFixture();return {ok:true};});
 handle('dsi:discord',async()=>{await openDiscord();return {ok:true};});
-handle('dsi:discord-browser',async()=>{await shell.openExternal('https://discord.com/app');return {ok:true};});
+handle('dsi:discord-browser',async()=>{await shell.openExternal(PERMISSIONS.discord.origin+'/app');return {ok:true};});
 handle('dsi:discord-reload',async()=>{if(!discord||discord.isDestroyed())await openDiscord();else await discordHost.reload();return {ok:true};});
 handle('dsi:workbench',async()=>{await openWorkbench();return {ok:true};});
 handle('ide:open',async()=>{const selected=await dialog.showOpenDialog(editor,{properties:['openDirectory']});return selected.canceled?null:workbench.open(selected.filePaths[0]);},'ide');
@@ -109,13 +112,16 @@ handle('ide:preview',openPreview,'ide');
 handle('ide:stop',async()=>{
  const target=preview;if(!target||target.isDestroyed())return {ok:true,forced:false};
  let timer,forced=false,teardownError;
- try{await Promise.race([target.webContents.executeJavaScript('globalThis.__dsiRuntime?.dispose()'),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Preview cleanup exceeded 1000ms; host destroyed.')),1000);})]);}
+ try{await Promise.race([target.webContents.executeJavaScript('globalThis.__dsiRuntime?.dispose()'),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Preview cleanup exceeded 1000ms; host destroyed.')),PERMISSIONS.preview.gracefulStopMs);})]);}
  catch(error){forced=true;teardownError=error.message;}
  finally{clearTimeout(timer);if(!target.isDestroyed())target.destroy();}
  return {ok:true,forced,...(teardownError?{teardownError}:{})};
 },'ide');
 handle('ide:package',async()=>{const result=await workbench.package();if(!result.ok)return result;const selected=await dialog.showSaveDialog(editor,{defaultPath:result.filename,filters:[{name:'DSI development plugin',extensions:['dsiplugin']}]});if(selected.canceled)return {cancelled:true};await fs.writeFile(selected.filePath,result.text);return {ok:true,path:selected.filePath,sha256:result.sha256};},'ide');
 app.whenReady().then(async()=>{
+ session.defaultSession.setPermissionRequestHandler((_contents,permission,callback)=>callback(PERMISSIONS.local.permissions.includes(permission)));
+ session.defaultSession.setPermissionCheckHandler((_contents,permission)=>PERMISSIONS.local.permissions.includes(permission));
+ session.defaultSession.setDisplayMediaRequestHandler((_request,callback)=>callback(null),{useSystemPicker:false});
  try{settings=validSettings(JSON.parse(await fs.readFile(path.join(app.getPath('userData'),'dsi-settings.json'),'utf8')));}catch{}
  dashboard=lock(new BrowserWindow({...localOptions,height:900,title:'DSI CHAT • Windows'}));await dashboard.loadFile(path.join(here,'index.html'));
  if(process.argv.includes('--smoke'))await runSmoke();

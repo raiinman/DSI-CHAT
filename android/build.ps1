@@ -13,6 +13,7 @@ $out=Join-Path $repo 'dist/android'
 $stage=Join-Path $work ('stage-'+[guid]::NewGuid().ToString('N'))
 $classes=Join-Path $stage 'classes'; $dex=Join-Path $stage 'dex'; $assets=Join-Path $stage 'assets'
 New-Item -ItemType Directory -Force $work,$out,$classes,$dex,$assets | Out-Null
+Run 'node' @((Join-Path $repo 'security/android-build.mjs'),'lab',$stage)
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'plugins.json') -Destination (Join-Path $assets 'dsi-native-plugins.json')
 $source=@(Get-ChildItem (Join-Path $PSScriptRoot 'src') -Filter '*.java' -Recurse | ForEach-Object { $_.FullName })
 Run "$JavaHome/bin/javac.exe" (@('--release','8','-encoding','UTF-8','-classpath',$sdkJar,'-d',$classes)+$source)
@@ -23,7 +24,7 @@ try {
     $unsigned=Join-Path $stage 'unsigned.apk'; $aligned=Join-Path $stage 'aligned.apk'; $apk=Join-Path $out 'dsi-native-lab-debug.apk'
     $resources=Join-Path $stage 'resources.zip'
     Run "$tools/aapt2.exe" @('compile','--dir',(Join-Path $PSScriptRoot 'res'),'-o',$resources)
-    Run "$tools/aapt2.exe" @('link','-o',$unsigned,'--manifest',(Join-Path $PSScriptRoot 'AndroidManifest.xml'),'-I',$sdkJar,'-A',$assets,$resources)
+    Run "$tools/aapt2.exe" @('link','-o',$unsigned,'--manifest',(Join-Path $stage 'lab-manifest.xml'),'-I',$sdkJar,'-A',$assets,$resources)
     Run "$JavaHome/bin/jar.exe" @('uf',$unsigned,'-C',$dex,'classes.dex')
     Run "$tools/zipalign.exe" @('-f','-p','4',$unsigned,$aligned)
     $key=Join-Path $work 'debug.keystore'

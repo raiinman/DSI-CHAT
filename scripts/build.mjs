@@ -1,3 +1,4 @@
+import {browserManifest} from '../security/policy.mjs';
 import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { build } from "esbuild";
 import { fileURLToPath } from "node:url";
@@ -13,7 +14,8 @@ async function bundle(entry, destination) {
 }
 await bundle("src/plugins/browser-entry.mjs", "content.js");
 await bundle("src/plugins/popup-entry.mjs", "popup.js");
-for (const file of ["manifest.json", "popup.html", "popup.css"]) await copyFile(new URL("browser/" + file, root), new URL(file, out));
+for (const file of ["popup.html", "popup.css"]) await copyFile(new URL("browser/" + file, root), new URL(file, out));
+await writeFile(new URL('manifest.json',out),JSON.stringify(browserManifest(JSON.parse(await readFile(new URL('browser/manifest.json',root),'utf8'))),null,2)+'\n');
 const names = ["content.js", "content.js.map", "popup.js", "popup.js.map", "manifest.json", "popup.html", "popup.css"];
 const sums = await Promise.all(names.map(async file => createHash("sha256").update(await readFile(new URL(file, out))).digest("hex") + "  " + file));
 await writeFile(new URL("SHA256SUMS", out), sums.join("\n") + "\n");

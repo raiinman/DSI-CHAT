@@ -16,6 +16,8 @@ The built-in opt-in updater contacts only the fixed DSI GitHub feed and verifies
 
 ## Local Contracts
 
+- build.ps1 generates manifest permission declarations, receiver export state and ManagerUpdateConfig.java through security/android-build.mjs. Edit security/permissions.json for update feed/asset/redirect scope and permission defaults; do not maintain duplicate Java constants or source-manifest permission lists. OS install approval and same-signer/version/integrity enforcement remain required.
+
 - Manager/demo packages are `interactive.deadsignal.dsi.manager` and `interactive.deadsignal.dsi.managerdemo`; neither is testOnly. Debug signing is development-only.
 - Embed only original DSI demo APK bytes and pinned size/hash/package/version/minimum SDK/certificate metadata. Do not download APKs, import upstream loaders or package Discord.
 - Verify payload before staging/committing. PackageInstaller must retain explicit Android user approval; no silent installation, uninstall, signature bypass or account-data transfer.

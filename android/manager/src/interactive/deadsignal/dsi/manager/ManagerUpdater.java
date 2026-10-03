@@ -36,9 +36,9 @@ public final class ManagerUpdater {
  static boolean assetUrl(URL url){
   if(!"https".equals(url.getProtocol())||url.getUserInfo()!=null||url.getRef()!=null||url.getQuery()!=null||(url.getPort()!=-1&&url.getPort()!=443&&!ManagerUpdateConfig.QA_BUILD))return false;
   if(ManagerUpdateConfig.QA_BUILD)return url.toString().startsWith(ManagerUpdateConfig.QA_ASSET_PREFIX)&&url.getHost().equals("localhost")&&url.getPort()==8443;
-  return !url.getPath().contains("/../")&&!url.getPath().contains("/./")&&url.getHost().equals("github.com")&&url.getPath().matches("/raiinman/DSI-CHAT/releases/download/[A-Za-z0-9._-]+/[A-Za-z0-9._-]+\\.apk");
+  return url.toString().startsWith(ManagerUpdateConfig.ASSET_PREFIX)&&!url.getPath().contains("/../")&&!url.getPath().contains("/./")&&url.getHost().equals("github.com")&&url.getPath().matches("/raiinman/DSI-CHAT/releases/download/[A-Za-z0-9._-]+/[A-Za-z0-9._-]+\\.apk");
  }
- static boolean redirectedAsset(URL url){if(assetUrl(url))return true;if(ManagerUpdateConfig.QA_BUILD)return false;return "https".equals(url.getProtocol())&&url.getUserInfo()==null&&url.getRef()==null&&(url.getPort()==-1||url.getPort()==443)&&(url.getHost().equals("release-assets.githubusercontent.com")||url.getHost().equals("objects.githubusercontent.com"));}
+ static boolean redirectedAsset(URL url){if(assetUrl(url))return true;if(ManagerUpdateConfig.QA_BUILD)return false;return "https".equals(url.getProtocol())&&url.getUserInfo()==null&&url.getRef()==null&&(url.getPort()==-1||url.getPort()==443)&&java.util.Arrays.asList(ManagerUpdateConfig.REDIRECT_HOSTS).contains(url.getHost());}
  HttpsURLConnection connect(URL start,boolean asset)throws Exception{
   URL url=start;for(int redirects=0;redirects<=5;redirects++){
    if(cancelled)throw new InterruptedException("Update cancelled");if(asset?!redirectedAsset(url):!url.toString().equals(ManagerUpdateConfig.FEED_URL))throw new IOException("Update URL is outside the DSI release policy");

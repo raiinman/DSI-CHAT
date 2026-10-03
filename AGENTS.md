@@ -107,12 +107,15 @@ When the user requests a durable behavior change, record it here or in the relev
 - Run a controlled red-team pass after completed development, fix reproducible findings and retain behavioral regressions and an honest scope/results record. Use owned fixtures; this does not authorize attacks on third-party services or accounts.
 - Prioritize working real-client integration with root and one partner, preserving Discord's native functionality and the locked Copperlight design. Follow docs/LIVE_INTEGRATION_PLAN.md. The user authorized their existing live account for testing and prohibited messaging scammers; start read-only, use identified owned destinations for delivery tests and keep private content out of public evidence. An open-source license selection remains pending.
 
+- Keep every DSI application permission default in security/permissions.json so the user can inspect and extend it. Platform manifests/configuration derive from that validated file; preserve native approval, origin/frame identity and integrity enforcement.
+
 ## Child DOX Index
 
 Root owns README.md, NOTICE.md, package.json, .gitignore, project-wide direction, branch selection and cross-area contracts. Ignored .cache/, dist/ and release/ are temporary/generated outputs; .git/ is repository metadata. Do not create DOX trees inside these directories.
 
 Preserve the private stable Android signing keys at .cache/android-manager/debug.keystore and .cache/android-build/debug.keystore across cleanup/builds. They are durable local state despite being ignored; never commit, upload or distribute them. Losing either identity prevents compatible Manager/sample updates.
 
+- [security/AGENTS.md](security/AGENTS.md): single inspectable application permissions policy, strict validation and platform generation.
 - [desktop/AGENTS.md](desktop/AGENTS.md): Windows Electron host, isolated fixtures and portable packaging.
 - [workbench/AGENTS.md](workbench/AGENTS.md): original plugin project editor, diagnostics/build/test/preview/export services.
 - [android/AGENTS.md](android/AGENTS.md): native development APK, non-root bootstrap/patcher and emulator verification.

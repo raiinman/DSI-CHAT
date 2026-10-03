@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "defaultDecision": "deny",
+  "discord": {
+    "origin": "https://discord.com",
+    "channelsPathPrefix": "/channels/",
+    "deviceMediaTypes": [
+      "audio",
+      "video"
+    ],
+    "deviceApproval": "per-request",
+    "mainFrameOnly": true,
+    "nativeScreenCapture": "guarded-modern-only",
+    "screenSharing": "guarded-modern-picker",
+    "externalLinkSchemes": [
+      "https:"
+    ],
+    "externalLinkHosts": [],
+    "externalLinkApproval": "per-request",
+    "credentialURLs": "deny",
+    "popups": "deny",
+    "webviews": "deny",
+    "notifications": "deny"
+  },
+  "local": {
+    "ipcMainFrameOnly": true,
+    "dashboardChannels": [
+      "dsi:status",
+      "dsi:features",
+      "dsi:fixture",
+      "dsi:discord",
+      "dsi:discord-browser",
+      "dsi:discord-reload",
+      "dsi:workbench"
+    ],
+    "workbenchChannels": [
+      "dsi:status",
+      "dsi:features",
+      "dsi:fixture",
+      "dsi:discord",
+      "dsi:discord-browser",
+      "dsi:discord-reload",
+      "dsi:workbench",
+      "ide:open",
+      "ide:create",
+      "ide:files",
+      "ide:read",
+      "ide:save",
+      "ide:diagnose",
+      "ide:build",
+      "ide:test",
+      "ide:cancel",
+      "ide:preview",
+      "ide:stop",
+      "ide:package"
+    ],
+    "popups": "deny",
+    "navigation": "deny",
+    "webviews": "deny",
+    "permissions": []
+  },
+  "picker": {
+    "requireUserGesture": true,
+    "requestTimeoutMs": 120000,
+    "maxSources": 128,
+    "mainFrameOnly": true,
+    "systemAudio": "explicit-entire-screen-only",
+    "sourceTypes": [
+      "screen",
+      "window"
+    ],
+    "sourceMetadata": "redact-title"
+  },
+  "preview": {
+    "permissions": [],
+    "networkSchemes": [
+      "data:",
+      "blob:"
+    ],
+    "downloads": "deny",
+    "webrtcExternalTransport": "deny",
+    "gracefulStopMs": 1000
+  },
+  "browser": {
+    "permissions": [
+      "storage"
+    ],
+    "matches": [
+      "https://discord.com/channels/*"
+    ],
+    "pluginCapabilities": [
+      "styles",
+      "dom",
+      "events"
+    ]
+  },
+  "android": {
+    "labPermissions": [],
+    "managerPermissions": [
+      "android.permission.REQUEST_INSTALL_PACKAGES",
+      "android.permission.INTERNET"
+    ],
+    "managerFeedURL": "https://raw.githubusercontent.com/raiinman/DSI-CHAT/codex/dsi-original/updates/manager.json",
+    "managerAssetPrefix": "https://github.com/raiinman/DSI-CHAT/releases/download/",
+    "installApproval": "system",
+    "unknownSourcesApproval": "system",
+    "sameSignerRequired": true,
+    "rollback": "deny",
+    "receiverExported": false,
+    "managerRedirectHosts": [
+      "release-assets.githubusercontent.com",
+      "objects.githubusercontent.com"
+    ]
+  },
+  "qa": {
+    "managerFeedURL": "https://localhost:8443/manager.json",
+    "managerAssetPrefix": "https://localhost:8443/assets/"
+  }
+}

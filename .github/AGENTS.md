@@ -11,6 +11,8 @@ workflows/manager.yml builds normal/QA Manager and original update fixtures, the
 Manager CI also runs --red-team: hostile metadata/transport/archive boundaries, external callback rejection, failed-check restart preservation and cancel/retry. Controlled update fixture versionCode must exceed the compiled Manager version; never reuse QA APKs as user releases.
 
 ## Local Contracts
+
+- Run desktop picker lifecycle tests and capture-guard/picker controlled acceptance before Windows packaging. These fixtures contain only owned synthetic content. Central application policy changes require generated extension/Android artifact checks.
 - Push publication targets codex/dsi-original, never the preserved rewrite fork.
 - Dispatch pages.yml with review_only=true on a review branch before advancing runtime UI changes to the publishing branch.
 - Preserve the publication gate: tests, catalog consistency, build, browser QA, artifact and checksum verification.

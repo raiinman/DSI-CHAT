@@ -1,3 +1,4 @@
+import {channelsURL} from '../../security/policy.mjs';
 import { BUILTIN_MANIFESTS } from './builtins.mjs';
 
 // Presence probes only. Never read account identifiers, message text or credentials.
@@ -26,9 +27,7 @@ const targets = Object.freeze({
 export function inspectDiscordCompatibility({document, url}) {
   let supported = false;
   try {
-    const parsed = typeof url === 'string' ? new URL(url) : null;
-    supported = !!parsed && parsed.origin === 'https://discord.com' &&
-      !parsed.username && !parsed.password && parsed.pathname.startsWith('/channels/');
+    supported = typeof url==='string'&&channelsURL(url);
   } catch {}
   const observations = {};
   if (supported) {

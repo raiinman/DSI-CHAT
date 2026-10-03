@@ -4,6 +4,7 @@
 Verify stable behavior of the original runtime and local messenger models.
 
 ## Ownership
+- permissions.test.mjs: strict permission validation, denied unknown decisions, local IPC roles and generated platform scopes.
 - core.test.mjs: settings validation, lifecycle, safe mode and failure isolation.
 - browser.test.mjs: owned style cleanup, manifest scope and stale storage reads.
 - messenger.test.mjs: conversations, drafts, composition and author identity.
@@ -20,7 +21,7 @@ Tests use Node's built-in test/assert APIs. Prefer behavioral contracts over imp
 Add meaningful tests for new behavior and regressions; small reversible visual changes do not need redundant unit tests. Keep unit tests distinct from screenshot acceptance.
 
 ## Verification
-npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 43 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
+npm test runs node --test --test-isolation=none tests/*.test.mjs; current baseline is 46 passing checks; separate workbench/native suites have their own owning guides. Update evidence in docs/STATE.md after meaningful changes.
 
 ## Child DOX Index
 None.

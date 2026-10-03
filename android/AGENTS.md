@@ -20,6 +20,8 @@ Own DSI's original native Android adapter development APK and reproducible SDK b
 
 ## Local Contracts
 
+- build.ps1 generates its Lab manifest through security/android-build.mjs using the validated central permissions.json. The Lab has no requested permissions; edited unknown/unsafe rules stop generation.
+
 - This is a native Java development host, not a WebView and not an attached Discord Android client.
 - Only reviewed built-in handlers execute. Manifest capabilities must match actual native services; unavailable Discord runtime capabilities stay disabled.
 - The user selected ordinary non-root Android. Patch only explicit local APK inputs into new development-signed outputs; input and existing outputs remain intact. APK-set support validates package/version/certificate, manifest dependencies/types and supplied export inventory. Only base configuration/resource/native-library splits are supported; feature/code/non-base-dependent splits remain rejected.

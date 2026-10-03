@@ -7,6 +7,8 @@ Own the extension manifest and popup HTML/CSS.
 manifest.json, popup.html and popup.css; JavaScript behavior belongs to ../src/AGENTS.md.
 
 ## Local Contracts
+
+- manifest.json is a structural template. scripts/build.mjs injects permissions and content-script matches from security/permissions.json; inspect the generated dist/chromium/manifest.json for effective packaged scope.
 - Manifest V3, storage permission and isolated content script matching https://discord.com/channels/*.
 - Keep permission scope explicit and feature choices disabled by default.
 - Loading/saving failures must not suggest settings were applied successfully.
@@ -18,7 +20,7 @@ manifest.json, popup.html and popup.css; JavaScript behavior belongs to ../src/A
 Keep popup controls accessible, labeled and keyboard usable; coordinate IDs with src/plugins/popup-entry.mjs. Preserve permission and provenance checks when editing the manifest.
 
 ## Verification
-npm test checks manifest scope and adapter behavior. npm run build copies these files and syntax-checks bundled JavaScript; verify dist/chromium/SHA256SUMS through the existing workflow.
+npm test checks manifest scope and adapter behavior. npm run build generates the policy-derived manifest and copies popup files and syntax-checks bundled JavaScript; verify dist/chromium/SHA256SUMS through the existing workflow.
 
 ## Child DOX Index
 None.

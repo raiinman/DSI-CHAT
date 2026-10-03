@@ -7,6 +7,8 @@ Own reproducible catalog generation, Chromium packaging, Pages preparation, brow
 catalog.mjs generates implemented plugin descriptors; build.mjs uses pinned esbuild for isolated extension entries and calls build-plugins.mjs for the shared IIFE. plugin-qa.mjs loads a real extension in a temporary Chromium profile and intercepts all HTTPS traffic with local fixtures, writing .cache/plugin-screenshots. site.mjs/browser-qa.mjs preserve the locked messenger. setup-tools.mjs installs pinned development browsers/optional portable Android tools; tools-doctor.mjs probes tools with local smoke fixtures. reference-inventory.mjs reads pinned Git directory identifiers into docs/REFERENCE_INVENTORY.json. Generated builds/downloads/reports belong in ignored dist/ and .cache/.
 
 ## Local Contracts
+
+- build.mjs derives the extension manifest permission/match fields from the validated central security/permissions.json policy, then writes checksums over the generated artifact.
 - red-team-browser.mjs loads an isolated copy of the actual built extension and routes all web traffic to controlled fixtures. It probes hostile storage/CSS/links, main-world spoofing and host/path scope, writing ignored .cache/red-team/browser evidence. It must not contact live accounts or third-party attack targets.
 - Node.js 24 or newer; shipped runtime remains dependency-free. Root exact devDependencies/package-lock.json provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2 for development only.
 - Portable Android downloads must match docs/ANDROID_TOOLS.lock.json. Preserve existing SDK files; do not alter system PATH, install into a live client or contact a device during setup/probes.

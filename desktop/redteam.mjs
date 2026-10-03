@@ -5,17 +5,19 @@ import {spawn} from 'node:child_process';
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=path.join(repo,'.cache','desktop-redteam-'+Date.now());await fs.mkdir(output,{recursive:true});
 let source=await fs.readFile(path.join(repo,'desktop/main.mjs'),'utf8');
-for(const specifier of ['./discord-host.mjs','../workbench/service.mjs','../src/plugins/builtins.mjs','../src/plugins/settings.mjs'])source=source.replace(JSON.stringify(specifier),JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href)).replace("'"+specifier+"'",JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href));
+for(const specifier of ['./screen-picker.mjs','../security/policy.mjs','./discord-host.mjs','../workbench/service.mjs','../src/plugins/builtins.mjs','../src/plugins/settings.mjs'])source=source.replace(JSON.stringify(specifier),JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href)).replace("'"+specifier+"'",JSON.stringify(pathToFileURL(path.resolve(repo,'desktop',specifier)).href));
 source=source.replace('const here=path.dirname(fileURLToPath(import.meta.url));','const here='+JSON.stringify(path.join(repo,'desktop'))+';');
 source=source.replace("ipcMain.handle(channel,async(event,...args)=>","registerRedteamHandler(channel,async(event,...args)=>");
 source=source.replace('if(process.argv.includes(\'--smoke\'))await runSmoke();','if(process.argv.includes(\'--smoke\'))await runRedteam();');
-source=`import http from 'node:http';\nimport dgram from 'node:dgram';\nimport assert from 'node:assert/strict';\nconst redteamHandlers=new Map();function registerRedteamHandler(channel,handler){redteamHandlers.set(channel,handler);ipcMain.handle(channel,handler);}\n`+source;
+source=`import http from 'node:http';\nimport dgram from 'node:dgram';\nimport assert from 'node:assert/strict';\napp.commandLine.appendSwitch('use-fake-device-for-media-stream');const redteamHandlers=new Map();function registerRedteamHandler(channel,handler){redteamHandlers.set(channel,handler);ipcMain.handle(channel,handler);}\n`+source;
 source+=String.raw`
 async function runRedteam(){
  const folder=process.env.DSI_SMOKE_OUTPUT,results={electron:process.versions.electron,controlledFixturesOnly:true};
  const report=async()=>fs.writeFile(path.join(folder,'result.json'),JSON.stringify(results,null,2));
  let server,rogue,udp,tcp;
  try{
+  results.localWindowDevicePermission=await dashboard.webContents.executeJavaScript('navigator.mediaDevices.getUserMedia({video:true}).then(stream=>{stream.getTracks().forEach(track=>track.stop());return \"ALLOWED\";},error=>error.name)',true);assert.equal(results.localWindowDevicePermission,'NotAllowedError');
+  results.localWindowCapturePermission=await dashboard.webContents.executeJavaScript('navigator.mediaDevices.getDisplayMedia({video:true}).then(stream=>{stream.getTracks().forEach(track=>track.stop());return \"ALLOWED\";},error=>error.name)',true);assert.equal(results.localWindowCapturePermission,'NotAllowedError');
   const browserLaunches=[];shell.openExternal=async value=>{browserLaunches.push(value);};
   await openWorkbench();const sample=path.join(folder,'selected');await createTemplate(sample);await workbench.open(sample);
   const event=()=>({sender:editor.webContents,senderFrame:editor.webContents.mainFrame});

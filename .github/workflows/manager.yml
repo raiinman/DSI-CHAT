@@ -2,7 +2,7 @@ name: DSI Manager verification
 on:
   push:
     branches: [codex/dsi-original, codex/dsi-manager-review, codex/dsi-redteam-review]
-    paths: ['android/**', '.github/workflows/manager.yml']
+    paths: ['security/**', 'android/**', '.github/workflows/manager.yml']
   workflow_dispatch:
 permissions:
   contents: read
