@@ -13,7 +13,7 @@ The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains
 | Developer IDE | Original plugin editor, conflict-safe saves, diagnostics, builds/maps, cancellable tests, isolated preview/stop and checksummed export | Controlled local projects; plain text editor, no debugger/Git UI |
 | Android | Native Java lab APK, three native handlers, non-root bootstrap, installed-APK exporter and monolithic/configuration-split patchers | Original fixture build/sign/patch tests; actual Discord attachment pending |
 
-[Release downloads](https://github.com/raiinman/DSI-CHAT/releases) provide development artifacts. Unzip the entire Windows portable directory and run DSI-CHAT.exe. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
+[Release downloads](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.2.0-dev.1) provide development artifacts. Unzip the entire Windows portable directory and run DSI-CHAT.exe. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
 
 Plugins start disabled. Safe mode retains choices and removes owned effects. The browser/Windows batch includes Signal theme, compact messages, reduced motion, keyboard focus, readable code, larger text, clear links, media fitting, hidden typing indicator, wider scrollbars, full timestamp tooltips and link destinations. Native Android has separate reviewed native-view handlers; it cannot execute browser CSS plugins.
 
