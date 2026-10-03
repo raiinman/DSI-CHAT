@@ -135,6 +135,8 @@ export async function runManagerQA(args=process.argv.slice(2)){
    if(mode==='hash'||mode==='archive-signer'){await wait(items=>items.find(item=>item.text.includes('is available')),'available negative update');await click('Update DSI Manager');}
    await wait(items=>items.find(item=>item.text==='Update check needs attention'||item.text==='Setup needs attention'),mode+' rejected');capture('manager-update-rejected-'+mode);
    const screen=dump();if(nodes(screen).some(installer))throw Error('Rejected '+mode+' update reached Android installer');
+   const expected={downgrade:/would downgrade/,certificate:/signing certificate is unsupported/,hash:/SHA-256 integrity check failed/,'archive-signer':/APK package\/version\/SDK\/signing certificate verification failed/}[mode];
+   if(!nodes(screen).some(item=>expected.test(item.text)))throw Error(mode+' rejection did not identify its intended verification gate');
    const dismiss=nodes(screen).find(item=>item.package===MANAGER_PACKAGE&&item.text==='OK');if(dismiss)await tap(dismiss);
   }
   feedMode='valid';await click('Check for updates');await wait(items=>items.find(item=>item.text.includes('is available')),'verified update availability');capture('manager-update-available');

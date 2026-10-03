@@ -15,6 +15,7 @@ This preview does not install Discord, add mobile JavaScript plugin support or p
 Select SDK35/build-tools35.0.1 and a JDK; `node android/setup.mjs` verifies the pinned development patch tool. From repository root:
 
 ```powershell
+./android/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
 ./android/manager/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
 ```
 
