@@ -1,5 +1,9 @@
 # Architecture
 
+The native phone-only Manager is separate from the Android lab and locked messenger. It embeds a verified original sample APK, prepares it privately and requests normal PackageInstaller approval. Persisted session records recover foreground approval and installed-package state. Discord attachment remains unavailable in this Manager.
+
+The opt-in Manager updater uses a fixed HTTPS GitHub feed and scoped release URLs. It validates version, minimum SDK, bounded size, SHA-256, package and the installed Manager's signing certificate before requesting native approval. Its sessions and cancellation state are separate from sample setup. Only controlled QA builds trust a domain-scoped localhost test CA; production has no feed override. See android/manager/README.md and MANAGER_PLAN.md.
+
 The new API 1 PluginRuntime in src/plugins owns manifest validation, registry, dependency ordering, conflicts, host capability gates, settings, asynchronous start cancellation/timeouts, per-cleanup deadlines and reversed resource cleanup. Settings changes restart affected dependents; partial starts roll back. Diagnostics are bounded. Reviewed original modules run locally; declared capabilities are not an arbitrary-code sandbox.
 
 The legacy three-feature FeatureRuntime remains unchanged for the locked Copperlight preview. Its persistence and presentation are independent of plugin settings.

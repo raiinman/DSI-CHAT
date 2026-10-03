@@ -3,6 +3,8 @@
 ## Purpose
 Keep project scope, architecture, design, roadmap and evidence accurate for subsequent work.
 
+Manager records distinguish normal phone-only sample installation and verified DSI self-updates from unavailable Discord attachment. Record exact release APK identity and actual emulator evidence; do not present CI-rebuilt artifacts as the exact local stable-key release bytes.
+
 ## Ownership
 - CODEX_HANDOFF.md: continuation entrypoint, branch, required reading and latest verified publication.
 - ARCHITECTURE.md: runtime, adapter, preview and storage contracts.

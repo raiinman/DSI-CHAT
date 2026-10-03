@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "package": "interactive.deadsignal.dsi.manager",
+  "versionCode": 1,
+  "versionName": "0.3.0-dev.1",
+  "minSdk": 26,
+  "bytes": 62055,
+  "sha256": "60daf246ba3e0f5ebf981a3313f28142da795601ff804eedb2223ff8419d9435",
+  "certificateSha256": "61bf836b935d8fd9aae71d007db7f9e7853d2866c57a0cbfe53f7cb3ad3fdd67",
+  "url": "https://github.com/raiinman/DSI-CHAT/releases/download/v0.3.0-dev.1/dsi-manager-debug.apk"
+}

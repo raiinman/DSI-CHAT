@@ -1,5 +1,7 @@
 # Provenance and ownership limits
 
+The phone-only DSI Manager, installer/updater and native vector launcher mark are original project work. Its embedded APK contains the original DSI native sample and bootstrap, not Discord or an upstream loader. The Manager ships no added runtime library or downloaded code. SDK/JDK/Apktool and CI tooling remain developer tools under the notices recorded below. Release APKs retain a private stable development signing identity; QA TLS and other-signer fixtures are excluded from user releases.
+
 The DOX documentation framework is adapted from https://github.com/raiinman/dox at revision 765ae4ac02cc884eefcd41a3d0f71941721adb89, copyright (c) 2026 Agent Zero, MIT. Its rules are integrated into root AGENTS.md; original project-specific child instructions form an indexed hierarchy. The full upstream notice is retained in DOX_LICENSE.txt. This is a documentation dependency only, adds no runtime package, and does not relicense the original DSI code or artwork. Development AGENTS.md files are excluded from Pages packaging.
 
 User direction: create DSI's own implementation rather than a branded upstream fork. October 3 clarification: bring together capabilities and ideas from Vencord, Equicord and Vendetta through original DSI engine/plugin/adapter code. The repositories are behavior references, not vendored dependencies.

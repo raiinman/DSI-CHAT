@@ -10,6 +10,8 @@ plugin-runtime.png and plugin-settings.png show the actual controlled Chromium e
 
 android-native-settings.png records the original patched configuration-split fixture's restored native controls on the API35 emulator. It does not show Discord attachment.
 
+manager-default.png, manager-installed.png, manager-update.png, manager-update-restored.png and manager-large-font.png record the separate original phone-only Manager and native updater. They are controlled Android sample/QA evidence, not Discord screens.
+
 ## Local Contracts
 The generated concept is a reference, not shipped UI. The user explicitly replaced orange glass with Copperlight Realism. Keep real controls, existing identities and honest local-preview behavior; omit concept-only calls/media/window controls until functional.
 
@@ -18,6 +20,8 @@ Retain representative reviewed captures for meaningful UI changes and update han
 
 ## Verification
 Inspect desktop 1440x844, Dark/Daytime/High contrast, 390/768 and changed states before publication, using the existing review-only screenshot workflow in ../VISUAL_WORKFLOW.md.
+
+For Manager changes, inspect manager.yml API35 emulator captures including first launch, source permission, native install/update approval, errors, installed/recovered state and large-font wrapping. Retain representative captures from the final passed run. Preserve the messenger baseline.
 
 ## Child DOX Index
 None.

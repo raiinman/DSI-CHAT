@@ -108,6 +108,8 @@ When the user requests a durable behavior change, record it here or in the relev
 
 Root owns README.md, NOTICE.md, package.json, .gitignore, project-wide direction, branch selection and cross-area contracts. Ignored .cache/, dist/ and release/ are temporary/generated outputs; .git/ is repository metadata. Do not create DOX trees inside these directories.
 
+Preserve the private stable Android signing keys at .cache/android-manager/debug.keystore and .cache/android-build/debug.keystore across cleanup/builds. They are durable local state despite being ignored; never commit, upload or distribute them. Losing either identity prevents compatible Manager/sample updates.
+
 - [desktop/AGENTS.md](desktop/AGENTS.md): Windows Electron host, isolated fixtures and portable packaging.
 - [workbench/AGENTS.md](workbench/AGENTS.md): original plugin project editor, diagnostics/build/test/preview/export services.
 - [android/AGENTS.md](android/AGENTS.md): native development APK, non-root bootstrap/patcher and emulator verification.
@@ -119,3 +121,4 @@ Root owns README.md, NOTICE.md, package.json, .gitignore, project-wide direction
 - [catalog/AGENTS.md](catalog/AGENTS.md): generated feature catalog.
 - [docs/AGENTS.md](docs/AGENTS.md): architecture, roadmap, handoff, evidence and provenance.
 - [.github/AGENTS.md](.github/AGENTS.md): verification and Pages workflows.
+- [updates/AGENTS.md](updates/AGENTS.md): fixed Manager release feed and reviewed APK identity.
