@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="interactive.deadsignal.dsi.manager" android:versionCode="1" android:versionName="0.3.0-dev.1">
+ <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35"/>
+ <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <queries><package android:name="interactive.deadsignal.dsi.managerdemo"/><package android:name="com.discord"/></queries>
+ <application android:icon="@drawable/manager_mark" android:label="DSI Manager" android:theme="@style/ManagerTheme" android:debuggable="true" android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true">
+  <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+  <receiver android:name=".InstallReceiver" android:exported="false"/>
+  <receiver android:name=".UpdateReceiver" android:exported="false"/>
+ </application>
+</manifest>

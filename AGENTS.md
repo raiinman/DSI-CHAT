@@ -101,6 +101,7 @@ When the user requests a durable behavior change, record it here or in the relev
 - Build one original DSI mod that brings together the capabilities of Vencord, Equicord, Vendetta and Revenge; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
 - Target ordinary non-root Android phones with an original local APK bootstrap/patcher; preserve selected input and write a separate development-signed output. Support explicitly selected installed-package export and validated configuration split sets. Do not download/distribute Discord APKs or automatically install into a user device.
 - Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
+- Build an original phone-only DSI Manager with one guided setup flow and a built-in updater. Normal user setup must not require ADB, a PC, manual APK selection or SDK tooling. Preserve explicit Android install approval and settings through updates; verify DSI release integrity and signing identity. Until real Discord attachment is established, label the included controlled sample and unsupported Discord setup accurately.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 
 ## Child DOX Index

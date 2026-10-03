@@ -6,6 +6,8 @@ Own workflows for original extension verification and reviewed Pages publication
 ## Ownership
 workflows/platforms.yml builds/tests the Windows host/workbench and native Android APK/patcher on Windows, then tests the controlled patched fixture on an Ubuntu KVM emulator. It never installs a user APK or contacts an account. workflows/original.yml verifies/packages the Chromium extension. workflows/pages.yml builds, tests, screenshots and optionally publishes the preview.
 
+workflows/manager.yml builds normal/QA Manager and original update fixtures, then exercises real PackageInstaller approval plus controlled localhost HTTPS updates on an API35 KVM emulator. The dummy localhost TLS credentials are test artifacts; private APK signing keys are excluded. User downloads must use the stable local release signing identity, with their exact bytes separately verified.
+
 ## Local Contracts
 - Push publication targets codex/dsi-original, never the preserved rewrite fork.
 - Dispatch pages.yml with review_only=true on a review branch before advancing runtime UI changes to the publishing branch.

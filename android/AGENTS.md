@@ -15,6 +15,8 @@ Own DSI's original native Android adapter development APK and reproducible SDK b
 - `export-apks.ps1`: explicit selected-device read-only installed APK export; no account data or install/connect commands.
 - `patch-apk.ps1`, `patch-core.ps1`, `patch-set.ps1`: monolithic/split entry points and shared original bootstrap patching.
 - `README.md`: build, testing, platform support and dependency notices.
+- `manager/`: original phone-only Manager, verified native installer and DSI updater; see child instructions.
+- `manager-qa.mjs`, `manager-qa-preflight.test.mjs`: controlled Manager/demo installation and preflight acceptance.
 
 ## Local Contracts
 
@@ -39,4 +41,4 @@ Run `android/test.ps1`, `build.ps1`, `build-bootstrap.ps1`, `patch-test.ps1`, `b
 
 ## Child DOX Index
 
-No child documentation boundaries. Android sources/tests/tools are owned here; parent owns common engine and release documentation.
+- [manager/AGENTS.md](manager/AGENTS.md): guided native installer, trusted DSI update flow and controlled sample boundary.
