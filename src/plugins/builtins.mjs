@@ -12,7 +12,7 @@ const definitions = [
     ["reduced-motion", "Reduced motion", "Suppress animations, transitions and smooth scrolling.", FEATURE_CSS["reduced-motion"]],
     ["keyboard-focus", "Keyboard focus", "Make keyboard focus rings easier to see.", "*:focus-visible { outline: 3px solid #f2a461 !important; outline-offset: 3px !important; }"],
     ["readable-code", "Readable code", "Wrap long code lines and use clear, spacious code text.", "[role=\"main\"] pre, [role=\"main\"] code { font-family: ui-monospace, Consolas, monospace !important; line-height: 1.6 !important; tab-size: 4 !important; } [role=\"main\"] pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; }"],
-    ["larger-text", "Larger message text", "Increase visible message text size without changing stored messages.", "[id^=\"chat-messages-\"] [class*=\"messageContent\"], [role=\"log\"] [data-message-content] { font-size: 18px !important; line-height: 1.65 !important; }"],
+    ["larger-text", "Larger message text", "Choose readable message text from 14 to 28 pixels without changing stored messages.", settings => `[id^="chat-messages-"] [class*="messageContent"], [role="log"] [data-message-content] { font-size: ${settings.size}px !important; line-height: 1.65 !important; }`],
     ["clear-links", "Clear links", "Underline visible message links and give them a clearer focus target.", "[role=\"main\"] a[href] { text-decoration: underline !important; text-underline-offset: 3px !important; }"],
     ["media-fit", "Fit large media", "Keep visible images and videos within their conversation width.", "[role=\"log\"] img, [role=\"log\"] video, [id^=\"chat-messages-\"] video { max-width: 100% !important; max-height: 60vh !important; object-fit: contain !important; }"],
     ["calm-typing", "Hide typing indicator", "Hide the visible typing indicator locally.", "[data-typing-indicator], [class*=\"typingDots\"], [class*=\"typing_\"] { display: none !important; }"],
@@ -22,7 +22,8 @@ const definitions = [
 ];
 export const BUILTIN_MANIFESTS = Object.freeze(definitions.map(([id, name, description, css]) => validateManifest({
     id, name, description, version: "0.2.0", apiVersion: 1, platforms: ["browser", "windows"],
-    capabilities: css ? ["styles"] : ["dom", "events"], dependencies: [], conflicts: [], settings: {}
+    capabilities: css ? ["styles"] : ["dom", "events"], dependencies: [], conflicts: [],
+    settings: id === "larger-text" ? {size: {type:"number",default:18,min:14,max:28,step:1,label:"Text size (px)"}} : {}
 })));
 function tooltips(document, scope, selector, titleFor) {
     const changes = new Map();
@@ -64,8 +65,8 @@ function tooltips(document, scope, selector, titleFor) {
 export function createBuiltinPlugins(document) {
     return definitions.map(([id, , , css], index) => ({
         manifest: BUILTIN_MANIFESTS[index],
-        start({ scope }) {
-            if (css) return scope.style(document, id, css);
+        start({ scope, settings }) {
+            if (css) return scope.style(document, id, typeof css === "function" ? css(settings) : css);
             if (id === "full-timestamps") tooltips(document, scope, "time[datetime]", element => {
                 const date = new Date(element.getAttribute("datetime"));
                 return Number.isNaN(date.getTime()) ? null : date.toLocaleString();

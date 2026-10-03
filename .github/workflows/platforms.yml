@@ -51,8 +51,13 @@ jobs:
       - run: ./android/test.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
       - run: ./android/build.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
       - run: ./android/build-bootstrap.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
+      - run: ./android/build-split-fixture.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
       - run: ./android/patch-test.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
+      - run: ./android/set-test.ps1 -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
+      - run: ./android/export-test.ps1
+      - run: node --test android/qa-preflight.test.mjs
       - run: ./android/patch-apk.ps1 -InputApk dist/android/dsi-native-lab-debug.apk -OutputApk dist/android/dsi-native-lab-patched-debug.apk -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
+      - run: ./android/patch-set.ps1 -InputDirectory dist/android/split-fixture -OutputDirectory dist/android/split-fixture-patched -Sdk $env:ANDROID_HOME -JavaHome $env:JAVA_HOME
       - uses: actions/upload-artifact@v4
         with:
           name: dsi-android-development
@@ -80,7 +85,9 @@ jobs:
           arch: x86_64
           target: google_apis
           disable-animations: true
-          script: node android/emulator-qa.mjs --apk dist/android/dsi-native-lab-patched-debug.apk
+          script: |
+            node android/emulator-qa.mjs --apk dist/android/dsi-native-lab-patched-debug.apk --output .cache/android-emulator-evidence/monolithic
+            node android/emulator-qa.mjs --apk-set dist/android/split-fixture-patched --output .cache/android-emulator-evidence/splits
       - uses: actions/upload-artifact@v4
         if: always()
         with:

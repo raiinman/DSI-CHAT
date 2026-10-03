@@ -4,7 +4,8 @@ const container = document.getElementById("features");
 const safe = document.getElementById("safe-mode");
 const status = document.getElementById("status");
 const filter = document.getElementById("plugin-filter");
-const controls = new Map(), rows = new Map();
+const inspect = document.getElementById("inspect-runtime");
+const controls = new Map(), rows = new Map(), settingControls = new Map();
 let settings = normalizePluginSettings({}, BUILTIN_MANIFESTS), loaded = false, saving = false;
 for (const manifest of BUILTIN_MANIFESTS) {
     const row = document.createElement("div"); row.className = "feature";
@@ -14,15 +15,32 @@ for (const manifest of BUILTIN_MANIFESTS) {
     const description = document.createElement("p"); description.className = "description"; description.textContent = manifest.description;
     row.append(label, description); container.append(row); controls.set(manifest.id, input); rows.set(manifest.id, row);
     input.addEventListener("change", save);
+    for (const [key, schema] of Object.entries(manifest.settings)) {
+        const label=document.createElement("label"); label.className="plugin-setting";
+        label.append(document.createTextNode(schema.label || key));
+        const field=document.createElement("input"); field.type="number";
+        field.min=schema.min; field.max=schema.max; field.step=schema.step || "any"; field.required=true;
+        field.dataset.setting=manifest.id+"."+key;
+        label.append(field); row.append(label);
+        settingControls.set(manifest.id+"."+key,{id:manifest.id,key,field}); field.addEventListener("change",save);
+    }
 }
 function render() {
     safe.checked = settings.safeMode; safe.disabled = !loaded || saving;
     container.disabled = !loaded || saving || settings.safeMode;
+    inspect.disabled = !loaded || saving;
     for (const [id, input] of controls) input.checked = settings.enabled[id];
+    for (const {id,key,field} of settingControls.values()) field.value=settings.plugins[id][key];
 }
 async function save() {
     if (!loaded || saving) return;
+    const values=structuredClone(settings.plugins);
+    if (!safe.checked) for (const {id,key,field} of settingControls.values()) {
+        if (!field.checkValidity()) { status.textContent="Enter a text size from 14 to 28 pixels."; field.reportValidity(); return; }
+        values[id][key]=Number(field.value);
+    }
     const next = normalizePluginSettings({ ...settings, safeMode: safe.checked,
+        plugins:values,
         enabled: Object.fromEntries([...controls].map(([id, input]) => [id, input.checked])) }, BUILTIN_MANIFESTS);
     saving = true; render();
     try {
@@ -48,3 +66,20 @@ chrome.storage.local.get([PLUGIN_SETTINGS_KEY, LEGACY_SETTINGS_KEY]).then(record
     loaded = true; render();
     status.textContent = settings.safeMode ? "Safe mode active." : "Ready. Plugins are disabled until you choose them.";
 }).catch(() => { status.textContent = "Could not load settings. Reopen DSI CHAT."; });
+inspect.addEventListener("click",async()=>{
+    inspect.disabled=true;
+    try {
+        // Chrome's documented popup E2E pattern can select a fixture tab explicitly.
+        const selected=new URLSearchParams(location.search).get("tab");
+        const tab=selected && /^\d+$/.test(selected) && Number.isSafeInteger(Number(selected))
+            ? await chrome.tabs.get(Number(selected)) : (await chrome.tabs.query({active:true,currentWindow:true}))[0];
+        if (!Number.isInteger(tab?.id)) throw new Error("No selected tab");
+        const report=await chrome.tabs.sendMessage(tab.id,{kind:"dsi:plugin-status"});
+        if(report?.kind!=="dsi-plugin-status")throw new Error("Unsupported response");
+        document.getElementById("runtime-report").textContent=JSON.stringify(report,null,2);
+        document.getElementById("runtime-details").open=true;
+    } catch {
+        document.getElementById("runtime-report").textContent="No DSI runtime answered. Open a Discord channel tab, then inspect again.";
+        document.getElementById("runtime-details").open=true;
+    } finally {inspect.disabled=!loaded || saving;}
+});

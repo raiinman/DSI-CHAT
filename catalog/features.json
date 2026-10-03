@@ -102,7 +102,7 @@
       "version": "0.2.0",
       "apiVersion": 1,
       "name": "Larger message text",
-      "description": "Increase visible message text size without changing stored messages.",
+      "description": "Choose readable message text from 14 to 28 pixels without changing stored messages.",
       "platforms": [
         "browser",
         "windows"
@@ -112,7 +112,16 @@
       ],
       "dependencies": [],
       "conflicts": [],
-      "settings": {},
+      "settings": {
+        "size": {
+          "type": "number",
+          "default": 18,
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "label": "Text size (px)"
+        }
+      },
       "defaultEnabled": false,
       "verification": "controlled DOM fixture; live Discord selector compatibility unverified"
     },

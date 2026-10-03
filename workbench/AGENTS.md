@@ -13,6 +13,7 @@ Own the separate local plugin editor, selected-workspace operations and controll
 - Resolve every path against the explicitly selected workspace and reject symlink escapes. TypeScript compiler reads stay inside that workspace or the pinned compiler standard-library directory; disable automatic ambient type discovery. Never silently overwrite externally changed files.
 - Use the shared manifest validator and PluginRuntime. A capability declaration does not sandbox arbitrary JavaScript.
 - Build outputs live in .dsi-build and are separate from source. Tests execute local selected-project code only after a deliberate action, in a cancellable separate process.
+- New templates copy the shared typed SDK as dsi-api.d.ts and type plugins with DSIPlugin. Build before running generated behavior tests; they execute the compiled module and assert resource attachment/cleanup.
 - Export .dsiplugin development JSON packages with manifest, compiled source and SHA-256, not automatically installed/published plugins.
 - Preview is an isolated renderer without Node/preload privileges and never connects to a live account. Stop allows at most 1000ms for graceful cleanup, then destroys the captured host window even if plugin code hangs; report forced teardown.
 - The Copperlight messenger is untouched; this is a separate developer tool.

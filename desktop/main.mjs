@@ -5,6 +5,7 @@ import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {WorkspaceService,createTemplate} from '../workbench/service.mjs';
 import {BUILTIN_MANIFESTS} from '../src/plugins/builtins.mjs';
+import {normalizePluginSettings} from '../src/plugins/settings.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.dirname(here);
@@ -12,7 +13,8 @@ if(process.argv.includes('--smoke')){app.disableHardwareAcceleration();const pro
 const workbench=new WorkspaceService({electron:true});
 let dashboard,editor,fixture,discord,preview;
 let ideBusy=false;
-let settings={version:2,safeMode:false,enabled:{},plugins:{}};
+let settings=normalizePluginSettings({},BUILTIN_MANIFESTS);
+let featureQueue=Promise.resolve();
 let adapterStatus='Not attached; use the offline fixture first.';
 const localOptions={width:1200,height:820,backgroundColor:'#182521',show:!process.argv.includes('--smoke'),webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,preload:path.join(here,'preload.cjs')}};
 function lock(window,{remote=false}={}) {
@@ -29,8 +31,7 @@ function trusted(event,scope='local') {
 function handle(channel,fn,scope='local'){ipcMain.handle(channel,async(event,...args)=>{if(!trusted(event,scope))throw Error('Untrusted IPC sender');const guarded=scope==='ide'&&!['ide:cancel','ide:stop'].includes(channel);if(guarded&&ideBusy)throw Error('Another workbench action is running. Wait or cancel the test process.');if(guarded)ideBusy=true;try{return await fn(...args);}finally{if(guarded)ideBusy=false;}});}
 const validSettings=value=>{
  if(!value||typeof value!=='object'||typeof value.safeMode!=='boolean')throw Error('Invalid settings');
- const enabled={};for(const {id} of BUILTIN_MANIFESTS)enabled[id]=value.enabled?.[id]===true;
- return {version:2,safeMode:value.safeMode,enabled,plugins:{}};
+ return normalizePluginSettings(value,BUILTIN_MANIFESTS);
 };
 async function sharedBundle(){return fs.readFile(path.join(root,'dist/shared/dsi-plugins.js'),'utf8');}
 async function attach(window,remote=false){
@@ -63,7 +64,7 @@ async function openPreview(){
  return {ok:result.active.includes(build.manifest.id)&&result.errors.length===0,result};
 }
 handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterStatus,version:app.getVersion(),platform:process.platform}));
-handle('dsi:features',async value=>{settings=validSettings(value);await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});
+handle('dsi:features',value=>{const requested=validSettings(value);const operation=featureQueue.then(async()=>{settings=requested;await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});featureQueue=operation.catch(()=>{});return operation;});
 handle('dsi:fixture',async()=>{await openFixture();return {ok:true};});
 handle('dsi:discord',async()=>{await openDiscord();return {ok:true};});
 handle('dsi:workbench',async()=>{await openWorkbench();return {ok:true};});
@@ -93,6 +94,17 @@ async function runSmoke(){
  await new Promise(resolve=>setTimeout(resolve,300));
  const styles=await fixture.webContents.executeJavaScript('document.querySelectorAll("style[data-dsi-plugin],style[data-dsi-feature]").length');
  if(styles<2)throw Error('Fixture plugins did not attach');
+ await dashboard.webContents.executeJavaScript(`const size=document.querySelector('#larger-text-size');size.value='22';size.dispatchEvent(new Event('change'));const larger=document.querySelector('#larger-text');larger.checked=true;larger.dispatchEvent(new Event('change'));`);
+ await waitCondition(async()=>await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize')==='22px','Numeric text-size control did not apply');
+ await dashboard.webContents.executeJavaScript(`document.querySelector('#safe-mode').checked=true;document.querySelector('#safe-mode').dispatchEvent(new Event('change'));`);
+ await waitCondition(async()=>await fixture.webContents.executeJavaScript('document.querySelectorAll("style[data-dsi-plugin],style[data-dsi-feature]").length')===0,'Safe mode did not remove styles');
+ if(settings.plugins['larger-text'].size!==22||!settings.enabled['larger-text'])throw Error('Safe mode discarded plugin settings');
+ const savedSettings=validSettings(JSON.parse(await fs.readFile(path.join(app.getPath('userData'),'dsi-settings.json'),'utf8')));
+ if(savedSettings.plugins['larger-text'].size!==22||!savedSettings.safeMode)throw Error('Numeric settings were not persisted');
+ await new Promise(resolve=>{dashboard.webContents.once('did-finish-load',resolve);dashboard.webContents.reload();});
+ await waitCondition(async()=>await dashboard.webContents.executeJavaScript('document.querySelector("#larger-text-size")?.value==="22"&&document.querySelector("#safe-mode").checked'),'Reload did not preserve text-size setting');
+ await dashboard.webContents.executeJavaScript(`document.querySelector('#safe-mode').checked=false;document.querySelector('#safe-mode').dispatchEvent(new Event('change'));`);
+ await waitCondition(async()=>await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize')==='22px','Leaving safe mode did not restore configured font size');
  const fixturePreferences=fixture.webContents.getLastWebPreferences();
  if(fixturePreferences.nodeIntegration||!fixturePreferences.sandbox||!fixturePreferences.contextIsolation||fixturePreferences.preload)throw Error('Fixture renderer isolation failed');
  await dashboard.webContents.executeJavaScript('window.scrollTo(0,0)');
@@ -136,7 +148,8 @@ async function runSmoke(){
  const forcedStopMs=Date.now()-stopStarted;
  if(!hangingPreview.isDestroyed()||forcedStopMs>1600)throw Error('Hanging preview was not destroyed within the stop deadline');
  const artifact=await workbench.package();if(!artifact.ok)throw Error('Package failed');await fs.writeFile(path.join(folder,artifact.filename),artifact.text);
- await fs.writeFile(path.join(folder,'result.json'),JSON.stringify({ok:true,styles,previewIsolation,forcedStopMs,diagnosis,tests,artifact:{sha256:artifact.sha256},electron:process.versions.electron},null,2));app.exit(0);
+ await fs.writeFile(path.join(folder,'result.json'),JSON.stringify({ok:true,styles,numericSettings:{size:22,computedFont:'22px',safeModeRetained:true,reloadPersisted:true},previewIsolation,forcedStopMs,diagnosis,tests,artifact:{sha256:artifact.sha256},electron:process.versions.electron},null,2));app.exit(0);
 }
 async function waitFor(window,expression,message){for(let n=0;n<200;n++){if(await window.webContents.executeJavaScript(expression))return;await new Promise(resolve=>setTimeout(resolve,50));}throw Error(message+': '+await window.webContents.executeJavaScript('document.querySelector("#output").textContent'));}
+async function waitCondition(condition,message){for(let n=0;n<200;n++){if(await condition())return;await new Promise(resolve=>setTimeout(resolve,50));}throw Error(message);}
 async function capture(window,filename){for(let attempt=0;attempt<3;attempt++){try{await window.webContents.capturePage(undefined,{stayHidden:true});await new Promise(resolve=>setTimeout(resolve,150));const image=await window.webContents.capturePage(undefined,{stayHidden:true});if(image.isEmpty())throw Error('Empty screenshot');await fs.writeFile(filename,image.toPNG());return;}catch(error){if(attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,150));}}}

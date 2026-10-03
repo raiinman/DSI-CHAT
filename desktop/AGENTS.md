@@ -11,6 +11,7 @@ Own DSI's original Electron desktop host and portable Windows packaging.
 ## Local Contracts
 - Remote Discord content has sandbox/context isolation enabled, Node disabled and no privileged preload. Never expose workbench filesystem IPC to it.
 - Enable only reviewed original built-ins through the shared PluginRuntime; unsupported private/native host access remains explicit.
+- Render number settings from shared manifests, normalize through shared settings code and serialize updates; retain values through toggles, safe mode and persisted restart.
 - Local fixture testing does not imply installed Discord or live-account acceptance. Opening Discord requires a deliberate user action.
 - No automatic updater, credential extraction, remote plugin download or native Discord modification.
 

@@ -1,11 +1,11 @@
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 const args=process.argv.slice(2);
 const option=(key,fallback)=>{const index=args.indexOf(key);return index<0?fallback:args[index+1];};
 const adb=option('--adb','adb');const serial=option('--serial','emulator-5554');
 if(!/^emulator-\d+$/.test(serial))throw new Error('This QA script installs only into an explicitly selected emulator.');
-const apk=option('--apk');if(!apk)throw new Error('Pass --apk with the controlled DSI patched fixture APK.');
+const apk=option('--apk');const apkSet=option('--apk-set');if(Boolean(apk)===Boolean(apkSet))throw new Error('Pass exactly one of --apk or --apk-set with the controlled DSI patched fixture.');
 const output=path.resolve(option('--output','.cache/android-emulator-evidence'));mkdirSync(output,{recursive:true});
 const run=(...command)=>execFileSync(adb,['-s',serial,...command],{encoding:'utf8',timeout:120000});
 const pause=async()=>new Promise(resolve=>setTimeout(resolve,800));
@@ -15,8 +15,19 @@ function nodes(xml){return [...xml.matchAll(/<node\s+([^>]+)>/g)].map(match=>Obj
 async function click(text,desc=false){const xml=dump();const field=desc===true?'content-desc':typeof desc==='string'?desc:'text';const node=nodes(xml).find(item=>item[field]===text&&item.bounds);if(!node)throw new Error(`Missing native control ${text}`);const bounds=node.bounds.match(/\[(\d+),(\d+)\]\[(\d+),(\d+)\]/);if(!bounds)throw new Error('Invalid UI bounds');run('shell','input','tap',String(Math.round((+bounds[1]+ +bounds[3])/2)),String(Math.round((+bounds[2]+ +bounds[4])/2)));await pause();}
 function capture(name){writeFileSync(path.join(output,`${name}.png`),execFileSync(adb,['-s',serial,'exec-out','screencap','-p'],{timeout:120000}));writeFileSync(path.join(output,`${name}.xml`),dump());}
 const pkg='interactive.deadsignal.dsi.devhost';
+const sdk=process.env.ANDROID_HOME||process.env.ANDROID_SDK_ROOT;
+let aapt2=option('--aapt2');
+if(!aapt2&&sdk){const tools=path.join(sdk,'build-tools');const executable=process.platform==='win32'?'aapt2.exe':'aapt2';for(const version of readdirSync(tools).sort((a,b)=>b.localeCompare(a,undefined,{numeric:true}))){const candidate=path.join(tools,version,executable);if(existsSync(candidate)){aapt2=candidate;break;}}}
+if(!aapt2)throw new Error('Pass --aapt2 or set ANDROID_HOME for mandatory fixture preflight before installation.');
+const inputs=apk?[path.resolve(apk)]:readdirSync(path.resolve(apkSet)).filter(name=>name.endsWith('.apk')).map(name=>path.join(path.resolve(apkSet),name));
+if(!inputs.length)throw new Error('Fixture APK set is empty');
+let baseInput;
+for(const input of inputs){const badging=execFileSync(aapt2,['dump','badging',input],{encoding:'utf8'});const header=badging.split('\n').find(line=>line.startsWith('package:'));if(!header||!header.includes(`name='${pkg}'`))throw new Error('Refusing to install an APK outside the original DSI fixture package');if(!header.includes("split='"))baseInput=input;}
+if(!baseInput)throw new Error('Fixture base APK is missing');
+const manifest=execFileSync(aapt2,['dump','xmltree',baseInput,'--file','AndroidManifest.xml'],{encoding:'utf8'});
+if(!/android:testOnly[^\r\n]*(?:=true|0xffffffff)/.test(manifest))throw new Error('Fixture base must explicitly declare android:testOnly=true before QA installation');
 const metadata=execFileSync(adb,['-s',serial,'shell','getprop','ro.kernel.qemu'],{encoding:'utf8'}).trim();if(metadata!=='1')throw new Error('Selected target is not an Android emulator');
-run('install','-r',path.resolve(apk));run('shell','pm','clear',pkg);run('logcat','-c');
+run(apk?'install':'install-multiple','-r','-t',...inputs);run('shell','pm','clear',pkg);run('logcat','-c');
 run('shell','am','start','-W','-n',`${pkg}/.MainActivity`);await pause();
 const logs=run('logcat','-d','-s','DSI_BOOTSTRAP:I','DSI_FIXTURE:I','AndroidRuntime:E');
 if(!logs.includes('Original Application preserved')||!logs.includes('native bootstrap installed'))throw new Error('Original application/bootstrap did not both start');
@@ -31,5 +42,5 @@ await click('android:id/button1','resource-id');run('shell','am','force-stop',pk
 xml=dump();const choices=nodes(xml);for(const text of ['Safe mode','Readable native text (+15%)','Compact native line spacing','Reduce native window motion'])if(!choices.some(item=>item.text===text&&item.checked==='true'))throw new Error(`Saved native choice lost: ${text}`);
 await click('Safe mode');xml=dump();if(!decode(xml).includes('native-readable-text=active'))throw new Error('Leaving safe mode did not reactivate saved native plugin');capture('native-restored');
 await click('android:id/button1','resource-id');const finalLogs=run('logcat','-d','-s','DSI_BOOTSTRAP:I','DSI_FIXTURE:I','AndroidRuntime:E');if(finalLogs.includes('FATAL EXCEPTION'))throw new Error('Native lifecycle crashed');writeFileSync(path.join(output,'native-runtime.log'),finalLogs);
-writeFileSync(path.join(output,'qa-report.json'),JSON.stringify({platform:'android',host:'original-patched-native-fixture',emulator:serial,bootstrapStarted:true,originalApplicationPreserved:true,pluginControls:3,safeMode:true,reloadPersistence:true,discordAttached:false},null,2)+'\n');
+writeFileSync(path.join(output,'qa-report.json'),JSON.stringify({platform:'android',host:'original-patched-native-fixture',emulator:serial,fixturePreflight:true,apkCount:inputs.length,bootstrapStarted:true,originalApplicationPreserved:true,pluginControls:3,safeMode:true,reloadPersistence:true,discordAttached:false},null,2)+'\n');
 console.log('Native emulator QA passed: bootstrap, original application, three plugin toggles, safe mode, reload persistence. Discord attachment remains unverified.');

@@ -99,7 +99,7 @@ When the user requests a durable behavior change, record it here or in the relev
 
 - Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
 - Build one original DSI mod that brings together the capabilities of Vencord, Equicord and Vendetta; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
-- Target ordinary non-root Android phones with an original local APK bootstrap/patcher; preserve selected input and write a separate development-signed output. Do not download/distribute Discord APKs or automatically install into a user device.
+- Target ordinary non-root Android phones with an original local APK bootstrap/patcher; preserve selected input and write a separate development-signed output. Support explicitly selected installed-package export and validated configuration split sets. Do not download/distribute Discord APKs or automatically install into a user device.
 - Build a separate DSI developer IDE/workbench for original plugin editing, diagnostics, builds, tests, controlled previews and packaging. Follow docs/IDE_WORKBENCH.md; this does not reopen the messenger UI/UX lock.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 

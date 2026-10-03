@@ -11,7 +11,7 @@ The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains
 | Browser | Manifest V3 extension, twelve original plugins, search, saved settings and safe mode | Real isolated extension/storage against intercepted local fixture markup; live Discord selector acceptance pending |
 | Windows | Portable Electron host, offline plugin fixture, deliberately opened Discord web host | Packaged executable/controls tested; unsigned; no installed-Discord injection or live account acceptance |
 | Developer IDE | Original plugin editor, conflict-safe saves, diagnostics, builds/maps, cancellable tests, isolated preview/stop and checksummed export | Controlled local projects; plain text editor, no debugger/Git UI |
-| Android | Native Java lab APK, three native handlers, non-root bootstrap and local APK patcher | Original fixture build/sign/patch tests; actual Discord attachment pending |
+| Android | Native Java lab APK, three native handlers, non-root bootstrap, installed-APK exporter and monolithic/configuration-split patchers | Original fixture build/sign/patch tests; actual Discord attachment pending |
 
 [Release downloads](https://github.com/raiinman/DSI-CHAT/releases) provide development artifacts. Unzip the entire Windows portable directory and run DSI-CHAT.exe. Browser developer mode loads dist/chromium. Android instructions and signing/unsupported APK boundaries are in [android/README.md](android/README.md); no Discord APK is distributed or automatically installed.
 

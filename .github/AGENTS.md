@@ -11,6 +11,7 @@ workflows/platforms.yml builds/tests the Windows host/workbench and native Andro
 - Dispatch pages.yml with review_only=true on a review branch before advancing runtime UI changes to the publishing branch.
 - Preserve the publication gate: tests, catalog consistency, build, browser QA, artifact and checksum verification.
 - Keep dsi-messenger-screenshots available for review. A successful run is not a substitute for inspecting its screenshots.
+- Review-only Pages runs also upload dsi-reviewed-site after extension ZIP packaging, for public-byte comparison. ZIP container timestamps may differ; compare packaged file checksums instead of assuming archive bytes are deterministic.
 - Do not expose credentials in commands/logs or broaden permissions without a specific need.
 
 ## Work Guidance

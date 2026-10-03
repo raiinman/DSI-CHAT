@@ -5,9 +5,10 @@ Own DSI-authored plugin contracts, lifecycle, settings and browser integration. 
 
 ## Ownership
 runtime.mjs: manifest validation, dependency/conflict planning, owned resources and serialized lifecycle.
+api.d.ts: original API 1 TypeScript authoring declarations; keep aligned with runtime validation and context.
 settings.mjs: versioned plugin records and migration from the original three-feature settings.
 builtins.mjs: original browser/Windows display and DOM plugins.
-popup-entry.mjs: searchable twelve-plugin settings controls.
+popup-entry.mjs: searchable twelve-plugin settings controls, validated text-size input and explicit active-tab runtime inspection. Inspection requests only DSI metadata from the existing isolated content script; no added tabs/host permission, message contents or network requests.
 browser-adapter.mjs and browser-entry.mjs: isolated Chromium storage/page lifecycle integration.
 index.mjs: shared bundle exports for controlled hosts and Windows.
 

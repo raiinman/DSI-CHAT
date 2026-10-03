@@ -149,6 +149,10 @@ export class PluginRuntime {
     }
     get manifests() { return [...this.#plugins.values()].map(plugin => plugin.manifest); }
     get diagnostics() { return this.#diagnostics.map(item => ({ ...item })); }
+    get status() {
+        return {apiVersion:PLUGIN_API_VERSION,platform:this.platform,capabilities:[...this.capabilities],
+            active:[...this.#active.keys()],blocked:this.#blocked.map(item=>({...item})),diagnostics:this.diagnostics};
+    }
     #failure(id, phase, error) {
         const failure = { id, phase, error, message: error?.message || String(error) };
         this.#diagnostics.push({ id, phase, message: failure.message, time: new Date().toISOString() });

@@ -67,6 +67,12 @@ public final class MainActivity extends Activity {
         Button stop=new Button(this); stop.setText("Stop native host"); stop.setOnClickListener(view->finish()); page.addView(stop);
         safe.setOnCheckedChangeListener((button,checked)->{ if(changing)return; safeMode=checked; save(); reconcile(); });
         setContentView(scroll);
+        scroll.post(()->{
+            if(android.os.Build.VERSION.SDK_INT>=30&&getWindow().getInsetsController()!=null){
+                int flags=android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS|android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
+                getWindow().getInsetsController().setSystemBarsAppearance(flags,flags);
+            }
+        });
         // Insets keep controls clear of Android 15 edge-to-edge system bars.
         scroll.setOnApplyWindowInsetsListener((view,insets)->{ page.setPadding(dp(20),dp(20)+insets.getSystemWindowInsetTop(),dp(20),dp(20)+insets.getSystemWindowInsetBottom()); return insets; });
         startPulse(); reconcile();
