@@ -20,9 +20,12 @@ Check working-tree changes before fetching. Fetch the active branch and fast-for
 3. `docs/ARCHITECTURE.md`.
 4. `docs/STATE.md` (historical entries remain; latest entries supersede earlier ones).
 5. `docs/PROVENANCE.md`.
-6. `docs/VISUAL_WORKFLOW.md`, `docs/UI_ROADMAP.md`, `docs/DESIGN.md` and `docs/USABILITY.md` if present.
+6. `docs/IMPLEMENTATION_PLAN.md`, `docs/TOOLCHAIN.md` and `docs/REFERENCE_SOURCES.json` for the authorized original engine/platform direction and prepared tools.
+7. `docs/VISUAL_WORKFLOW.md`, `docs/UI_ROADMAP.md`, `docs/DESIGN.md` and `docs/USABILITY.md` if present.
 
 ## User direction to preserve
+
+The user clarified and confirmed: build one original DSI Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta. Do not merge or vendor their engines/plugins. Implement DSI's own shared plugin contract and platform adapters. Planning/tool preparation is authorized; follow IMPLEMENTATION_PLAN.md for the first engine sprint. A standalone messaging server is outside this direction.
 
 Current approved art direction: **Copperlight Realism — handcrafted miniature realism**, adapted from the recovered Dead Signal Valley ART-STYLE.md. Its exact GitHub repository was not located; do not invent a repository attribution. The user approved docs/design/copperlight-concept.png and explicitly superseded the former orange-glass visual requirement.
 
@@ -40,11 +43,11 @@ Messages/drafts are in tab memory and reset on reload. Appearance, local profile
 
 No connected messaging transport, authentication, account switching, voice/video, file transfers, Android APK or desktop installer exists. Service buttons report preview states; meters are decorative. Do not imply successful connections or live delivery. The downloadable Chromium extension independently implements three original Discord web display features; it does not replace Discord's UI with this shell.
 
-No upstream engines/plugins were vendored into this branch. Prior upstream exposure is documented; do not claim formal clean-room certification, legal clearance or license-free ownership of third-party work. No runtime npm dependencies; Playwright 1.58.2 is CI-only tooling.
+No upstream engines/plugins were vendored into this branch. Prior upstream exposure is documented; do not claim formal clean-room certification, legal clearance or license-free ownership of third-party work. No runtime npm dependencies. Pinned devDependencies now provide TypeScript 5.9.3, esbuild 0.28.2 and Playwright 1.58.2; browser CI retains its existing cached Playwright setup. Android command-line/platform tools are prepared portably; native build/emulator prerequisites are deferred.
 
 ## Continue next
 
-The current UI/UX is locked. Preserve the published second enhancement baseline (`147a9b0` reviewed runtime; `d1fc3e8` published source), including its layout, themes, icons, depth, colored right-hand controls, single sidebar signal and existing interactions. Do not automatically implement another UI slice. `docs/UI_ROADMAP.md` retains conversation controls, profile customization and workspace settings as deferred backlog requiring explicit user direction to reopen UI/UX work. The lock does not select a new implementation priority; await the user's next task. Actual provider connection work remains a separate scope.
+The current UI/UX is locked. Preserve the published second enhancement baseline (`147a9b0` reviewed runtime; `d1fc3e8` published source), including its layout, themes, icons, depth, colored right-hand controls, single sidebar signal and existing interactions. Do not automatically implement another UI slice. `docs/UI_ROADMAP.md` retains conversation controls, profile customization and workspace settings as deferred backlog requiring explicit user direction to reopen UI/UX work. The user has now selected the original engine/platform direction: follow `docs/IMPLEMENTATION_PLAN.md` for manifest/capability contracts, registry/lifecycle, failure isolation, settings migration and adaptation of the three existing features. Keep reference identifiers distinct from delivered functionality. Desktop/native-mobile support requires its own tested adapters; do not treat a WebView wrapper as native mod parity.
 
 ## Files and verification
 
@@ -55,6 +58,8 @@ The current UI/UX is locked. Preserve the published second enhancement baseline 
 - `site/style.css`, `themes.css`, `workspace.css`, `panels.css`, `copperlight.css`: layered styles; inspect cascade before adding overrides.
 - `site/assets/`: original copperlight valley banner, fox, portrait sheet, historical textures and service SVGs.
 - `scripts/browser-qa.mjs`: interactions, theme/motion/contrast, export, focus and layout checks; produces screenshots.
+
+Developer setup: `npm ci --ignore-scripts`, `npm run tools:setup`, `npm run tools:doctor`; add `-- --android` for the prepared portable Windows tools. Tooling instructions/pins and deferred native prerequisites are in `docs/TOOLCHAIN.md`.
 
 Required local checks: `npm test`, `npm run catalog`, `npm run build`, `node scripts/site.mjs`, `git diff --check`. Contact-organization baseline: 16 tests passing. Do not add implementation-mirroring tests for small visual changes. Run meaningful tests for new behavior.
 

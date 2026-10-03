@@ -1,7 +1,7 @@
 # DSI CHAT original implementation
 
 Read README.md, docs/ARCHITECTURE.md, docs/STATE.md and docs/PROVENANCE.md before edits.
-This branch implements DSI's own code. Do not import source, assets, plugins, APIs or build systems from the preserved fork.
+This branch implements DSI's own original Discord mod, bringing together capabilities and ideas from Vencord, Equicord and Vendetta through original DSI code. Use them as behavior references, not imported engines. Do not vendor upstream source, assets, plugins or build systems from those projects or the preserved fork.
 Implement from behavior requirements and documented browser/platform APIs.
 Record source provenance and all dependencies. Never remove notices from third-party code.
 Prior exposure to upstream sources is documented; do not claim a formally isolated clean-room process or legal clearance.
@@ -11,7 +11,7 @@ The browser prototype is not an Android APK, desktop injector or full plugin-sui
 
 ## Project continuation
 
-Continue on codex/dsi-original and preserve existing work. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. The user locked the current Copperlight UI/UX on October 3, 2026, after the second enhancement pass (reviewed runtime 147a9b0, published source d1fc3e8). Preserve its layout, artwork, themes, controls and interactions. Further UI/UX changes require explicit user direction to reopen that scope. docs/UI_ROADMAP.md is deferred backlog, not authorization for another slice. Connection/platform work remains separate scope.
+Continue on codex/dsi-original and preserve existing work. Read docs/CODEX_HANDOFF.md and its required documents before implementation edits. The user locked the current Copperlight UI/UX on October 3, 2026, after the second enhancement pass (reviewed runtime 147a9b0, published source d1fc3e8). Preserve its layout, artwork, themes, controls and interactions. Further UI/UX changes require explicit user direction to reopen that scope. docs/UI_ROADMAP.md is deferred backlog, not authorization for another slice. The authorized development direction is the original plugin engine and browser/desktop/native-mobile adapters in docs/IMPLEMENTATION_PLAN.md; a standalone messaging server is outside that plan.
 
 ## Documentation framework provenance
 
@@ -98,6 +98,7 @@ Default section order:
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md.
 
 - Keep the approved second-pass Copperlight UI/UX locked until the user reopens it. Do not automatically advance the UI backlog or substitute a platform pivot.
+- Build one original DSI mod that brings together the capabilities of Vencord, Equicord and Vendetta; do not merge their implementations. Prepare the engine/adapters behind the locked UI.
 - Give concise progress updates and complete authorized work through validation, visual review and publication when applicable.
 
 ## Child DOX Index
@@ -107,7 +108,7 @@ Root owns README.md, NOTICE.md, package.json, .gitignore, project-wide direction
 - [src/AGENTS.md](src/AGENTS.md): shared feature runtime and Chromium JavaScript adapters.
 - [browser/AGENTS.md](browser/AGENTS.md): extension manifest and popup presentation.
 - [site/AGENTS.md](site/AGENTS.md): messenger preview behavior, themes and UI assets.
-- [scripts/AGENTS.md](scripts/AGENTS.md): catalog/build/site preparation and browser QA tooling.
+- [scripts/AGENTS.md](scripts/AGENTS.md): catalog/build/site/browser QA, portable development tools and reference inventory.
 - [tests/AGENTS.md](tests/AGENTS.md): existing unit and adapter verification.
 - [catalog/AGENTS.md](catalog/AGENTS.md): generated feature catalog.
 - [docs/AGENTS.md](docs/AGENTS.md): architecture, roadmap, handoff, evidence and provenance.

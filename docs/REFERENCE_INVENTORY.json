@@ -1,0 +1,4362 @@
+{
+  "scope": "Reference module directory identifiers only. No upstream implementation, plugin descriptions or assets are copied. Entries are not implemented DSI plugins, approved requirements or guaranteed platform compatibility.",
+  "snapshots": [
+    {
+      "id": "vencord",
+      "url": "https://github.com/Vendicated/Vencord",
+      "revision": "b52ed365cf2ea64a5019b419291a2d9d4d76852d",
+      "pluginRoots": [
+        "src/plugins"
+      ]
+    },
+    {
+      "id": "equicord",
+      "url": "https://github.com/Equicord/Equicord",
+      "revision": "ab9b98472acb281cc7ec4d2c7a612219993bb3cb",
+      "pluginRoots": [
+        "src/plugins",
+        "src/equicordplugins"
+      ]
+    },
+    {
+      "id": "vendetta",
+      "url": "https://github.com/vendetta-mod/Vendetta",
+      "revision": "e5d35028344363a8dacb67fca4d48266b79b2643",
+      "pluginRoots": [],
+      "runtimeCapabilityReferences": [
+        "plugin-lifecycle",
+        "plugin-settings",
+        "theme-management",
+        "safe-mode",
+        "mobile-loader-boundary",
+        "quick-install-flow",
+        "diagnostics",
+        "native-host-capability-discovery"
+      ]
+    }
+  ],
+  "summary": {
+    "referenceDirectories": {
+      "vencord": 166,
+      "equicord": 363,
+      "vendetta": 0
+    },
+    "uniqueDirectoryIdentifiers": 366,
+    "sharedVencordEquicordIdentifiers": 163
+  },
+  "mobileScope": "Vendetta is a mobile runtime reference, not a bundled catalog of all external Vendetta plugins. Its native loader and current Discord compatibility require separate investigation.",
+  "entries": [
+    {
+      "referenceId": "accountPanelServerProfile",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/accountPanelServerProfile"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/accountPanelServerProfile"
+        }
+      ]
+    },
+    {
+      "referenceId": "addAttachments",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/addAttachments"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/addAttachments"
+        }
+      ]
+    },
+    {
+      "referenceId": "advancedPermissions",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/advancedPermissions"
+        }
+      ]
+    },
+    {
+      "referenceId": "altKrispSwitch",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/altKrispSwitch"
+        }
+      ]
+    },
+    {
+      "referenceId": "alwaysAnimate",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/alwaysAnimate"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/alwaysAnimate"
+        }
+      ]
+    },
+    {
+      "referenceId": "alwaysExpandProfiles",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/alwaysExpandProfiles"
+        }
+      ]
+    },
+    {
+      "referenceId": "alwaysExpandRoles",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/alwaysExpandRoles"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/alwaysExpandRoles"
+        }
+      ]
+    },
+    {
+      "referenceId": "alwaysTrust",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/alwaysTrust"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/alwaysTrust"
+        }
+      ]
+    },
+    {
+      "referenceId": "animalese",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/animalese"
+        }
+      ]
+    },
+    {
+      "referenceId": "anonymiseFileNames",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/anonymiseFileNames"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/anonymiseFileNames"
+        }
+      ]
+    },
+    {
+      "referenceId": "arRPC.web",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/arRPC.web"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/arRPC.web"
+        }
+      ]
+    },
+    {
+      "referenceId": "atSomeone",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/atSomeone"
+        }
+      ]
+    },
+    {
+      "referenceId": "autoDndWhilePlaying.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/autoDndWhilePlaying.discordDesktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/autoDndWhilePlaying.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "autoJumpToMessage",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/autoJumpToMessage"
+        }
+      ]
+    },
+    {
+      "referenceId": "autoZipper",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/autoZipper"
+        }
+      ]
+    },
+    {
+      "referenceId": "bannersEverywhere",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/bannersEverywhere"
+        }
+      ]
+    },
+    {
+      "referenceId": "baseDecoder",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/baseDecoder"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterActivities",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterActivities"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterAudioPlayer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterAudioPlayer"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterBanReasons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterBanReasons"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterBlockedUsers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterBlockedUsers"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterCommands",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterCommands"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterFolders",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterFolders"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterFolders"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterForwards",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterForwards"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterGifAltText",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterGifAltText"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterGifAltText"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterGifPicker",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterGifPicker"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterGifPicker"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterImageEditor",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterImageEditor"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterInvites",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterInvites"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterPlusReacts",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/betterPlusReacts"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterRoleContext",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterRoleContext"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterRoleContext"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterRoleDot",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterRoleDot"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterRoleDot"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterSessions",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterSessions"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterSessions"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterSettings",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterSettings"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterSettings"
+        }
+      ]
+    },
+    {
+      "referenceId": "betterUploadButton",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/betterUploadButton"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/betterUploadButton"
+        }
+      ]
+    },
+    {
+      "referenceId": "biggerStreamPreview",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/biggerStreamPreview"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/biggerStreamPreview"
+        }
+      ]
+    },
+    {
+      "referenceId": "blockKeywords",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/blockKeywords"
+        }
+      ]
+    },
+    {
+      "referenceId": "blockKrisp",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/blockKrisp"
+        }
+      ]
+    },
+    {
+      "referenceId": "blurNsfw",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/blurNsfw"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/blurNsfw"
+        }
+      ]
+    },
+    {
+      "referenceId": "bypassPinPrompt",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/bypassPinPrompt"
+        }
+      ]
+    },
+    {
+      "referenceId": "bypassStatus",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/bypassStatus"
+        }
+      ]
+    },
+    {
+      "referenceId": "callTimer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/callTimer"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/callTimer"
+        }
+      ]
+    },
+    {
+      "referenceId": "channelBadges",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/channelBadges"
+        }
+      ]
+    },
+    {
+      "referenceId": "channelTabs",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/channelTabs"
+        }
+      ]
+    },
+    {
+      "referenceId": "characterCounter",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/characterCounter"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/characterCounter"
+        }
+      ]
+    },
+    {
+      "referenceId": "cleanChannelName",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/cleanChannelName"
+        }
+      ]
+    },
+    {
+      "referenceId": "cleanerChannelGroups",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/cleanerChannelGroups"
+        }
+      ]
+    },
+    {
+      "referenceId": "clearURLs",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/clearURLs"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/clearURLs"
+        }
+      ]
+    },
+    {
+      "referenceId": "clickableRoles",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/clickableRoles"
+        }
+      ]
+    },
+    {
+      "referenceId": "clientSideBlock",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/clientSideBlock"
+        }
+      ]
+    },
+    {
+      "referenceId": "clientTheme",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/clientTheme"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/clientTheme"
+        }
+      ]
+    },
+    {
+      "referenceId": "clipsEnhancements.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/clipsEnhancements.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "clipUpload.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/clipUpload.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "collapsibleUi",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/collapsibleUi"
+        }
+      ]
+    },
+    {
+      "referenceId": "colorSighted",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/colorSighted"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/colorSighted"
+        }
+      ]
+    },
+    {
+      "referenceId": "commandPalette",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/commandPalette"
+        }
+      ]
+    },
+    {
+      "referenceId": "consoleJanitor",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/consoleJanitor"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/consoleJanitor"
+        }
+      ]
+    },
+    {
+      "referenceId": "consoleShortcuts",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/consoleShortcuts"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/consoleShortcuts"
+        }
+      ]
+    },
+    {
+      "referenceId": "contentWarning",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/contentWarning"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyEmojiMarkdown",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/copyEmojiMarkdown"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/copyEmojiMarkdown"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyFileContents",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/copyFileContents"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/copyFileContents"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyProfileColors",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/copyProfileColors"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyStatusUrls",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/copyStatusUrls"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyStickerLinks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/copyStickerLinks"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/copyStickerLinks"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyUserMention",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/copyUserMention"
+        }
+      ]
+    },
+    {
+      "referenceId": "copyUserURLs",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/copyUserURLs"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/copyUserURLs"
+        }
+      ]
+    },
+    {
+      "referenceId": "crashHandler",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/crashHandler"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/crashHandler"
+        }
+      ]
+    },
+    {
+      "referenceId": "cursorBuddy",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/cursorBuddy"
+        }
+      ]
+    },
+    {
+      "referenceId": "customCommands",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/customCommands"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/customCommands"
+        }
+      ]
+    },
+    {
+      "referenceId": "customFolderIcons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/customFolderIcons"
+        }
+      ]
+    },
+    {
+      "referenceId": "customIdle",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/customIdle"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/customIdle"
+        }
+      ]
+    },
+    {
+      "referenceId": "customRPC",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/customRPC"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/customRPC"
+        }
+      ]
+    },
+    {
+      "referenceId": "customSounds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/customSounds"
+        }
+      ]
+    },
+    {
+      "referenceId": "customStatusTimeouts",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/customStatusTimeouts"
+        }
+      ]
+    },
+    {
+      "referenceId": "customTimestamps",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/customTimestamps"
+        }
+      ]
+    },
+    {
+      "referenceId": "customUserColors",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/customUserColors"
+        }
+      ]
+    },
+    {
+      "referenceId": "dearrow",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/dearrow"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/dearrow"
+        }
+      ]
+    },
+    {
+      "referenceId": "declutter",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/declutter"
+        }
+      ]
+    },
+    {
+      "referenceId": "decor",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/decor"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/decor"
+        }
+      ]
+    },
+    {
+      "referenceId": "devCompanion.dev",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/devCompanion.dev"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/devCompanion.dev"
+        }
+      ]
+    },
+    {
+      "referenceId": "disableCallIdle",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/disableCallIdle"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/disableCallIdle"
+        }
+      ]
+    },
+    {
+      "referenceId": "disableCameras",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/disableCameras"
+        }
+      ]
+    },
+    {
+      "referenceId": "discordDevBanner",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/discordDevBanner"
+        }
+      ]
+    },
+    {
+      "referenceId": "dontRoundMyTimestamps",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/dontRoundMyTimestamps"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/dontRoundMyTimestamps"
+        }
+      ]
+    },
+    {
+      "referenceId": "downloadAllAttachments",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/downloadAllAttachments"
+        }
+      ]
+    },
+    {
+      "referenceId": "dragFavoriteEmotes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/dragFavoriteEmotes"
+        }
+      ]
+    },
+    {
+      "referenceId": "dragify",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/dragify"
+        }
+      ]
+    },
+    {
+      "referenceId": "elementHighlighter.dev",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/elementHighlighter.dev"
+        }
+      ]
+    },
+    {
+      "referenceId": "equibopStreamFixes.equibop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/equibopStreamFixes.equibop"
+        }
+      ]
+    },
+    {
+      "referenceId": "equicordHelper",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/equicordHelper"
+        }
+      ]
+    },
+    {
+      "referenceId": "equicordToolbox",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/equicordToolbox"
+        }
+      ]
+    },
+    {
+      "referenceId": "equissant",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/equissant"
+        }
+      ]
+    },
+    {
+      "referenceId": "exitSounds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/exitSounds"
+        }
+      ]
+    },
+    {
+      "referenceId": "experiments",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/experiments"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/experiments"
+        }
+      ]
+    },
+    {
+      "referenceId": "exportMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/exportMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "expressionCloner",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/expressionCloner"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/expressionCloner"
+        }
+      ]
+    },
+    {
+      "referenceId": "f8break",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/f8break"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/f8break"
+        }
+      ]
+    },
+    {
+      "referenceId": "fakeNitro",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fakeNitro"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fakeNitro"
+        }
+      ]
+    },
+    {
+      "referenceId": "fakeProfileThemes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fakeProfileThemes"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fakeProfileThemes"
+        }
+      ]
+    },
+    {
+      "referenceId": "fastDeleteChannels",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/fastDeleteChannels"
+        }
+      ]
+    },
+    {
+      "referenceId": "favEmojiFirst",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/favEmojiFirst"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/favEmojiFirst"
+        }
+      ]
+    },
+    {
+      "referenceId": "favouriteAnything",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/favouriteAnything"
+        }
+      ]
+    },
+    {
+      "referenceId": "fileUpload",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/fileUpload"
+        }
+      ]
+    },
+    {
+      "referenceId": "findReply",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/findReply"
+        }
+      ]
+    },
+    {
+      "referenceId": "fixCodeblockGap",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fixCodeblockGap"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fixCodeblockGap"
+        }
+      ]
+    },
+    {
+      "referenceId": "fixFileExtensions",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/fixFileExtensions"
+        }
+      ]
+    },
+    {
+      "referenceId": "fixImagesQuality",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fixImagesQuality"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fixImagesQuality"
+        }
+      ]
+    },
+    {
+      "referenceId": "fixSpotifyEmbeds.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fixSpotifyEmbeds.desktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fixSpotifyEmbeds.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "fixYoutubeEmbeds.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fixYoutubeEmbeds.desktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fixYoutubeEmbeds.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "followVoiceUser",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/followVoiceUser"
+        }
+      ]
+    },
+    {
+      "referenceId": "fontLoader",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/fontLoader"
+        }
+      ]
+    },
+    {
+      "referenceId": "forceOwnerCrown",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/forceOwnerCrown"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/forceOwnerCrown"
+        }
+      ]
+    },
+    {
+      "referenceId": "frequentQuickSwitcher",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/frequentQuickSwitcher"
+        }
+      ]
+    },
+    {
+      "referenceId": "friendCodes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/friendCodes"
+        }
+      ]
+    },
+    {
+      "referenceId": "friendInvites",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/friendInvites"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/friendInvites"
+        }
+      ]
+    },
+    {
+      "referenceId": "friendshipRanks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/friendshipRanks"
+        }
+      ]
+    },
+    {
+      "referenceId": "friendTags",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/friendTags"
+        }
+      ]
+    },
+    {
+      "referenceId": "fullSearchContext",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fullSearchContext"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fullSearchContext"
+        }
+      ]
+    },
+    {
+      "referenceId": "fullUserInChatbox",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/fullUserInChatbox"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/fullUserInChatbox"
+        }
+      ]
+    },
+    {
+      "referenceId": "fullVcPfp",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/fullVcPfp"
+        }
+      ]
+    },
+    {
+      "referenceId": "gameActivityToggle",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/gameActivityToggle"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/gameActivityToggle"
+        }
+      ]
+    },
+    {
+      "referenceId": "ghosted",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/ghosted"
+        }
+      ]
+    },
+    {
+      "referenceId": "gifCollections",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/gifCollections"
+        }
+      ]
+    },
+    {
+      "referenceId": "gifMaker",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/gifMaker"
+        }
+      ]
+    },
+    {
+      "referenceId": "gifPaste",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/gifPaste"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/gifPaste"
+        }
+      ]
+    },
+    {
+      "referenceId": "githubRepos",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/githubRepos"
+        }
+      ]
+    },
+    {
+      "referenceId": "globalBadges",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/globalBadges"
+        }
+      ]
+    },
+    {
+      "referenceId": "googleThat",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/googleThat"
+        }
+      ]
+    },
+    {
+      "referenceId": "greetStickerPicker",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/greetStickerPicker"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/greetStickerPicker"
+        }
+      ]
+    },
+    {
+      "referenceId": "guildPickerDumper",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/guildPickerDumper"
+        }
+      ]
+    },
+    {
+      "referenceId": "hideAttachments",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/hideAttachments"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/hideAttachments"
+        }
+      ]
+    },
+    {
+      "referenceId": "hideChatButtons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/hideChatButtons"
+        }
+      ]
+    },
+    {
+      "referenceId": "hideMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/hideMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "hideServers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/hideServers"
+        }
+      ]
+    },
+    {
+      "referenceId": "homeTyping",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/homeTyping"
+        }
+      ]
+    },
+    {
+      "referenceId": "hopOn",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/hopOn"
+        }
+      ]
+    },
+    {
+      "referenceId": "husk",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/husk"
+        }
+      ]
+    },
+    {
+      "referenceId": "iconViewer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/iconViewer"
+        }
+      ]
+    },
+    {
+      "referenceId": "idleAutoRestart",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/idleAutoRestart"
+        }
+      ]
+    },
+    {
+      "referenceId": "ignoreActivities",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/ignoreActivities"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/ignoreActivities"
+        }
+      ]
+    },
+    {
+      "referenceId": "ignoreCalls",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/ignoreCalls"
+        }
+      ]
+    },
+    {
+      "referenceId": "iLoveSpam",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/iLoveSpam"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/iLoveSpam"
+        }
+      ]
+    },
+    {
+      "referenceId": "imageFilename",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/imageFilename"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/imageFilename"
+        }
+      ]
+    },
+    {
+      "referenceId": "imageLink",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/imageLink"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/imageLink"
+        }
+      ]
+    },
+    {
+      "referenceId": "imageZoom",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/imageZoom"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/imageZoom"
+        }
+      ]
+    },
+    {
+      "referenceId": "implicitRelationships",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/implicitRelationships"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/implicitRelationships"
+        }
+      ]
+    },
+    {
+      "referenceId": "ingtoninator",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/ingtoninator"
+        }
+      ]
+    },
+    {
+      "referenceId": "inRole",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/inRole"
+        }
+      ]
+    },
+    {
+      "referenceId": "instantScreenshare",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/instantScreenshare"
+        }
+      ]
+    },
+    {
+      "referenceId": "invisibleChat.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/invisibleChat.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "inviteDefaults",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/inviteDefaults"
+        }
+      ]
+    },
+    {
+      "referenceId": "ircColors",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/ircColors"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/ircColors"
+        }
+      ]
+    },
+    {
+      "referenceId": "iRememberYou",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/iRememberYou"
+        }
+      ]
+    },
+    {
+      "referenceId": "jumpTo",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/jumpTo"
+        }
+      ]
+    },
+    {
+      "referenceId": "keepCurrentChannel",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/keepCurrentChannel"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/keepCurrentChannel"
+        }
+      ]
+    },
+    {
+      "referenceId": "keyboardNavigation",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/keyboardNavigation"
+        }
+      ]
+    },
+    {
+      "referenceId": "keyboardSounds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/keyboardSounds"
+        }
+      ]
+    },
+    {
+      "referenceId": "keywordNotify",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/keywordNotify"
+        }
+      ]
+    },
+    {
+      "referenceId": "lastActive",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/lastActive"
+        }
+      ]
+    },
+    {
+      "referenceId": "limitlessScreenshare",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/limitlessScreenshare"
+        }
+      ]
+    },
+    {
+      "referenceId": "loadingQuotes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/loadingQuotes"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/loadingQuotes"
+        }
+      ]
+    },
+    {
+      "referenceId": "loginWithQR",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/loginWithQR"
+        }
+      ]
+    },
+    {
+      "referenceId": "markdownTables",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/markdownTables"
+        }
+      ]
+    },
+    {
+      "referenceId": "mediaPlaybackSpeed",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/mediaPlaybackSpeed"
+        }
+      ]
+    },
+    {
+      "referenceId": "memberCount",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/memberCount"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/memberCount"
+        }
+      ]
+    },
+    {
+      "referenceId": "mentionAvatars",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/mentionAvatars"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/mentionAvatars"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageBurst",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageBurst"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageClickActions",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/messageClickActions"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/messageClickActions"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageColors",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageColors"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageFetchTimer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageFetchTimer"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageLatency",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/messageLatency"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/messageLatency"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageLinkEmbeds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/messageLinkEmbeds"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/messageLinkEmbeds"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageLinkTooltip",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageLinkTooltip"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageLogger",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/messageLogger"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/messageLogger"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageLoggerEnhanced",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageLoggerEnhanced"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageNotifier",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageNotifier"
+        }
+      ]
+    },
+    {
+      "referenceId": "messagePeek",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messagePeek"
+        }
+      ]
+    },
+    {
+      "referenceId": "messageTranslate",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/messageTranslate"
+        }
+      ]
+    },
+    {
+      "referenceId": "micLoopbackTester",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/micLoopbackTester"
+        }
+      ]
+    },
+    {
+      "referenceId": "middleClickTweaks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/middleClickTweaks"
+        }
+      ]
+    },
+    {
+      "referenceId": "moreCommands",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/moreCommands"
+        }
+      ]
+    },
+    {
+      "referenceId": "moreQuickReactions",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/moreQuickReactions"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/moreQuickReactions"
+        }
+      ]
+    },
+    {
+      "referenceId": "moreStickers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/moreStickers"
+        }
+      ]
+    },
+    {
+      "referenceId": "moreUserTags",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/moreUserTags"
+        }
+      ]
+    },
+    {
+      "referenceId": "moyai",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/moyai"
+        }
+      ]
+    },
+    {
+      "referenceId": "musicControls",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/musicControls"
+        }
+      ]
+    },
+    {
+      "referenceId": "musicRichPresence",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/musicRichPresence"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/musicRichPresence"
+        }
+      ]
+    },
+    {
+      "referenceId": "mutualGroupDMs",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/mutualGroupDMs"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/mutualGroupDMs"
+        }
+      ]
+    },
+    {
+      "referenceId": "neverPausePreviews",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/neverPausePreviews"
+        }
+      ]
+    },
+    {
+      "referenceId": "newGuildSettings",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/newGuildSettings"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/newGuildSettings"
+        }
+      ]
+    },
+    {
+      "referenceId": "newPluginsManager",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/newPluginsManager"
+        }
+      ]
+    },
+    {
+      "referenceId": "noBlockedMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noBlockedMessages"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noBlockedMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "noDeepLinks.web",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noDeepLinks.web"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noDeepLinks.web"
+        }
+      ]
+    },
+    {
+      "referenceId": "noDevtoolsWarning",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noDevtoolsWarning"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noDevtoolsWarning"
+        }
+      ]
+    },
+    {
+      "referenceId": "noF1",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noF1"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noF1"
+        }
+      ]
+    },
+    {
+      "referenceId": "noMaskedUrlPaste",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noMaskedUrlPaste"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noMaskedUrlPaste"
+        }
+      ]
+    },
+    {
+      "referenceId": "noMiddleClickPaste",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noMiddleClickPaste"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noMiddleClickPaste"
+        }
+      ]
+    },
+    {
+      "referenceId": "noMosaic",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noMosaic"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noMosaic"
+        }
+      ]
+    },
+    {
+      "referenceId": "noNitroUpsell",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/noNitroUpsell"
+        }
+      ]
+    },
+    {
+      "referenceId": "noOnboardingDelay",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noOnboardingDelay"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noOnboardingDelay"
+        }
+      ]
+    },
+    {
+      "referenceId": "noPendingCount",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noPendingCount"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noPendingCount"
+        }
+      ]
+    },
+    {
+      "referenceId": "noProfileThemes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noProfileThemes"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noProfileThemes"
+        }
+      ]
+    },
+    {
+      "referenceId": "noPushToTalk",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/noPushToTalk"
+        }
+      ]
+    },
+    {
+      "referenceId": "noReplyMention",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noReplyMention"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noReplyMention"
+        }
+      ]
+    },
+    {
+      "referenceId": "normalizeMessageLinks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/normalizeMessageLinks"
+        }
+      ]
+    },
+    {
+      "referenceId": "noRoleHeaders",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/noRoleHeaders"
+        }
+      ]
+    },
+    {
+      "referenceId": "noRPC.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/noRPC.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "noServerEmojis",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noServerEmojis"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noServerEmojis"
+        }
+      ]
+    },
+    {
+      "referenceId": "noSystemBadge.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noSystemBadge.discordDesktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noSystemBadge.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "notificationTitle.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/notificationTitle.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "notificationVolume",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/notificationVolume"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/notificationVolume"
+        }
+      ]
+    },
+    {
+      "referenceId": "noTypingAnimation",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noTypingAnimation"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noTypingAnimation"
+        }
+      ]
+    },
+    {
+      "referenceId": "noUnblockToJump",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/noUnblockToJump"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/noUnblockToJump"
+        }
+      ]
+    },
+    {
+      "referenceId": "oneko",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/oneko"
+        }
+      ]
+    },
+    {
+      "referenceId": "onePingPerDM",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/onePingPerDM"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/onePingPerDM"
+        }
+      ]
+    },
+    {
+      "referenceId": "openInApp",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/openInApp"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/openInApp"
+        }
+      ]
+    },
+    {
+      "referenceId": "orbolayBridge",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/orbolayBridge"
+        }
+      ]
+    },
+    {
+      "referenceId": "overrideForumDefaults",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/overrideForumDefaults"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/overrideForumDefaults"
+        }
+      ]
+    },
+    {
+      "referenceId": "partyMode",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/partyMode"
+        }
+      ]
+    },
+    {
+      "referenceId": "pauseInvitesForever",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/pauseInvitesForever"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/pauseInvitesForever"
+        }
+      ]
+    },
+    {
+      "referenceId": "pendingFriendRequest",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/pendingFriendRequest"
+        }
+      ]
+    },
+    {
+      "referenceId": "permissionFreeWill",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/permissionFreeWill"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/permissionFreeWill"
+        }
+      ]
+    },
+    {
+      "referenceId": "permissionsViewer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/permissionsViewer"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/permissionsViewer"
+        }
+      ]
+    },
+    {
+      "referenceId": "petpet",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/petpet"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/petpet"
+        }
+      ]
+    },
+    {
+      "referenceId": "pictureInPicture",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/pictureInPicture"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/pictureInPicture"
+        }
+      ]
+    },
+    {
+      "referenceId": "pinDms",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/pinDms"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/pinDms"
+        }
+      ]
+    },
+    {
+      "referenceId": "pingNotifications",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/pingNotifications"
+        }
+      ]
+    },
+    {
+      "referenceId": "pinIcon",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/pinIcon"
+        }
+      ]
+    },
+    {
+      "referenceId": "plainFolderIcon",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/plainFolderIcon"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/plainFolderIcon"
+        }
+      ]
+    },
+    {
+      "referenceId": "platformIndicators",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/platformIndicators"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/platformIndicators"
+        }
+      ]
+    },
+    {
+      "referenceId": "platformSpoofer",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/platformSpoofer"
+        }
+      ]
+    },
+    {
+      "referenceId": "polishWording",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/polishWording"
+        }
+      ]
+    },
+    {
+      "referenceId": "previewMessage",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/previewMessage"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/previewMessage"
+        }
+      ]
+    },
+    {
+      "referenceId": "profileSets",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/profileSets"
+        }
+      ]
+    },
+    {
+      "referenceId": "questify",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/questify"
+        }
+      ]
+    },
+    {
+      "referenceId": "quickMention",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/quickMention"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/quickMention"
+        }
+      ]
+    },
+    {
+      "referenceId": "quickReply",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/quickReply"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/quickReply"
+        }
+      ]
+    },
+    {
+      "referenceId": "quickThemeSwitcher.discordDesktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/quickThemeSwitcher.discordDesktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "quoter",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/quoter"
+        }
+      ]
+    },
+    {
+      "referenceId": "randomVoice",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/randomVoice"
+        }
+      ]
+    },
+    {
+      "referenceId": "reactErrorDecoder",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/reactErrorDecoder"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/reactErrorDecoder"
+        }
+      ]
+    },
+    {
+      "referenceId": "reactionTimestamps",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/reactionTimestamps"
+        }
+      ]
+    },
+    {
+      "referenceId": "readAllNotificationsButton",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/readAllNotificationsButton"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/readAllNotificationsButton"
+        }
+      ]
+    },
+    {
+      "referenceId": "recentDMSwitcher",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/recentDMSwitcher"
+        }
+      ]
+    },
+    {
+      "referenceId": "relationshipNotifier",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/relationshipNotifier"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/relationshipNotifier"
+        }
+      ]
+    },
+    {
+      "referenceId": "remix",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/remix"
+        }
+      ]
+    },
+    {
+      "referenceId": "repeatMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/repeatMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "replaceGoogleSearch",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/replaceGoogleSearch"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/replaceGoogleSearch"
+        }
+      ]
+    },
+    {
+      "referenceId": "replyPingControl",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/replyPingControl"
+        }
+      ]
+    },
+    {
+      "referenceId": "replyTimestamp",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/replyTimestamp"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/replyTimestamp"
+        }
+      ]
+    },
+    {
+      "referenceId": "revealAllSpoilers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/revealAllSpoilers"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/revealAllSpoilers"
+        }
+      ]
+    },
+    {
+      "referenceId": "reverseImageSearch",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/reverseImageSearch"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/reverseImageSearch"
+        }
+      ]
+    },
+    {
+      "referenceId": "reviewDB",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/reviewDB"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/reviewDB"
+        }
+      ]
+    },
+    {
+      "referenceId": "richMagnetLinks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/richMagnetLinks"
+        }
+      ]
+    },
+    {
+      "referenceId": "richPresence",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/richPresence"
+        }
+      ]
+    },
+    {
+      "referenceId": "roleColorEverywhere",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/roleColorEverywhere"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/roleColorEverywhere"
+        }
+      ]
+    },
+    {
+      "referenceId": "rpcEditor",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/rpcEditor"
+        }
+      ]
+    },
+    {
+      "referenceId": "saveFavoriteGIFs",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/saveFavoriteGIFs"
+        }
+      ]
+    },
+    {
+      "referenceId": "scheduledMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/scheduledMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "screenRecorder.equibop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/screenRecorder.equibop"
+        }
+      ]
+    },
+    {
+      "referenceId": "searchFix",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/searchFix"
+        }
+      ]
+    },
+    {
+      "referenceId": "secretRingTone",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/secretRingTone"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/secretRingTone"
+        }
+      ]
+    },
+    {
+      "referenceId": "sedEnhanced",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/sedEnhanced"
+        }
+      ]
+    },
+    {
+      "referenceId": "sekaiStickers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/sekaiStickers"
+        }
+      ]
+    },
+    {
+      "referenceId": "sendTimestamps",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/sendTimestamps"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/sendTimestamps"
+        }
+      ]
+    },
+    {
+      "referenceId": "serverInfo",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/serverInfo"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/serverInfo"
+        }
+      ]
+    },
+    {
+      "referenceId": "serverListIndicators",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/serverListIndicators"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/serverListIndicators"
+        }
+      ]
+    },
+    {
+      "referenceId": "serverSearch",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/serverSearch"
+        }
+      ]
+    },
+    {
+      "referenceId": "shikiCodeblocks.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/shikiCodeblocks.desktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/shikiCodeblocks.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "showAllMessageButtons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showAllMessageButtons"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showAllMessageButtons"
+        }
+      ]
+    },
+    {
+      "referenceId": "showBadgesInChat",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/showBadgesInChat"
+        }
+      ]
+    },
+    {
+      "referenceId": "showConnections",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showConnections"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showConnections"
+        }
+      ]
+    },
+    {
+      "referenceId": "showHiddenChannels",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showHiddenChannels"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showHiddenChannels"
+        }
+      ]
+    },
+    {
+      "referenceId": "showHiddenThings",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showHiddenThings"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showHiddenThings"
+        }
+      ]
+    },
+    {
+      "referenceId": "showMessageEmbeds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/showMessageEmbeds"
+        }
+      ]
+    },
+    {
+      "referenceId": "showMeYourName",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showMeYourName"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showMeYourName"
+        }
+      ]
+    },
+    {
+      "referenceId": "showResourceChannels",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/showResourceChannels"
+        }
+      ]
+    },
+    {
+      "referenceId": "showRolesInChat",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/showRolesInChat"
+        }
+      ]
+    },
+    {
+      "referenceId": "showSongName",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/showSongName"
+        }
+      ]
+    },
+    {
+      "referenceId": "showTimeoutDuration",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/showTimeoutDuration"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/showTimeoutDuration"
+        }
+      ]
+    },
+    {
+      "referenceId": "sidebarChat",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/sidebarChat"
+        }
+      ]
+    },
+    {
+      "referenceId": "signature",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/signature"
+        }
+      ]
+    },
+    {
+      "referenceId": "silenceUsers",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/silenceUsers"
+        }
+      ]
+    },
+    {
+      "referenceId": "silentMessageToggle",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/silentMessageToggle"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/silentMessageToggle"
+        }
+      ]
+    },
+    {
+      "referenceId": "silentTyping",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/silentTyping"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/silentTyping"
+        }
+      ]
+    },
+    {
+      "referenceId": "snowfall",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/snowfall"
+        }
+      ]
+    },
+    {
+      "referenceId": "songLink.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/songLink.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "songSpotlight.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/songSpotlight.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "sortFriendRequests",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/sortFriendRequests"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/sortFriendRequests"
+        }
+      ]
+    },
+    {
+      "referenceId": "splitLargeMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/splitLargeMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "spotifyControls",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/spotifyControls"
+        }
+      ]
+    },
+    {
+      "referenceId": "spotifyCrack",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/spotifyCrack"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/spotifyCrack"
+        }
+      ]
+    },
+    {
+      "referenceId": "spotifyShareCommands",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/spotifyShareCommands"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/spotifyShareCommands"
+        }
+      ]
+    },
+    {
+      "referenceId": "startupTimings",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/startupTimings"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/startupTimings"
+        }
+      ]
+    },
+    {
+      "referenceId": "statusPresets",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/statusPresets"
+        }
+      ]
+    },
+    {
+      "referenceId": "statusWhileActive.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/statusWhileActive.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "steamStatusSync",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/steamStatusSync"
+        }
+      ]
+    },
+    {
+      "referenceId": "stickerBlocker",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/stickerBlocker"
+        }
+      ]
+    },
+    {
+      "referenceId": "stickerPaste",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/stickerPaste"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/stickerPaste"
+        }
+      ]
+    },
+    {
+      "referenceId": "stopAutoUnread",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/stopAutoUnread"
+        }
+      ]
+    },
+    {
+      "referenceId": "streaks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/streaks"
+        }
+      ]
+    },
+    {
+      "referenceId": "streamerModeOnStream",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/streamerModeOnStream"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/streamerModeOnStream"
+        }
+      ]
+    },
+    {
+      "referenceId": "streamingCodecDisabler",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/streamingCodecDisabler"
+        }
+      ]
+    },
+    {
+      "referenceId": "superReactionTweaks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/superReactionTweaks"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/superReactionTweaks"
+        }
+      ]
+    },
+    {
+      "referenceId": "talkInReverse",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/talkInReverse"
+        }
+      ]
+    },
+    {
+      "referenceId": "tenorGifSearch",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/tenorGifSearch"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/tenorGifSearch"
+        }
+      ]
+    },
+    {
+      "referenceId": "textReplace",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/textReplace"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/textReplace"
+        }
+      ]
+    },
+    {
+      "referenceId": "themeAttributes",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/themeAttributes"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/themeAttributes"
+        }
+      ]
+    },
+    {
+      "referenceId": "themeLibrary",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/themeLibrary"
+        }
+      ]
+    },
+    {
+      "referenceId": "tidalEmbeds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/tidalEmbeds"
+        }
+      ]
+    },
+    {
+      "referenceId": "timezones",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/timezones"
+        }
+      ]
+    },
+    {
+      "referenceId": "title",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/title"
+        }
+      ]
+    },
+    {
+      "referenceId": "toastNotifications",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/toastNotifications"
+        }
+      ]
+    },
+    {
+      "referenceId": "toggleVideoBind",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/toggleVideoBind"
+        }
+      ]
+    },
+    {
+      "referenceId": "toneIndicators",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/toneIndicators"
+        }
+      ]
+    },
+    {
+      "referenceId": "translate",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/translate"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/translate"
+        }
+      ]
+    },
+    {
+      "referenceId": "translatePlus",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/translatePlus"
+        }
+      ]
+    },
+    {
+      "referenceId": "triviaAI",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/triviaAI"
+        }
+      ]
+    },
+    {
+      "referenceId": "typingIndicator",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/typingIndicator"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/typingIndicator"
+        }
+      ]
+    },
+    {
+      "referenceId": "typingTweaks",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/typingTweaks"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/typingTweaks"
+        }
+      ]
+    },
+    {
+      "referenceId": "unindent",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/unindent"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/unindent"
+        }
+      ]
+    },
+    {
+      "referenceId": "unitConverter",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/unitConverter"
+        }
+      ]
+    },
+    {
+      "referenceId": "universalMention",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/universalMention"
+        }
+      ]
+    },
+    {
+      "referenceId": "unlimitedAccounts",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/unlimitedAccounts"
+        }
+      ]
+    },
+    {
+      "referenceId": "unlockedAvatarZoom",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/unlockedAvatarZoom"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/unlockedAvatarZoom"
+        }
+      ]
+    },
+    {
+      "referenceId": "unreadBadgeCount",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/unreadBadgeCount"
+        }
+      ]
+    },
+    {
+      "referenceId": "unsuppressEmbeds",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/unsuppressEmbeds"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/unsuppressEmbeds"
+        }
+      ]
+    },
+    {
+      "referenceId": "urlHighlighter",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/urlHighlighter"
+        }
+      ]
+    },
+    {
+      "referenceId": "userMessagesPronouns",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/userMessagesPronouns"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/userMessagesPronouns"
+        }
+      ]
+    },
+    {
+      "referenceId": "userpfp",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/userpfp"
+        }
+      ]
+    },
+    {
+      "referenceId": "userpluginInstaller.dev",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/userpluginInstaller.dev"
+        }
+      ]
+    },
+    {
+      "referenceId": "userVoiceShow",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/userVoiceShow"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/userVoiceShow"
+        }
+      ]
+    },
+    {
+      "referenceId": "usrbg",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/usrbg"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/usrbg"
+        }
+      ]
+    },
+    {
+      "referenceId": "validReply",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/validReply"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/validReply"
+        }
+      ]
+    },
+    {
+      "referenceId": "validUser",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/validUser"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/validUser"
+        }
+      ]
+    },
+    {
+      "referenceId": "vcDoubleClick",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/vcDoubleClick"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/vcDoubleClick"
+        }
+      ]
+    },
+    {
+      "referenceId": "vcNarrator",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/vcNarrator"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/vcNarrator"
+        }
+      ]
+    },
+    {
+      "referenceId": "vcPanelSettings",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/vcPanelSettings"
+        }
+      ]
+    },
+    {
+      "referenceId": "vencordToolbox",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/vencordToolbox"
+        }
+      ]
+    },
+    {
+      "referenceId": "viewIcons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/viewIcons"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/viewIcons"
+        }
+      ]
+    },
+    {
+      "referenceId": "viewRaw",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/viewRaw"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/viewRaw"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceButtons",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceButtons"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceChannelLog",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceChannelLog"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceChatUtils",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceChatUtils"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceDownload",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/voiceDownload"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/voiceDownload"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceJoinMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceJoinMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceMessages",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/voiceMessages"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/voiceMessages"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceMessagesInBackground",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceMessagesInBackground"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceMessageTranscriber.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceMessageTranscriber.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceRejoin",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceRejoin"
+        }
+      ]
+    },
+    {
+      "referenceId": "voiceStats",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/voiceStats"
+        }
+      ]
+    },
+    {
+      "referenceId": "volumeBooster",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/volumeBooster"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/volumeBooster"
+        }
+      ]
+    },
+    {
+      "referenceId": "waitForSlot",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/waitForSlot"
+        }
+      ]
+    },
+    {
+      "referenceId": "webContextMenus.web",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/webContextMenus.web"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/webContextMenus.web"
+        }
+      ]
+    },
+    {
+      "referenceId": "webKeybinds.web",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/webKeybinds.web"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/webKeybinds.web"
+        }
+      ]
+    },
+    {
+      "referenceId": "webpackTarball",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/webpackTarball"
+        }
+      ]
+    },
+    {
+      "referenceId": "webPWA.browser",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/webPWA.browser"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/webPWA.browser"
+        }
+      ]
+    },
+    {
+      "referenceId": "webScreenShare.browser",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/webScreenShare.browser"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/webScreenShare.browser"
+        }
+      ]
+    },
+    {
+      "referenceId": "webScreenShareFixes.web",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/webScreenShareFixes.web"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/webScreenShareFixes.web"
+        }
+      ]
+    },
+    {
+      "referenceId": "whitelistedEmojis",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/whitelistedEmojis"
+        }
+      ]
+    },
+    {
+      "referenceId": "whoReacted",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/whoReacted"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/whoReacted"
+        }
+      ]
+    },
+    {
+      "referenceId": "whosWatching",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/whosWatching"
+        }
+      ]
+    },
+    {
+      "referenceId": "wigglyText",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/wigglyText"
+        }
+      ]
+    },
+    {
+      "referenceId": "writeUpperCase",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/writeUpperCase"
+        }
+      ]
+    },
+    {
+      "referenceId": "xsOverlay",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/xsOverlay"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/xsOverlay"
+        }
+      ]
+    },
+    {
+      "referenceId": "youtubeAdblock.desktop",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "vencord",
+          "path": "src/plugins/youtubeAdblock.desktop"
+        },
+        {
+          "source": "equicord",
+          "path": "src/plugins/youtubeAdblock.desktop"
+        }
+      ]
+    },
+    {
+      "referenceId": "zipPreview",
+      "status": "untriaged",
+      "references": [
+        {
+          "source": "equicord",
+          "path": "src/equicordplugins/zipPreview"
+        }
+      ]
+    }
+  ]
+}

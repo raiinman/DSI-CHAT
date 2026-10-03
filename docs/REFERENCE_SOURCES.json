@@ -1,0 +1,21 @@
+[
+  {
+    "id": "vencord",
+    "url": "https://github.com/Vendicated/Vencord",
+    "revision": "b52ed365cf2ea64a5019b419291a2d9d4d76852d",
+    "pluginRoots": ["src/plugins"]
+  },
+  {
+    "id": "equicord",
+    "url": "https://github.com/Equicord/Equicord",
+    "revision": "ab9b98472acb281cc7ec4d2c7a612219993bb3cb",
+    "pluginRoots": ["src/plugins", "src/equicordplugins"]
+  },
+  {
+    "id": "vendetta",
+    "url": "https://github.com/vendetta-mod/Vendetta",
+    "revision": "e5d35028344363a8dacb67fca4d48266b79b2643",
+    "pluginRoots": [],
+    "runtimeCapabilityReferences": ["plugin-lifecycle", "plugin-settings", "theme-management", "safe-mode", "mobile-loader-boundary", "quick-install-flow", "diagnostics", "native-host-capability-discovery"]
+  }
+]

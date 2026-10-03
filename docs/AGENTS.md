@@ -6,6 +6,9 @@ Keep project scope, architecture, design, roadmap and evidence accurate for subs
 ## Ownership
 - CODEX_HANDOFF.md: continuation entrypoint, branch, required reading and latest verified publication.
 - ARCHITECTURE.md: runtime, adapter, preview and storage contracts.
+- IMPLEMENTATION_PLAN.md: authorized original DSI engine/adapters, phased capability roadmap and six-hour sprint.
+- TOOLCHAIN.md and ANDROID_TOOLS.lock.json: verified developer tools, portable setup and pinned official downloads.
+- REFERENCE_SOURCES.json and REFERENCE_INVENTORY.json: pinned behavior-reference metadata; no imported upstream implementation.
 - UI_ROADMAP.md: delivered UI slices and deferred backlog under the user's UI/UX lock.
 - DESIGN.md and USABILITY.md: approved presentation and usable behavior.
 - VISUAL_WORKFLOW.md: prepublication screenshot review and acceptance.
@@ -17,6 +20,7 @@ Keep project scope, architecture, design, roadmap and evidence accurate for subs
 ## Local Contracts
 - Continue codex/dsi-original; rewrite remains the preserved fork.
 - Record the user's October 3 UI/UX lock on the second Copperlight pass. Keep the roadmap as deferred backlog; further UI/UX changes require explicit user direction. Do not infer a new platform priority from the lock or a general request to continue.
+- The user authorized planning/tool preparation for an original mod combining capabilities from Vencord, Equicord and Vendetta. IMPLEMENTATION_PLAN.md is the current engine/platform path; the UI backlog stays deferred.
 - Separate completed local/CI/visual/public-file verification from unperformed live-account, screen-reader or physical-device checks.
 - Stable operating contracts belong in AGENTS.md; chronological evidence belongs in STATE.md.
 - Preserve provenance/licenses and historical validation records. Supersede outdated facts clearly; do not present older design experiments as current requirements.

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "commandline-tools",
+    "revision": "23.0",
+    "file": "android-commandline-tools.zip",
+    "url": "https://dl.google.com/android/repository/commandlinetools-win-16111833_latest.zip",
+    "sha256": "e5885e2e59038c0778a85fc19f01de7ce7c567c105553f7617b936b1e0e87b2b",
+    "bytes": 154957218,
+    "archiveDirectory": "cmdline-tools",
+    "destination": "cmdline-tools/latest"
+  },
+  {
+    "id": "platform-tools",
+    "revision": "37.0.1",
+    "file": "android-platform-tools.zip",
+    "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-win.zip",
+    "sha256": "45f4d63113e895ebde0c90f194099a4676b6ac653bd28d54314a9e022bbc1a99",
+    "bytes": 8044989,
+    "archiveDirectory": "platform-tools",
+    "destination": "platform-tools"
+  }
+]

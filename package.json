@@ -6,9 +6,17 @@
   "scripts": {
     "test": "node --test --test-isolation=none tests/*.test.mjs",
     "build": "node scripts/build.mjs",
-    "catalog": "node scripts/catalog.mjs"
+    "catalog": "node scripts/catalog.mjs",
+    "tools:setup": "node scripts/setup-tools.mjs",
+    "tools:doctor": "node scripts/tools-doctor.mjs",
+    "references:inventory": "node scripts/reference-inventory.mjs"
   },
   "engines": {
     "node": ">=24"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.58.2",
+    "typescript": "5.9.3"
   }
 }

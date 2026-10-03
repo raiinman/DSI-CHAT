@@ -6,6 +6,10 @@ Try the [live preview](https://raiinman.github.io/DSI-CHAT/) or download the ext
 
 This branch starts a new source tree. It contains no vendored Revenge, Vencord, Equicord or Vendetta engine or plugins. The earlier fork remains on the repository's `rewrite` branch with its existing licenses.
 
+## Original DSI roadmap
+
+The goal is one original Discord mod bringing together capabilities and ideas from Vencord, Equicord and Vendetta, with DSI-authored plugins and browser/desktop/native-mobile adapters. Their engines are not merged into this implementation. The Copperlight UI/UX is locked; the next engineering target is the original plugin foundation. See the [implementation plan](docs/IMPLEMENTATION_PLAN.md), [reference inventory](docs/REFERENCE_INVENTORY.json) and [prepared tools](docs/TOOLCHAIN.md). Full plugin parity and native adapters are future milestones.
+
 ## First working slice
 
 A Chromium Manifest V3 extension with an original feature lifecycle, local settings, safe mode, and three reversible display features:
@@ -17,7 +21,7 @@ Features start disabled. Safe mode disables all features while retaining saved c
 
 ## Build and test
 
-Use Node.js 24 or newer. No npm packages are required.
+Use Node.js 24 or newer. The current runtime/build needs no npm packages. Pinned development tools for future engine work can be prepared with `npm ci --ignore-scripts`, `npm run tools:setup` and `npm run tools:doctor`; see the toolchain document.
 
 ```sh
 npm test
