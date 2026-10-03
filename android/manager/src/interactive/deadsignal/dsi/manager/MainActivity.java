@@ -112,6 +112,11 @@ public final class MainActivity extends Activity {
     private void continueInstall(){try{if(!getPackageManager().canRequestPackageInstalls()){continueAfterPermission=true;installer.requestInstallPermission(this);}else installer.install(this);last="";refresh();}catch(Exception e){showError(e);}}
     private void cancelSetup(){try{continueAfterPermission=false;installer.cancel();last="";refresh();}catch(Exception e){showError(e);}}
     private void showError(Exception e){last="";refresh();new AlertDialog.Builder(this).setTitle("Setup needs attention").setMessage(e.getMessage()==null?"Please try again.":e.getMessage()).setPositiveButton("OK",null).show();}
+    private void readableSystemBars(){
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        if(Build.VERSION.SDK_INT>=30&&getWindow().getInsetsController()!=null)getWindow().getInsetsController().setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS|WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS|WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+    }
+    @Override public void onWindowFocusChanged(boolean focused){super.onWindowFocusChanged(focused);if(focused)getWindow().getDecorView().post(()->{if(alive)readableSystemBars();});}
     @Override protected void onResume(){super.onResume();resumed=true;ui.removeCallbacks(poll);ui.post(poll);if(installer!=null&&continueAfterPermission&&getPackageManager().canRequestPackageInstalls()){continueAfterPermission=false;continueInstall();}if(updater!=null&&continueUpdateAfterPermission&&getPackageManager().canRequestPackageInstalls()){continueUpdateAfterPermission=false;requestUpdate();}}
     @Override protected void onPause(){resumed=false;ui.removeCallbacks(poll);super.onPause();}
     @Override protected void onSaveInstanceState(Bundle out){out.putBoolean("continueAfterPermission",continueAfterPermission);out.putBoolean("continueUpdateAfterPermission",continueUpdateAfterPermission);super.onSaveInstanceState(out);}
