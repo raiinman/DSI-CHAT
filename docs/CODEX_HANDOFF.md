@@ -7,7 +7,7 @@ Prepared October 3, 2026. Continue the existing implementation; do not restart t
 - Repository: https://github.com/raiinman/DSI-CHAT
 - Active implementation and publishing branch: `codex/dsi-original`.
 - Repository default branch `rewrite` preserves the earlier third-party fork. It is NOT the implementation to continue. Do not merge its source/assets into this branch or remove its license notices.
-- Copperlight reviewed runtime: `2dea286`; published source: `e13f709`. Final review-only run `37114985868`, Pages `37115122884` and extension CI `37115122920` passed. Public hashes match all 22 reviewed site files. Subsequent documentation commits may advance the branch without changing runtime files.
+- Copperlight second enhancement reviewed runtime: `147a9b0`; final review-only run `37116008875` passed. Publication evidence is recorded in STATE.md. Subsequent documentation commits may advance the branch without changing runtime files.
 - Live preview: https://raiinman.github.io/DSI-CHAT/
 - Existing local checkout: `C:\Users\mikea\Documents\Codex\2026-09-30\new-chat-3\DSI-CHAT-original`.
 
