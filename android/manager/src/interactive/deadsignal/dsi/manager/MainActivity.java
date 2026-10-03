@@ -83,7 +83,7 @@ public final class MainActivity extends Activity {
         step("Allow Android installation",permission||s.installed,s.prepared&&!permission);
         step("Confirm and open",s.installed,s.prepared&&permission&&!s.installed);
         progress.setVisibility(busy?View.VISIBLE:View.GONE);primary.setEnabled(!busy);primary.setAlpha(busy?.65f:1);
-        cancel.setVisibility(!s.installed&&(busy||s.prepared||s.sessionId>=0)?View.VISIBLE:View.GONE);cancel.setEnabled(!busy);
+        cancel.setVisibility(!s.installed&&(busy||s.prepared||s.sessionId>=0)?View.VISIBLE:View.GONE);cancel.setEnabled(true);
         if(s.installed){status.setText("Sample app ready");detail.setText("Setup is complete. Open your sample app to try DSI's native controls. Discord integration is still in development.");primary.setText("Open sample app");primary.setContentDescription("Open sample app");}
         else if(busy){status.setText("Checking your sample app…");detail.setText("Verifying the included app before installation.");primary.setText("Preparing…");}
         else if(s.signerConflict){status.setText("Existing app needs attention");detail.setText(s.message);primary.setText("Check again");primary.setContentDescription("Retry setup");}
@@ -101,13 +101,13 @@ public final class MainActivity extends Activity {
     }
     private void updateAction(){
         if(updateBusy)return;ManagerUpdater.UpdateState u=updater.state();if(u.prepared||u.sessionId>=0){requestUpdate();return;}
-        boolean downloading=u.updateAvailable;final int generation=++updateGeneration;updateBusy=true;last="";refresh();worker.execute(()->{try{if(downloading)updater.download();else updater.check();ui.post(()->{if(!alive||generation!=updateGeneration)return;updateBusy=false;last="";refresh();if(downloading&&updater.state().prepared)requestUpdate();});}catch(Exception e){ui.post(()->{if(!alive)return;updateBusy=false;if("CANCELLED".equals(updater.state().phase)){last="";refresh();}else showError(e);});}});
+        boolean downloading=u.updateAvailable;final int generation=++updateGeneration;updateBusy=true;last="";refresh();worker.execute(()->{try{if(downloading)updater.download();else updater.check();ui.post(()->{if(!alive||generation!=updateGeneration)return;updateBusy=false;last="";refresh();if(downloading&&updater.state().prepared)requestUpdate();});}catch(Exception e){ui.post(()->{if(!alive||generation!=updateGeneration)return;updateBusy=false;if("CANCELLED".equals(updater.state().phase)){last="";refresh();}else showError(e);});}});
     }
     private void requestUpdate(){try{if(!getPackageManager().canRequestPackageInstalls()){continueUpdateAfterPermission=true;installer.requestInstallPermission(this);}else updater.requestUpdate(this);last="";refresh();}catch(Exception e){showError(e);}}
     private void startOrContinue(){
         if(busy)return;ManagerInstaller.State s=installer.state();if(s.installed){try{installer.openInstalled(this);}catch(Exception e){showError(e);}return;}
         if(s.prepared&&!s.signerConflict){continueInstall();return;}
-        busy=true;last="";refresh();worker.execute(()->{try{installer.prepare();ui.post(()->{if(!alive)return;busy=false;last="";refresh();if(installer.state().prepared&&!installer.state().signerConflict)continueInstall();});}catch(Exception e){ui.post(()->{if(!alive)return;busy=false;showError(e);});}});
+        busy=true;last="";refresh();worker.execute(()->{try{installer.prepare();ui.post(()->{if(!alive)return;busy=false;last="";refresh();if(installer.state().prepared&&!installer.state().signerConflict)continueInstall();});}catch(Exception e){ui.post(()->{if(!alive)return;busy=false;if("CANCELLED".equals(installer.state().phase)){last="";refresh();}else showError(e);});}});
     }
     private void continueInstall(){try{if(!getPackageManager().canRequestPackageInstalls()){continueAfterPermission=true;installer.requestInstallPermission(this);}else installer.install(this);last="";refresh();}catch(Exception e){showError(e);}}
     private void cancelSetup(){try{continueAfterPermission=false;installer.cancel();last="";refresh();}catch(Exception e){showError(e);}}
