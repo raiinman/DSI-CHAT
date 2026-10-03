@@ -69,3 +69,6 @@ html[data-theme=contrast] #sidebar-card,html[data-theme=contrast] #sidebar-histo
 html .chat-toolbar .mobile-contacts{display:none}.station-sidebar{padding:18px 18px 14px}.sidebar-contact{padding-bottom:14px}.sidebar-contact p{margin-bottom:12px}.sidebar-contact button{margin:6px 0}.sidebar-heading{margin:16px 0 10px}html .identity-deck{gap:8px}html .profile-signal{width:100%;margin:0}
 @media(max-width:680px){html .chat-toolbar .mobile-contacts{display:inline-flex}.station-sidebar{padding:20px}.sidebar-contact{padding:0}}
 .buddy-tools label{display:block;position:relative}.buddy-tools label>.ui-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}html .buddy-tools input{padding-left:38px}
+
+/* Profile actions use normal flex painting, including below-fold phone captures. */
+html #profile-open{position:static;z-index:auto}
