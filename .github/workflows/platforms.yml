@@ -26,7 +26,10 @@ jobs:
         if: always()
         with:
           name: dsi-windows-evidence
-          path: .cache/desktop-smoke-*/
+          include-hidden-files: true
+          path: |
+            .cache/desktop-smoke-*/*.png
+            .cache/desktop-smoke-*/result.json
       - uses: actions/upload-artifact@v4
         with:
           name: dsi-windows-portable
