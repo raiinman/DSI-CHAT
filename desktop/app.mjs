@@ -11,10 +11,11 @@ for(const id of ids)document.getElementById(id).checked=initial.settings.enabled
 document.querySelector('#safe-mode').checked=initial.settings.safeMode;status.textContent=initial.status;
 function saveSettings(){const plugins=structuredClone(initial.settings.plugins);for(const {manifest,key,input}of numeric){plugins[manifest.id]??={};plugins[manifest.id][key]=input.valueAsNumber;}return action(async()=>{const result=await api.setFeatures({safeMode:document.querySelector('#safe-mode').checked,enabled:Object.fromEntries(ids.map(id=>[id,document.getElementById(id).checked])),plugins});for(const {manifest,key,input}of numeric)input.value=result.settings.plugins[manifest.id][key];});}
 for(const id of [...ids,'safe-mode'])document.getElementById(id).addEventListener('change',saveSettings);
-for(const {input}of numeric)input.addEventListener('change',saveSettings);
+for(const {manifest,input}of numeric)input.addEventListener('change',()=>{document.getElementById(manifest.id).checked=true;saveSettings();});
 document.querySelector('#fixture').onclick=()=>action(()=>api.openFixture());
 document.querySelector('#workbench').onclick=()=>action(()=>api.openWorkbench());
 document.querySelector('#discord').onclick=()=>action(()=>api.openDiscord());
+document.querySelector('#discord-browser').onclick=()=>action(()=>api.openDiscordBrowser());
 document.querySelector('#discord-reload').onclick=()=>action(()=>api.reloadDiscord());
 function hostStatus(state){const host=state.discordHost;document.querySelector('#discord-state').textContent='Host: '+host.phase+(host.page?' · '+host.page:'')+(host.permission?' · '+host.permission:'')+(host.errorCode?' · network error '+host.errorCode:'');}
-hostStatus(initial);setInterval(()=>api.status().then(hostStatus).catch(()=>{}),1000);
+hostStatus(initial);setInterval(()=>api.status().then(state=>{hostStatus(state);status.textContent=state.status;}).catch(()=>{}),1000);

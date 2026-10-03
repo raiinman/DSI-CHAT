@@ -17,6 +17,7 @@ catalog.mjs generates implemented plugin descriptors; build.mjs uses pinned esbu
 - site.mjs prepares dist/site; AGENTS.md instructions are development documents and must not be copied into the published site.
 - Browser QA uses root-pinned Playwright 1.58.2, tests the local static build and writes .cache/screenshots; no live account access is implied.
 - plugin-qa.mjs also verifies the runtime presence report on intercepted official-origin fixture markup. Keep that evidence distinct from real-account attachment/effects.
+- Plugin fixtures use semantic main without a redundant ARIA role and message media outside role=log, preventing selectors from passing only artificial markup.
 
 ## Work Guidance
 Keep assertions tied to user-visible contracts, preserve coverage for themes/motion/focus/drafts/safe text/layout/export, Copperlight default theme, navigation/sidebar actions and actual-opener focus return, and add meaningful checks for new behavior. Screenshot inspection follows docs/VISUAL_WORKFLOW.md.

@@ -4,6 +4,8 @@ Dead Signal Interactive's original Discord customization toolkit. Continue on `c
 
 The approved [Copperlight preview](https://raiinman.github.io/DSI-CHAT/) remains locked. This release builds the original mod engine and developer tools behind that direction. Vencord, Equicord, Vendetta and Revenge provide capability references; their engines/plugins are not merged or vendored.
 
+The Windows launcher and IDE now follow the same Copperlight palette. Updated Windows plugin attachment works under a strict page style policy, accepts semantic-main markup and retains reversible Safe mode. Camera compatibility is pending live retesting. The launcher can open Discord in your normal browser for screen sharing; the embedded host keeps capture blocked until a chosen-source gate can be enforced safely.
+
 ## Delivered development tools
 
 | Target | Working deliverable | Validation boundary |

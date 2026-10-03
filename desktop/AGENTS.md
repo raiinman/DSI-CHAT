@@ -7,6 +7,7 @@ Own DSI's original Electron desktop host and portable Windows packaging.
 - package.json/package-lock.json pin Electron; main.mjs and preload.cjs own validated local IPC.
 - discord-host.mjs owns official-origin media approvals, external HTTPS confirmation and bounded host-state metadata. host-qa scripts run controlled Electron origin/fake-device acceptance, never live-account calls.
 - renderer files own a separate local desktop control surface, not the locked Copperlight messenger.
+- The launcher uses the user-approved Copperlight cream/terracotta/sage/turquoise material palette through workbench/style.css. Keep Discord actions beside a compact discoverable plugin checklist, preserving the renderer control IDs and direct feature-box label insertion contract.
 - package.mjs stages portable Windows output under release/ without copying AGENTS.md.
 - redteam.mjs runs an instrumented copy of current host handlers against original local attack fixtures; it records actual Electron IPC, preview isolation and busy-start teardown evidence. Development test runners do not ship in portable output.
 
@@ -14,10 +15,13 @@ Own DSI's original Electron desktop host and portable Windows packaging.
 - Remote Discord content has sandbox/context isolation enabled, Node disabled and no privileged preload. Never expose workbench filesystem IPC to it.
 - Enable only reviewed original built-ins through the shared PluginRuntime; unsupported private/native host access remains explicit.
 - Render number settings from shared manifests, normalize through shared settings code and serialize updates; retain values through toggles, safe mode and persisted restart.
+- Numeric setting changes enable their plugin; Safe mode still pauses effects. Serialize attachment per window. Install reviewed CSS through webContents.insertCSS with author origin and removeInsertedCSS on replacement/safe mode, without weakening page CSP. Report actual runtime startup results and missing context targets rather than asserting visual effects from DOM style nodes.
+- The explicit local browser handoff opens the fixed official Discord app URL in the default browser; it copies no login/session data and never starts a call or capture. Remote frames cannot invoke this local IPC.
 - Local fixture testing does not imply installed Discord or live-account acceptance. Opening Discord requires a deliberate user action.
 - Discord camera/microphone requests require native approval, exact main-window/official-origin checks and document-generation revalidation. Reload clears grants; previews keep their separate denied session. Other permissions remain denied.
 - Normalize only the official-host window's user agent by removing Electron/known DSI product tokens while retaining its actual Chromium version and OS. Do not change global/session identity, create fake native Discord bridges, or bypass the media/capture gates. Browser identity normalization is a compatibility hypothesis until live camera retesting succeeds.
 - Block both screen-capture APIs on Electron44: granting empty-media requests also permits legacy direct capture without a source chooser. Report screen sharing/system audio unsupported; do not weaken this gate to claim parity.
+- Electron45alpha14 does not resolve chosen-source enforcement: both modern and legacy requests share indistinguishable display-capture permission details, and the legacy owned-window probe succeeds after modern chooser cancellation. Do not upgrade or grant that permission on the strength of the renamed permission alone.
 - Remote popups never create privileged windows. HTTPS links without URL credentials require explicit native confirmation before opening the default browser; navigation/redirects retain the official origin. Host state excludes account/message content and never infers successful login.
 - No automatic updater, credential extraction, remote plugin download or native Discord modification.
 

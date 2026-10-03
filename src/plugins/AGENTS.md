@@ -19,6 +19,7 @@ compatibility.mjs: fixed-key DOM existence probes on exact official HTTPS channe
 - Own resources and clean them in reverse order. Serialize reconciliations, cancel stale asynchronous starts and bound asynchronous cleanup (default 5s per cleanup). This cannot interrupt synchronous JavaScript; controlled hosts must also bound preview destruction.
 - No remote code evaluation, upstream implementation imports or private Discord runtime hooks in the browser adapter.
 - Preserve the legacy three-feature API used by the locked preview; browser plugin settings use a separate v2 key.
+- Built-ins accept semantic main elements as well as explicit ARIA main regions, and media in message rows. Windows may supply a host-owned style installer; the host must remove its inserted CSS on replacement/safe mode. Keep the default browser scoped style lifecycle intact.
 
 ## Work Guidance
 Validate a plugin before registration. Keep diagnostics structured and bounded; do not log user/message content. Built-ins operate visible DOM/style behavior only and must restore owned mutations on stop.

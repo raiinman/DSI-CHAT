@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('dsiDesktop',Object.freeze({
  setFeatures:settings=>ipcRenderer.invoke('dsi:features',settings),
  openFixture:()=>ipcRenderer.invoke('dsi:fixture'),
  openDiscord:()=>ipcRenderer.invoke('dsi:discord'),
+ openDiscordBrowser:()=>ipcRenderer.invoke('dsi:discord-browser'),
  reloadDiscord:()=>ipcRenderer.invoke('dsi:discord-reload'),
  openWorkbench:()=>ipcRenderer.invoke('dsi:workbench'),
  openWorkspace:()=>ipcRenderer.invoke('ide:open'),

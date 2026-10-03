@@ -21,10 +21,10 @@ const context = await chromium.launchPersistentContext('', {channel:'chromium', 
 const errors=[];
 context.on('page', page => page.on('pageerror', error => errors.push(error.message)));
 await context.route('https://**/*', route => route.request().url()==='https://discord.com/channels/@me'
-    ? route.fulfill({contentType:'text/html', body:`<!doctype html><html><head><title>DSI controlled fixture</title>
-    <style>body{background:#eee;color:#222;font:16px system-ui;padding:32px}article{padding:24px;border:1px solid #888}pre{white-space:pre}a{color:#267}img{width:1800px}.typing{display:block}.pulse{animation:blink 1s infinite}@keyframes blink{to{opacity:.5}}</style></head>
+    ? route.fulfill({contentType:'text/html', headers:{'Content-Security-Policy':"default-src 'none'; style-src 'nonce-fixture'; img-src data:"}, body:`<!doctype html><html><head><title>DSI controlled fixture</title>
+    <style nonce="fixture">body{background:#eee;color:#222;font:16px system-ui;padding:32px}article{padding:24px;border:1px solid #888}pre{white-space:pre}a{color:#267}img{width:1800px}.typing{display:block}.pulse{animation:blink 1s infinite}@keyframes blink{to{opacity:.5}}</style></head>
     <body><h1>DSI browser fixture</h1><p>Original plugins against local sample markup. No account connection.</p>
-    <main role="main"><div role="log"><article id="chat-messages-1" class="message_" ><b>Local tester</b>
+    <main><div><article id="chat-messages-1" class="message_" ><b>Local tester</b>
     <p class="messageContent_" data-message-content>Readable local text.</p><time datetime="2026-10-03T12:00:00Z" title="Original timestamp">12:00</time>
     <p><a href="https://example.com/docs" title="Original link">Documentation</a></p><pre>const originalDSI = true;</pre>
     <img alt="Local image fixture" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='60'%3E%3Crect width='1800' height='60' fill='%237bb'/%3E%3C/svg%3E"></article></div>
@@ -62,7 +62,7 @@ try {
     assert.equal(await fixture.locator('pre').evaluate(e=>getComputedStyle(e).whiteSpace),'pre-wrap');
     assert.equal(await fixture.locator('a').evaluate(e=>getComputedStyle(e).textDecorationLine),'underline');
     assert.equal(await fixture.locator('img').evaluate(e=>getComputedStyle(e).maxWidth),'100%');
-    assert.equal(await fixture.locator('[role="main"]').evaluate(e=>getComputedStyle(e).color),'rgb(238, 234, 227)');
+    assert.equal(await fixture.locator('main').evaluate(e=>getComputedStyle(e).color),'rgb(238, 234, 227)');
     await fixture.locator('button').focus();
     assert.equal(await fixture.locator('button').evaluate(e=>getComputedStyle(e).outlineWidth),'3px');
     await popup.locator('main').evaluate(e=>e.scrollTop=0);

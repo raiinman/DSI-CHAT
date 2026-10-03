@@ -3,14 +3,14 @@ import { BUILTIN_MANIFESTS } from './builtins.mjs';
 // Presence probes only. Never read account identifiers, message text or credentials.
 const probes = Object.freeze({
   appShell: '#app-mount',
-  mainRegion: 'main, [role="main"]',
+  mainRegion: 'main, :is(main, [role="main"])',
   messageList: '[role="log"], [id^="chat-messages-"]',
   composer: '[role="textbox"][contenteditable="true"]',
   messageRows: '[id^="chat-messages-"]',
   messageText: '[id^="chat-messages-"] [class*="messageContent"], [role="log"] [data-message-content]',
-  code: '[role="main"] pre, [role="main"] code',
-  links: '[role="main"] a[href]',
-  media: '[role="log"] img, [role="log"] video, [id^="chat-messages-"] video',
+  code: ':is(main, [role="main"]) pre, :is(main, [role="main"]) code',
+  links: ':is(main, [role="main"]) a[href]',
+  media: '[role="log"] img, [role="log"] video, [id^="chat-messages-"] video, [id^="chat-messages-"] img',
   typing: '[data-typing-indicator], [class*="typingDots"], [class*="typing_"]',
   timestamps: 'time[datetime]'
 });

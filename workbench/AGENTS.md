@@ -22,6 +22,7 @@ Own the separate local plugin editor, selected-workspace operations and controll
 - Preview uses an opaque in-memory document with trusted inline CSS, blob-only script execution and denied frames/workers/connections/objects/base URLs. Its dedicated ephemeral session denies file/network requests and permissions. Captured host destruction settles preview startup and releases the editor action guard, including synchronous plugin hangs.
 - Preview WebRTC disables non-proxied UDP and routes remaining transport through a host-owned rejecting loopback proxy with no direct fallback or loopback bypass. Close that proxy on preview destruction or failed initialization. This scoped transport policy does not alter dashboard or account-bearing sessions and does not constitute a general OS network sandbox.
 - The Copperlight messenger is untouched; this is a separate developer tool.
+- The user reopened launcher/workbench styling to match Copperlight. Preserve cream editor surfaces, sage file navigation, turquoise primary actions, terracotta diagnostics, readable text/focus and reduced-motion/forced-color behavior. Shared style.css also supplies the local desktop fixtures; verify their controls and plugin effects after changes.
 
 ## Work Guidance
 Keep save, diagnostics, build, test, cancellation, preview and packaging actions real. Show precise failure messages and preserve dirty buffers during failed actions.

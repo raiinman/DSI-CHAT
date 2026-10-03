@@ -20,7 +20,9 @@ let ideBusy=false;
 let settings=normalizePluginSettings({},BUILTIN_MANIFESTS);
 let featureQueue=Promise.resolve();
 let adapterStatus='Not attached; use the offline fixture first.';
-const localOptions={width:1200,height:820,backgroundColor:'#182521',show:!process.argv.includes('--smoke'),webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,preload:path.join(here,'preload.cjs')}};
+const attachedStyles=new WeakMap();
+const attachmentQueues=new WeakMap();
+const localOptions={width:1200,height:820,backgroundColor:'#ede1ce',show:!process.argv.includes('--smoke'),webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,preload:path.join(here,'preload.cjs')}};
 function lock(window,{remote=false}={}) {
  window.webContents.setWindowOpenHandler(()=>({action:'deny'}));
  window.webContents.on('will-navigate',(event,url)=>{ if(remote){if(new URL(url).origin!=='https://discord.com')event.preventDefault();}else event.preventDefault(); });
@@ -38,13 +40,27 @@ const validSettings=value=>{
  return normalizePluginSettings(value,BUILTIN_MANIFESTS);
 };
 async function sharedBundle(){return fs.readFile(path.join(root,'dist/shared/dsi-plugins.js'),'utf8');}
-async function attach(window,remote=false){
+function attach(window,remote=false){
+ if(!window||window.isDestroyed())return Promise.resolve();
+ const previous=attachmentQueues.get(window)??Promise.resolve();
+ const operation=previous.catch(()=>{}).then(()=>applyAttachment(window,remote));
+ attachmentQueues.set(window,operation);
+ return operation;
+}
+async function applyAttachment(window,remote=false){
  if(!window||window.isDestroyed())return;
  const url=window.webContents.getURL();
  if(remote&&!url.startsWith('https://discord.com/channels/')){adapterStatus='Discord display adapter waits for a channels page. No account has been verified.';return;}
  const bundle=await sharedBundle();
- await window.webContents.executeJavaScriptInIsolatedWorld(1001,[{code:bundle+`\n(async()=>{await globalThis.__dsiRuntime?.dispose();globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:['styles','dom','events'],plugins:DSIPlugins.createBuiltinPlugins(document)});return globalThis.__dsiRuntime.reconcile(${JSON.stringify(settings)});})()`}]);
- adapterStatus=remote?'Display adapter applied to Discord web; live behavior remains unverified.':'Shared Windows adapter running in offline fixture.';
+ const contents=window.webContents;
+ for(const key of attachedStyles.get(window)??[])await contents.removeInsertedCSS(key);
+ attachedStyles.set(window,[]);
+ const result=await contents.executeJavaScriptInIsolatedWorld(1001,[{code:bundle+`\n(async()=>{await globalThis.__dsiRuntime?.dispose();const styles=[];globalThis.__dsiRuntime=new DSIPlugins.PluginRuntime({platform:'windows',capabilities:['styles','dom','events'],plugins:DSIPlugins.createBuiltinPlugins(document,{installStyle:(id,css)=>{styles.push({id,css});}})});const runtime=await globalThis.__dsiRuntime.reconcile(${JSON.stringify(settings)});return {active:runtime.active,errors:runtime.errors.map(({id,phase})=>({id,phase})),styles,compatibility:DSIPlugins.inspectDiscordCompatibility({document,url:location.href})};})()`}]);
+ const keys=attachedStyles.get(window);
+ try{for(const style of result.styles){if(contents.getURL()!==url)throw Error('Page changed; reload to attach plugins');keys.push(await contents.insertCSS(style.css,{cssOrigin:'author'}));}}
+ catch(error){for(const key of keys)await contents.removeInsertedCSS(key);attachedStyles.set(window,[]);adapterStatus='Plugin styles could not attach; reload or use safe mode.';throw error;}
+ const missing=result.compatibility.plugins.filter(plugin=>result.active.includes(plugin.id)&&plugin.target==='not-found-in-current-context').length;
+ adapterStatus=settings.safeMode?'Safe mode: all display plugins paused.':result.errors.length?`${result.errors.length} plugin startup errors; reload or use safe mode.`:`${result.active.length} plugins running in ${remote?'Discord web':'the offline fixture'}${missing?`; ${missing} targets absent here`:''}. Live effects require visual confirmation.`;
 }
 async function openFixture(){if(fixture&&!fixture.isDestroyed()){fixture.focus();return;}fixture=lock(new BrowserWindow({...localOptions,width:1000,height:700,webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true}}));await fixture.loadFile(path.join(here,'fixture.html'));await attach(fixture);}
 async function openWorkbench(){if(editor&&!editor.isDestroyed()){editor.focus();return;}editor=lock(new BrowserWindow({...localOptions,title:'DSI Workbench'}));await editor.loadFile(path.join(root,'workbench/index.html'));}
@@ -83,6 +99,7 @@ handle('dsi:status',()=>({settings,manifests:BUILTIN_MANIFESTS,status:adapterSta
 handle('dsi:features',value=>{const requested=validSettings(value);const operation=featureQueue.then(async()=>{settings=requested;await fs.writeFile(path.join(app.getPath('userData'),'dsi-settings.json'),JSON.stringify(settings));await attach(fixture);await attach(discord,true);return {settings,status:adapterStatus};});featureQueue=operation.catch(()=>{});return operation;});
 handle('dsi:fixture',async()=>{await openFixture();return {ok:true};});
 handle('dsi:discord',async()=>{await openDiscord();return {ok:true};});
+handle('dsi:discord-browser',async()=>{await shell.openExternal('https://discord.com/app');return {ok:true};});
 handle('dsi:discord-reload',async()=>{if(!discord||discord.isDestroyed())await openDiscord();else await discordHost.reload();return {ok:true};});
 handle('dsi:workbench',async()=>{await openWorkbench();return {ok:true};});
 handle('ide:open',async()=>{const selected=await dialog.showOpenDialog(editor,{properties:['openDirectory']});return selected.canceled?null:workbench.open(selected.filePaths[0]);},'ide');
@@ -109,12 +126,12 @@ async function runSmoke(){
  await openFixture();
  await dashboard.webContents.executeJavaScript(`for(const id of ['compact-messages','reduced-motion']){const input=document.getElementById(id);input.checked=true;input.dispatchEvent(new Event('change'));}`);
  await new Promise(resolve=>setTimeout(resolve,300));
- const styles=await fixture.webContents.executeJavaScript('document.querySelectorAll("style[data-dsi-plugin],style[data-dsi-feature]").length');
+ const styles=attachedStyles.get(fixture)?.length??0;
  if(styles<2)throw Error('Fixture plugins did not attach');
  await dashboard.webContents.executeJavaScript(`const size=document.querySelector('#larger-text-size');size.value='22';size.dispatchEvent(new Event('change'));const larger=document.querySelector('#larger-text');larger.checked=true;larger.dispatchEvent(new Event('change'));`);
  await waitCondition(async()=>await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize')==='22px','Numeric text-size control did not apply');
  await dashboard.webContents.executeJavaScript(`document.querySelector('#safe-mode').checked=true;document.querySelector('#safe-mode').dispatchEvent(new Event('change'));`);
- await waitCondition(async()=>await fixture.webContents.executeJavaScript('document.querySelectorAll("style[data-dsi-plugin],style[data-dsi-feature]").length')===0,'Safe mode did not remove styles');
+ try{await waitCondition(async()=>{const font=await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize');return (attachedStyles.get(fixture)?.length??0)===0&&font!=='22px';},'Safe mode did not remove styles');}catch(error){throw Error(error.message+JSON.stringify({keys:attachedStyles.get(fixture),settings,status:adapterStatus,font:await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize')}));}
  if(settings.plugins['larger-text'].size!==22||!settings.enabled['larger-text'])throw Error('Safe mode discarded plugin settings');
  const savedSettings=validSettings(JSON.parse(await fs.readFile(path.join(app.getPath('userData'),'dsi-settings.json'),'utf8')));
  if(savedSettings.plugins['larger-text'].size!==22||!savedSettings.safeMode)throw Error('Numeric settings were not persisted');
@@ -122,6 +139,9 @@ async function runSmoke(){
  await waitCondition(async()=>await dashboard.webContents.executeJavaScript('document.querySelector("#larger-text-size")?.value==="22"&&document.querySelector("#safe-mode").checked'),'Reload did not preserve text-size setting');
  await dashboard.webContents.executeJavaScript(`document.querySelector('#safe-mode').checked=false;document.querySelector('#safe-mode').dispatchEvent(new Event('change'));`);
  await waitCondition(async()=>await fixture.webContents.executeJavaScript('getComputedStyle(document.querySelector("[data-message-content]")).fontSize')==='22px','Leaving safe mode did not restore configured font size');
+ await dashboard.webContents.executeJavaScript(`for(const input of document.querySelectorAll('.feature-box input[type="checkbox"]')){if(input.id==='safe-mode')continue;input.checked=true;}document.querySelector('#signal-theme').dispatchEvent(new Event('change'));`);
+ await waitCondition(async()=>await fixture.webContents.executeJavaScript(`document.querySelector('a').title==='https://example.com/docs'&&getComputedStyle(document.querySelector('pre')).whiteSpace==='pre-wrap'&&getComputedStyle(document.querySelector('a')).textDecorationLine==='underline'&&getComputedStyle(document.querySelector('img')).maxWidth==='100%'&&getComputedStyle(document.querySelector('[data-typing-indicator]')).display==='none'&&getComputedStyle(document.querySelector('main')).backgroundColor==='rgb(23, 25, 29)'`),'Semantic-main plugins did not apply under strict CSP');
+ if((attachedStyles.get(fixture)?.length??0)!==10)throw Error('Not all ten styles attached');
  const fixturePreferences=fixture.webContents.getLastWebPreferences();
  if(fixturePreferences.nodeIntegration||!fixturePreferences.sandbox||!fixturePreferences.contextIsolation||fixturePreferences.preload)throw Error('Fixture renderer isolation failed');
  await dashboard.webContents.executeJavaScript('window.scrollTo(0,0)');

@@ -16,14 +16,18 @@ async function runRedteam(){
  const report=async()=>fs.writeFile(path.join(folder,'result.json'),JSON.stringify(results,null,2));
  let server,rogue,udp,tcp;
  try{
+  const browserLaunches=[];shell.openExternal=async value=>{browserLaunches.push(value);};
   await openWorkbench();const sample=path.join(folder,'selected');await createTemplate(sample);await workbench.open(sample);
   const event=()=>({sender:editor.webContents,senderFrame:editor.webContents.mainFrame});
   const invoke=(name,...args)=>redteamHandlers.get(name)(event(),...args);
   const dashboardRejection=await dashboard.webContents.executeJavaScript('dsiDesktop.read("plugin.ts").then(()=>"ACCEPTED",error=>error.message)');assert.match(dashboardRejection,/Untrusted/);results.dashboardIdeRejected=true;
   rogue=new BrowserWindow({...localOptions,show:false});await rogue.loadFile(path.join(here,'index.html'));
-  const rogueRejection=await rogue.webContents.executeJavaScript('dsiDesktop.status().then(()=>"ACCEPTED",error=>error.message)');assert.match(rogueRejection,/Untrusted/);results.rogueRendererRejected=true;rogue.destroy();
+  const rogueRejection=await rogue.webContents.executeJavaScript('dsiDesktop.status().then(()=>"ACCEPTED",error=>error.message)');assert.match(rogueRejection,/Untrusted/);results.rogueRendererRejected=true;
+  const rogueBrowser=await rogue.webContents.executeJavaScript('dsiDesktop.openDiscordBrowser().then(()=>"ACCEPTED",error=>error.message)');assert.match(rogueBrowser,/Untrusted/);assert.deepEqual(browserLaunches,[]);results.rogueBrowserHandoffRejected=true;rogue.destroy();
   await editor.webContents.executeJavaScript('const frame=document.createElement("iframe");frame.src="fixture.html";document.body.append(frame);true');await new Promise(resolve=>setTimeout(resolve,300));
   const frame=editor.webContents.mainFrame.frames[0];assert.ok(frame);await assert.rejects(redteamHandlers.get('ide:read')({sender:editor.webContents,senderFrame:frame},'plugin.ts'),/Untrusted/);results.subframeHandlerRejected=true;results.subframeBridge=await frame.executeJavaScript('typeof dsiDesktop');
+  await assert.rejects(redteamHandlers.get('dsi:discord-browser')({sender:editor.webContents,senderFrame:frame}),/Untrusted/);assert.deepEqual(browserLaunches,[]);results.subframeBrowserHandoffRejected=true;
+  await dashboard.webContents.executeJavaScript('document.querySelector("#discord-browser").click();true');await waitCondition(async()=>browserLaunches.length===1,'Browser handoff button did not invoke guarded action');assert.deepEqual(browserLaunches,['https://discord.com/app']);results.fixedURLBrowserHandoff=true;
   let requests=[];server=http.createServer((request,response)=>{requests.push(request.url);response.end('CONTROLLED_NETWORK_FIXTURE');});await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const port=server.address().port;
   const external=path.join(folder,'outside-workspace.html');await fs.writeFile(external,'<!doctype html><p>CONTROLLED_OUTSIDE_HTML_SENTINEL</p><img src="http://127.0.0.1:'+port+'/nested-file-frame">');
   const original=await workbench.read('plugin.ts');const attack=original.text.replace('start(context) {','start(context) {\nconst frame=document.createElement("iframe");frame.id="outside-probe";frame.src='+JSON.stringify(pathToFileURL(external).href)+';document.body.append(frame);\nfetch("http://127.0.0.1:'+port+'/direct-fetch").catch(()=>{});const image=new Image();image.src="http://127.0.0.1:'+port+'/direct-image";');await workbench.save({...original,text:attack});assert.equal((await openPreview()).ok,true);await new Promise(resolve=>setTimeout(resolve,1500));
