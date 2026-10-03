@@ -306,7 +306,7 @@ try {
     await review.setViewportSize({width:390,height:844});
     await review.waitForFunction(() => {
         const selected=document.querySelector('.tab[aria-selected="true"]'),strip=document.querySelector('.tabs');
-        const a=selected.getBoundingClientRect(),b=strip.getBoundingClientRect();
+        const a=selected.parentElement.getBoundingClientRect(),b=strip.getBoundingClientRect();
         return a.left>=b.left-1 && a.right<=b.right+1;
     });
     await review.screenshot({path:".cache/screenshots/copperlight-phone.png",fullPage:true});

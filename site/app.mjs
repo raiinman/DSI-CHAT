@@ -102,7 +102,7 @@ function contacts() { contactTools?.render(); }
 function revealActiveTab() {
     const selectedTab = byId("tab-" + model.state.active);
     const strip = byId("tabs");
-    const tabBounds = selectedTab.getBoundingClientRect(), stripBounds = strip.getBoundingClientRect();
+    const tabBounds = selectedTab.parentElement.getBoundingClientRect(), stripBounds = strip.getBoundingClientRect();
     if (tabBounds.left < stripBounds.left) strip.scrollLeft += tabBounds.left - stripBounds.left - 8;
     else if (tabBounds.right > stripBounds.right) strip.scrollLeft += tabBounds.right - stripBounds.right + 8;
 }
