@@ -60,7 +60,7 @@ export function configureDiscordHost({window,session,dialog,Menu,shell,onReady=(
  contents.on('did-start-navigation',(_event,_url,inPlace,main)=>{if(main&&!inPlace){documentGeneration++;guardHealthy=false;picker?.cancel();navigationFailed=false;mediaGrants=new Set();update({phase:'loading',permission:null});}});
  const ready=async()=>{if(navigationFailed||!frameTrusted(contents.mainFrame))return;const generation=documentGeneration;
   if(captureEnabled){try{if(!guardInstalled||!contents.debugger.isAttached())throw Error('Guard unavailable');const verified=await contents.debugger.sendCommand('Runtime.evaluate',{expression:CAPTURE_GUARD_VERIFY_EXPRESSION,returnByValue:true});if(verified.result?.value!==true||verified.exceptionDetails)throw Error('Guard verification failed');if(generation!==documentGeneration)return;guardHealthy=true;}catch{if(generation===documentGeneration)failGuard();return;}}
- const page=new URL(contents.getURL()).pathname.startsWith('/channels/')?'channels':'app-or-login';update({phase:'ready',page,errorCode:null});Promise.resolve().then(()=>onReady(window)).catch(()=>update({adapter:'Display adapter unavailable; reload or use safe mode'}));};
+ const page=new URL(contents.getURL()).pathname.startsWith('/channels/')?'channels':'app-or-login';update({phase:'document-loaded',page,errorCode:null});Promise.resolve().then(()=>onReady(window)).catch(()=>update({adapter:'Display adapter unavailable; reload or use safe mode'}));};
  contents.on('did-navigate',(_event,url)=>{if(captureEnabled&&guardInstalled&&!officialURL(url))failGuard();});
  contents.on('did-stop-loading',()=>{if(state.phase==='loading')void ready();});
  contents.on('did-finish-load',ready);contents.on('did-navigate-in-page',(_event,_url,main)=>{if(main)ready();});

@@ -17,5 +17,5 @@ document.querySelector('#workbench').onclick=()=>action(()=>api.openWorkbench())
 document.querySelector('#discord').onclick=()=>action(()=>api.openDiscord());
 document.querySelector('#discord-browser').onclick=()=>action(()=>api.openDiscordBrowser());
 document.querySelector('#discord-reload').onclick=()=>action(()=>api.reloadDiscord());
-function hostStatus(state){const host=state.discordHost;document.querySelector('#discord-state').textContent='Host: '+host.phase+(host.page?' · '+host.page:'')+(host.permission?' · '+host.permission:'')+(host.errorCode?' · network error '+host.errorCode:'');}
+function hostStatus(state){const host=state.discordHost;document.querySelector('#discord-state').textContent='Host: '+(host.phase==='document-loaded'?'Document loaded; client rendering unverified':host.phase)+(host.page?' · '+host.page:'')+(host.permission?' · '+host.permission:'')+(host.errorCode?' · network error '+host.errorCode:'');}
 hostStatus(initial);setInterval(()=>api.status().then(state=>{hostStatus(state);status.textContent=state.status;}).catch(()=>{}),1000);

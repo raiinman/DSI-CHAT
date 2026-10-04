@@ -19,17 +19,22 @@ function installCaptureGuard(){
  }
  function guarded(constraints){try{return apply(native,this,[snapshot(constraints)]);}catch(error){return apply(reject,NativePromise,[error]);}}
  define(proto,'getUserMedia',{value:guarded,writable:false,configurable:false});
- define(devices,'getUserMedia',{value:guarded,writable:false,configurable:false});
+ // Compatibility adapters may wrap the public entry point. The native method
+ // remains private behind the immutable prototype guard; assignments expose no
+ // unguarded native path. Keep accessor identity locked and independently verified.
+ const bindings=[];
+ function bind(target,name,initial){let current=initial;const get=()=>current,set=value=>{if(typeof value!=='function')throw new TypeError('Media adapter must be a function');current=value;};define(target,name,{get,set,configurable:false,enumerable:true});bindings[bindings.length]={target,name,get,set};}
+ bind(devices,'getUserMedia',guarded);
  const aliases=[];
  for(const name of ['getUserMedia','webkitGetUserMedia','mozGetUserMedia']){
   if(typeof navigator[name]!=='function')continue;
   const callback=function(constraints,success,failure){const promise=apply(guarded,devices,[constraints]);apply(then,promise,[success,failure]);};
-  define(navigatorProto,name,{value:callback,writable:false,configurable:false});define(navigator,name,{value:callback,writable:false,configurable:false});
+  define(navigatorProto,name,{value:callback,writable:false,configurable:false});bind(navigator,name,callback);
   aliases[aliases.length]={name,callback};
  }
  define(globalThis,'__dsiCaptureGuardV1',{value:1,writable:false,configurable:false});
  function locked(target,name,value){const property=descriptor(target,name);return !!property&&property.value===value&&property.writable===false&&property.configurable===false;}
- function verify(){if(!locked(globalThis,'__dsiCaptureGuardV1',1)||!locked(proto,'getUserMedia',guarded)||!locked(devices,'getUserMedia',guarded))return false;for(let n=0;n<aliases.length;n++){const {name,callback}=aliases[n];if(!locked(navigatorProto,name,callback)||!locked(navigator,name,callback))return false;}return locked(globalThis,'__dsiCaptureGuardVerifyV1',verify);}
+ function verify(){if(!locked(globalThis,'__dsiCaptureGuardV1',1)||!locked(proto,'getUserMedia',guarded))return false;for(let n=0;n<bindings.length;n++){const {target,name,get,set}=bindings[n],p=descriptor(target,name);if(!p||p.get!==get||p.set!==set||p.configurable!==false)return false;}for(let n=0;n<aliases.length;n++){const {name,callback}=aliases[n];if(!locked(navigatorProto,name,callback))return false;}return locked(globalThis,'__dsiCaptureGuardVerifyV1',verify);}
  define(globalThis,'__dsiCaptureGuardVerifyV1',{value:verify,writable:false,configurable:false});
 }
 export const CAPTURE_GUARD_SOURCE='('+installCaptureGuard.toString()+')();\n//# sourceURL=dsi-capture-guard.js';
