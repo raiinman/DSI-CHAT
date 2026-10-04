@@ -1,5 +1,9 @@
 # Current state
 
+## Published policy and picker closeout — October 3
+
+Published [v0.4.0-dev.3](https://github.com/raiinman/DSI-CHAT/releases/tag/v0.4.0-dev.3) from source8fb3e56, reviewed runtime7e90b8d. All three downloaded release assets match reviewed hashes and sizes. [Pages37163634316](https://github.com/raiinman/DSI-CHAT/actions/runs/37163634316) passed; all23 public site files and seven extension payload hashes match review. The separate per-user v0.4.0-dev.3 install verifies all256 files (255 payloads plus SHA256SUMS); Desktop and owned Start Menu shortcuts point to it. Six running DSI processes were preserved; no new host/capture/call was launched, and profiles/settings were not modified. After the call, close old DSI and reopen its shortcut for live acceptance. Exact-byte records: .cache/picker-public-release-verification.json, .cache/picker-public-site-verification.json and .cache/picker-install-verification.json. This closeout supersedes the pending publication statement below.
+
 ## Central permissions and Copperlight picker release — October 3
 
 Application permission defaults now live in security/permissions.json, with strict validation and browser/Android package generation. Unknown/unsafe edits fail closed. Windows local launcher/IDE permissions are explicitly denied rather than inheriting Electron defaults; original host media, IPC roles, preview transport and updater trust scopes consume the same policy. docs/PERMISSIONS.md maps enforcement and supported tightening. Native approval, source/window/frame/document identity and installer integrity/signer/version checks remain required. Picker-selected titles are redacted to DSI selected source in native stream metadata. Prevented external navigation attempts preserve the trusted host/call; actual lost origin/document identity closes it.
