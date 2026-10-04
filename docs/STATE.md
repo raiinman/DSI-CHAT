@@ -1,6 +1,6 @@
 # Current state
 
-## Central permissions and Copperlight picker candidate — October 3
+## Central permissions and Copperlight picker release — October 3
 
 Application permission defaults now live in security/permissions.json, with strict validation and browser/Android package generation. Unknown/unsafe edits fail closed. Windows local launcher/IDE permissions are explicitly denied rather than inheriting Electron defaults; original host media, IPC roles, preview transport and updater trust scopes consume the same policy. docs/PERMISSIONS.md maps enforcement and supported tightening. Native approval, source/window/frame/document identity and installer integrity/signer/version checks remain required. Picker-selected titles are redacted to DSI selected source in native stream metadata. Prevented external navigation attempts preserve the trusted host/call; actual lost origin/document identity closes it.
 
@@ -10,7 +10,7 @@ Local validation: root46 tests; picker3; combined workbench/picker23 passed with
 
 Standalone guard1791070285853 covers legacy aliases/prototypes/fresh realms, getters/proxies, prototype/iterator pollution, captured verification, named installation exceptions and selected owned frames. Integrated picker1791070783365 passes actual Cancel/Share, filtering/audio reset, refreshed stale tokens, rogue/subframe callers, empty-source recovery, pending navigation cancellation, named guard exception and active debugger detach destruction. Selected track labels are generic; native stream settings still expose the selected source identifier. Repeated camera requests receive distinct approvals; both confirmed/cancelled blocked external attempts preserve active capture and subsequent sharing, while actual origin loss destroys the host. Root inspected Copperlight picker at normal and580x460 sizes plus decoded terracotta owned-window frames. QA enumerates outside windows only with zero thumbnails and materializes previews exclusively from its original owned fixtures; no live-account or third-party source image is retained.
 
-Review CI, final package/publication and installation evidence remain pending for this candidate; the following v0.4.0-dev.2 entry describes the previous release.
+Final runtime7e90b8d passed browser/Linux37162839792, full Windows/native37162839785, Manager installer/updater adversarial37162839802 and review-only Pages37162841407. Actual rendered Windows picker, decoded owned frames, launcher/IDE, unchanged messenger themes/responsive states and Manager native approval/recovery captures were inspected. Release v0.4.0-dev.3 packages255 verified payloads; ZIP172138497 bytes, SHA-256d18b5b48c536a4a37168019c1186fbbbc77984ba3fe32f525303f5e59b2982d4. Publication/install closeout follows after exact-byte verification. The following v0.4.0-dev.2 entry describes the previous release.
 
 ## Copperlight tools and scoped plugin repair — reviewed October 3
 
