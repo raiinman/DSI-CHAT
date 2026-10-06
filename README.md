@@ -1,17 +1,17 @@
 # DSI CHAT
 
 <!-- project-header:start -->
-![DSI-CHAT — original violet and cyan signal-console artwork](dsi-header.png)
+![DSI-CHAT — original generated project artwork](readme-banner.png)
 <!-- project-header:end -->
 
 <!-- project-badges:start -->
-[![DSI: CHAT](https://img.shields.io/static/v1?label=DSI&message=CHAT&color=7C3AED&labelColor=18181B&style=for-the-badge&logo=discord&logoColor=white)](https://github.com/raiinman/DSI-CHAT)
-[![targets: Android · desktop · web](https://img.shields.io/static/v1?label=targets&message=Android%20%C2%B7%20desktop%20%C2%B7%20web&color=0891B2&labelColor=18181B&style=for-the-badge)](https://github.com/raiinman/DSI-CHAT)
-[![docs: installation](https://img.shields.io/static/v1?label=docs&message=installation&color=475569&labelColor=18181B&style=for-the-badge)](https://github.com/raiinman/DSI-CHAT/blob/rewrite/docs/INSTALLATION.md)
+[![DSI: CHAT](https://img.shields.io/badge/DSI-CHAT-7C3AED?labelColor=333333&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI%2BPHBhdGggZD0iTTEgMmgxNHYxMEg2bC00IDN2LTNIMVYyeiIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNNCA2aDJ2Mkg0em0zIDBoMnYySDd6bTMgMGgydjJoLTJ6IiBmaWxsPSIjMzMzIi8%2BPC9zdmc%2B&logoColor=white)](https://github.com/raiinman/DSI-CHAT)
+[![targets: Android · desktop · web](https://img.shields.io/badge/targets-Android_%C2%B7_desktop_%C2%B7_web-0891B2?labelColor=333333&logo=android&logoColor=white)](https://github.com/raiinman/DSI-CHAT)
+[![docs: installation](https://img.shields.io/badge/docs-installation-475569?labelColor=333333&logo=readthedocs&logoColor=white)](https://github.com/raiinman/DSI-CHAT/blob/rewrite/docs/INSTALLATION.md)
 <!-- project-badges:end -->
 
 <!-- project-live-badges:start -->
-[![build](https://img.shields.io/github/actions/workflow/status/raiinman/DSI-CHAT/build.yml?branch=rewrite&style=flat&labelColor=18181B&logo=githubactions&logoColor=white&label=build)](https://github.com/raiinman/DSI-CHAT/actions/workflows/build.yml) [![last commit](https://img.shields.io/github/last-commit/raiinman/DSI-CHAT/rewrite?style=flat&labelColor=18181B&color=7C3AED&logo=github&logoColor=white&label=updated)](https://github.com/raiinman/DSI-CHAT/commits/rewrite) [![open issues](https://img.shields.io/github/issues/raiinman/DSI-CHAT?style=flat&labelColor=18181B&color=7C3AED&logo=github&logoColor=white&label=issues)](https://github.com/raiinman/DSI-CHAT/issues) [![stars](https://img.shields.io/github/stars/raiinman/DSI-CHAT?style=flat&labelColor=18181B&color=7C3AED&logo=github&logoColor=white&label=stars)](https://github.com/raiinman/DSI-CHAT/stargazers)
+[![build](https://img.shields.io/github/actions/workflow/status/raiinman/DSI-CHAT/build.yml?branch=rewrite&labelColor=333333&logo=githubactions&logoColor=white&label=build)](https://github.com/raiinman/DSI-CHAT/actions/workflows/build.yml) [![last commit](https://img.shields.io/github/last-commit/raiinman/DSI-CHAT/rewrite?labelColor=333333&color=7C3AED&logo=github&logoColor=white&label=updated)](https://github.com/raiinman/DSI-CHAT/commits/rewrite) [![open issues](https://img.shields.io/github/issues/raiinman/DSI-CHAT?labelColor=333333&color=7C3AED&logo=github&logoColor=white&label=issues)](https://github.com/raiinman/DSI-CHAT/issues) [![stars](https://badgen.net/github/stars/raiinman/DSI-CHAT?icon=github&color=7C3AED&labelColor=333333&label=stars)](https://github.com/raiinman/DSI-CHAT/stargazers)
 <!-- project-live-badges:end -->
 
 Dead Signal Interactive's Discord customization suite for **Android, desktop, and browsers**.
