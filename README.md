@@ -1,5 +1,11 @@
 # DSI CHAT
 
+<!-- project-badges:start -->
+[![DSI: CHAT](https://img.shields.io/static/v1?label=DSI&message=CHAT&color=7C3AED&labelColor=18181B&style=for-the-badge&logo=discord&logoColor=white)](https://github.com/raiinman/DSI-CHAT)
+[![targets: Android · desktop · web](https://img.shields.io/static/v1?label=targets&message=Android%20%C2%B7%20desktop%20%C2%B7%20web&color=0891B2&labelColor=18181B&style=for-the-badge)](https://github.com/raiinman/DSI-CHAT)
+[![docs: installation](https://img.shields.io/static/v1?label=docs&message=installation&color=475569&labelColor=18181B&style=for-the-badge)](https://github.com/raiinman/DSI-CHAT/blob/rewrite/docs/INSTALLATION.md)
+<!-- project-badges:end -->
+
 Dead Signal Interactive's Discord customization suite for **Android, desktop, and browsers**.
 
 DSI CHAT integrates Revenge's Android engine and Equicord's desktop/browser engine. Equicord already includes Vencord's framework and plugin collection. They share a product identity, not a JavaScript runtime.
