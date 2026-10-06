@@ -11,3 +11,7 @@ Do not connect DSI builds to upstream binary update channels. External services 
 Run npm test, generate the catalog, build changed targets, and record real validation in docs/STATE.md.
 Never claim an APK, installed desktop client, live Discord test or device validation from a bundle build alone.
 Do not access credentials, export sessions, send Discord messages, or enable plugins in the user's live account without a specific instruction.
+
+## README presentation
+
+The root owns `README.md` and its decorative `dsi-header.png`. Keep the generated signal-console artwork in the repository, preserve project prose and attribution, and use Shields.io for live public GitHub metrics. Build badges report workflow results; they do not establish device or release acceptance.
